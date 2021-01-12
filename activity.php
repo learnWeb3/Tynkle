@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon compte</title>
+    <title>Mon activité sur Tynkle</title>
     <meta name="author" content="">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/css/mdb.min.css">
@@ -13,15 +13,12 @@
 </head>
 
 <body>
-
     <?php include_once './commons/navbar.php' ?>
-
-
     <main class="bg-white" style='min-height:100vh;margin-top:5rem'>
         <section class="container d-flex flex-column align-items-center">
             <div class="row col-12 justify-content-center">
-                <button class="btn btn-lg btn-brand col-12 col-lg-3 m-2 active">Mes annonces</button>
-                <button class="btn btn-lg btn-brand col-12 col-lg-3 m-2">Mes demandes</button>
+                <button class="btn btn-lg btn-brand col-5 col-lg-3 m-2 active">Mes annonces</button>
+                <button class="btn btn-lg btn-brand col-5 col-lg-3 m-2">Mes demandes</button>
             </div>
             <div class="d-flex w-100 align-self-start px-2 py-4">
                 <div class="form-check">
@@ -33,7 +30,7 @@
                 <div class="form-check" style='margin-left:2rem;'>
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                     <label class="form-check-label" for="flexCheckChecked">
-                       Archivées
+                        Archivées
                     </label>
                 </div>
             </div>
@@ -46,7 +43,6 @@
             </div>
         </section>
     </main>
-
 </body>
 
 </html>
