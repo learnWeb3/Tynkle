@@ -21,3 +21,22 @@ body {
 .display-6 {
   font-size: 1.5rem;
 }
+
+.btn-brand{
+  background-color: rgba(55, 58, 60, 0.75);
+  color: rgba(243, 206, 18, 0.75);
+}
+
+.btn-brand.active {
+  background-color: #373a3c;
+  color: #f3cf12;
+}
+
+.form-check-input[type="checkbox"]:checked {
+  background-image: none;
+  background-color: #373a3c;
+}
+
+.form-check-input:checked {
+  border-color:#373a3c;
+}
