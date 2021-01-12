@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Se connecter</title>
+    <title>Mon compte</title>
     <meta name="author" content="">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/css/mdb.min.css">
@@ -23,7 +23,7 @@
         <aside class="d-none col-lg-4 d-lg-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh" id="menu-navigation">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active display-6" href="#account_informations">Informations de connexion</a>
+                    <a class="nav-link active display-6" href="#account_informations">Informations générales</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link display-6" href="#personnal_informations">Informations personnelles</a>
@@ -42,7 +42,7 @@
 
             <section style="min-height:95vh" class="w-100 d-flex align-items-center" id="account_informations">
                 <form action="" class="w-100 mb-4">
-                    <h1>Information de connexion</h1>
+                    <h1>Information générales</h1>
 
                     <h5 class="my-4">Informations obligatoires *</h5>
                     <div class="form-group my-2">
@@ -51,7 +51,27 @@
                     </div>
                     <div class="form-group my-2">
                         <label for="password">Mot de passe *</label>
-                        <input type="password" id="password" name="password" class="form-control">
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="password_confirmation">Confirmer le mot de passe *</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+                    </div>
+
+                    <div class="form-group my-2 d-flex col-12">
+                        <div class="col-4">
+                            <label for="helper_role">Devenir Helper ?</label>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                <label class="form-check-label" for="helper_role">oui</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                <label class="form-check-label" for="helper_role_2">non</label>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class='btn btn-lg btn-primary col-12 col-lg-4 my-2'>VALIDER</button>
                 </form>
