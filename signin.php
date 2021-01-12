@@ -24,15 +24,15 @@
                 <h1>De retour parmis nous ?</h1>
 
                 <h5 class="my-4">Informations obligatoires *</h5>
-                <div class="form-group">
-                    <div class="label">Adresse email *</div>
-                    <input type="email" class="form-control">
+                <div class="form-group my-2">
+                    <label for="email">Adresse email *</label>
+                    <input type="email" name="email" id="email" class="form-control">
                 </div>
-                <div class="form-group">
-                    <div class="label">Mot de passe *</div>
-                    <input type="password" class="form-control">
+                <div class="form-group my-2">
+                    <label for="password">Mot de passe *</label>
+                    <input type="password" id="password" name="password" class="form-control">
                 </div>
-                <button type="submit" class='btn btn-lg btn-primary col-12 my-4'>CONNEXION</button>
+                <button type="submit" class='btn btn-lg btn-primary col-12 my-2'>CONNEXION</button>
                 <?php include_once './commons/shared_links.php' ?>
             </form>
         </section>

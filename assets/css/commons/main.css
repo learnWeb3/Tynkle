@@ -2,10 +2,9 @@ body {
   min-height: 100vh;
 }
 
-.bg-white-overlay{
-    background-color: rgba(255,255,255,.80);
+.bg-white-overlay {
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
 
 @media screen and (min-width: 992px) {
   #sign-container {
@@ -14,7 +13,11 @@ body {
 }
 
 @media screen and (max-width: 992px) {
-    #sign-container {
-      min-height: 100vh;
-    }
+  #sign-container {
+    min-height: 100vh;
   }
+}
+
+.display-6 {
+  font-size: 1.5rem;
+}

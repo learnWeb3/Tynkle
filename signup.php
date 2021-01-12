@@ -25,23 +25,34 @@
 
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
-                    <div class="label">Adresse email *</div>
-                    <input type="email" class="form-control">
+                    <label for="email">Adresse email *</label>
+                    <input type="email" id="email" name="email" class="form-control">
                 </div>
                 <div class="form-group my-2">
-                    <div class="label">Mot de passe *</div>
+                    <label for="password">Mot de passe *</label>
                     <input type="password" class="form-control">
                 </div>
                 <div class="form-group my-2">
-                    <div class="label">Confirmer le mot de passe *</div>
-                    <input type="password" class="form-control">
+                    <label for="password_confirmation">Confirmer le mot de passe *</label>
+                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
                 </div>
 
-                <div class="form-check form-switch my-2">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Devenir Helper ?</label>
+                <div class="form-group my-2 d-flex col-12">
+                    <div class="col-4">
+                        <label for="helper_role">Devenir Helper ?</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                            <label class="form-check-label" for="helper_role">oui</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                            <label class="form-check-label" for="helper_role_2">non</label>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class='btn btn-lg btn-success col-12 my-4'>INSCRIPTION</button>
+                <button type="submit" class='btn btn-lg btn-success col-12 my-2'>INSCRIPTION</button>
 
                 <?php include_once './commons/shared_links.php' ?>
             </form>
