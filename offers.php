@@ -17,7 +17,7 @@
 
         <aside class="d-none col-lg-4 d-lg-flex flex-column p-4 fixed-bottom" style="height:100vh" id="menu-navigation">
 
-            <form action="" method="GET" class="mb-4" style='margin-top:5rem'>
+            <form action="" method="GET" class="mb-4" style='margin-top:5rem;'>
 
                 <h5>Rechercher par categorie: </h5>
 
@@ -96,14 +96,10 @@
 
         </aside>
 
-        <section class="col-12 col-lg-8 offset-lg-4 d-flex flex-column align-items-center">
-            <div class='col-12'>
-                <?php for ($count = 0; $count < 100; $count++) : ?>
-
-                    <?php include './assets/partials/publication_card/publication_card.php' ?>
-
-                <?php endfor; ?>
-            </div>
+        <section class="col-12 col-lg-6 offset-lg-4">
+            <?php for ($count = 0; $count < 100; $count++) : ?>
+                <?php include './assets/partials/publication_card/publication_card.php' ?>
+            <?php endfor; ?>
         </section>
     </main>
 </body>

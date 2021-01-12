@@ -1,0 +1,4 @@
+.card-chat:hover {
+  background-color: rgba(236, 236, 236, 0.25);
+  cursor: pointer;
+}
