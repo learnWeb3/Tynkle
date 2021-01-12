@@ -26,7 +26,7 @@
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
                     <label for="email">Adresse email *</label>
-                    <input type="email" id="email" name="email" class="form-control">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="prenom-nom@email.com">
                 </div>
                 <div class="form-group my-2">
                     <label for="password">Mot de passe *</label>

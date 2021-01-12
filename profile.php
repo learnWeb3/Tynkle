@@ -47,7 +47,7 @@
                     <h5 class="my-4">Informations obligatoires *</h5>
                     <div class="form-group my-2">
                         <label for="email">Adresse email *</label>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="prenom-nom@email.com">
                     </div>
                     <div class="form-group my-2">
                         <label for="password">Mot de passe *</label>
@@ -84,11 +84,11 @@
                     <h5 class="my-4">Informations obligatoires *</h5>
                     <div class="form-group my-2">
                         <label for="name">Nom *</label>
-                        <input type="text" name="name" id="name" class="form-control">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Dupond">
                     </div>
                     <div class="form-group my-2">
                         <label for="firstname">Prénom *</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control">
+                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Martin">
                     </div>
                     <div class="form-group my-2">
                         <label for="date_of_birth">Date de naissance: *</label>
@@ -96,11 +96,11 @@
                     </div>
                     <div class="form-group my-2">
                         <label for="adress">Adresse *</label>
-                        <input type="text" name="adress" id="adress" class="form-control">
+                        <input type="text" name="adress" id="adress" class="form-control" placeholder="221B Baker Street, LONDRES">
                     </div>
                     <div class="form-group my-2">
                         <label for="phone">Téléphone: *</label>
-                        <input type="text" name="phone" id="phone" class="form-control">
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="+33799999999">
                     </div>
                     <button type="submit" class='btn btn-lg btn-primary col-12 col-lg-4 my-2'>VALIDER</button>
                 </form>
