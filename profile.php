@@ -24,15 +24,15 @@
             <ul class="nav flex-column w-100">
                 <li class="nav-item d-flex align-items-center w-100 my-2">
                     <img src="./assets/icons/account.svg" height="36" width="36" alt="account informations">
-                    <a class="nav-link active display-6 m-2" href="#account_informations">Informations générales</a>
+                    <a class="nav-link active display-6 m-2 font-weight-bold" href="#account_informations">Informations générales</a>
                 </li>
                 <li class="nav-item d-flex align-items-center w-100 my-2">
                     <img src="./assets/icons/details.svg" height="36" width="36" alt="personnal informations">
-                    <a class="nav-link display-6 m-2" href="#personnal_informations">Informations personnelles</a>
+                    <a class="nav-link display-6 m-2 font-weight-bold" href="#personnal_informations">Informations personnelles</a>
                 </li>
                 <li class="nav-item d-flex align-items-center w-100 my-2">
                     <img src="./assets/icons/skills.svg" height="36" width="36" alt="skills">
-                    <a class="nav-link display-6 m-2" href="#skills">Compétences</a>
+                    <a class="nav-link display-6 m-2 font-weight-bold" href="#skills">Compétences</a>
                 </li>
             </ul>
 
@@ -40,7 +40,7 @@
                 
                 <li class="nav-item d-flex align-items-center w-100 my-2">
                     <img src="./assets/icons/home.svg" height="36" width="36" alt="home">
-                    <a href="" class="nav-link display-6 m-2">Accueil</a>
+                    <a href="" class="nav-link display-6 font-weight-bold m-2">Accueil</a>
                 </li>
             </ul>
         </nav>

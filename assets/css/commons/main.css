@@ -56,3 +56,24 @@ a:hover {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
 }
+
+.bg-overlay-white {
+  background-color: rgba(255, 255, 255, .75);
+}
+
+.bg-map {
+  background-image: url(https://miro.medium.com/max/4064/1*qYUvh-EtES8dtgKiBRiLsA.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-publication{
+  cursor: pointer;
+}
+
+.card-publication:hover{
+  transform: translateY(5px);
+  transition: .1s ease-in-out;
+}
