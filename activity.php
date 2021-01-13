@@ -35,11 +35,9 @@
                     </label>
                 </div>
             </div>
-            <div class='col-12'>
+            <div class='col-12 d-flex flex-wrap'>
                 <?php for ($count = 0; $count < 100; $count++) : ?>
-
                     <?php include './assets/partials/publication_card/publication_card.php' ?>
-
                 <?php endfor; ?>
             </div>
         </section>

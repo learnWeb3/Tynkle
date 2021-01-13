@@ -18,7 +18,7 @@
         <div class='bg-overlay-white d-flex' style="min-height: 100vh;width:100vw">
             <section class="d-none col-lg-4 d-lg-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
 
-                <form action="" method="GET" class="bg-white shadow-sm mb-4 p-4 rounded" style='margin-top:3rem;'>
+                <form action="" method="GET" class="bg-white shadow mb-4 p-4 rounded" style='margin-top:3rem;'>
 
                     <h5 class="font-weight-bold">Rechercher par categorie: </h5>
 
@@ -49,7 +49,7 @@
 
                 </form>
 
-                <form action="" class="bg-white shadow-sm mb-4 p-4 rounded" method="GET">
+                <form action="" class="bg-white shadow mb-4 p-4 rounded" method="GET">
 
                     <h5 class="font-weight-bold">Rechercher par type de panne: </h5>
 
@@ -79,7 +79,7 @@
                     </div>
                 </form>
 
-                <form action="" method="POST" class="col-12 bg-white shadow-sm mb-4 p-4 rounded">
+                <form action="" method="POST" class="col-12 bg-white shadow mb-4 p-4 rounded">
                     <div class="d-flex w-100 align-items-center">
                         <img src="./assets/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                         <h5 class="m-2 font-weight-bold">CHERCHER AUTOUR DE MOI</h5>
@@ -97,7 +97,7 @@
 
             </section>
 
-            <section class="col-12 col-lg-6 offset-lg-4 bg-white">
+            <section class="col-12 col-lg-6 offset-lg-4 bg-white d-flex flex-wrap">
                 <?php for ($count = 0; $count < 100; $count++) : ?>
                     <?php include './assets/partials/publication_card/publication_card.php' ?>
                 <?php endfor; ?>
