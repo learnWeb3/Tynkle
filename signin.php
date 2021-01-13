@@ -19,9 +19,9 @@
 
     <main class="d-flex flex-column justify-content-center bg-signin" style='min-height:100vh;'>
 
-        <section class="col-12 col-lg-4 offset-lg-1 d-flex align-items-center p-4 rounded-3 bg-white-overlay" id='sign-container'>
+        <section class="col-12 col-lg-4 offset-lg-1 d-flex align-items-center p-4 rounded-3 bg-white" id='sign-container'>
             <form action="" class="w-100">
-                <h1>De retour parmis nous ?</h1>
+                <h1 class="font-weight-bold">De retour parmis nous ?</h1>
 
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">

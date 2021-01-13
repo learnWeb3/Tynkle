@@ -15,8 +15,8 @@
 
 <body>
     <?php include_once './commons/navbar.php' ?>
-    <main class="bg-light-grey" style='min-height:100vh;margin-top:3rem'>
-        <section class="container d-flex flex-column align-items-center bg-white">
+    <main class="bg-brand-blue" style='min-height:100vh;margin-top:3rem'>
+        <section class="container d-flex flex-column align-items-center bg-light p-4">
             <div class="row col-12 justify-content-center my-4">
                 <button class="btn btn-lg btn-brand col-5 col-lg-3 m-2 active">Mes annonces</button>
                 <button class="btn btn-lg btn-brand col-5 col-lg-3 m-2">Mes demandes</button>

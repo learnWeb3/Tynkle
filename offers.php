@@ -7,6 +7,7 @@
     <title>Tynkle: Les annonces</title>
     <meta name="author" content="">
     <meta name="description" content="">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/png">
     <link rel="stylesheet" href="./assets/css/mdb.min.css">
     <link rel="stylesheet" href="./assets/css/commons/main.css">
 </head>
