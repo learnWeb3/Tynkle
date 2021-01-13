@@ -1,18 +1,20 @@
 <div class="card card-publication shadow-sm p-4 my-4">
     <div class="row">
-        <div class="col-8">
+        <div class="col-8 d-flex flex-column justify-content-start">
             <h5>Ordinateur bloqué, écran bl...</h5>
             <p>Informatique - Dépanner mon PC/Mac</p>
         </div>
-        <div class="col-4 d-flex align-items-center justify-content-end">
-            <img src="./assets/partials/publication_card/img/pointer.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
-            <p class="m-2 mb-0">Marseille (13012)</p>
+        <div class="col-4 d-flex align-items-start justify-content-end">
+            <div class="d-flex align-items-center w-100 justify-content-end">
+                <img src="./assets/partials/publication_card/img/pointer.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
+                <p class="m-2 mb-0">Marseille (13012)</p>
+            </div>
         </div>
     </div>
-    <div class="row"><a href="">Voir plus....</a></div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-8 d-flex flex-column justify-content-center align-items-start">
             <p>John Malkovich</p>
+            <div class="row"><a href="">Voir plus....</a></div>
         </div>
         <div class="col-4 d-flex flex-column justify-content-center align-items-end">
             <div class="d-flex align-items-center justify-content-end w-100">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="./assets/css/commons/main.css">
 </head>
 
-<body>
+<body class="bg-light-grey">
     <?php include_once './commons/navbar.php' ?>
-    <main class="bg-white d-flex" style='min-height:100vh;margin-top:5rem'>
+    <main class="d-flex" style='min-height:100vh;margin-top:3rem;'>
 
-        <aside class="d-none col-lg-4 d-lg-flex flex-column p-4 fixed-bottom" style="height:100vh" id="menu-navigation">
+        <section class="d-none col-lg-4 d-lg-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
 
-            <form action="" method="GET" class="mb-4" style='margin-top:5rem;'>
+            <form action="" method="GET" class="bg-white shadow-sm mb-4 p-4" style='margin-top:3rem;'>
 
                 <h5>Rechercher par categorie: </h5>
 
@@ -48,7 +48,7 @@
 
             </form>
 
-            <form action="" class="my-4" method="GET">
+            <form action="" class="bg-white shadow-sm mb-4 p-4" method="GET">
 
                 <h5>Rechercher par type de panne: </h5>
 
@@ -78,7 +78,7 @@
                 </div>
             </form>
 
-            <form action="" method="POST" class="col-12 col-lg-6">
+            <form action="" method="POST" class="col-12 bg-white shadow-sm mb-4 p-4">
                 <div class="d-flex w-100 align-items-center">
                     <img src="./assets/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                     <p class="m-2 mb-0">CHERCHER AUTOUR DE MOI</p>
@@ -94,9 +94,9 @@
                 </div>
             </form>
 
-        </aside>
+        </section>
 
-        <section class="col-12 col-lg-6 offset-lg-4">
+        <section class="col-12 col-lg-6 offset-lg-4 bg-white">
             <?php for ($count = 0; $count < 100; $count++) : ?>
                 <?php include './assets/partials/publication_card/publication_card.php' ?>
             <?php endfor; ?>

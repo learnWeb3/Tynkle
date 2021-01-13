@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="./assets/css/mdb.min.css">
     <link rel="stylesheet" href="./assets/css/commons/main.css">
     <link rel="stylesheet" href="./assets/css/pages/activity.css">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/png">
 </head>
 
 <body>
     <?php include_once './commons/navbar.php' ?>
-    <main class="bg-white" style='min-height:100vh;margin-top:5rem'>
-        <section class="container d-flex flex-column align-items-center">
-            <div class="row col-12 justify-content-center">
+    <main class="bg-light-grey" style='min-height:100vh;margin-top:3rem'>
+        <section class="container d-flex flex-column align-items-center bg-white">
+            <div class="row col-12 justify-content-center my-4">
                 <button class="btn btn-lg btn-brand col-5 col-lg-3 m-2 active">Mes annonces</button>
                 <button class="btn btn-lg btn-brand col-5 col-lg-3 m-2">Mes demandes</button>
             </div>

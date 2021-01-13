@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -17,31 +17,38 @@
     <?php include_once './commons/navbar.php' ?>
 
 
-    <main class="d-flex bg-white" style='min-height:100vh;'>
+    <main class="d-flex bg-light-grey" style='min-height:100vh;'>
 
 
-        <aside class="d-none col-lg-4 d-lg-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh" id="menu-navigation">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active display-6" href="#account_informations">Informations générales</a>
+        <nav class="d-none col-lg-4 d-lg-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
+            <ul class="nav flex-column w-100">
+                <li class="nav-item d-flex align-items-center w-100 my-2">
+                    <img src="./assets/icons/account.svg" height="36" width="36" alt="account informations">
+                    <a class="nav-link active display-6 m-2" href="#account_informations">Informations générales</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link display-6" href="#personnal_informations">Informations personnelles</a>
+                <li class="nav-item d-flex align-items-center w-100 my-2">
+                    <img src="./assets/icons/details.svg" height="36" width="36" alt="personnal informations">
+                    <a class="nav-link display-6 m-2" href="#personnal_informations">Informations personnelles</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link display-6" href="#skills">Compétences</a>
+                <li class="nav-item d-flex align-items-center w-100 my-2">
+                    <img src="./assets/icons/skills.svg" height="36" width="36" alt="skills">
+                    <a class="nav-link display-6 m-2" href="#skills">Compétences</a>
                 </li>
             </ul>
 
             <ul class="nav flex-column">
-                <li class="nav-item display-6"><a href="" class="nav-link">Accueil</a></li>
+                
+                <li class="nav-item d-flex align-items-center w-100 my-2">
+                    <img src="./assets/icons/home.svg" height="36" width="36" alt="home">
+                    <a href="" class="nav-link display-6 m-2">Accueil</a>
+                </li>
             </ul>
-        </aside>
+        </nav>
 
-        <div class="col-12 col-lg-6 offset-lg-4 d-flex flex-column align-items-start bg-white p-4" style="min-height:100vh">
+        <div class="col-12 col-lg-6 offset-lg-4 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh">
 
             <section style="min-height:95vh" class="w-100 d-flex align-items-center" id="account_informations">
-                <form action="" class="w-100 mb-4">
+                <form action="" class="w-100 mb-4 p-4">
                     <h1>Information générales</h1>
 
                     <h5 class="my-4">Informations obligatoires *</h5>
@@ -78,7 +85,7 @@
             </section>
 
             <section id="personnal_informations" class="w-100 d-flex align-items-center" style="min-height:95vh">
-                <form action="" class="w-100 my-4">
+                <form action="" class="w-100 my-4 p-4">
                     <h1>Information personnelles</h1>
 
                     <h5 class="my-4">Informations obligatoires *</h5>
@@ -107,7 +114,7 @@
             </section>
 
             <section id="skills" class="w-100 d-flex align-items-center" style="min-height:95vh">
-                <form action="" class="w-100 my-4">
+                <form action="" class="w-100 my-4 p-4">
                     <h1>Compétences</h1>
                     <h5 class="my-4">Informations obligatoires *</h5>
                     <div class="row">
