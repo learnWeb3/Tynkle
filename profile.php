@@ -21,7 +21,7 @@
     <main class="d-flex bg-brand-blue" style='min-height:100vh;'>
 
 
-        <nav class="d-none col-lg-4 d-lg-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
+        <nav class="d-none col-lg-3 d-lg-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
             <ul class="nav flex-column w-100">
                 <li class="nav-item d-flex align-items-center w-100 my-2">
                     <img src="./assets/icons/account_light.svg" height="36" width="36" alt="account informations">
@@ -31,22 +31,29 @@
                     <img src="./assets/icons/details_light.svg" height="36" width="36" alt="personnal informations">
                     <a class="nav-link display-6 m-2 font-weight-bold text-white" href="#personnal_informations">Informations personnelles</a>
                 </li>
-                <li class="nav-item d-flex align-items-center w-100 my-2">
-                    <img src="./assets/icons/skills_light.svg" height="36" width="36" alt="skills">
-                    <a class="nav-link display-6 m-2 font-weight-bold text-white" href="#skills">Compétences</a>
+                <li class="nav-item w-100 my-2">
+
+                    <ul class="nav flex-column w-100">
+                        <li class="font-weight-bold mb-2 d-flex align-items-center"> <img src="./assets/icons/skills_light.svg" height="36" width="36" alt="skills">
+                            <a class="nav-link display-6 m-2 font-weight-bold text-white" href="#skills">Compétences</a>
+                        </li>
+                        <li class="font-weight-bold mb-2 mx-5"><a href="" class="text-white">Catégorie de skill 1</a></li>
+                        <li class="font-weight-bold mb-2 mx-5"><a href="" class="text-white">Catégorie de skill 1</a></li>
+                        <li class="font-weight-bold mb-2 mx-5"><a href="" class="text-white">Catégorie de skill 1</a></li>
+                    </ul>
                 </li>
             </ul>
 
             <ul class="nav flex-column">
-                
                 <li class="nav-item d-flex align-items-center w-100 my-2">
                     <img src="./assets/icons/home_light.svg" height="36" width="36" alt="home">
                     <a href="" class="nav-link display-6 font-weight-bold m-2 text-white">Accueil</a>
                 </li>
             </ul>
+
         </nav>
 
-        <div class="col-12 col-lg-6 offset-lg-4 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh">
+        <div class="col-12 col-lg-8 offset-lg-3 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh">
 
             <section style="min-height:95vh" class="w-100 d-flex align-items-center" id="account_informations">
                 <form action="" class="w-100 mb-4 p-4">
@@ -118,17 +125,137 @@
                 <form action="" class="w-100 my-4 p-4">
                     <h2 class="font-weight-bold">Compétences</h2>
                     <h5 class="my-4">Informations obligatoires *</h5>
+
+
+                    <h5>Catégorie de skill 1 : </h5>
                     <div class="row">
-                        <ul class="nav col-4 d-block overflow-auto px-2" style='max-height:75vh'>
-                            <li class="font-weight-bold mb-2">Catégorie de skill 1</li>
-                            <li class="font-weight-bold mb-2">Catégorie de skill 1</li>
-                            <li class="font-weight-bold mb-2">Catégorie de skill 1</li>
-                            <li class="font-weight-bold mb-2">Catégorie de skill 1</li>
-                        </ul>
-                        <ul class="col-8">
+                        <ul class="col-12">
                             <li class="row d-flex align-items-start justify-content-between">
                                 <div class="col-8">
-                                    <p class="mb-0"> Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h5>Catégorie de skill 2 : </h5>
+                    <div class="row">
+                        <ul class="col-12">
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h5>Catégorie de skill 3 : </h5>
+                    <div class="row">
+                        <ul class="col-12">
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h5>Catégorie de skill 4 : </h5>
+                    <div class="row">
+                        <ul class="col-12">
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
+                                        <label class="form-check-label" for="helper_role">oui</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
+                                        <label class="form-check-label" for="helper_role_2">non</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="row d-flex align-items-start justify-content-between">
+                                <div class="col-8">
+                                    <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check form-check-inline">
