@@ -10,7 +10,12 @@ class SessionsController extends ApplicationController
     public function create()
     {
         if (isset($_POST['login'], $_POST['password'])) {
-            User::signIn($this->connection, $_POST['login'], $_POST['password']);
+            try {
+                User::signIn($this->connection, $_POST['login'], $_POST['password']);
+                die(header('location: ' . ROOT_PATH . '/posts'));
+            } catch (\Throwable $th) {
+                // die(header('location: ' . ROOT_PATH . '/signin'));
+            }
         } else {
             $this->handleError(422);
         }
@@ -18,11 +23,12 @@ class SessionsController extends ApplicationController
 
     public function new()
     {
-        $this->render('new', 
+        $this->render(
+            'new',
             array(
-                'title'=>'Tynkle: Se connecter',
-                'description'=> 'Tynkle: De retour parmis nous ?',
-                'style_file_name'=>'signin'
+                'title' => 'Tynkle: Se connecter',
+                'description' => 'Tynkle: De retour parmis nous ?',
+                'style_file_name' => 'signin'
             )
         );
     }

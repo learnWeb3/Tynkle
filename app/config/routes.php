@@ -1,5 +1,4 @@
 <?php
-
 $routes = array(
     array('GET', ROOT_PATH . '/', 'home#index', 'home'),
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),
@@ -15,6 +14,7 @@ $routes = array(
     // '/posts'
     array('GET', ROOT_PATH . '/posts', 'posts#index', 'index_post'),
     array('GET', ROOT_PATH . '/posts/[i:id]', 'posts#show', 'show_post'),
+    array('GET', ROOT_PATH . '/posts/new', 'posts#new', 'new_post'),
     array('POST', ROOT_PATH . '/posts', 'posts#create', 'create_post'),
     array('POST', ROOT_PATH . '/posts/[i:id]', 'posts#update', 'update_post'),
     array('DELETE', ROOT_PATH . '/posts/[i:id]', 'posts#destroy', 'destroy_post'),

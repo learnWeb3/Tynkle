@@ -10,8 +10,13 @@ class UsersController extends ApplicationController
 
     public function create()
     {
-        if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
-            User::create($this->connection, ['email', 'password', 'username'], [$_POST['email'], password_hash($_POST['password'], PASSWORD_BCRYPT), $_POST['username']]);
+        if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['password_confirmation'], $_POST['is_helper'])) {
+            if ($_POST['password_confirmation'] === $_POST['password']) {
+                User::create($this->connection, ['email', 'password', 'username', 'is_helper'], [$_POST['email'], password_hash($_POST['password'], PASSWORD_BCRYPT), $_POST['username'], intval($_POST['is_helper'])]);
+                die(header('location:' . ROOT_PATH . '/signin'));
+            } else {
+                die(header('location:' . ROOT_PATH . '/register'));
+            }
         } else {
             $this->handleError(422);
         }

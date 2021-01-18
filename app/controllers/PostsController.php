@@ -64,6 +64,24 @@ class PostsController extends ApplicationController
         }
     }
 
+
+    public function new()
+    {
+
+        $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+        $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+        $this->render(
+            'new',
+            array(
+                'title' => 'Tynkle: les annonces',
+                'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                'style_file_name' => 'new_post',
+                'breakdown_categories' => $breakdown_categories,
+                'platforms' => $platforms
+            ),
+        );
+    }
+
     public function index()
     {
         $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
@@ -84,15 +102,16 @@ class PostsController extends ApplicationController
     }
 
     public function show()
-    {   
+    {
         if (isset($this->post)) {
+            $post_data = $this->post->getDetails($this->connection);
             $this->render(
                 'show',
                 array(
-                    'title' => 'Tynkle: les annonces',
+                    'title' => "Tynkle: ".$post_data['title'],
                     'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                     'style_file_name' => 'offer',
-                    'post'=>$this->post->getDetails($this->connection),
+                    'post' => $post_data,
                 )
             );
         } else {

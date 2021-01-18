@@ -1,15 +1,15 @@
 <main class="d-flex flex-column justify-content-center bg-signin" style='min-height:100vh;'>
 
     <section class="col-12 col-lg-4 offset-lg-1 d-flex align-items-center p-4 rounded-3 bg-white" id='sign-container'>
-        <form action="" class="w-100 p-lg-4">
+        <form action="<?php echo ROOT_PATH.'/login' ?>" class="w-100 p-lg-4" method="post">
             <h1 class="font-weight-bold">De retour parmis nous ?</h1>
 
             <h5 class="my-4">Informations obligatoires *</h5>
-            <div class="form-group my-4">
-                <label for="email">Adresse email *</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="prenom-nom@email.com">
+            <div class="form-group my-2">
+                <label for='login'>Adresse email ou Identifiant *</label>
+                <input type='text' name='login' id='login' class="form-control" placeholder="prenom-nom@email.com">
             </div>
-            <div class="form-group my-4">
+            <div class="form-group my-2">
                 <label for="password">Mot de passe *</label>
                 <input type="password" id="password" name="password" class="form-control">
             </div>
