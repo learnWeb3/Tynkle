@@ -14,7 +14,7 @@ class SessionsController extends ApplicationController
                 User::signIn($this->connection, $_POST['login'], $_POST['password']);
                 die(header('location: ' . ROOT_PATH . '/posts'));
             } catch (\Throwable $th) {
-                // die(header('location: ' . ROOT_PATH . '/signin'));
+                die(header('location: ' . ROOT_PATH . '/signin'));
             }
         } else {
             $this->handleError(422);

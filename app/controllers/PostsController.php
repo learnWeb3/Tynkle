@@ -6,7 +6,7 @@ class PostsController extends ApplicationController
     public function __construct(array $params, string $asked_method)
     {
         parent::__construct($params, $asked_method);
-        $this->beforeAction(['destroy', 'update', 'show']);
+        $this->beforeAction(['destroy', 'update', 'show', 'edit']);
     }
     public function create()
     {
@@ -108,10 +108,32 @@ class PostsController extends ApplicationController
             $this->render(
                 'show',
                 array(
-                    'title' => "Tynkle: ".$post_data['title'],
+                    'title' => "Tynkle: " . $post_data['title'],
                     'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                     'style_file_name' => 'offer',
                     'post' => $post_data,
+                )
+            );
+        } else {
+            $this->handleError(422);
+        }
+    }
+
+    public function edit()
+    {
+        if (isset($this->post)) {
+            $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+            $post_data = $this->post->getDetails($this->connection);
+            $this->render(
+                'edit',
+                array(
+                    'title' => "Tynkle: " . $post_data['title'],
+                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'style_file_name' => 'new_post',
+                    'post' => $post_data,
+                    'breakdown_categories' => $breakdown_categories,
+                    'platforms' => $platforms
                 )
             );
         } else {
