@@ -11,23 +11,29 @@ class PostsController extends ApplicationController
     public function create()
     {
         if (isset($this->current_user)) {
-            $images = [];
-            $cover_image = '';
-            Post::create(
-                $this->connection,
-                ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
-                array(
-                    $this->current_user['id'],
-                    $_POST['id_breakdown_category'],
-                    $images,
-                    $cover_image,
-                    $_POST['title'],
-                    $_POST['content'],
-                    $_POST['budget'],
-                    $_POST['city'],
-                    $_POST['postal_code']
-                )
-            );
+            $uploaded_file_paths = Uploader::uploadFileBatch(array_keys($_FILES));
+            $cover_image = isset($uploaded_file_paths[0]) ? $uploaded_file_paths[0] : null;
+            try {
+                $post = Post::create(
+                    $this->connection,
+                    ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+                    array(
+                        $this->current_user->id,
+                        $_POST['id_breakdown_category'],
+                        json_encode($uploaded_file_paths),
+                        $cover_image,
+                        $_POST['title'],
+                        $_POST['content'],
+                        $_POST['budget'],
+                        $_POST['city'],
+                        $_POST['postal_code']
+                    )
+                )[0];
+                die(header('location:'.ROOT_PATH.'/posts'.'/'.$post['id']));
+            } catch (\Throwable $th) {
+                var_dump($th);
+                // $this->handleError(500);
+            }
         } else {
             $this->handleError(422);
         }

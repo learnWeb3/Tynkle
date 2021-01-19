@@ -3,7 +3,7 @@
     </section>
     <section class="container relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
         <h1 class="my-4">Publier une annonce :</h1>
-        <form action="" method="post" class="col-12 col-md-8 col-lg-6">
+        <form action="<?php echo ROOT_PATH.'/posts' ?>" method="post" class="col-12 col-md-8 col-lg-6" method="POST" enctype='multipart/form-data'>
             <div class="row">
                 <div class="form-group col-12 col-lg-6 my-2">
                     <label for="id_platform">Platforme de l'appareil : </label>
@@ -48,30 +48,14 @@
             <div class="form-group">
                 <label>Images / Screenshots</label>
                 <div class="row">
-                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
-                        <input type="file" name="image_one" id="image_one" class='dropzone'>
-                        <div class="dropzone-layer">
-                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                    <?php for ($count = 1; $count <= 4; $count++) : ?>
+                        <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
+                            <input type="file" name="image_<?php echo $count ?>" id="image_<?php echo $count ?>" class='dropzone'>
+                            <div class="dropzone-layer">
+                                <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
-                        <input type="file" name="image_two" id="image_two" class='dropzone'>
-                        <div class="dropzone-layer">
-                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
-                        </div>
-                    </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
-                        <input type="file" name="image_three" id="image_three" class='dropzone'>
-                        <div class="dropzone-layer">
-                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
-                        </div>
-                    </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
-                        <input type="file" name="image_four" id="image_four" class='dropzone'>
-                        <div class="dropzone-layer">
-                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
-                        </div>
-                    </div>
+                    <?php endfor; ?>
                 </div>
             </div>
             <button type="submit" class='btn btn-lg btn-brand active col-12 my-4'>publier</button>

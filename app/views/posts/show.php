@@ -18,7 +18,7 @@
             <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/pointer.svg" height="24" width="24" alt="map pointer">
             <h3 class="m-2 font-weight-bold" id='location'><?php echo htmlspecialchars($post['city']) ?> <?php echo htmlspecialchars($post['postal_code']) ?></h3>
         </div>
-        <div class="row my-4 px-0">
+        <div class="row my-4 px-0 col-12">
             <h4 class="my-2 font-weight-bold">Description: </h4>
             <p id="content"><?php echo htmlspecialchars($post['content']) ?></p>
         </div>
