@@ -26,6 +26,8 @@ class User extends Application
     {
         if (isset($_SESSION['current_user'])) {
             unset($_SESSION['current_user']);
+        }else{
+            throw new Exception('user is not signed');
         }
     }
 }

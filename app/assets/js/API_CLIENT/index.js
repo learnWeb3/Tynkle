@@ -11,4 +11,15 @@ const getPlatforms = async (data) => {
     return fetch(ROOT_PATH + '/breakdowns', options).then((results) => results.json()).catch((error) => console.log(error))
 }
 
-export { getPlatforms }
+const signout = async () => {
+    const options = {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'DELETE',
+    }
+    return fetch(ROOT_PATH + '/logout', options).then((response) => {
+        return {status : response.status};
+    }).catch((error) => console.log(error))
+}
+export { getPlatforms, signout, ROOT_PATH }

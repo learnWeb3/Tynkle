@@ -28,6 +28,7 @@ class ApplicationController
             'style_file_name' => ''
         )
     ) {
+        $is_current_user_logged_in = isset($_SESSION['current_user']) ?  true : false;
         extract($template_vars);
         ob_start();
         require_once './app/views/' . strtolower(str_replace('Controller', '', get_class($this))) . '/' . $template_name . '.php';

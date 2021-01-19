@@ -3,7 +3,7 @@ $routes = array(
     array('GET', ROOT_PATH . '/', 'home#index', 'home'),
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),
     array('POST', ROOT_PATH . '/login', 'sessions#create', 'create_session'),
-    array('DELETE', ROOT_PATH . '/logout', 'sessions#delete', 'destroy_session'),
+    array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),
     //  '/users'
     array('GET', ROOT_PATH . '/users', 'users#index', 'index_user'),
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),

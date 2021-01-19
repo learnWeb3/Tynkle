@@ -34,6 +34,11 @@ class SessionsController extends ApplicationController
     }
     public function destroy()
     {
-        User::signOut();
+        try {
+            User::signOut();
+            die(http_response_code(204));
+        } catch (\Throwable $th) {
+            die(http_response_code(500));
+        }
     }
 }

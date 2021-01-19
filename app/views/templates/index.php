@@ -16,9 +16,12 @@
 </head>
 
 <body class='bg-light-grey'>
+
     <?php include_once 'navbar.php' ?>
     <?php echo $current_view ?>
     <?php include_once 'footer.php' ?>
+
+    <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/navbar.js' ?>"></script>
 </body>
 
 </html>
