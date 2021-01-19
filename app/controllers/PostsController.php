@@ -29,7 +29,7 @@ class PostsController extends ApplicationController
                         $_POST['postal_code']
                     )
                 )[0];
-                die(header('location:'.ROOT_PATH.'/posts'.'/'.$post['id']));
+                die(header('location:' . ROOT_PATH . '/posts' . '/' . $post['id']));
             } catch (\Throwable $th) {
                 var_dump($th);
                 // $this->handleError(500);
@@ -93,18 +93,25 @@ class PostsController extends ApplicationController
         $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
         $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
         $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-        $this->render(
-            'index',
-            array(
-                'title' => 'Tynkle: les annonces',
-                'description' => 'Tynkle: Retrouvez les demandes de dépannage',
-                'style_file_name' => '',
-                'posts' => $posts['data'],
-                'breakdown_categories' => $breakdown_categories,
-                'platforms' => $platforms
-            ),
 
-        );
+        if (isset($_GET['ajax'])) {
+            echo json_encode($posts);
+            die();
+        } else {
+            $this->render(
+                'index',
+                array(
+                    'title' => 'Tynkle: les annonces',
+                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'style_file_name' => '',
+                    'posts' => $posts['data'],
+                    'breakdown_categories' => $breakdown_categories,
+                    'platforms' => $platforms,
+                    'next_page' => $posts['next']
+                ),
+
+            );
+        }
     }
 
     public function show()

@@ -22,4 +22,14 @@ const signout = async () => {
         return {status : response.status};
     }).catch((error) => console.log(error))
 }
-export { getPlatforms, signout, ROOT_PATH }
+
+const getFollowingPosts = (nextPage) =>{
+    const options = {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'GET',
+    }
+    return fetch(ROOT_PATH  + nextPage + '&ajax=true', options);
+}
+export { getPlatforms, signout, getFollowingPosts, ROOT_PATH }

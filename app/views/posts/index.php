@@ -55,7 +55,7 @@
 
         </section>
 
-        <section class="col-12 col-lg-8 offset-lg-3 bg-white d-flex flex-wrap">
+        <section class="col-12 col-lg-8 offset-lg-3 bg-white d-flex flex-wrap" id="posts-container" data-nextpage="<?php echo $next_page ?>">
             <?php foreach ($posts as $post) : ?>
                 <?php include '_publication_card.php' ?>
             <?php endforeach; ?>
@@ -64,3 +64,5 @@
     </div>
 
 </main>
+
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts.js' ?> "></script>
