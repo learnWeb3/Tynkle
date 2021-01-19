@@ -48,23 +48,29 @@
             <div class="form-group">
                 <label>Images / Screenshots</label>
                 <div class="row">
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
+                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
                         <input type="file" name="image_one" id="image_one" class='dropzone'>
                         <div class="dropzone-layer">
-                            <p>cliquer pour ajouter une image</p>
+                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
                         </div>
                     </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
+                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
                         <input type="file" name="image_two" id="image_two" class='dropzone'>
-                        <div class="dropzone-layer">cliquer pour ajouter une image</div>
+                        <div class="dropzone-layer">
+                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                        </div>
                     </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
+                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
                         <input type="file" name="image_three" id="image_three" class='dropzone'>
-                        <div class="dropzone-layer">cliquer pour ajouter une image</div>
+                        <div class="dropzone-layer">
+                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                        </div>
                     </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
+                    <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
                         <input type="file" name="image_four" id="image_four" class='dropzone'>
-                        <div class="dropzone-layer">cliquer pour ajouter une image</div>
+                        <div class="dropzone-layer">
+                            <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,9 +79,4 @@
     </section>
 </main>
 
-<script>
-    Array.from(document.querySelectorAll('.dropzone-layer'))
-        .map((domElement) => domElement.addEventListener('click', function(event) {
-            Array.from(domElement.parentElement.children)[0].click();
-        }));
-</script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_post.js' ?>"></script>

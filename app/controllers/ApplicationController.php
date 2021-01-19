@@ -16,6 +16,7 @@ class ApplicationController
         $this->start = isset($_GET['start']) ? intval($_GET['start']) : 0;
         $this->params = $params;
         $this->asked_method = $asked_method;
+        $this->json_params = !empty(file_get_contents('php://input')) ?  json_decode(file_get_contents('php://input'), true) : [];
         $this->beforeAll();
     }
 
@@ -46,5 +47,4 @@ class ApplicationController
             $this->current_user = new User($_SESSION['current_user']);
         }
     }
-
 }

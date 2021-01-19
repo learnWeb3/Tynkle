@@ -19,6 +19,8 @@ $routes = array(
     array('POST', ROOT_PATH . '/posts', 'posts#create', 'create_post'),
     array('POST', ROOT_PATH . '/posts/[i:id]', 'posts#update', 'update_post'),
     array('DELETE', ROOT_PATH . '/posts/[i:id]', 'posts#destroy', 'destroy_post'),
+    // /breakdowns
+    array('POST', ROOT_PATH . '/breakdowns', 'breakdowns#index', 'index_breakdowns'),
     // '/skills'
     array('GET', ROOT_PATH . '/skills', 'skills#index', 'index_skills'),
     array('GET', ROOT_PATH . '/skills/[i:id]', 'skills#show', 'show_skills'),
