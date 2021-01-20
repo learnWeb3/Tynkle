@@ -46,10 +46,8 @@ class User extends Application
         (SELECT COUNT(user_skills.id) as is_owned FROM user_skills WHERE user_skills.id_skill = id_skill AND user_skills.id_user = ?) is_owned
         FROM skills WHERE id_breakdown_category = ?";
         return array_map(function ($breakdown_category) use ($connection, $request_body) {
-            return array(
-                'breakdown_categories' => $breakdown_category,
-                'skills' =>  Request::send($connection, $request_body, [$this->id, $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC)
-            );
+            $breakdown_category['skills'] =  Request::send($connection, $request_body, [$this->id, $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC);
+            return  $breakdown_category;
         }, $breakdown_categories);
     }
 

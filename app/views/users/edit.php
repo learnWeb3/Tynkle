@@ -76,24 +76,33 @@
                 <h5 class="my-4">Informations obligatoires *</h5>
 
 
-                <?php foreach ($platforms as $index => $platform) : ?>
+                <?php foreach ($breakdown_categories_skills as $index => $breakdown_category_skill) : ?>
 
-                    <h5>Catégorie de skill 1 : </h5>
-                    <div class="row">
+                    <h5>Catégorie: <?php echo $breakdown_category_skill['name'] ?></h5>
+                    <div class="row" id="breakdown-type-<?php echo $breakdown_category_skill['id'] ?>">
                         <ul class="col-12">
-                            <?php foreach ($platform_skills as $index => $skill) : ?>
+                            <?php foreach ($breakdown_category_skill['skills'] as $index => $skill) : ?>
                                 <li class="row d-flex align-items-start justify-content-between">
                                     <div class="col-8">
-                                        <p class="mb-0">Je sais diagnostiquer et réparer les ordinateurs et tablettes:</p>
+                                        <p class="mb-0"><?php echo $skill['skill_name'] ?></p>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="helper_role" id="helper_role_1" value="option1">
-                                            <label class="form-check-label" for="helper_role">oui</label>
+                                            <?php if ($skill['is_owned']) :?>
+                                            <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" checked  id="skill_yes_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php  else :?>
+                                                <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>"  id="skill_yes_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php endif; ?>
+                                            <label class="form-check-label" for="skill_<?php echo $skill['skill_id'] ?>">oui </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="helper_role" id="helper_role_2" value="option2">
-                                            <label class="form-check-label" for="helper_role_2">non</label>
+                                        <?php if (!$skill['is_owned']) :?>
+                                            <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" checked id="skill_no_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php  else :?>
+                                                <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" id="skill_no_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php endif; ?>
+                                        
+                                            <label class="form-check-label" for="skill_<?php echo $skill['skill_id'] ?>" >non</label>
                                         </div>
                                     </div>
                                 </li>

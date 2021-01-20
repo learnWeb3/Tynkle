@@ -14,9 +14,9 @@
                 <li class="font-weight-bold mb-2 d-flex align-items-center"> <img src="./assets/icons/skills_light.svg" height="36" width="36" alt="skills">
                     <a class="nav-link display-6 m-2 font-weight-bold text-white" href="#skills">Compétences</a>
                 </li>
-                <li class="font-weight-bold mb-2 mx-5"><a href="" class="text-white">Catégorie de skill 1</a></li>
-                <li class="font-weight-bold mb-2 mx-5"><a href="" class="text-white">Catégorie de skill 1</a></li>
-                <li class="font-weight-bold mb-2 mx-5"><a href="" class="text-white">Catégorie de skill 1</a></li>
+                <?php foreach ($breakdown_categories_skills as $index => $breakdown_category_skill) : ?>
+                    <li class="font-weight-bold mb-2 mx-5"><a href="#breakdown-type-<?php echo $breakdown_category_skill['id'] ?>" class="text-white">Compétences : <?php echo $breakdown_category_skill['name'] ?></a></li>
+                <?php endforeach; ?>
             </ul>
         </li>
     </ul>

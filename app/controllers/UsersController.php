@@ -61,21 +61,19 @@ class UsersController extends ApplicationController
 
     public function edit()
     {
-        // if (isset($this->current_user))
-        // {
-        //     $this->render('edit', array(
-        //         'title' => "Tynkle: Mon compte",
-        //         'description' => 'Tynkle: mon compte',
-        //         'style_file_name' => 'edit',
-        //         'user'=>$this->current_user->getDetails($this->connection),
-        //         'user_skills'=>$this->current_user->getUserSkill($this->connection)
-        //     ));
+        if (isset($this->current_user))
+        {
+            $this->render('edit', array(
+                'title' => "Tynkle: Mon compte",
+                'description' => 'Tynkle: mon compte',
+                'style_file_name' => 'edit',
+                'user'=>$this->current_user->getDetails($this->connection),
+                'breakdown_categories_skills'=>$this->current_user->getUserSkill($this->connection)
+            ));
 
-        // }else{
-        //     $this->handleError(403);
-        // }
-
-        var_dump($this->current_user->getUserSkill($this->connection));
+        }else{
+            $this->handleError(403);
+        }
     }
 
     public function index()
