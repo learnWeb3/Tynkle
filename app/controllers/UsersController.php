@@ -24,24 +24,57 @@ class UsersController extends ApplicationController
 
     public function update()
     {
-        if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['birthdate'], $_POST['adress'], $_POST['phone_number'], $_POST['is_helper'])) {
-            User::update(
-                $this->connection,
-                ['email', 'password', 'username', 'firstname', 'lastname', 'birthdate', 'adress', 'phone_number', 'is_helper'],
-                array(
-                    $_POST['email'],
-                    password_hash($_POST['password'], PASSWORD_BCRYPT),
-                    $_POST['username'],
-                    $_POST['firstname'],
-                    $_POST['lastname'],
-                    $_POST['birthdate'],
-                    $_POST['adress'],
-                    $_POST['phone_number'],
-                    $_POST['is_helper']
-                ),
-                'id',
-                $this->current_user['id']
-            );
+        $user_data = $this->current_user->getDetails($this->connection);
+        if (isset($_POST['email'], $_POST['password'], $_POST['password_confirmation'], $_POST['username'], $_POST['is_helper'])) {
+            if ($_POST['password_confirmation'] === $_POST['password']) {
+                try {
+                    User::update(
+                        $this->connection,
+                        ['email', 'password', 'username', 'is_helper'],
+                        array(
+                            $_POST['email'],
+                            password_hash($_POST['password'], PASSWORD_BCRYPT),
+                            $_POST['username'],
+                            $_POST['is_helper']
+                        ),
+                        'id',
+                        $this->current_user->id
+                    );
+                    die(header('Location:' . ROOT_PATH . '/profile'));
+                } catch (\Throwable $th) {
+                   $this->handleError(500);
+                }
+            } else {
+                die(header('Location:' . ROOT_PATH . '/profile'));
+            }
+        } else if (isset($_POST['firstname'], $_POST['lastname'], $_POST['birthdate'], $_POST['adress'] , $_POST['city'], $_POST['postal_code'], $_POST['phone_number'])) {
+            $firstname = empty($_POST['firstname']) ? $user_data['firstname']   : $_POST['firstname'];
+            $lastname = empty($_POST['lastname']) ? $user_data['lastname']   : $_POST['lastname'];
+            $birthdate = empty($_POST['birthdate']) ? $user_data['birthdate']   : $_POST['birthdate'];
+            $adress = empty($_POST['adress']) ? $user_data['adress']   : $_POST['adress'];
+            $city = empty( $_POST['city']) ? $user_data['city'] :  $_POST['city'];
+            $postal_code = empty($_POST['postal_code']) ? $user_data['postal_code']   : $_POST['postal_code'];
+            $phone_number = empty($_POST['phone_number']) ? $user_data['phone_number']   : $_POST['phone_number'];
+            try {
+                User::update(
+                    $this->connection,
+                    ['firstname', 'lastname', 'birthdate', 'adress', 'city', 'postal_code', 'phone_number'],
+                    array(
+                        $firstname,
+                        $lastname,
+                        $birthdate,
+                        $adress,
+                        $city,
+                        $postal_code,
+                        $phone_number
+                    ),
+                    'id',
+                    $this->current_user->id
+                );
+                die(header('Location:' . ROOT_PATH . '/profile'));
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
         } else {
             $this->handleError(422);
         }
@@ -61,17 +94,15 @@ class UsersController extends ApplicationController
 
     public function edit()
     {
-        if (isset($this->current_user))
-        {
+        if (isset($this->current_user)) {
             $this->render('edit', array(
                 'title' => "Tynkle: Mon compte",
                 'description' => 'Tynkle: mon compte',
                 'style_file_name' => 'edit',
-                'user'=>$this->current_user->getDetails($this->connection),
-                'breakdown_categories_skills'=>$this->current_user->getUserSkill($this->connection)
+                'user' => $this->current_user->getDetails($this->connection),
+                'breakdown_categories_skills' => $this->current_user->getUserSkill($this->connection)
             ));
-
-        }else{
+        } else {
             $this->handleError(403);
         }
     }

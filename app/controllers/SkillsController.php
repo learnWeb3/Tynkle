@@ -10,7 +10,16 @@ class SkillsController extends ApplicationController
     }
     public function create()
     {
-        if (isset($this->current_user, $_POST['name'])) {
+        if (isset($this->current_user, $this->params['user_id']))
+        {
+          try {
+            $this->current_user->updateSkills($this->connection, $_POST);
+            die(header('Location:'.ROOT_PATH.'/profile'));
+          } catch (\Throwable $th) {
+              var_dump($th);
+          }
+        }
+        else if (isset($this->current_user, $_POST['name'])) {
             Skill::create(
                 $this->connection,
                 ['name'],

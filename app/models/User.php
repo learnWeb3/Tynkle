@@ -39,14 +39,17 @@ class User extends Application
     {
         $breakdown_categories = BreakdownCategory::all($connection, '/breakdowns', 0, 100)['data'];
         $request_body = "SELECT 
-        skills.id as skill_id,
+        skills.id as id_skill,
         skills.name as skill_name,
         skills.created_at as skill_created_at,
         skills.updated_at as skill_updated_at,
-        (SELECT COUNT(user_skills.id) as is_owned FROM user_skills WHERE user_skills.id_skill = id_skill AND user_skills.id_user = ?) is_owned
+        (SELECT COUNT(user_skills.id) as is_owned FROM user_skills 
+        JOIN skills ON user_skills.id_skill=skills.id 
+        JOIN breakdown_categories ON skills.id_breakdown_category = breakdown_categories.id 
+        WHERE user_skills.id_skill = id_skill AND user_skills.id_user = ? AND breakdown_categories.id=? ) is_owned
         FROM skills WHERE id_breakdown_category = ?";
         return array_map(function ($breakdown_category) use ($connection, $request_body) {
-            $breakdown_category['skills'] =  Request::send($connection, $request_body, [$this->id, $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC);
+            $breakdown_category['skills'] =  Request::send($connection, $request_body, [$this->id, $breakdown_category['id'], $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC);
             return  $breakdown_category;
         }, $breakdown_categories);
     }
@@ -58,5 +61,21 @@ class User extends Application
         } else {
             throw new Exception('user is not signed');
         }
+    }
+
+    public function updateSkills(PDO $connection, array $skills)
+    {
+        foreach ($skills as $key => $value) {
+            if (intval($value) === 1) {
+                UserSkill::create($connection, ['id_skill', 'id_user'], [$key, $this->id]);
+            } else {
+                $request_body = 'SELECT * FROM user_skills WHERE user_skills.id_skill = ? AND user_skills.id_user = ?';
+                $current_skill = Request::send($connection, $request_body, [$key, $this->id])->fetchAll(PDO::FETCH_ASSOC);
+                if (!empty($current_skill)) {
+                    UserSkill::delete($connection, [], 'id', $current_skill[0]['id']);
+                }
+            }
+        }
+
     }
 }
