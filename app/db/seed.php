@@ -7,6 +7,9 @@ $connection = Db::connect();
 Platform::destroyAll($connection);
 BreakdownCategory::destroyAll($connection);
 User::destroyAll($connection);
+Post::destroyAll($connection);
+Skill::destroyAll($connection);
+UserSkill::destroyAll($connection);
 
 $faker = Faker\Factory::create();
 $breakdown_categories = ['logiciel', 'matériel', 'mentoring/tutorat/cours', 'réseau'];
@@ -71,12 +74,12 @@ for ($count = 0; $count < 100; $count++) {
         $title = "Super titre $count";
         Post::create(
             $connection,
-            ['id_user', 'id_breakdown_category', 'images','cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+            ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
             array(
                 $random_user_id,
                 $random_breakdown_category_index,
                 json_encode(
-                   $images
+                    $images
                 ),
                 $images[array_rand($images)],
                 $title,
@@ -89,5 +92,38 @@ for ($count = 0; $count < 100; $count++) {
         echo "Post $title created \n";
     } catch (\Throwable $th) {
         echo "Post has not been created due to an internal error\n";
+    }
+}
+
+$skills = ['je sais détecter une panne', 'je sais remplacer une pièce'];
+foreach ($skills as $index => $skill) {
+    try {
+        $random_breakdown_index = array_rand($breakdown_categories);
+        $id_platform = $breakdown_categories[$random_breakdown_index]['id'];
+        Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_platform]);
+        echo "skill $skill has been created \n";
+    } catch (\Throwable $th) {
+        echo "Skill $skill has not been created due to an internal error\n";
+    }
+}
+
+$skills = Skill::all($connection, '/skills', 0, 100)['data'];
+for ($count = 0; $count < 100; $count++) {
+    try {
+        $random_skill_index = array_rand($skills);
+        $random_skill_id = $skills[$random_skill_index]['id'];
+        $random_user_index = array_rand($users);
+        $random_user_id = $users[$random_user_index]['id'];
+        UserSkill::create(
+            $connection,
+            ['id_skill', 'id_user'],
+            array(
+                $random_skill_id,
+                $random_user_id,
+            )
+        );
+        echo "User skill for user id $random_user_index \n";
+    } catch (\Throwable $th) {
+        echo "user Skill has not been created due to an internal error\n";
     }
 }

@@ -16,7 +16,7 @@
             <button type="submit" class='btn btn-lg btn-primary col-12 my-4'>CONNEXION</button>
             <p class="font-weight-bold text-center">ou</p>
             <a href="" class="col-12 btn btn-lg btn-white d-flex align-items-center justify-content-center position-relative font-weight-bold mt-4 mb-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-2" alt="signin with google" style='left:0;'>Se connecter avec google</a>
-            <?php include_once './commons/shared_links.php' ?>
+            <?php include_once './app/views/templates/_shared_links.php' ?>
         </form>
     </section>
 </main>

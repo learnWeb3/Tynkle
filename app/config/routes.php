@@ -7,6 +7,7 @@ $routes = array(
     //  '/users'
     array('GET', ROOT_PATH . '/users', 'users#index', 'index_user'),
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),
+    array('GET', ROOT_PATH . '/profile', 'users#edit', 'edit_user'),
     array('GET', ROOT_PATH . '/users/[:username]', 'users#show', 'show_user'),
     array('POST', ROOT_PATH . '/users', 'users#create', 'create_user'),
     array('POST', ROOT_PATH . '/users/[:username]', 'users#update', 'update_user'),
