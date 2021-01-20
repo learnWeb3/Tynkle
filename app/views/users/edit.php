@@ -28,11 +28,19 @@
                     </div>
                     <div class="col-6">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="is_helper" id="is_helper_1" value="1">
-                            <label class="form-check-label" for="is_helper_1" <?php $user['is_helper'] && 'checked' ?>>oui</label>
+                            <?php if ($user['is_helper']) : ?>
+                                <input class="form-check-input" type="radio" name="is_helper" id="is_helper_1" value="1" checked>
+                            <?php else : ?>
+                                <input class="form-check-input" type="radio" name="is_helper" id="is_helper_1" value="1">
+                            <?php endif; ?>
+                            <label class="form-check-label" for="is_helper_1">oui</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="0" <?php !$user['is_helper'] && 'checked' ?>>
+                            <?php if (!$user['is_helper']) : ?>
+                                <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="0" checked>
+                            <?php else : ?>
+                                <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="1">
+                            <?php endif; ?>
                             <label class="form-check-label" for="is_helper_0">non</label>
                         </div>
                     </div>
@@ -88,21 +96,21 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-check form-check-inline">
-                                            <?php if ($skill['is_owned']) :?>
-                                            <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" checked  id="skill_yes_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
-                                            <?php  else :?>
-                                                <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>"  id="skill_yes_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php if ($skill['is_owned']) : ?>
+                                                <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" checked id="skill_yes_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php else : ?>
+                                                <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" id="skill_yes_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
                                             <?php endif; ?>
                                             <label class="form-check-label" for="skill_<?php echo $skill['skill_id'] ?>">oui </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                        <?php if (!$skill['is_owned']) :?>
-                                            <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" checked id="skill_no_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
-                                            <?php  else :?>
+                                            <?php if (!$skill['is_owned']) : ?>
+                                                <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" checked id="skill_no_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
+                                            <?php else : ?>
                                                 <input class="form-check-input" type="radio" name="skill_<?php echo $skill['skill_id'] ?>" id="skill_no_<?php echo $skill['skill_id'] ?>" value="<?php echo $skill['skill_id'] ?>">
                                             <?php endif; ?>
-                                        
-                                            <label class="form-check-label" for="skill_<?php echo $skill['skill_id'] ?>" >non</label>
+
+                                            <label class="form-check-label" for="skill_<?php echo $skill['skill_id'] ?>">non</label>
                                         </div>
                                     </div>
                                 </li>
