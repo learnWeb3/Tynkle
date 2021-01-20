@@ -31,8 +31,7 @@ class PostsController extends ApplicationController
                 )[0];
                 die(header('location:' . ROOT_PATH . '/posts' . '/' . $post['id']));
             } catch (\Throwable $th) {
-                var_dump($th);
-                // $this->handleError(500);
+                $this->handleError(500);
             }
         } else {
             $this->handleError(422);
@@ -42,26 +41,32 @@ class PostsController extends ApplicationController
     public function update()
     {
         if (isset($this->current_user)) {
-            if ($this->post['id_user'] === $this->current_user['id']) {
-                $images = [];
-                $cover_image = '';
-                Post::update(
-                    $this->connection,
-                    ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
-                    array(
-                        $this->current_user['id'],
-                        $_POST['id_breakdown_category'],
-                        $images,
-                        $cover_image,
-                        $_POST['title'],
-                        $_POST['content'],
-                        $_POST['budget'],
-                        $_POST['city'],
-                        $_POST['postal_code']
-                    ),
-                    'id',
-                    $this->params['id']
-                );
+            $post_data = $this->post->getDetails($this->connection);
+            if ($post_data['user_id'] === $this->current_user->id) {
+                try {
+                    $uploaded_file_paths = Uploader::uploadFileBatch(array_keys($_FILES));
+                    $cover_image = isset($uploaded_file_paths[0]) ? $uploaded_file_paths[0] : null;
+                    Post::update(
+                        $this->connection,
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+                        array(
+                            $this->current_user->id,
+                            $_POST['id_breakdown_category'],
+                            json_encode($uploaded_file_paths),
+                            $cover_image,
+                            $_POST['title'],
+                            $_POST['content'],
+                            $_POST['budget'],
+                            $_POST['city'],
+                            $_POST['postal_code']
+                        ),
+                        'id',
+                        $this->params['id']
+                    );
+                    die(header('location:' . ROOT_PATH . "/posts/" . $this->post->id));
+                } catch (\Throwable $th) {
+                    $this->handleError(500);
+                }
             } else {
                 $this->handleError(403);
             }

@@ -73,4 +73,5 @@ class Post extends Application
         WHERE posts.id=?";
         return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC)[0];
     }
+
 }

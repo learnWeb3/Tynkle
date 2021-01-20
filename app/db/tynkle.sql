@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 18 jan. 2021 à 09:47
+-- Généré le : mer. 20 jan. 2021 à 11:20
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.13
 
@@ -156,7 +156,7 @@ CREATE TABLE `posts` (
   `id_user` int(11) NOT NULL,
   `id_breakdown_category` int(11) NOT NULL,
   `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '"[]"' CHECK (json_valid(`images`)),
-  `cover_image` varchar(255) NOT NULL,
+  `cover_image` varchar(255) DEFAULT NULL,
   `is_solved` tinyint(1) NOT NULL DEFAULT 0,
   `title` varchar(100) NOT NULL,
   `content` text NOT NULL,
@@ -461,7 +461,10 @@ INSERT INTO `posts` (`id`, `id_user`, `id_breakdown_category`, `images`, `cover_
 (497, 29, 12, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 96', 'Similique sed harum dolores et. Impedit quam sed magnam facere iusto molestiae ullam. Itaque nihil et quia fuga praesentium ducimus.', 966, 'North Colten', '46948', '2021-01-17 17:03:18', '0000-00-00 00:00:00'),
 (498, 22, 4, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 97', 'Et nulla fuga nostrum doloremque ut placeat et. Quam architecto laudantium rerum hic. Cumque impedit aut quos quae doloremque.', 360, 'Mafaldabury', '22509', '2021-01-17 17:03:18', '0000-00-00 00:00:00'),
 (499, 8, 1, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 98', 'Quas aperiam distinctio illum neque. Cum impedit est maiores. Veniam ut excepturi deleniti vitae. Facere laborum minus corrupti minus aut.', 569, 'Micaelaberg', '82237-5999', '2021-01-17 17:03:18', '0000-00-00 00:00:00'),
-(500, 41, 3, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 99', 'Sapiente voluptas expedita veniam animi. Ullam assumenda voluptas accusamus cupiditate.', 563, 'Catharinefort', '54658', '2021-01-17 17:03:18', '0000-00-00 00:00:00');
+(500, 41, 3, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 99', 'Sapiente voluptas expedita veniam animi. Ullam assumenda voluptas accusamus cupiditate.', 563, 'Catharinefort', '54658', '2021-01-17 17:03:18', '0000-00-00 00:00:00'),
+(501, 501, 1, '[\"1611059141-pexels-marcus-lenk-5721941.jpg\"]', '1611059141-pexels-marcus-lenk-5721941.jpg', 0, 'Super titre 900', 'Hello world', 12, 'Aix en provence', '13100', '2021-01-19 13:25:41', '0000-00-00 00:00:00'),
+(502, 501, 1, '[\"\\/tynkle\\/app\\/public\\/uploads\\/1611059503-pexels-marcus-lenk-5721941.jpg\",\"\\/tynkle\\/app\\/public\\/uploads\\/1611059503-pexels-mati-mango-4052809.jpg\"]', '/tynkle/app/public/uploads/1611059503-pexels-marcus-lenk-5721941.jpg', 0, 'Super titre 901', 'Hello world 2', 22, 'Aix en provence', '13100', '2021-01-19 13:31:43', '0000-00-00 00:00:00'),
+(503, 501, 1, '[\"\\/tynkle\\/app\\/public\\/uploads\\/1611137191-pexels-marcus-lenk-5721941.jpg\",\"\\/tynkle\\/app\\/public\\/uploads\\/1611137191-pexels-mati-mango-4052809.jpg\"]', '/tynkle/app/public/uploads/1611137191-pexels-marcus-lenk-5721941.jpg', 0, 'Test 1500', '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta facilis consequuntur adipisci quis impedit consectetur laudantium, quas fuga ex assumenda, dolorem ipsum. Quisquam nihil ducimus voluptas quam in natus eligendi?\r\n\r\n   ', 45, 'Aix en provence', '13103', '2021-01-20 10:48:09', '2021-01-20 11:06:31');
 
 -- --------------------------------------------------------
 
@@ -485,11 +488,11 @@ CREATE TABLE `skills` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `firstname` varchar(25) NOT NULL,
-  `lastname` varchar(25) NOT NULL,
+  `firstname` varchar(25) DEFAULT NULL,
+  `lastname` varchar(25) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   `email` varchar(50) NOT NULL,
-  `adress` varchar(255) NOT NULL,
+  `adress` varchar(255) DEFAULT NULL,
   `phone_number` varchar(25) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `lat` double DEFAULT NULL,
@@ -1006,7 +1009,8 @@ INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `birthdate`, `em
 (497, 'hquigley', 'Oberbrunner', 'Roxanne', '2007-11-30', 'magnolia.wiza@ratke.info', '1809 Smitham Canyon Suite 028\nWisokyfort, GA 09673', '337.853.4961', '$2y$10$iBlUYdoOJpF7nX3ASppIzepgW808gRDJh1bpGRRshRRUL1LcGUmg.', NULL, NULL, 0, 0, '2021-01-17 17:03:17', '0000-00-00 00:00:00'),
 (498, 'bobbie91', 'Bernier', 'Hermina', '1988-07-28', 'alford49@mclaughlin.com', '2558 Sarina Place Suite 176\nKuhlmanville, SD 15932-5469', '532-533-0795', '$2y$10$lUMtciRDF89ZJ/5j8GjAMuefXxR8zQlsnKJkuLYlPlxxG6UeMI.h2', NULL, NULL, 0, 0, '2021-01-17 17:03:17', '0000-00-00 00:00:00'),
 (499, 'nkiehn', 'Spinka', 'Abbigail', '1999-09-03', 'harold99@hotmail.com', '525 D\'Amore Burg Apt. 159\nWest Alannahaven, OR 25376', '237.948.5596', '$2y$10$kWWZxj2eNRjwIWljOussq.lrIPTEdj5SOxCbnx2.XfzFjAdhGPLZ6', NULL, NULL, 0, 0, '2021-01-17 17:03:17', '0000-00-00 00:00:00'),
-(500, 'vfriesen', 'Hill', 'Owen', '1978-12-27', 'qgulgowski@yahoo.com', '362 Cassin Skyway Suite 203\nWest Jena, KS 23787-3142', '576-520-7445', '$2y$10$VWntxxHKxR1NSK.XwF9k..KFAJZkCiVsQSeBcyyRn2THLsMkXnC6e', NULL, NULL, 0, 0, '2021-01-17 17:03:17', '0000-00-00 00:00:00');
+(500, 'vfriesen', 'Hill', 'Owen', '1978-12-27', 'qgulgowski@yahoo.com', '362 Cassin Skyway Suite 203\nWest Jena, KS 23787-3142', '576-520-7445', '$2y$10$VWntxxHKxR1NSK.XwF9k..KFAJZkCiVsQSeBcyyRn2THLsMkXnC6e', NULL, NULL, 0, 0, '2021-01-17 17:03:17', '0000-00-00 00:00:00'),
+(501, 'test11', NULL, NULL, NULL, 'test@yopmail.com', NULL, NULL, '$2y$10$W0x0eftv62271HnZE5w0y.ki25G9v8LHjXexEL7vGjrv2mDEpd4XS', NULL, NULL, 0, 0, '2021-01-18 16:44:22', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1155,7 +1159,7 @@ ALTER TABLE `platforms`
 -- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=504;
 
 --
 -- AUTO_INCREMENT pour la table `skills`
@@ -1167,7 +1171,7 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
 
 --
 -- AUTO_INCREMENT pour la table `user_skills`

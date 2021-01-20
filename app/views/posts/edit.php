@@ -1,12 +1,12 @@
-<main class="bg-brand-blue" style='min-height:100vh;padding-top:4rem'>
+<main class="bg-brand-blue" style='min-height:100vh;padding-top:3rem'>
     <section id="map-container-header" class="container w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
     </section>
     <section class="container relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
         <h1 class="my-4">Modifier mon annonce :</h1>
-        <form action="" method="post" class="col-12 col-md-8 col-lg-6">
+        <form action="<?php echo ROOT_PATH."/posts/".$post['id'] ?>" method="post" class="col-12 col-md-8 col-lg-6" enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group col-12 col-lg-6 my-2">
-                    <label for="id_platform">Platforme de l'appareil : </label>
+                    <label for="id_platform">Plateforme de l'appareil : </label>
                     <select name="id_platform" id="id_platform" class="form-control">
                         <?php foreach ($platforms as $platform) : ?>
                             <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
@@ -42,30 +42,20 @@
             </div>
             <div class="form-group my-2">
                 <label for="content">Decriver votre problème : </label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control" value="<?php echo $post['content'] ?>"></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control" ><?php echo $post['content'] ?></textarea>
             </div>
 
             <div class="form-group">
                 <label>Images / Screenshots</label>
                 <div class="row">
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
-                        <input type="file" name="image_one" id="image_one" class='dropzone'>
-                        <div class="dropzone-layer">
-                            <p>cliquer pour ajouter une image</p>
+                    <?php for ($count = 1; $count <= 4; $count++) : ?>
+                        <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
+                            <input type="file" name="image_<?php echo $count ?>" id="image_<?php echo $count ?>" class='dropzone'>
+                            <div class="dropzone-layer">
+                                <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
-                        <input type="file" name="image_two" id="image_two" class='dropzone'>
-                        <div class="dropzone-layer">cliquer pour ajouter une image</div>
-                    </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
-                        <input type="file" name="image_three" id="image_three" class='dropzone'>
-                        <div class="dropzone-layer">cliquer pour ajouter une image</div>
-                    </div>
-                    <div class="dropzone-group m-4 col-12 col-lg-5">
-                        <input type="file" name="image_four" id="image_four" class='dropzone'>
-                        <div class="dropzone-layer">cliquer pour ajouter une image</div>
-                    </div>
+                    <?php endfor; ?>
                 </div>
             </div>
             <button type="submit" class='btn btn-lg btn-brand active col-12 my-4'>EDITER</button>
@@ -73,9 +63,4 @@
     </section>
 </main>
 
-<script>
-    Array.from(document.querySelectorAll('.dropzone-layer'))
-        .map((domElement) => domElement.addEventListener('click', function(event) {
-            Array.from(domElement.parentElement.children)[0].click();
-        }));
-</script>
+<script type="module" src="<?php echo ROOT_PATH ?>/app/assets/js/new_post.js"></script>
