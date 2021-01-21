@@ -1,6 +1,6 @@
 import { sendmessage, ROOT_PATH, deletemessage } from "./API_CLIENT/index.js";
 
-const handleSubmit = async (form, input, chat_id, subscribers) => form.addEventListener('submit', async function (event) {
+const handleSubmit = (form, input, chat_id, subscribers) => form.addEventListener('submit', async function (event) {
     event.preventDefault();
     const content = input.value;
     const data = {
@@ -11,9 +11,10 @@ const handleSubmit = async (form, input, chat_id, subscribers) => form.addEventL
 })
 
 
-const getTemplate = ({ id, id_chat, id_user, avatar, firstname, email, content, created_at, updated_at }) => {
+const getTemplate = ({ id_message, id_chat, id_user, avatar, firstname, email, content, created_at, updated_at }, current_user) => {
     return (
-        `<div class="row">
+       `${id_user === current_user && `<img src='${ROOT_PATH}/app/assets/icons/trash.svg' height="24" width="24" alt="delete message" class="align-self-end delete-message" style="cursor:pointer;">`}
+        <div class="row">
             <div class="col-1 d-flex flex-column justify-content-center">
                 <img src="${ROOT_PATH}/app/assets/img/commons/avatar_placeholder.svg" height="48" width="48" alt="map pointer icon" class="img-fluid">
             </div>
@@ -31,7 +32,7 @@ const getTemplate = ({ id, id_chat, id_user, avatar, firstname, email, content, 
 
 }
 
-const deleteMessage = async (cssSelector) => {
+const deleteMessage = (cssSelector) => {
     Array.from(document.querySelectorAll(cssSelector)).map((element) => element.addEventListener('click', async function (event) {
         event.preventDefault();
         const targetedMessage = event.target.parentNode;
@@ -44,13 +45,15 @@ const streamMessages = (chat_id, current_chat_container, messages_container, cur
     eventSource.onmessage = function (message) {
         const msgData = JSON.parse(message.data);
         if (msgData.length > 0) {
-            const isMessagePresent = document.querySelector('message-' + msgData[0].id)
+            const isMessagePresent = document.querySelector('message-' + msgData[0].id_message);
+            console.log(isMessagePresent);
             if (!isMessagePresent) {
                 const newMessage = document.createElement('div');
                 const senderOrRecipient = current_user === msgData[0].id_user ? 'sender' : 'recipient';
-                newMessage.classList.add('card-message', 'col-12', 'col-lg-8', 'p-4', 'my-2', 'shadow-sm', senderOrRecipient);
-                newMessage.setAttribute('id', `message-${msgData[0].id}`);
-                newMessage.innerHTML = getTemplate(msgData[0]);
+                newMessage.classList.add('card-message', 'col-12', 'col-lg-8', 'p-4', 'my-2', 'shadow-sm', 'flex-column', 'd-flex', senderOrRecipient);
+                newMessage.setAttribute('id', `message-${msgData[0].id_message}`);
+                newMessage.setAttribute('data-id', msgData[0].id_message);
+                newMessage.innerHTML = getTemplate(msgData[0], current_user);
                 messages_container.appendChild(newMessage);
                 const message_count_container = document.querySelector("#message-count");
                 const message_count = parseInt(message_count_container.innerHTML);
@@ -59,6 +62,7 @@ const streamMessages = (chat_id, current_chat_container, messages_container, cur
                     top: current_chat_container.scrollTopMax,
                     behavior: 'smooth'
                 });
+                deleteMessage('.delete-message');
             }
         }
     };
