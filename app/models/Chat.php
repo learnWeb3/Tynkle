@@ -11,6 +11,34 @@ class Chat extends Application
     }
 
 
+    public function getDetails(PDO $connection)
+    {
+        $request_body = "SELECT 
+        chats.id,
+        chats.created_at,
+        (SELECT COUNT(chat_users.id_user) FROM chat_users WHERE chat_users.id_chat=chats.id ) as subscriber_count,
+        (SELECT GROUP_CONCAT(chat_users.id_user) FROM chat_users WHERE chat_users.id_chat=chats.id ) as subscriber_ids,
+        (SELECT COUNT(messages.id) as message_count FROM messages WHERE messages.id_chat = chats.id) as message_count
+        FROM chats 
+        JOIN chat_users ON chats.id=chat_users.id_chat
+        WHERE chats.id = ?";
+
+        $request = Request::send($connection, $request_body, [$this->id]);
+        $results = [];
+        while ($row = $request->fetch()) {
+            $results[] = array(
+                "id" => $row["id"],
+                "created_at" => $row["created_at"],
+                "subscriber_count" => $row["subscriber_count"],
+                "message_count" => $row["message_count"],
+                "subscriber_ids" => !empty($row["subscriber_ids"]) ? $row["subscriber_ids"] : [],
+                "subscribers" => Chat::getSubscriberData($connection, $row["subscriber_ids"])
+            );
+        }
+        return $results[0];
+    }
+
+
 
     public function getMessages(PDO $connection)
     {
@@ -112,8 +140,8 @@ class Chat extends Application
         $request_body = "SELECT * FROM messages 
         JOIN chats ON messages.id_chat=chats.id 
         JOIN users ON messages.id_user = users.id
-        WHERE created_at >= ? AND chats.id=? 
-        OR updated_at >= ? AND chats.id=?";
+        WHERE messages.created_at >= ? AND chats.id=? 
+        OR messages.updated_at >= ? AND chats.id=?";
         return Request::send($connection, $request_body, ["$timestamp",$this->id, "$timestamp", $this->id])->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -123,6 +151,7 @@ class Chat extends Application
         header('Content-type: text/event-stream');
         header('Cache-control: no-cache');
         header('Connection: Keep-Alive');
+        session_write_close();
         while (true) {
     
             $json_data = json_encode($this->getNewMessages($connection, $timestamp));

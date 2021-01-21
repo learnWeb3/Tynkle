@@ -9,7 +9,7 @@ class ChatsController extends ApplicationController
         parent::__construct($params, $asked_method);
         $this->beforeAction();
     }
-  
+
     public function index()
     {
         if (isset($this->current_user)) {
@@ -21,7 +21,7 @@ class ChatsController extends ApplicationController
                         'title' => 'Tynkle: les annonces',
                         'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                         'style_file_name' => '',
-                        'chats'=>$chats,
+                        'chats' => $chats,
                     ),
                 );
             } catch (Exception $error) {
@@ -37,17 +37,20 @@ class ChatsController extends ApplicationController
         if (isset($this->chat)) {
             try {
                 $messages = $this->chat->getMessages($this->connection);
+                $chat = $this->chat->getDetails($this->connection);
                 $this->render(
                     'show',
                     array(
                         'title' => 'Tynkle: les annonces',
                         'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                         'style_file_name' => 'chat',
-                        'messages'=>$messages,
+                        'messages' => $messages,
+                        'chat'=>$chat
                     ),
                 );
-            } catch (Exception $error) {
-                die(http_response_code(500));
+            } catch (Throwable $th) {
+                var_dump($th);
+                //die(http_response_code(500));
             }
         } else {
             die(http_response_code(422));
@@ -59,9 +62,9 @@ class ChatsController extends ApplicationController
     {
         if (isset($this->current_user)) {
 
-            if (isset($this->request_params['subscribers'],  $this->request_params['content'])) {
+            if (isset($this->json_params['subscribers'],  $this->json_params['content'])) {
                 try {
-                    echo json_encode(Chat::sendMessage($this->connection, $this->request_params['content'], $this->request_params['subscribers'], $this->current_user->id));
+                    echo json_encode(Chat::sendMessage($this->connection, $this->json_params['content'], $this->json_params['subscribers'], $this->current_user->id));
                 } catch (Exception $error) {
                     die(http_response_code(500));
                 }
@@ -88,18 +91,29 @@ class ChatsController extends ApplicationController
         }
     }
 
-    public function beforeAction()
+
+    public function stream()
     {
-        if (in_array($this->asked_method, ["show", "delete"]))
-        {
-            $chat = Chat::find($this->connection, $this->params['chat_id'])->fetchAll(PDO::FETCH_ASSOC);
-            if (empty($chat))
-            {
-                die(http_response_code(404));
-            }else{
-               $this->chat = new Chat($chat[0]['id']);
+        if (isset($this->chat)) {
+            try {
+                $this->chat->streamNewMessages($this->connection);
+            } catch (Exception $error) {
+                die(http_response_code(500));
             }
+        } else {
+            die(http_response_code(422));
         }
     }
 
+    public function beforeAction()
+    {
+        if (in_array($this->asked_method, ["show", "delete", "update", "stream"])) {
+            $chat = Chat::find($this->connection, $this->params['chat_id'])->fetchAll(PDO::FETCH_ASSOC);
+            if (empty($chat)) {
+                die(http_response_code(404));
+            } else {
+                $this->chat = new Chat($chat[0]['id']);
+            }
+        }
+    }
 }

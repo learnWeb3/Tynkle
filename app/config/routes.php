@@ -24,6 +24,8 @@ $routes = array(
     // /chats
     array('GET', ROOT_PATH . '/chats', 'chats#index', 'index_chat'),
     array('GET', ROOT_PATH . '/chats/[:chat_id]', 'chats#show', 'show_chat'),
+    array('POST', ROOT_PATH . '/chats/[:chat_id]', 'chats#create', 'create_message'),
+    array('GET', ROOT_PATH . '/chats/[:chat_id]/stream', 'chats#stream', 'stream_message'),
     // /breakdowns
     array('POST', ROOT_PATH . '/breakdowns', 'breakdowns#index', 'index_breakdowns'),
     // '/skills'
