@@ -13,7 +13,7 @@ const handleSubmit = (form, input, chat_id, subscribers) => form.addEventListene
 
 const getTemplate = ({ id_message, id_chat, id_user, avatar, firstname, email, content, created_at, updated_at }, current_user) => {
     return (
-       `${id_user === current_user && `<img src='${ROOT_PATH}/app/assets/icons/trash.svg' height="24" width="24" alt="delete message" class="align-self-end delete-message" style="cursor:pointer;">`}
+        `${id_user === current_user && `<img src='${ROOT_PATH}/app/assets/icons/trash.svg' height="24" width="24" alt="delete message" class="align-self-end delete-message" style="cursor:pointer;">`}
         <div class="row">
             <div class="col-1 d-flex flex-column justify-content-center">
                 <img src="${ROOT_PATH}/app/assets/img/commons/avatar_placeholder.svg" height="48" width="48" alt="map pointer icon" class="img-fluid">
@@ -32,12 +32,21 @@ const getTemplate = ({ id_message, id_chat, id_user, avatar, firstname, email, c
 
 }
 
+const updateMessageCount = (isAdded) => {
+    const message_count_container = document.querySelector("#message-count");
+    const message_count = parseInt(message_count_container.innerHTML);
+    isAdded === -1 ? message_count_container.innerHTML = message_count - 1 : message_count_container.innerHTML = message_count + 1
+}
+
 const deleteMessage = (cssSelector) => {
     Array.from(document.querySelectorAll(cssSelector)).map((element) => element.addEventListener('click', async function (event) {
         event.preventDefault();
         const targetedMessage = event.target.parentNode;
         const response = await deletemessage(targetedMessage.dataset.id);
-        response.status === 204 && targetedMessage.remove();
+        if (response.status === 204) {
+            targetedMessage.remove();
+            updateMessageCount(-1);
+        }
     }))
 }
 const streamMessages = (chat_id, current_chat_container, messages_container, current_user) => {
@@ -55,9 +64,7 @@ const streamMessages = (chat_id, current_chat_container, messages_container, cur
                 newMessage.setAttribute('data-id', msgData[0].id_message);
                 newMessage.innerHTML = getTemplate(msgData[0], current_user);
                 messages_container.appendChild(newMessage);
-                const message_count_container = document.querySelector("#message-count");
-                const message_count = parseInt(message_count_container.innerHTML);
-                message_count_container.innerHTML = message_count + 1
+                updateMessageCount(1);
                 current_chat_container.scroll({
                     top: current_chat_container.scrollTopMax,
                     behavior: 'smooth'
