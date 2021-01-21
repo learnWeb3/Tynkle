@@ -21,6 +21,9 @@ $routes = array(
     array('POST', ROOT_PATH . '/posts', 'posts#create', 'create_post'),
     array('POST', ROOT_PATH . '/posts/[i:id]', 'posts#update', 'update_post'),
     array('DELETE', ROOT_PATH . '/posts/[i:id]', 'posts#destroy', 'destroy_post'),
+    // /chats
+    array('GET', ROOT_PATH . '/chats', 'chats#index', 'index_chat'),
+    array('GET', ROOT_PATH . '/chats/[:chat_id]', 'chats#show', 'show_chat'),
     // /breakdowns
     array('POST', ROOT_PATH . '/breakdowns', 'breakdowns#index', 'index_breakdowns'),
     // '/skills'
