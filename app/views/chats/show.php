@@ -20,15 +20,19 @@
     </nav>
     <section class="col-12 col-lg-8 offset-lg-3 d-flex flex-column bg-white p-4" style="margin-top:3.5rem;" id="current-conversation">
         <div class="row">
-            <div class="col-2 d-flex justify-content-start align-items-center"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/chevron-left.svg" height="48" width="36" alt="back to conversations" style="cursor:pointer"></div>
+            <div class="col-2 d-flex justify-content-start align-items-center">
+                <a href="<?php echo ROOT_PATH.'/chats'?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/chevron-left.svg" height="48" width="36" alt="back to conversations" style="cursor:pointer"></a>
+            </div>
             <div class="col-10 d-flex justify-content-end align-items-center">
                 <p class="font-weight-bold mb-0">18 messages</p>
             </div>
         </div>
         <div class="col-12 d-block overflow-auto p-4" id="current-chat-container">
+            <div class="d-flex flex-column w-100">
             <?php foreach ($messages as $index => $message) : ?>
                 <?php include './app/views/chats/_message.php' ?>
             <?php endforeach; ?>
+            </div>
         </div>
 
         <div class="col-12 py-4 d-flex align-items-center justify-content-center" id='new-message-container'>

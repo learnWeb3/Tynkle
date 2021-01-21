@@ -1,5 +1,4 @@
-<div class="card-message col-12 col-lg-8 p-4 my-2 <?php //echo $sender ? 'sender' : 'recipient';  ?>">
-<?php var_dump($message) ?>
+<div class="card-message col-12 col-lg-8 p-4 my-2 shadow-sm <?php echo $current_user === $message['user_id'] ? 'sender' : 'recipient';  ?>">
     <div class="row">
         <div class="col-1 d-flex flex-column justify-content-center">
             <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg" height="48" width="48" alt="map pointer icon" class="img-fluid">

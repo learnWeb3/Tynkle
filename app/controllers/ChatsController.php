@@ -42,7 +42,7 @@ class ChatsController extends ApplicationController
                     array(
                         'title' => 'Tynkle: les annonces',
                         'description' => 'Tynkle: Retrouvez les demandes de dépannage',
-                        'style_file_name' => '',
+                        'style_file_name' => 'chat',
                         'messages'=>$messages,
                     ),
                 );
