@@ -33,6 +33,20 @@ const getFollowingPosts = (nextPage) => {
     return fetch(ROOT_PATH + nextPage + '&ajax=true', options);
 }
 
+const deletemessage = async (message_id) => 
+    fetch(ROOT_PATH + '/messages' + '/' + message_id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(async (res) => {
+        const status = res.status
+        return ({  status: status })
+    })
+    .catch((error) => ({ data: null, status: 500 }))
+
+
 const sendmessage = async (data, chat_id) => 
     fetch(ROOT_PATH + '/chats' + '/' + chat_id, {
         method: 'POST',
@@ -47,4 +61,4 @@ const sendmessage = async (data, chat_id) =>
     })
     .catch((error) => ({ data: null, status: 500 }))
 
-export { getPlatforms, signout, getFollowingPosts, sendmessage, ROOT_PATH }
+export { getPlatforms, signout, getFollowingPosts, sendmessage, deletemessage, ROOT_PATH }

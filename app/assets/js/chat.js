@@ -1,4 +1,4 @@
-import { sendmessage, ROOT_PATH } from "./API_CLIENT/index.js";
+import { sendmessage, ROOT_PATH, deletemessage } from "./API_CLIENT/index.js";
 
 const handleSubmit = async (form, input, chat_id, subscribers) => form.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -30,7 +30,16 @@ const getTemplate = ({ id, id_chat, id_user, avatar, firstname, email, content, 
     ).trim()
 
 }
-const streamMessages = (chat_id, current_chat_container,messages_container, current_user) => {
+
+const deleteMessage = async (cssSelector) => {
+    Array.from(document.querySelectorAll(cssSelector)).map((element) => element.addEventListener('click', async function (event) {
+        event.preventDefault();
+        const targetedMessage = event.target.parentNode;
+        const response = await deletemessage(targetedMessage.dataset.id);
+        response.status === 204 && targetedMessage.remove();
+    }))
+}
+const streamMessages = (chat_id, current_chat_container, messages_container, current_user) => {
     const eventSource = new EventSource(ROOT_PATH + '/chats/' + chat_id + '/stream');
     eventSource.onmessage = function (message) {
         const msgData = JSON.parse(message.data);
@@ -44,7 +53,7 @@ const streamMessages = (chat_id, current_chat_container,messages_container, curr
                 newMessage.innerHTML = getTemplate(msgData[0]);
                 messages_container.appendChild(newMessage);
                 const message_count_container = document.querySelector("#message-count");
-                const message_count = parseInt(message_count_container.innerHTML); 
+                const message_count = parseInt(message_count_container.innerHTML);
                 message_count_container.innerHTML = message_count + 1
                 current_chat_container.scroll({
                     top: current_chat_container.scrollTopMax,
@@ -70,5 +79,6 @@ window.addEventListener('DOMContentLoaded', async function (event) {
     const current_user = input.dataset.current;
     const form = document.querySelector('#new_message');
     await handleSubmit(form, input, chat_id, subscribers);
-    streamMessages(chat_id, current_chat_container,messages_container, current_user);
+    deleteMessage('.delete-message')
+    streamMessages(chat_id, current_chat_container, messages_container, current_user);
 });
