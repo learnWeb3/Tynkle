@@ -1,7 +1,7 @@
 <main class="bg-brand-blue" style='min-height:100vh;padding-top:3rem'>
-    <section id="map-container-header" class="container w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
+    <section id="map-container-header" class="container-xl w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
     </section>
-    <section class="container relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
+    <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
         <h1 class="my-4">Publier une annonce :</h1>
         <form action="<?php echo ROOT_PATH.'/posts' ?>" method="post" class="col-12 col-md-8 col-lg-6" method="POST" enctype='multipart/form-data'>
             <div class="row">
@@ -49,7 +49,7 @@
                 <label>Images / Screenshots</label>
                 <div class="row">
                     <?php for ($count = 1; $count <= 4; $count++) : ?>
-                        <div class="dropzone-group m-4 col-12 col-lg-5 p-0">
+                        <div class="dropzone-group my-4 mx-xl-4 col-12 col-lg-5 p-0">
                             <input type="file" name="image_<?php echo $count ?>" id="image_<?php echo $count ?>" class='dropzone'>
                             <div class="dropzone-layer">
                                 <p class='font-weight-bold'>cliquer pour ajouter une image</p>

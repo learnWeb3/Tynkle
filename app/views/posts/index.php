@@ -1,6 +1,6 @@
 <main class="d-flex bg-map" style='min-height:100vh;margin-top:3rem;'>
     <div class='bg-brand-blue d-flex' style="min-height: 100vh;width:100vw">
-        <section class="d-none col-lg-3 d-lg-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
+        <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
 
             <div class="container bg-white w-100 shadow p-4" style="margin-top: 15%;">
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>
@@ -55,7 +55,7 @@
 
         </section>
 
-        <section class="col-12 col-lg-8 offset-lg-3 bg-white d-flex flex-wrap" id="posts-container" data-nextpage="<?php echo $next_page ?>">
+        <section class="col-12 col-xl-8 offset-xl-3 bg-white d-flex flex-wrap" id="posts-container" data-nextpage="<?php echo $next_page ?>">
             <?php foreach ($posts as $post) : ?>
                 <?php include '_publication_card.php' ?>
             <?php endforeach; ?>

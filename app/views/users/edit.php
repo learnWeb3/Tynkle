@@ -2,7 +2,7 @@
 
     <?php require_once './app/views/users/_edit_nav_menu.php' ?>
 
-    <div class="col-12 col-lg-8 offset-lg-3 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh">
+    <div class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh; margin-top:3.5rem">
 
         <section style="min-height:95vh" class="w-100 d-flex align-items-center" id="account_informations">
         <form action="<?php echo ROOT_PATH.'/users/'.$user['id'] ?>" class="w-100 mb-4 p-4" method="POST">

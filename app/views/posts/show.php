@@ -1,7 +1,7 @@
 <main class="bg-brand-blue" style='min-height:100vh;padding-top:3rem'>
-    <section id="map-container-header" class="container w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
+    <section id="map-container-header" class="container-xl w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
     </section>
-    <section class="container relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
+    <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
         <div id="avatar" class="shadow-sm bg-white my-4">
         </div>
         <a class="font-weight-bold font-italic m-2" href="/users/<?php echo $post['user_id'] ?>"><?php echo htmlspecialchars($post['username']) ?></a>
