@@ -1,4 +1,40 @@
-import { getFollowingPosts, ROOT_PATH } from './API_CLIENT/index.js'
+import { getFollowingPosts, getPlatforms, ROOT_PATH } from './API_CLIENT/index.js'
+
+
+const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
+    return (`
+        <input class="form-check-input" type="checkbox" value="${id}" id="breakdown_category-${id}">
+        <label class="form-check-label" for="breakdown_category-${id}">
+            ${name}
+        </label>`).trim()
+}
+
+const handleChangeSelect = async () => {
+    document.querySelector('#id_platform').addEventListener('change', async () => {
+        const breakdown_categories = document.querySelector('#breakdown_categories');
+        const id_platform = document.querySelector('#id_platform').selectedOptions[0].value;
+        Array.from(breakdown_categories.children).map((child) => child.remove());
+        if (id_platform !== '0') {
+            const platforms = await getPlatforms({
+                id_platform
+            });
+            if (platforms) {
+                platforms.map((platform) => {
+                    const div = document.createElement('div');
+                    div.classList.add('form-check');
+                    div.innerHTML = getBreakdownCategoriesCheckInputTemplate(platform)
+                    breakdown_categories.appendChild(div);
+                })
+            }
+        } else {
+            const p = document.createElement('p');
+            p.classList.add('my-2')
+            p.innerHTML = 'Veuillez selectionner une plateforme'
+            breakdown_categories.appendChild(p);
+        }
+    });
+
+}
 
 const initObserver = () => {
 
@@ -79,4 +115,5 @@ const initObserver = () => {
     init('.card-publication');
 }
 
+handleChangeSelect();
 initObserver();
