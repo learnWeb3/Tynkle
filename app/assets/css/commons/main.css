@@ -1,14 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1, h2, h3, h4, h5 {
     font-family: 'Lato', sans-serif;
 }
 
-p,
-a {
+p, a {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -132,4 +127,12 @@ a:hover {
     #current-chat-container {
         height: 75vh;
     }
+}
+
+/* ALERTS */
+
+.alert {
+    top: 3.5rem;
+    z-index: 500000;
+    display: flex;
 }
