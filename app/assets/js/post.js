@@ -11,6 +11,10 @@ const initMap = (lat, lng) => {
         center: { lat, lng },
         zoom: 8,
     });
+    const marker = new google.maps.Marker({
+        position:  {lat, lng },
+        map: map
+    });
 }
 
 $(".rating").rate(options);

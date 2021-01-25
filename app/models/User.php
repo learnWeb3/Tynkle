@@ -46,6 +46,7 @@ class User extends Application
         (SELECT COUNT(user_skills.id) as is_owned FROM user_skills 
         JOIN skills ON user_skills.id_skill=skills.id 
         JOIN breakdown_categories ON skills.id_breakdown_category = breakdown_categories.id 
+        JOIN 
         WHERE user_skills.id_skill = id_skill AND user_skills.id_user = ? AND breakdown_categories.id=? ) is_owned
         FROM skills WHERE id_breakdown_category = ?";
         return array_map(function ($breakdown_category) use ($connection, $request_body) {
