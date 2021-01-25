@@ -20,10 +20,12 @@
 <body class='bg-light-grey'>
 
     <?php include_once 'navbar.php' ?>
+    <?php include_once '_flash.php' ?>
     <?php echo $current_view ?>
     <?php include_once 'footer.php' ?>
 
     <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/navbar.js' ?>"></script>
+    <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/flash.js' ?>"></script>
 </body>
 
 </html>

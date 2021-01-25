@@ -29,6 +29,11 @@ class PostsController extends ApplicationController
                         $_POST['postal_code']
                     )
                 )[0];
+                $flash = new Flash(
+                    array("Annonce crée avec succès"),
+                    'success'
+                );
+                $flash->storeInSession();
                 die(header('location:' . ROOT_PATH . '/posts' . '/' . $post['id']));
             } catch (\Throwable $th) {
                 $this->handleError(500);
@@ -63,6 +68,11 @@ class PostsController extends ApplicationController
                         'id',
                         $this->params['id']
                     );
+                    $flash = new Flash(
+                        array("Annonce mise à jour avec succès"),
+                        'success'
+                    );
+                    $flash->storeInSession();
                     die(header('location:' . ROOT_PATH . "/posts/" . $this->post->id));
                 } catch (\Throwable $th) {
                     $this->handleError(500);

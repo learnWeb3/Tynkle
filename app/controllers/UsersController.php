@@ -13,8 +13,18 @@ class UsersController extends ApplicationController
         if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['password_confirmation'], $_POST['is_helper'])) {
             if ($_POST['password_confirmation'] === $_POST['password']) {
                 User::create($this->connection, ['email', 'password', 'username', 'is_helper'], [$_POST['email'], password_hash($_POST['password'], PASSWORD_BCRYPT), $_POST['username'], intval($_POST['is_helper'])]);
+                $flash = new Flash(
+                    array("Compte crée avec succès"),
+                    'success'
+                );
+                $flash->storeInSession();
                 die(header('location:' . ROOT_PATH . '/signin'));
             } else {
+                $flash = new Flash(
+                    array("Erreur lors de la création de votre compte"),
+                    'danger'
+                );
+                $flash->storeInSession();
                 die(header('location:' . ROOT_PATH . '/register'));
             }
         } else {
@@ -45,6 +55,11 @@ class UsersController extends ApplicationController
                    $this->handleError(500);
                 }
             } else {
+                $flash = new Flash(
+                    array("Erreur lors de la mise à jour de votre compte"),
+                    'danger'
+                );
+                $flash->storeInSession();
                 die(header('Location:' . ROOT_PATH . '/profile'));
             }
         } else if (isset($_POST['firstname'], $_POST['lastname'], $_POST['birthdate'], $_POST['adress'] , $_POST['city'], $_POST['postal_code'], $_POST['phone_number'])) {
@@ -71,6 +86,11 @@ class UsersController extends ApplicationController
                     'id',
                     $this->current_user->id
                 );
+                $flash = new Flash(
+                    array("Erreur lors de la mise à jour de votre compte"),
+                    'danger'
+                );
+                $flash->storeInSession();
                 die(header('Location:' . ROOT_PATH . '/profile'));
             } catch (\Throwable $th) {
                 $this->handleError(500);

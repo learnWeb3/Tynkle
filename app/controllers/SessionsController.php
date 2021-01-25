@@ -12,6 +12,11 @@ class SessionsController extends ApplicationController
         if (isset($_POST['login'], $_POST['password'])) {
             try {
                 User::signIn($this->connection, $_POST['login'], $_POST['password']);
+                $flash = new Flash(
+                    array("Connexion réussie"),
+                    'success'
+                );
+                $flash->storeInSession();
                 die(header('location: ' . ROOT_PATH . '/posts'));
             } catch (\Throwable $th) {
                 die(header('location: ' . ROOT_PATH . '/signin'));
