@@ -1,4 +1,4 @@
-<nav class="d-none col-lg-3 d-lg-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
+<nav class="d-none col-xl-3 d-xl-flex flex-column justify-content-around p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
     <ul class="nav flex-column w-100">
         <li class="nav-item d-flex align-items-center w-100 my-2">
             <img src="./assets/icons/account_light.svg" height="36" width="36" alt="account informations">
