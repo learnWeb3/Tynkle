@@ -133,6 +133,7 @@ class PostsController extends ApplicationController
     {
         if (isset($this->post)) {
             $post_data = $this->post->getDetails($this->connection);
+            $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);;
             $this->render(
                 'show',
                 array(
@@ -140,6 +141,7 @@ class PostsController extends ApplicationController
                     'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                     'style_file_name' => 'offer',
                     'post' => $post_data,
+                    'similar_posts'=>$similar_posts['data']
                 )
             );
         } else {

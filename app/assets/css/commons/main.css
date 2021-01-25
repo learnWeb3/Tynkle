@@ -49,9 +49,14 @@ a:hover {
     font-size: 1.5rem;
 }
 
-.btn-brand {
-    background-color: rgba(55, 58, 60, 0.75);
-    color: rgba(243, 206, 18, 0.75);
+
+.btn-red-crayola{
+    background-color: #FD0E35;
+    color: #FFF;
+}
+.btn-outline-red-crayola{
+    border: 2px solid #FD0E35;
+    color: #FD0E35;
 }
 
 .btn-brand.active {
@@ -91,7 +96,7 @@ a:hover {
 
 .card-publication {
     cursor: pointer;
-    opacity: .25;
+    opacity: 1;
     filter: grayscale(100%);
     transition: all .5s;
 }
@@ -135,4 +140,24 @@ a:hover {
     top: 3.5rem;
     z-index: 500000;
     display: flex;
+}
+
+
+/* RATER JS */
+
+.rating *{
+    font-size: 2rem;
+}
+
+.rate-select-layer span{
+    color: orange;
+}
+
+.rate-base-layer
+{
+    color: #aaa;
+}
+.rate-hover-layer
+{
+    color: orange;
 }

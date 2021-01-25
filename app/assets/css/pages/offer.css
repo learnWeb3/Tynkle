@@ -1,5 +1,13 @@
 #avatar{
     height: 10rem;
     width:10rem;
+    padding:1rem;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#avatar img{
+    height: 100%;
+    width: 100%;
 }
