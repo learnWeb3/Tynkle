@@ -74,7 +74,7 @@ for ($count = 0; $count < 100; $count++) {
         $title = "Super titre $count";
         Post::create(
             $connection,
-            ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+            ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lon'],
             array(
                 $random_user_id,
                 $random_breakdown_category_index,
@@ -86,7 +86,9 @@ for ($count = 0; $count < 100; $count++) {
                 $faker->text(),
                 $faker->randomNumber(3),
                 $faker->city,
-                $faker->postcode
+                $faker->postcode,
+                $faker->latitude,
+                $faker->longitude
             )
         );
         echo "Post $title created \n";

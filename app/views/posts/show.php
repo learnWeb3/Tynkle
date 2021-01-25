@@ -51,7 +51,7 @@
         <div class="row w-100 my-4">
             <div class="col-12">
                 <h4 class="font-weight-bold">Localisation :</h4>
-                <div id="pictures-container" class="relative bg-white shadow-sm" style="height:50vh">
+                <div id="map" data-lon="<?php echo htmlspecialchars($post['lon'])  ?>" data-lat="<?php echo htmlspecialchars($post['lat'])  ?>" class="relative bg-white shadow-sm" style="height:50vh">
                 </div>
             </div>
         </div>

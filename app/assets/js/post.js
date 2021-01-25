@@ -6,4 +6,14 @@ const options = {
     readonly: true
 };
 
+const initMap = (lat, lng) => {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat, lng },
+        zoom: 8,
+    });
+}
+
 $(".rating").rate(options);
+const lat = parseInt(document.querySelector('#map').dataset.lat)
+const lng = parseInt(document.querySelector('#map').dataset.lon)
+initMap(lat, lng)

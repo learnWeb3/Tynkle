@@ -19,6 +19,8 @@ class Post extends Application
         posts.created_at as created_at,
         posts.updated_at as updated_at,
         posts.city as city,
+        posts.lat as lat,
+        posts.lon as lon,
         posts.postal_code as postal_code,
         breakdown_categories.id as breakdown_category_id,
         breakdown_categories.name as breakdown_category_name,
@@ -58,6 +60,8 @@ class Post extends Application
         posts.created_at as created_at,
         posts.updated_at as updated_at,
         posts.city as city,
+        posts.lat as lat,
+        posts.lon as lon,
         posts.postal_code as postal_code,
         breakdown_categories.id as breakdown_category_id,
         breakdown_categories.name as breakdown_category_name,
@@ -88,6 +92,8 @@ class Post extends Application
         posts.created_at as created_at,
         posts.updated_at as updated_at,
         posts.city as city,
+        posts.lat as lat,
+        posts.lon as lon,
         posts.postal_code as postal_code,
         breakdown_categories.id as breakdown_category_id,
         breakdown_categories.name as breakdown_category_name,
@@ -114,5 +120,8 @@ class Post extends Application
             "previous" => $path . "?start=$previous_start&limit=$limit"
         );
     }
+
+
+    
 
 }
