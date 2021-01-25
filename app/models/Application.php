@@ -121,7 +121,7 @@ class Application
     public static function destroyAll(\PDO $connection)
     {
         $table_name = self::getTableName(get_called_class());
-        $request_body = "DELETE FROM $table_name";
+        $request_body = "DELETE * FROM $table_name";
         Request::send($connection, $request_body, []);
         $request_body = "ALTER TABLE $table_name AUTO_INCREMENT=1";
         Request::send($connection, $request_body, []);
