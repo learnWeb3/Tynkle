@@ -3,7 +3,7 @@
     </section>
     <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
         <h1 class="my-4">Modifier mon annonce :</h1>
-        <form action="<?php echo ROOT_PATH."/posts/".$post['id'] ?>" method="post" class="col-12 col-md-8 col-lg-6" enctype="multipart/form-data">
+        <form action="<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>" method="post" class="col-12 col-md-8 col-lg-6" enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group col-12 col-lg-6 my-2">
                     <label for="id_platform">Plateforme de l'appareil : </label>
@@ -42,10 +42,10 @@
             </div>
             <div class="form-group my-2">
                 <label for="content">Decriver votre problème : </label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control" ><?php echo $post['content'] ?></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control"><?php echo $post['content'] ?></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="form-group my-2">
                 <label>Images / Screenshots</label>
                 <div class="row">
                     <?php for ($count = 1; $count <= 4; $count++) : ?>
@@ -58,6 +58,32 @@
                     <?php endfor; ?>
                 </div>
             </div>
+
+
+            <div class="form-group my-2 d-flex col-12">
+                <div class="col-4">
+                    <label class="font-weight-bold">Panne résolue ?</label>
+                </div>
+                <div class="col-6">
+                    <div class="form-check form-check-inline">
+                        <?php if ($post['is_solved']) : ?>
+                            <input class="form-check-input" type="radio" name="is_solved" id="is_solved_1" value="1" checked>
+                        <?php else : ?>
+                            <input class="form-check-input" type="radio" name="is_solved" id="is_solved_1" value="1">
+                        <?php endif; ?>
+                        <label class="form-check-label" for="is_solved_1">oui</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <?php if (!$post['is_solved']) : ?>
+                            <input class="form-check-input" type="radio" name="is_solved" id="is_solved_2" value="0" checked>
+                        <?php else : ?>
+                            <input class="form-check-input" type="radio" name="is_solved" id="is_solved_2" value="0">
+                        <?php endif; ?>
+                        <label class="form-check-label" for="is_solved_2">non</label>
+                    </div>
+                </div>
+            </div>
+
             <button type="submit" class='btn btn-lg btn-brand active col-12 my-4'>EDITER</button>
         </form>
     </section>

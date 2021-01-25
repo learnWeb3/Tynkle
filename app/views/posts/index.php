@@ -8,32 +8,25 @@
                 <form action="" method="GET" class="bg-light">
                     <h5 class="font-weight-bold">Rechercher par type d'appareil : </h5>
 
-                    <div class='d-block overflow-auto px-2' style="height:15vh">
-                        <?php foreach ($platforms as $platform) : ?>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="<?php echo htmlspecialchars($platform['id']) ?>" id="platform-<?php echo htmlspecialchars($platform['id']) ?>">
-                                <label class="form-check-label" for="platform-<?php echo htmlspecialchars($platform['id']) ?>">
-                                    <?php echo htmlspecialchars($platform['name']) ?>
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
+                    <div class='d-block overflow-auto px-2'>
+                       <div class="form-group my-2">
+                        <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une plateforme : </label>
+                            <select name="id_platform" id="id_platform" class="form-control">
+                                <option value="0">Veuillez choisir une plateforme :</option>
+                                <?php foreach ($platforms as $platform) : ?>
+                                    <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                       </div>
                     </div>
 
                 </form>
                 <hr>
                 <form action="" class="bg-light overflow-auto px-2" method="GET">
-                    <h5 class="font-weight-bold">Rechercher par type de panne : </h5>
-                    <div class='d-block overflow-auto px-2' style="height:15vh">
-                        <?php foreach ($breakdown_categories as $breakdown_category) : ?>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="<?php echo htmlspecialchars($breakdown_category['id']) ?>" id="breakdown_category-<?php echo htmlspecialchars($breakdown_category['id']) ?>">
-                                <label class="form-check-label" for="breakdown_category-<?php echo htmlspecialchars($breakdown_category['id']) ?>">
-                                    <?php echo htmlspecialchars($breakdown_category['name']) ?>
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
+                    <p class="font-weight-bold mb-0">2 - Choisir un/plusieurs type de panne : </p>
+                    <div class='d-block overflow-auto px-2' style="height:15vh" id="breakdown_categories">
+                        <p class="my-2">Veuillez selectionner une plateforme</p>
                     </div>
-
                 </form>
                 <hr>
                 <form action="" method="POST" class="col-12 bg-light">

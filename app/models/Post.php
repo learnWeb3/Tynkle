@@ -54,6 +54,7 @@ class Post extends Application
         posts.cover_image as cover_image,
         posts.images as images,
         posts.budget as budget,
+        posts.is_solved as is_solved,
         posts.created_at as created_at,
         posts.updated_at as updated_at,
         posts.city as city,
