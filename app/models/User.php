@@ -76,6 +76,36 @@ class User extends Application
                 }
             }
         }
-
     }
+
+    public function getChats(PDO $connection)
+    {
+        $request_body = "SELECT 
+        chats.id,
+        chats.created_at,
+        (SELECT COUNT(chat_users.id_user) FROM chat_users WHERE chat_users.id_chat=chats.id ) as subscriber_count,
+        (SELECT GROUP_CONCAT(chat_users.id_user) FROM chat_users WHERE chat_users.id_chat=chats.id ) as subscriber_ids,
+        (SELECT COUNT(messages.id) as message_count FROM messages WHERE messages.id_chat = chats.id) as message_count
+        FROM chats 
+        JOIN chat_users ON chats.id=chat_users.id_chat
+        WHERE chat_users.id_user = ?";
+
+        $request = Request::send($connection, $request_body, [$this->id]);
+        $results = [];
+        while ($row = $request->fetch()) {
+            $results[] = array(
+                "id" => $row["id"],
+                "created_at" => $row["created_at"],
+                "subscriber_count" => $row["subscriber_count"],
+                "message_count" => $row["message_count"],
+                "subscriber_ids" => !empty($row["subscriber_ids"]) ? array_map(function ($el) {
+                    return intval($el);
+                },  explode(',', $row["subscriber_ids"])) : [],
+                "subscribers" => Chat::getSubscriberData($connection, $row["subscriber_ids"])
+            );
+        }
+        return $results;
+    }
+
+
 }

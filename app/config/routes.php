@@ -21,6 +21,13 @@ $routes = array(
     array('POST', ROOT_PATH . '/posts', 'posts#create', 'create_post'),
     array('POST', ROOT_PATH . '/posts/[i:id]', 'posts#update', 'update_post'),
     array('DELETE', ROOT_PATH . '/posts/[i:id]', 'posts#destroy', 'destroy_post'),
+    // /chats
+    array('GET', ROOT_PATH . '/chats', 'chats#index', 'index_chat'),
+    array('GET', ROOT_PATH . '/chats/[:chat_id]', 'chats#show', 'show_chat'),
+    array('POST', ROOT_PATH . '/chats/[:chat_id]', 'chats#create', 'create_message'),
+    array('GET', ROOT_PATH . '/chats/[:chat_id]/stream', 'chats#stream', 'stream_message'),
+    array('DELETE', ROOT_PATH . '/chats/[:chat_id]', 'chats#delete', 'delete_chat'),
+    array('DELETE', ROOT_PATH . '/messages/[:message_id]', 'chats#delete', 'delete_message'),
     // /breakdowns
     array('POST', ROOT_PATH . '/breakdowns', 'breakdowns#index', 'index_breakdowns'),
     // '/skills'

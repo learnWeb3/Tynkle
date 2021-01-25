@@ -1,6 +1,6 @@
-.card-message.recipient:nth-child(even){
+.card-message.recipient{
     align-self: flex-start;
 }
-.card-message.sender:nth-child(odd){
+.card-message.sender{
     align-self: flex-end;
 }

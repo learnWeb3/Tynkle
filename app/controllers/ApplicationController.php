@@ -29,6 +29,7 @@ class ApplicationController
         )
     ) {
         $is_current_user_logged_in = isset($_SESSION['current_user']) ?  true : false;
+        $current_user = isset($_SESSION['current_user']) ? $_SESSION['current_user'] : null;
         extract($template_vars);
         ob_start();
         require_once './app/views/' . strtolower(str_replace('Controller', '', get_class($this))) . '/' . $template_name . '.php';
