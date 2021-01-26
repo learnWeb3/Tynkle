@@ -37,5 +37,9 @@ $routes = array(
     array('POST', ROOT_PATH . '/skills/[i:id]', 'skills#update', 'update_skills'),
     array('DELETE', ROOT_PATH . '/skills/[i:id]', 'skills#destroy', 'destroy_skills'),
     // '/activity'
-    array('GET', ROOT_PATH . '/activities', 'activities#index', 'index_activities')
+    array('GET', ROOT_PATH . '/activities', 'activities#index', 'index_activities'),
+    // '/offers'
+    array('POST', ROOT_PATH . '/offers', 'offers#create', 'offers_create'),
+    // '/asks'
+    array('POST', ROOT_PATH . '/asks', 'asks#create', 'asks_create')
 );

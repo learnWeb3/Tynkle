@@ -5,7 +5,7 @@
     <div class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh; margin-top:3.5rem">
 
         <section style="min-height:95vh" class="w-100 d-flex align-items-center" id="account_informations">
-        <form action="<?php echo ROOT_PATH.'/users/'.$user['id'] ?>" class="w-100 mb-4 p-4" method="POST">
+            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] ?>" class="w-100 mb-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Information générales</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
@@ -53,7 +53,7 @@
         </section>
 
         <section id="personnal_informations" class="w-100 d-flex align-items-center" style="min-height:95vh">
-            <form action="<?php echo ROOT_PATH.'/users/'.$user['id'] ?>" class="w-100 my-4 p-4" method="POST">
+            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] ?>" class="w-100 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Information personnelles</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
@@ -88,46 +88,49 @@
             </form>
         </section>
 
-        <section id="skills" class="w-100 d-flex align-items-center" style="min-height:95vh">
-            <form action="<?php echo ROOT_PATH.'/users/'.$user['id'].'/skills' ?>" class="w-100 my-4 p-4" method="POST">
+        <div id="skills" class="w-100 d-flex align-items-center" style="min-height:95vh">
+            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>" class="w-100 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Compétences</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
-                <?php foreach ($breakdown_categories_skills as $index => $breakdown_category_skill) : ?>
-                    <h5>Catégorie: <?php echo $breakdown_category_skill['name'] ?></h5>
-                    <div class="row" id="breakdown-type-<?php echo $breakdown_category_skill['id'] ?>">
-                        <ul class="col-12">
-                            <?php foreach ($breakdown_category_skill['skills'] as $index => $skill) : ?>
-                                <li class="row d-flex align-items-start justify-content-between">
-                                    <div class="col-8">
-                                        <p class="mb-0"><?php echo $skill['skill_name'] ?></p>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-check form-check-inline">
-                                            <?php if ($skill['is_owned']) : ?>
-                                                <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" checked id="yes_<?php echo $skill['id_skill'] ?>" value="1">
-                                            <?php else : ?>
-                                                <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" id="yes_<?php echo $skill['id_skill'] ?>" value="1">
-                                            <?php endif; ?>
-                                            <label class="form-check-label" for="yes_<?php echo $skill['id_skill'] ?>">oui </label>
+                <?php foreach ($platforms as $i => $platform) : ?>
+                    <h4 class="font-weight-bold" id="platform-<?php echo $platform['id'] ?>"><?php echo $platform['name'] ?></h4>
+                    <?php foreach ($platform['breakdown_categories'] as $index => $breakdown_category_skill) : ?>
+                        <h5><?php echo $breakdown_category_skill['name'] ?></h5>
+                        <div class="row">
+                            <ul class="col-12">
+                                <?php foreach ($breakdown_category_skill['skills'] as $index => $skill) : ?>
+                                    <li class="row d-flex align-items-start justify-content-between">
+                                        <div class="col-8">
+                                            <p class="mb-0"><?php echo $skill['skill_name'] ?></p>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <?php if (!$skill['is_owned']) : ?>
-                                                <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" checked id="no_<?php echo $skill['id_skill'] ?>" value="0">
-                                            <?php else : ?>
-                                                <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" id="no_<?php echo $skill['id_skill'] ?>" value="0">
-                                            <?php endif; ?>
+                                        <div class="col-4">
+                                            <div class="form-check form-check-inline">
+                                                <?php if ($skill['is_owned']) : ?>
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" checked id="yes_<?php echo $skill['id_skill'] ?>" value="1">
+                                                <?php else : ?>
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" id="yes_<?php echo $skill['id_skill'] ?>" value="1">
+                                                <?php endif; ?>
+                                                <label class="form-check-label" for="yes_<?php echo $skill['id_skill'] ?>">oui </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <?php if (!$skill['is_owned']) : ?>
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" checked id="no_<?php echo $skill['id_skill'] ?>" value="0">
+                                                <?php else : ?>
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" id="no_<?php echo $skill['id_skill'] ?>" value="0">
+                                                <?php endif; ?>
 
-                                            <label class="form-check-label" for="no_<?php echo $skill['id_skill'] ?>">non</label>
+                                                <label class="form-check-label" for="no_<?php echo $skill['id_skill'] ?>">non</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
                 <button type="submit" class='btn btn-lg btn-primary col-12 col-lg-4 my-2'>VALIDER</button>
             </form>
-        </section>
+        </div>
     </div>
 
 </main>

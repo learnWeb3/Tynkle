@@ -11,6 +11,23 @@ const getPlatforms = async (data) => {
     return fetch(ROOT_PATH + '/breakdowns', options).then((results) => results.json()).catch((error) => console.log(error))
 }
 
+const makeOffers = async (data) => {
+    const options = {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(data)
+    }
+    return fetch(ROOT_PATH + '/offers', options)
+    .then(async (res) => {
+        const status = res.status
+        return (status === 200) ? ({ data: await res.text(), status: status }) : ({ data: null, status: status })
+    })
+    .catch((error) => ({ data: null, status: 500 }))
+
+}
+
 const signout = async () => {
     const options = {
         headers: {
@@ -61,4 +78,4 @@ const sendmessage = async (data, chat_id) =>
     })
     .catch((error) => ({ data: null, status: 500 }))
 
-export { getPlatforms, signout, getFollowingPosts, sendmessage, deletemessage, ROOT_PATH }
+export { ROOT_PATH, getPlatforms, signout, getFollowingPosts, sendmessage, deletemessage, makeOffers }

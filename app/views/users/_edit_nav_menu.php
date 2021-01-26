@@ -10,12 +10,12 @@
         </li>
         <li class="nav-item w-100 my-2">
 
-            <ul class="nav flex-column w-100">
+            <ul class="nav d-block overflow-auto w-100" style="height:33vh">
                 <li class="font-weight-bold mb-2 d-flex align-items-center"> <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/skills_light.svg" height="36" width="36" alt="skills">
                     <a class="nav-link display-6 m-2 font-weight-bold text-white" href="#skills">Compétences</a>
                 </li>
-                <?php foreach ($breakdown_categories_skills as $index => $breakdown_category_skill) : ?>
-                    <li class="font-weight-bold mb-2 mx-5"><a href="#breakdown-type-<?php echo $breakdown_category_skill['id'] ?>" class="text-white">Compétences : <?php echo $breakdown_category_skill['name'] ?></a></li>
+                <?php foreach ($platforms as $index => $platform) : ?>
+                    <li class="font-weight-bold mb-2 mx-5"><a href="#platform-<?php echo $platform['id'] ?>" class="text-white">Compétences : <?php echo $platform['name'] ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </li>

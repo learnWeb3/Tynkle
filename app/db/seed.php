@@ -10,10 +10,12 @@ User::destroyAll($connection);
 Post::destroyAll($connection);
 Skill::destroyAll($connection);
 UserSkill::destroyAll($connection);
+Chat::destroyAll($connection);
+Message::destroyAll($connection);
+ChatUser::destroyAll($connection);
 
 $faker = Faker\Factory::create();
-$breakdown_categories = ['logiciel', 'matériel', 'mentoring/tutorat/cours', 'réseau'];
-$platforms = ['pc/windows', 'pc/OSX', 'android', 'ios',  'macOSX'];
+$platforms = ["Informatique", 'Smartphone/tablette', "Reseau", "Electroménager", "Console de jeux", "Tv/multimédia"];
 
 foreach ($platforms as $platform) {
     try {
@@ -26,14 +28,22 @@ foreach ($platforms as $platform) {
 
 $platforms = Platform::all($connection, '/', 0, 100)['data'];
 
-foreach ($breakdown_categories as $breakdown_category) {
-    try {
-        $random_platform_index = array_rand($platforms);
-        $id_platform = $platforms[$random_platform_index]['id'];
-        BreakdownCategory::create($connection, ['id_platform', 'name', 'description'], [intval($id_platform), $breakdown_category, $faker->text()]);
-        echo "breakdown type $breakdown_category created \n";
-    } catch (\Throwable $th) {
-        echo "Breakdown category $breakdown_category has not been created due to an internal error\n";
+$breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
+$breakdown_categories_informatique = ["Dépanner mon PC/ MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+$breakdown_categories_reseau =  ["Installation box internet", "Connecter mes appareils", "Dépanner ma connection internet", "Aide à l'utilisation"];
+$breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
+$breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma NintendosSwitch", "Autres consoles"];
+$breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
+
+$breakdown_categories = [$breakdown_categories_informatique, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
+foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns) {
+    foreach ($breakdown_category_breakdowns as $breakdown_category) {
+        try {
+            BreakdownCategory::create($connection, ['id_platform', 'name', 'description'], [$id_platform + 1, $breakdown_category, $faker->text()]);
+            echo "breakdown type $breakdown_category created \n";
+        } catch (\Throwable $th) {
+            echo "Breakdown category $breakdown_category has not been created due to an internal error\n";
+        }
     }
 }
 
@@ -97,16 +107,54 @@ for ($count = 0; $count < 100; $count++) {
     }
 }
 
-$skills = ['je sais détecter une panne', 'je sais remplacer une pièce'];
-foreach ($skills as $index => $skill) {
+$skills = [
+    [
+        "Formattage/redémarrage",
+        "Installation Système exploitation",
+        "Changement de pièce",
+        "Installation logiciel",
+        "Installation périphérique",
+        "Assemblage ordinateur",
+        "Cours/Aide à l'utilisation"
+    ],
+    [
+        "Apple iOS",
+        "Android",
+        "Windows Phone"
+    ],
+    [
+        "Installation box",
+        "Configuration réseau"
+    ],
+
+    [
+        "Console de jeux",
+        "Réparation",
+        "Changer le stockage"
+    ],
+
+    [
+        "Installation audio/vidéo",
+        "Configuration audio/vidéo",
+        "Réparation",
+        "Cours/Aide à l'utilisation"
+    ],
+    [
+        "Installation (gros/petit)",
+        "Réparation/Entretien gros",
+        "Réparation/Entretien petit"
+    ]
+];
+foreach ($skills as $index => $skill_batch) {
+   foreach($skill_batch as $id_platform=>$skill)
+   {
     try {
-        $random_breakdown_index = array_rand($breakdown_categories);
-        $id_platform = $breakdown_categories[$random_breakdown_index]['id'];
-        Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_platform]);
+        Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_platform + 1]);
         echo "skill $skill has been created \n";
     } catch (\Throwable $th) {
         echo "Skill $skill has not been created due to an internal error\n";
     }
+   }
 }
 
 $skills = Skill::all($connection, '/skills', 0, 100)['data'];

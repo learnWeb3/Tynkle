@@ -37,8 +37,9 @@ class User extends Application
 
     public function getUserSkill(PDO $connection)
     {
+        $platforms = Platform::all($connection, '/breakdowns', 0, 100)['data'];
         $breakdown_categories = BreakdownCategory::all($connection, '/breakdowns', 0, 100)['data'];
-        $request_body = "SELECT 
+        $request_body_skills = $request_body = "SELECT 
         skills.id as id_skill,
         skills.name as skill_name,
         skills.created_at as skill_created_at,
@@ -46,13 +47,19 @@ class User extends Application
         (SELECT COUNT(user_skills.id) as is_owned FROM user_skills 
         JOIN skills ON user_skills.id_skill=skills.id 
         JOIN breakdown_categories ON skills.id_breakdown_category = breakdown_categories.id 
-        JOIN 
         WHERE user_skills.id_skill = id_skill AND user_skills.id_user = ? AND breakdown_categories.id=? ) is_owned
         FROM skills WHERE id_breakdown_category = ?";
-        return array_map(function ($breakdown_category) use ($connection, $request_body) {
-            $breakdown_category['skills'] =  Request::send($connection, $request_body, [$this->id, $breakdown_category['id'], $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC);
-            return  $breakdown_category;
-        }, $breakdown_categories);
+        $results = [];
+        foreach ($platforms as $index => $platform) {
+            $breakdown_categories = BreakdownCategory::where($connection, 'id_platform', $platform['id'])->fetchAll(PDO::FETCH_ASSOC);
+            $breakdown_categories = array_map(function($breakdown_category) use($connection, $request_body_skills){
+                $breakdown_category['skills']  =  Request::send($connection, $request_body_skills, [$this->id, $breakdown_category['id'], $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC);
+                return $breakdown_category;
+            }, $breakdown_categories);
+            $platform['breakdown_categories'] = $breakdown_categories;
+            $results[] = $platform;
+        }
+        return $results;
     }
 
     public static function signOut(): void
@@ -107,6 +114,4 @@ class User extends Application
         }
         return $results;
     }
-
-
 }

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+*{
+    outline: 0;
+}
+
 h1, h2, h3, h4, h5 {
     font-family: 'Lato', sans-serif;
 }
@@ -160,4 +165,10 @@ a:hover {
 .rate-hover-layer
 {
     color: orange;
+}
+
+/* MODAL */
+
+.modal{
+    z-index: 1000000;
 }
