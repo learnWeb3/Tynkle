@@ -19,7 +19,7 @@ class AsksController extends ApplicationController
                 {
                     try {
                         echo json_encode(
-                            Offer::create(
+                            Ask::create(
                                 $this->connection, 
                                 ['content', 'object','amount', 'id_post', 'id_user'], 
                                 [$this->json_params['content'],$this->json_params['object'],$this->json_params['amount'],$this->json_params['id_post'],$this->current_user->id]

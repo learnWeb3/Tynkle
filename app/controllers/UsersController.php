@@ -130,6 +130,7 @@ class UsersController extends ApplicationController
         } else {
             $this->handleError(403);
         }
+
     }
 
     public function index()

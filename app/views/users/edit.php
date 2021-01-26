@@ -101,25 +101,25 @@
                                 <?php foreach ($breakdown_category_skill['skills'] as $index => $skill) : ?>
                                     <li class="row d-flex align-items-start justify-content-between">
                                         <div class="col-8">
-                                            <p class="mb-0"><?php echo $skill['skill_name'] ?></p>
+                                            <p class="mb-0"><?php echo $skill['name'] ?></p>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-check form-check-inline">
                                                 <?php if ($skill['is_owned']) : ?>
-                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" checked id="yes_<?php echo $skill['id_skill'] ?>" value="1">
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" checked id="yes_<?php echo $skill['id'] ?>" value="1">
                                                 <?php else : ?>
-                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" id="yes_<?php echo $skill['id_skill'] ?>" value="1">
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" id="yes_<?php echo $skill['id'] ?>" value="1">
                                                 <?php endif; ?>
-                                                <label class="form-check-label" for="yes_<?php echo $skill['id_skill'] ?>">oui </label>
+                                                <label class="form-check-label" for="yes_<?php echo $skill['id'] ?>">oui </label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <?php if (!$skill['is_owned']) : ?>
-                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" checked id="no_<?php echo $skill['id_skill'] ?>" value="0">
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" checked id="no_<?php echo $skill['id'] ?>" value="0">
                                                 <?php else : ?>
-                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id_skill'] ?>" id="no_<?php echo $skill['id_skill'] ?>" value="0">
+                                                    <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" id="no_<?php echo $skill['id'] ?>" value="0">
                                                 <?php endif; ?>
 
-                                                <label class="form-check-label" for="no_<?php echo $skill['id_skill'] ?>">non</label>
+                                                <label class="form-check-label" for="no_<?php echo $skill['id'] ?>">non</label>
                                             </div>
                                         </div>
                                     </li>

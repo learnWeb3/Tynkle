@@ -1,6 +1,6 @@
 <?php
 
-class Asks extends Application
+class Ask extends Application
 {
     protected $id;
 

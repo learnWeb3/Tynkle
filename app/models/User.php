@@ -39,21 +39,21 @@ class User extends Application
     {
         $platforms = Platform::all($connection, '/breakdowns', 0, 100)['data'];
         $breakdown_categories = BreakdownCategory::all($connection, '/breakdowns', 0, 100)['data'];
-        $request_body_skills = $request_body = "SELECT 
-        skills.id as id_skill,
-        skills.name as skill_name,
-        skills.created_at as skill_created_at,
-        skills.updated_at as skill_updated_at,
-        (SELECT COUNT(user_skills.id) as is_owned FROM user_skills 
+        $request_body_skills = "SELECT COUNT(user_skills.id) as is_owned FROM user_skills 
         JOIN skills ON user_skills.id_skill=skills.id 
-        JOIN breakdown_categories ON skills.id_breakdown_category = breakdown_categories.id 
-        WHERE user_skills.id_skill = id_skill AND user_skills.id_user = ? AND breakdown_categories.id=? ) is_owned
-        FROM skills WHERE id_breakdown_category = ?";
+        JOIN breakdown_categories ON skills.id_breakdown_category = breakdown_categories.id
+        JOIN platforms ON platforms.id = breakdown_categories.id_platform
+        WHERE user_skills.id_skill = ? AND user_skills.id_user = ? AND breakdown_categories.id=?";
         $results = [];
         foreach ($platforms as $index => $platform) {
             $breakdown_categories = BreakdownCategory::where($connection, 'id_platform', $platform['id'])->fetchAll(PDO::FETCH_ASSOC);
-            $breakdown_categories = array_map(function($breakdown_category) use($connection, $request_body_skills){
-                $breakdown_category['skills']  =  Request::send($connection, $request_body_skills, [$this->id, $breakdown_category['id'], $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC);
+            $breakdown_categories = array_map(function ($breakdown_category) use ($connection, $request_body_skills, $platform) {
+                $breakdown_category['skills']  = Skill::where($connection, 'id_breakdown_category', $breakdown_category['id'])->fetchAll(PDO::FETCH_ASSOC);
+                $breakdown_category['skills'] = array_map(function ($skill) use ($connection, $request_body_skills, $breakdown_category) {
+                    $skill_check = Request::send($connection, $request_body_skills, [$skill['id'], $this->id, $breakdown_category['id']])->fetchAll(PDO::FETCH_ASSOC)[0];
+                    $skill['is_owned'] = $skill_check['is_owned'];
+                    return $skill;
+                }, $breakdown_category['skills']);
                 return $breakdown_category;
             }, $breakdown_categories);
             $platform['breakdown_categories'] = $breakdown_categories;
