@@ -86,6 +86,7 @@ class User extends Application
         }
     }
 
+
     public function getChats(PDO $connection)
     {
         $request_body = "SELECT 
@@ -106,12 +107,154 @@ class User extends Application
                 "created_at" => $row["created_at"],
                 "subscriber_count" => $row["subscriber_count"],
                 "message_count" => $row["message_count"],
+                "preview_last_message"=>Message::getPreviewlastMessage($connection, $row["id"]),
                 "subscriber_ids" => !empty($row["subscriber_ids"]) ? array_map(function ($el) {
                     return intval($el);
                 },  explode(',', $row["subscriber_ids"])) : [],
-                "subscribers" => Chat::getSubscriberData($connection, $row["subscriber_ids"])
+                "subscribers" => Chat::getSubscriberData($connection, $row["subscriber_ids"]),
+                "subscriber_third_party"=>Chat::getSubscriberThirdParty($connection, $row["subscriber_ids"], $this->id)
             );
         }
         return $results;
     }
+
+    public function getCurrentOffers(PDO $connection)
+    {
+        $request_body = "SELECT offers.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM offers 
+        JOIN users ON offers.id_user=users.id 
+        WHERE offers.id_user = ?
+        AND offers.is_accepted = 1
+        ORDER BY offers.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOldOffers(PDO $connection)
+    {
+        $request_body = "SELECT offers.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM offers 
+        JOIN users ON offers.id_user=users.id 
+        WHERE offers.id_user = ?
+        AND offers.is_declined = 1
+        ORDER BY offers.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOffers(PDO $connection)
+    {
+        $request_body = "SELECT offers.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM offers 
+        JOIN users ON offers.id_user=users.id 
+        WHERE offers.id_user = ?
+        ORDER BY offers.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+    public function getCurrentPosts(PDO $connection)
+    {
+        $request_body = "SELECT posts.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM posts 
+        JOIN users ON posts.id_user=users.id 
+        WHERE posts.id_user = ?
+        AND posts.is_solved = 0
+        ORDER BY posts.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOldPosts(PDO $connection)
+    {
+        $request_body = "SELECT posts.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM posts 
+        JOIN users ON posts.id_user=users.id 
+        WHERE posts.id_user = ?
+        AND posts.is_solved = 1
+        ORDER BY posts.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPosts(PDO $connection)
+    {
+        $request_body = "SELECT posts.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM posts 
+        JOIN users ON posts.id_user=users.id 
+        WHERE posts.id_user = ?
+        ORDER BY posts.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+    public function getCurrentAsks(PDO $connection)
+    {
+        $request_body = "SELECT asks.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM asks 
+        JOIN users ON asks.id_user=users.id 
+        WHERE asks.id_user = ?
+        AND asks.is_accepted = 1
+        ORDER BY asks.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOldAsks(PDO $connection)
+    {
+        $request_body = "SELECT asks.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM asks 
+        JOIN users ON asks.id_user=users.id 
+        WHERE asks.id_user = ?
+        AND asks.is_accepted = 0
+        ORDER BY asks.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAsks(PDO $connection)
+    {
+        $request_body = "SELECT asks.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM asks 
+        JOIN users ON asks.id_user=users.id 
+        WHERE asks.id_user = ?
+        ORDER BY asks.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
 }
+

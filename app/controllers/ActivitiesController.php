@@ -12,9 +12,9 @@ class ActivitiesController extends ApplicationController
     {
         if (isset($this->current_user)) {
             try {
-                $posts = Post::where($this->connection, 'id_user', $this->current_user->id)->fetchAll(PDO::FETCH_ASSOC);
-                $offers = Offer::where($this->connection, 'id_user', $this->current_user->id)->fetchAll(PDO::FETCH_ASSOC);
-                $asks = Ask::where($this->connection, 'id_user', $this->current_user->id)->fetchAll(PDO::FETCH_ASSOC);
+                $posts = $this->current_user->getPosts($this->connection);
+                $offers = $this->current_user->getOffers($this->connection);
+                $asks = $this->current_user->getAsks($this->connection);
                 $this->render(
                     'index',
                     array(
@@ -27,7 +27,6 @@ class ActivitiesController extends ApplicationController
                     ),
                 );
             } catch (Throwable $th) {
-                var_dump($th);
                 $this->handleError(500);
             }
         } else {

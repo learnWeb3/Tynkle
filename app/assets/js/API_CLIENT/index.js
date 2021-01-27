@@ -20,11 +20,11 @@ const makeOffers = async (data) => {
         body: JSON.stringify(data)
     }
     return fetch(ROOT_PATH + '/offers', options)
-    .then(async (res) => {
-        const status = res.status
-        return (status === 200) ? ({ data: await res.text(), status: status }) : ({ data: null, status: status })
-    })
-    .catch((error) => ({ data: null, status: 500 }))
+        .then(async (res) => {
+            const status = res.status
+            return (status === 200) ? ({ data: await res.text(), status: status }) : ({ data: null, status: status })
+        })
+        .catch((error) => ({ data: null, status: 500 }))
 
 }
 
@@ -50,21 +50,51 @@ const getFollowingPosts = (nextPage) => {
     return fetch(ROOT_PATH + nextPage + '&ajax=true', options);
 }
 
-const deletemessage = async (message_id) => 
+const getFilteredContent = (endpoint) => {
+    const options = {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'GET',
+    }
+    return fetch(ROOT_PATH + endpoint + '&ajax=true', options)
+        .then(async (res) => {
+            const status = res.status
+            return (status === 200) ? ({ data: await res.json(), status: status }) : ({ data: null, status: status })
+        })
+        .catch((error) => ({ data: null, status: 500 }))
+
+}
+
+const deletemessage = async (message_id) =>
     fetch(ROOT_PATH + '/messages' + '/' + message_id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
     })
-    .then(async (res) => {
-        const status = res.status
-        return ({  status: status })
+        .then(async (res) => {
+            const status = res.status
+            return ({ status: status })
+        })
+        .catch((error) => ({ data: null, status: 500 }))
+
+const updateOffer = async (data, offer_id) =>
+    fetch(ROOT_PATH + '/offers' + '/' + offer_id, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
-    .catch((error) => ({ data: null, status: 500 }))
+        .then(async (res) => {
+            const status = res.status
+            return (status === 200) ? ({ data: await res.json(), status: status }) : ({ data: null, status: status })
+        })
+        .catch((error) => ({ data: null, status: 500 }))
 
 
-const sendmessage = async (data, chat_id) => 
+const sendmessage = async (data, chat_id) =>
     fetch(ROOT_PATH + '/chats' + '/' + chat_id, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -72,10 +102,10 @@ const sendmessage = async (data, chat_id) =>
             'Content-Type': 'application/json'
         }
     })
-    .then(async (res) => {
-        const status = res.status
-        return (status === 200) ? ({ data: await res.json(), status: status }) : ({ data: null, status: status })
-    })
-    .catch((error) => ({ data: null, status: 500 }))
+        .then(async (res) => {
+            const status = res.status
+            return (status === 200) ? ({ data: await res.json(), status: status }) : ({ data: null, status: status })
+        })
+        .catch((error) => ({ data: null, status: 500 }))
 
-export { ROOT_PATH, getPlatforms, signout, getFollowingPosts, sendmessage, deletemessage, makeOffers }
+export { ROOT_PATH, getPlatforms, signout, getFollowingPosts, sendmessage, deletemessage, makeOffers, getFilteredContent, updateOffer }
