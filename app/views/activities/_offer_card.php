@@ -1,4 +1,4 @@
-<div class="card col-12 col-xl-8 shadow p-4 my-4">
+<div class="card col-12 col-xl-8 shadow p-4 my-4" id="offer-<?php echo $offer['id']  ?>">
     <div class="row my-2">
         <div class="col-12 col-xl-4 d-flex align-items-center">
             <h4 class="font-weight-bold">Objet:</h4>
@@ -23,8 +23,16 @@
             <a class="font-weight-bold" href="<?php echo ROOT_PATH . "/posts/" . $offer['id_post'] ?>" class=""> Voir l'annonce</a>
         </div>
         <div class="col col-xl-4 d-flex align-items-center justify-content-between">
-            <button class="btn btn-md btn-success">ACCEPTER</button>
-            <button class="btn btn-md btn-red-crayola">DECLINER</button>
+            <?php if ($offer['is_accepted'] === '0' && $offer['is_declined'] === '0') : ?>
+                <button class="btn btn-md btn-success offer-action" data-action="1" data-offerId="<?php echo $offer['id'] ?>">ACCEPTER</button>
+                <button class="btn btn-md btn-red-crayola offer-action" data-action="0" data-offerId="<?php echo $offer['id'] ?>">DECLINER</button>
+            <?php endif ?>
+            <?php if ($offer['is_accepted'] === '1' && $offer['is_declined'] === '0') : ?>
+                <p class='w-100 text-end font-weight-bold text-success'>ANNONCE ACCEPTEE</p>
+            <?php endif ?>
+            <?php if ($offer['is_accepted'] === '0' && $offer['is_declined'] === '1') : ?>
+                <p class='w-100 text-end font-weight-bold text-danger'>ANNONCE DECLINEE</p>
+            <?php endif ?>
         </div>
     </div>
 </div>

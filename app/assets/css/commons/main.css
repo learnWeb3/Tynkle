@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
-
-*{
+* {
     outline: 0;
 }
 
@@ -54,12 +53,12 @@ a:hover {
     font-size: 1.5rem;
 }
 
-
-.btn-red-crayola{
+.btn-red-crayola {
     background-color: #FD0E35;
     color: #FFF;
 }
-.btn-outline-red-crayola{
+
+.btn-outline-red-crayola {
     border: 2px solid #FD0E35;
     color: #FD0E35;
 }
@@ -147,28 +146,34 @@ a:hover {
     display: flex;
 }
 
-
 /* RATER JS */
 
-.rating *{
+.rating * {
     font-size: 2rem;
 }
 
-.rate-select-layer span{
+.rate-select-layer span {
     color: orange;
 }
 
-.rate-base-layer
-{
+.rate-base-layer {
     color: #aaa;
 }
-.rate-hover-layer
-{
+
+.rate-hover-layer {
     color: orange;
 }
 
 /* MODAL */
 
-.modal{
+.modal {
     z-index: 1000000;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

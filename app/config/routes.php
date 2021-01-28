@@ -39,6 +39,8 @@ $routes = array(
     // '/activity'
     array('GET', ROOT_PATH . '/activities', 'activities#index', 'index_activities'),
     // '/offers'
+    array('GET', ROOT_PATH . '/offers', 'offers#index', 'offers_index'),
+    array('PUT', ROOT_PATH . '/offers/[i:id]', 'offers#update', 'offers_update'),
     array('POST', ROOT_PATH . '/offers', 'offers#create', 'offers_create'),
     // '/asks'
     array('POST', ROOT_PATH . '/asks', 'asks#create', 'asks_create')
