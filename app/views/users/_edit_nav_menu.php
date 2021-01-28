@@ -28,7 +28,7 @@
         </li>
         <li class="nav-item d-flex align-items-center w-100 my-2">
             <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/home.svg" height="32" width="32" alt="home">
-            <a href="<?php echo ROOT_PATH ?>/" class="nav-link font-weight-bold*">Accueil</a>
+            <a class="nav-link active font-weight-bold" href="<?php echo ROOT_PATH . '/' ?>">Accueil</a>
         </li>
     </ul>
 
