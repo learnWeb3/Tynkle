@@ -31,7 +31,7 @@
                 <hr>
                 <form action="" method="POST" class="col-12 bg-light">
                     <div class="d-flex w-100 align-items-center">
-                        <img src="./assets/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
+                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
                     </div>
 

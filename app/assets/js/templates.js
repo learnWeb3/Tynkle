@@ -1,5 +1,14 @@
 import { ROOT_PATH } from "./API_CLIENT/index.js";
 
+
+const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
+    return (`
+        <input class="form-check-input" type="checkbox" id="breakdown_category-${id}" data-breakdownId="${id}">
+        <label class="form-check-label" for="breakdown_category-${id}">
+            ${name}
+        </label>`).trim()
+}
+
 const getPostTemplate = ({id, platform_name, breakdown_category_name, postal_code, city, user_name, user_id, created_at, cover_image }) => {
     const innerHTML = (`
     <img src="${cover_image}" height="450px" alt="" class="card-img-top">
@@ -108,4 +117,4 @@ const getNoResultTemplate = (redirectionLink, text, header) => {
     `).trim()
 }
 
-export { getNoResultTemplate, getPostTemplate, getOfferTemplate, getAsktemplate }
+export { getNoResultTemplate, getPostTemplate, getOfferTemplate, getAsktemplate, getBreakdownCategoriesCheckInputTemplate }
