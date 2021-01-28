@@ -50,6 +50,11 @@ class UsersController extends ApplicationController
                         'id',
                         $this->current_user->id
                     );
+                    $flash = new Flash(
+                        array("Mise jour réussie"),
+                        'success'
+                    );
+                    $flash->storeInSession();
                     die(header('Location:' . ROOT_PATH . '/profile'));
                 } catch (\Throwable $th) {
                    $this->handleError(500);
@@ -87,8 +92,8 @@ class UsersController extends ApplicationController
                     $this->current_user->id
                 );
                 $flash = new Flash(
-                    array("Erreur lors de la mise à jour de votre compte"),
-                    'danger'
+                    array("Mise jour réussie"),
+                    'success'
                 );
                 $flash->storeInSession();
                 die(header('Location:' . ROOT_PATH . '/profile'));
@@ -115,16 +120,17 @@ class UsersController extends ApplicationController
     public function edit()
     {
         if (isset($this->current_user)) {
-            $this->render('edit', array(
-                'title' => "Tynkle: Mon compte",
-                'description' => 'Tynkle: mon compte',
-                'style_file_name' => 'edit',
-                'user' => $this->current_user->getDetails($this->connection),
-                'breakdown_categories_skills' => $this->current_user->getUserSkill($this->connection)
-            ));
+                $this->render('edit', array(
+                    'title' => "Tynkle: Mon compte",
+                    'description' => 'Tynkle: mon compte',
+                    'style_file_name' => 'edit',
+                    'user' => $this->current_user->getDetails($this->connection),
+                    'platforms' => $this->current_user->getUserSkill($this->connection)
+                ));
         } else {
             $this->handleError(403);
         }
+
     }
 
     public function index()
