@@ -7,6 +7,30 @@ class Post extends Application
         $this->id = $id;
     }
 
+
+    public static function findBy(PDO $connection, string $path, string $column_name, string $values, int $start = 0, int $limit = 10)
+    {
+        $request_body = "SELECT 
+        posts.*,
+        breakdown_categories.id as breakdown_category_id,
+        breakdown_categories.name as breakdown_category_name,
+        platforms.name as platform_name,
+        platforms.id as platform_id
+        FROM posts
+        JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
+        JOIN platforms ON breakdown_categories.id_platform = platforms.id
+        WHERE posts.$column_name IN ($values) 
+        ORDER BY posts.created_at DESC";
+        $results = Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
+        $next_start = $start += 10;
+        $previous_start = $start - 10 >= 0 ? $start - 10 : 0;
+        return array(
+            "data" => $results,
+            "next" => $path . "?start=$next_start&limit=$limit",
+            "previous" => $path . "?start=$previous_start&limit=$limit"
+        );
+    }
+
     public static function getPosts(PDO $connection, string $path, int $limit, int $start)
     {
         $request_body = "SELECT 

@@ -120,11 +120,12 @@ class User extends Application
 
     public function getCurrentOffers(PDO $connection)
     {
-        $request_body = "SELECT offers.*, 
+        $request_body = "SELECT
+        offers.*, 
         users.username, 
         users.lastname, 
         users.email, 
-        users.id as user_id 
+        users.id as user_id,
         FROM offers 
         JOIN users ON offers.id_user=users.id 
         WHERE offers.id_user = ?
@@ -158,6 +159,36 @@ class User extends Application
         FROM offers 
         JOIN users ON offers.id_user=users.id 
         WHERE offers.id_user = ?
+        ORDER BY offers.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getSentOffers(PDO $connection)
+    {
+        $request_body = "SELECT offers.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM offers 
+        JOIN users ON offers.id_user=users.id 
+        WHERE offers.id_user = ?
+        ORDER BY offers.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getReceivedOffers(PDO $connection)
+    {
+        $request_body = "SELECT offers.*, 
+        users.username, 
+        users.lastname, 
+        users.email, 
+        users.id as user_id 
+        FROM offers 
+        JOIN posts ON offers.id_post = posts.id
+        JOIN users ON offers.id_user=users.id 
+        WHERE posts.id_user = ?
         ORDER BY offers.created_at DESC";
         return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
     }

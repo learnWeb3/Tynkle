@@ -111,13 +111,19 @@ a:hover {
     background-color: rgba(255, 255, 255, 1);
 }
 
-.card-publication:hover {
+.card-publication:hover, .card:hover {
     transform: translateY(5px);
     transition: .1s ease-in-out;
 }
 
 .bg-brand-blue {
     background-color: #4ABDED;
+}
+
+.bg-computer{
+    background-image: url(https://images.pexels.com/photos/257923/pexels-photo-257923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 992px) {

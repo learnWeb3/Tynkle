@@ -18,6 +18,10 @@ class OffersController extends ApplicationController
                     $offers =  $this->current_user->getOldOffers($this->connection);
                 } else if ($_GET['type'] === 'current') {
                     $offers = $this->current_user->getCurrentOffers($this->connection);
+                } else if ($_GET['type'] === 'sent') {
+                    $offers = $this->current_user->getSentOffers($this->connection);
+                } else if ($_GET['type'] === 'received') {
+                    $offers = $this->current_user->getReceivedOffers($this->connection);
                 } else {
                     $offers =  $this->current_user->getOffers($this->connection);
                 }
@@ -63,7 +67,8 @@ class OffersController extends ApplicationController
                                 ['content', 'object', 'amount', 'id_post', 'id_user'],
                                 [$this->json_params['content'], $this->json_params['object'], $this->json_params['amount'], $this->json_params['id_post'], $this->current_user->id]
                             )[0];
-                        Chat::sendMessage($this->connection, $new_offer['content'], [$this->current_user->id, $post['id_user']], $this->current_user->id);
+                        $message_content = "<a href='".ROOT_PATH."/activities"."'>Vous avez reçu une nouvelle offre pour la consulter veuillez cliquer ici.</a>";
+                        Chat::sendMessage($this->connection,$message_content, [$this->current_user->id, $post['id_user']], $this->current_user->id);
                         echo json_encode($new_offer);
                     } catch (Throwable $th) {
                         die(http_response_code(500));

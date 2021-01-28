@@ -1,9 +1,10 @@
-import { getFollowingPosts, getPlatforms, ROOT_PATH } from './API_CLIENT/index.js'
+import { getFollowingPosts, getPlatforms, getFilteredContent, ROOT_PATH } from './API_CLIENT/index.js'
+import { getPostTemplate } from './templates.js';
 
 
 const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
     return (`
-        <input class="form-check-input" type="checkbox" value="${id}" id="breakdown_category-${id}">
+        <input class="form-check-input" type="checkbox" id="breakdown_category-${id}" data-breakdownId="${id}">
         <label class="form-check-label" for="breakdown_category-${id}">
             ${name}
         </label>`).trim()
@@ -24,6 +25,7 @@ const handleChangeSelect = async () => {
                     div.classList.add('form-check');
                     div.innerHTML = getBreakdownCategoriesCheckInputTemplate(platform)
                     breakdown_categories.appendChild(div);
+                    handleChangeCheckbox();
                 })
             }
         } else {
@@ -35,6 +37,32 @@ const handleChangeSelect = async () => {
     });
 
 }
+
+
+const handleChangeCheckbox = () => {
+    const inputs = Array.from(document.querySelectorAll("#breakdown_categories input"));
+    inputs.map((input) => {
+        input.addEventListener('change', async function (el) {
+            const breakdown_ids = inputs.map((element) => {
+                if (element.checked) {
+                    return element.dataset.breakdownid;
+                }else{
+                    return null;
+                }
+            });
+            const breakdown_categories = breakdown_ids.filter((element)=>element !== null);
+            const query_parameters = breakdown_categories.length > 0 ? `breakdown_categories=${breakdown_categories.join(",")}` : ''
+            const endpoint = `/posts?${query_parameters}`;
+            const {data, status} = await getFilteredContent(endpoint);
+            const postsContainer = document.querySelector('#posts-container');
+            postsContainer.dataset.nextPage = data.next;
+            postsContainer.innerHTML = '';
+            data?.data?.map((postData)=>postsContainer.appendChild(getPostTemplate(postData)));
+        })
+    })
+}
+
+
 
 const initObserver = () => {
 

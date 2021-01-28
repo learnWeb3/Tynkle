@@ -23,7 +23,7 @@ const handleOfferCardAction = async (event) => {
 
 const handleRadioClick = async (event) => {
     const targetedElements = [
-        'offers_filter_all', 'offers_filter_current', 'offers_filter_old',
+        'offers_filter_all', 'offers_filter_current', 'offers_filter_old','offers_filter_sent','offers_filter_received',
         'posts_filter_all', 'posts_filter_current', 'posts_filter_old',
         'asks_filter_all', 'asks_filter_current', 'asks_filter_old'
     ]

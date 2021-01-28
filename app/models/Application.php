@@ -65,6 +65,7 @@ class Application
         return Request::send($connection, $request_body, $request_parameters);
     }
 
+
     // fetching databse datas by column name
     public static function where(\PDO $connection, string $column_name, $value)
     {
