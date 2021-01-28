@@ -13,6 +13,8 @@ UserSkill::destroyAll($connection);
 Chat::destroyAll($connection);
 Message::destroyAll($connection);
 ChatUser::destroyAll($connection);
+Offer::destroyAll($connection);
+Ask::destroyAll($connection);
 
 $faker = Faker\Factory::create();
 $platforms = ["Informatique", 'Smartphone/tablette', "Reseau", "Electroménager", "Console de jeux", "Tv/multimédia"];
@@ -107,46 +109,65 @@ for ($count = 0; $count < 100; $count++) {
     }
 }
 
+
 $skills = [
-    "Dépanner mon PC/ MAC" => ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
-    "Installer un logiciel" => ["Installation Système exploitation", "Installation logiciel"],
-    "Faire évoluer mon matériel" => ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
-    "Aide à l'utilisation" => ["Cours/Aide à l'utilisation"],
-
-    "Dépanner mon smartphone" => ["Apple iOS", "Android", "Windows Phone"],
-    "Depanner ma tablette" => ["Apple iOS", "Android", "Windows Phone"],
-    "Changer une pièce" => ["Apple iOS", "Android", "Windows Phone"],
-    "Aide à l'utilisation" => ["Apple iOS", "Android", "Windows Phone"],
-
-    "Installation box internet" => ["Installation box"],
-    "Connecter mes appareils" => ["Configuration réseau"],
-    "Dépanner ma connection internet" => ["Configuration réseau"],
-    "Aide à l'utilisation" => ["Cours/Aide à l'utilisation"],
-
-    "Réparer / configurer ma playstation" => ["Réparation", "Changer le stockage"],
-    "Réparer / configurer ma xBox" => ["Réparation", "Changer le stockage"],
-    "Réparer / configurer ma Nintendo Switch" => ["Réparation", "Changer le stockage"],
-    "Autres consoles" => ["Réparation", "Changer le stockage"],
-
-    "Depanner/installer ma TV" => ["Installation/Configuration TV", "Réparation TV"],
-    "Depanner/installer mon système audio" => ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-    "Depanner/installer mon lecteur vidéo" => ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-    "Aide à l'utilisation" => ["Cours/Aide à l'utilisation"],
-
-    "Installation gros/petit électroménager" => ["Installation (gros/petit)"],
-    "Réparation / entretien petit électroménager" => ["Réparation/Entretien petit"],
-    "Réparation / entretien gros électroménager" => ["Réparation/Entretien gros"]
+    //  "Dépanner mon PC/ MAC" => 
+    ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+    //  "Faire évoluer mon matériel" =>
+    ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
+    // "Installer un logiciel" => 
+    ["Installation Système exploitation", "Installation logiciel"],
+    // "Aide à l'utilisation" => 
+    ["Cours/Aide à l'utilisation"],
+    // "Dépanner mon smartphone" => 
+    ["Apple iOS", "Android", "Windows Phone"],
+    // "Depanner ma tablette" => 
+    ["Apple iOS", "Android", "Windows Phone"],
+    // "Changer une pièce" => 
+    ["Apple iOS", "Android", "Windows Phone"],
+    // "Aide à l'utilisation" => 
+    ["Apple iOS", "Android", "Windows Phone"],
+    // "Installation box internet" => 
+    ["Installation box"],
+    // "Connecter mes appareils" => 
+    ["Configuration réseau"],
+    // "Dépanner ma connection internet" => 
+    ["Configuration réseau"],
+    // "Aide à l'utilisation" => 
+    ["Cours/Aide à l'utilisation"],
+    // "Installation gros/petit électroménager" => 
+    ["Installation (gros/petit)"],
+    // "Réparation / entretien petit électroménager" => 
+    ["Réparation/Entretien petit"],
+    // "Réparation / entretien gros électroménager" =>
+    ["Réparation/Entretien gros"],
+    // "Réparer / configurer ma playstation" => 
+    ["Réparation", "Changer le stockage"],
+    // "Réparer / configurer ma xBox" => 
+    ["Réparation", "Changer le stockage"],
+    // "Réparer / configurer ma Nintendo Switch" => 
+    ["Réparation", "Changer le stockage"],
+    // "Autres consoles" => 
+    ["Réparation", "Changer le stockage"],
+    // "Depanner/installer ma TV" => 
+    ["Installation/Configuration TV", "Réparation TV"],
+    // "Depanner/installer mon système audio" => 
+    ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+    // "Depanner/installer mon lecteur vidéo" => 
+    ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+    // "Aide à l'utilisation" => 
+    ["Cours/Aide à l'utilisation"],
 ];
 foreach ($skills as $index => $skill_batch) {
-   foreach($skill_batch as $id_platform=>$skill)
-   {
-    try {
-        Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_platform + 1]);
-        echo "skill $skill has been created \n";
-    } catch (\Throwable $th) {
-        echo "Skill $skill has not been created due to an internal error\n";
+    $id_breakdown_category = $index + 1;
+    foreach ($skill_batch as $skill) {
+        try {
+            Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_breakdown_category]);
+            echo "skill $skill has been created \n";
+        } catch (\Throwable $th) {
+            echo "Skill $skill has not been created due to an internal error\n";
+        }
     }
-   }
 }
 
 $skills = Skill::all($connection, '/skills', 0, 100)['data'];
@@ -167,5 +188,30 @@ for ($count = 0; $count < 100; $count++) {
         echo "User skill for user id $random_user_index \n";
     } catch (\Throwable $th) {
         echo "user Skill has not been created due to an internal error\n";
+    }
+}
+
+$posts = Post::all($connection, '/posts', 0, 10000)['data'];
+for ($count = 0; $count < 100; $count++) {
+    try {
+        $random_post_index = array_rand($posts);
+        $random_post_id = $posts[$random_post_index]['id'];
+        $random_user_index = array_rand($users);
+        $random_user_id = $users[$random_user_index]['id'];
+        $object = "offfre n° $count";
+        Offer::create(
+            $connection,
+            ['id_post', 'id_user', 'content', 'object', 'amount'],
+            array(
+                $random_post_id,
+                $random_user_id,
+                $faker->text(),
+                $object,
+                $faker->randomNumber(3),
+            )
+        );
+        echo "Offer $object has been created \n";
+    } catch (\Throwable $th) {
+        echo "Offer has not been created due to an internal error\n";
     }
 }
