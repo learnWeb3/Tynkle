@@ -108,42 +108,34 @@ for ($count = 0; $count < 100; $count++) {
 }
 
 $skills = [
-    [
-        "Formattage/redémarrage",
-        "Installation Système exploitation",
-        "Changement de pièce",
-        "Installation logiciel",
-        "Installation périphérique",
-        "Assemblage ordinateur",
-        "Cours/Aide à l'utilisation"
-    ],
-    [
-        "Apple iOS",
-        "Android",
-        "Windows Phone"
-    ],
-    [
-        "Installation box",
-        "Configuration réseau"
-    ],
+    "Dépanner mon PC/ MAC" => ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+    "Installer un logiciel" => ["Installation Système exploitation", "Installation logiciel"],
+    "Faire évoluer mon matériel" => ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
+    "Aide à l'utilisation" => ["Cours/Aide à l'utilisation"],
 
-    [
-        "Console de jeux",
-        "Réparation",
-        "Changer le stockage"
-    ],
+    "Dépanner mon smartphone" => ["Apple iOS", "Android", "Windows Phone"],
+    "Depanner ma tablette" => ["Apple iOS", "Android", "Windows Phone"],
+    "Changer une pièce" => ["Apple iOS", "Android", "Windows Phone"],
+    "Aide à l'utilisation" => ["Apple iOS", "Android", "Windows Phone"],
 
-    [
-        "Installation audio/vidéo",
-        "Configuration audio/vidéo",
-        "Réparation",
-        "Cours/Aide à l'utilisation"
-    ],
-    [
-        "Installation (gros/petit)",
-        "Réparation/Entretien gros",
-        "Réparation/Entretien petit"
-    ]
+    "Installation box internet" => ["Installation box"],
+    "Connecter mes appareils" => ["Configuration réseau"],
+    "Dépanner ma connection internet" => ["Configuration réseau"],
+    "Aide à l'utilisation" => ["Cours/Aide à l'utilisation"],
+
+    "Réparer / configurer ma playstation" => ["Réparation", "Changer le stockage"],
+    "Réparer / configurer ma xBox" => ["Réparation", "Changer le stockage"],
+    "Réparer / configurer ma Nintendo Switch" => ["Réparation", "Changer le stockage"],
+    "Autres consoles" => ["Réparation", "Changer le stockage"],
+
+    "Depanner/installer ma TV" => ["Installation/Configuration TV", "Réparation TV"],
+    "Depanner/installer mon système audio" => ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+    "Depanner/installer mon lecteur vidéo" => ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+    "Aide à l'utilisation" => ["Cours/Aide à l'utilisation"],
+
+    "Installation gros/petit électroménager" => ["Installation (gros/petit)"],
+    "Réparation / entretien petit électroménager" => ["Réparation/Entretien petit"],
+    "Réparation / entretien gros électroménager" => ["Réparation/Entretien gros"]
 ];
 foreach ($skills as $index => $skill_batch) {
    foreach($skill_batch as $id_platform=>$skill)

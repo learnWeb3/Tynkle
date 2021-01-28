@@ -105,14 +105,18 @@ class PostsController extends ApplicationController
 
     public function index()
     {
-        $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
-        $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
-        $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-
         if (isset($_GET['ajax'])) {
+            if (isset($_GET['breakdown_categories'])) {
+                $posts = Post::findBy($this->connection, '/posts',  'id_breakdown_category', $_GET['breakdown_categories']);
+            } else {
+                $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+            }
             echo json_encode($posts);
             die();
         } else {
+            $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+            $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
             $this->render(
                 'index',
                 array(
@@ -141,7 +145,7 @@ class PostsController extends ApplicationController
                     'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                     'style_file_name' => 'offer',
                     'post' => $post_data,
-                    'similar_posts'=>$similar_posts['data']
+                    'similar_posts' => $similar_posts['data']
                 )
             );
         } else {

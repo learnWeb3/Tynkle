@@ -88,6 +88,6 @@ a:hover {
   transition: .1s ease-in-out;
 }
 
-.bg-brand-blue{
-  background-color: #4ABDED;
+.bg-computer{
+  background-color: rgb(74, 188, 237);
 }

@@ -123,7 +123,7 @@ class UsersController extends ApplicationController
                 $this->render('edit', array(
                     'title' => "Tynkle: Mon compte",
                     'description' => 'Tynkle: mon compte',
-                    'style_file_name' => 'edit',
+                    'style_file_name' => 'profile',
                     'user' => $this->current_user->getDetails($this->connection),
                     'platforms' => $this->current_user->getUserSkill($this->connection)
                 ));

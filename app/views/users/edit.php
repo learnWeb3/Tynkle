@@ -1,4 +1,4 @@
-<main class="d-flex bg-brand-blue" style='min-height:100vh;'>
+<main class="d-flex bg-computer" style='min-height:100vh;'>
 
     <?php require_once './app/views/users/_edit_nav_menu.php' ?>
 
@@ -132,5 +132,4 @@
             </form>
         </div>
     </div>
-
 </main>

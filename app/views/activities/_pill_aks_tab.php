@@ -1,14 +1,14 @@
 <div class="tab-pane fade show" id="pills-asks" role="tabpanel" aria-labelledby="pills-asks-tab">
-    <div class="d-flex w-100 align-self-start px-2 py-4">
-        <div class="form-check form-check-inline">
+    <div class="d-flex flex-wrap w-100 align-self-start px-2 py-4">
+        <div class="form-check form-check-inline m-2">
             <input data-filterType="asks" class="form-check-input" type="radio" name="asks_filter" id="asks_filter_all" value="all" checked>
             <label class="form-check-label" for="asks_filter_all">toutes</label>
         </div>
-        <div class="form-check form-check-inline">
+        <div class="form-check form-check-inline m-2">
             <input data-filterType="asks" class="form-check-input" type="radio" name="asks_filter" id="asks_filter_current" value="current">
             <label class="form-check-label" for="asks_filter_current">En cours</label>
         </div>
-        <div class="form-check form-check-inline">
+        <div class="form-check form-check-inline m-2">
             <input data-filterType="asks" class="form-check-input" type="radio" name="asks_filter" id="asks_filter_old" value="old">
             <label class="form-check-label" for="asks_filter_old">Archivées</label>
         </div>
