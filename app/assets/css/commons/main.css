@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
+* {
+    outline: 0;
+}
+
 h1, h2, h3, h4, h5 {
     font-family: 'Lato', sans-serif;
 }
@@ -49,12 +53,12 @@ a:hover {
     font-size: 1.5rem;
 }
 
-
-.btn-red-crayola{
+.btn-red-crayola {
     background-color: #FD0E35;
     color: #FFF;
 }
-.btn-outline-red-crayola{
+
+.btn-outline-red-crayola {
     border: 2px solid #FD0E35;
     color: #FD0E35;
 }
@@ -107,13 +111,19 @@ a:hover {
     background-color: rgba(255, 255, 255, 1);
 }
 
-.card-publication:hover {
+.card-publication:hover, .card:hover {
     transform: translateY(5px);
     transition: .1s ease-in-out;
 }
 
 .bg-brand-blue {
     background-color: #4ABDED;
+}
+
+.bg-computer{
+    background-image: url(https://images.pexels.com/photos/257923/pexels-photo-257923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 992px) {
@@ -142,22 +152,34 @@ a:hover {
     display: flex;
 }
 
-
 /* RATER JS */
 
-.rating *{
+.rating * {
     font-size: 2rem;
 }
 
-.rate-select-layer span{
+.rate-select-layer span {
     color: orange;
 }
 
-.rate-base-layer
-{
+.rate-base-layer {
     color: #aaa;
 }
-.rate-hover-layer
-{
+
+.rate-hover-layer {
     color: orange;
+}
+
+/* MODAL */
+
+.modal {
+    z-index: 1000000;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

@@ -1,13 +1,6 @@
-import { getFollowingPosts, getPlatforms, ROOT_PATH } from './API_CLIENT/index.js'
+import { getFollowingPosts, getPlatforms, getFilteredContent, ROOT_PATH } from './API_CLIENT/index.js'
+import { getPostTemplate, getBreakdownCategoriesCheckInputTemplate } from './templates.js';
 
-
-const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
-    return (`
-        <input class="form-check-input" type="checkbox" value="${id}" id="breakdown_category-${id}">
-        <label class="form-check-label" for="breakdown_category-${id}">
-            ${name}
-        </label>`).trim()
-}
 
 const handleChangeSelect = async () => {
     document.querySelector('#id_platform').addEventListener('change', async () => {
@@ -24,6 +17,7 @@ const handleChangeSelect = async () => {
                     div.classList.add('form-check');
                     div.innerHTML = getBreakdownCategoriesCheckInputTemplate(platform)
                     breakdown_categories.appendChild(div);
+                    handleChangeCheckbox();
                 })
             }
         } else {
@@ -35,6 +29,32 @@ const handleChangeSelect = async () => {
     });
 
 }
+
+
+const handleChangeCheckbox = () => {
+    const inputs = Array.from(document.querySelectorAll("#breakdown_categories input"));
+    inputs.map((input) => {
+        input.addEventListener('change', async function (el) {
+            const breakdown_ids = inputs.map((element) => {
+                if (element.checked) {
+                    return element.dataset.breakdownid;
+                }else{
+                    return null;
+                }
+            });
+            const breakdown_categories = breakdown_ids.filter((element)=>element !== null);
+            const query_parameters = breakdown_categories.length > 0 ? `breakdown_categories=${breakdown_categories.join(",")}` : ''
+            const endpoint = `/posts?${query_parameters}`;
+            const {data, status} = await getFilteredContent(endpoint);
+            const postsContainer = document.querySelector('#posts-container');
+            postsContainer.dataset.nextPage = data.next;
+            postsContainer.innerHTML = '';
+            data?.data?.map((postData)=>postsContainer.appendChild(getPostTemplate(postData)));
+        })
+    })
+}
+
+
 
 const initObserver = () => {
 
@@ -49,49 +69,8 @@ const initObserver = () => {
         nextPage
     }
 
-    const getTemplate = ({ cover_image, title, platform_name, breakdown_category_name, city, postal_code, user_id, username, created_at, id }) => {
-        const cardPublication = document.createElement('div');
-        const cls = ['card', 'card-publication', 'col-12', 'col-lg-6', 'shadow', 'p-4', 'my-4'];
-        cardPublication.classList.add(...cls);
-        cardPublication.innerHTML = (`
-            <img src="${cover_image}" height="450px" alt="" class="card-img-top">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 d-flex flex-column justify-content-start">
-                        <h5 class="font-weight-bold">${title}</h5>
-                        <p>${platform_name}-${breakdown_category_name}</p>
-                    </div>
-                    <div class="col-12 d-flex align-items-start">
-                        <div class="d-flex align-items-center w-100">
-                            <img src="./assets/partials/publication_card/img/pointer.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
-                            <p class="m-2">${city} ${postal_code}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-none d-lg-block">
-                    <div class="d-flex align-items-center w-100">
-                        <img src="./assets/partials/publication_card/img/avatar_placeholder.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
-                        <a class="font-italic m-2" href="/users/${user_id}">${username}</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                        <img src="./assets/partials/publication_card/img/clock.svg" height="16" width="16" alt="edit publication" class="img-fluid mr-2">
-                        <small class="m-2 mb-0">Posté le ${created_at}</small>
-                    </div>
-                    <div class="col-6 d-flex justify-content-end">
-                        <img src="./assets/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid">
-                        <img src="./assets/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid">
-                    </div>
-                </div>
-                <div class="row my-4">
-                    <a class="btn btn-lg btn-brand active" href="/posts/${id}">VOIR LES DETAILS</a>
-                </div>
-            </div>`).trim();
-        return cardPublication;
-    }
 
-    const appendFollowingPosts = (followingPosts) => followingPosts.data.map((followingPost) => document.querySelector('#posts-container').appendChild(getTemplate(followingPost)))
+    const appendFollowingPosts = (followingPosts) => followingPosts.data.map((followingPost) => document.querySelector('#posts-container').appendChild(getPostTemplate(followingPost)))
 
     function callback(entries) {
         entries.map(element => {

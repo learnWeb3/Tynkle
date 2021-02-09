@@ -1,4 +1,4 @@
-<div class="card card-publication col-12 col-lg-6 shadow p-4 my-4" id="post-<?php echo $post['id']  ?>">
+<div class="card card-publication col-12 col-lg-6 shadow p-4 my-4">
     <img src="<?php echo htmlspecialchars($post['cover_image']) ?>" height="450px" alt="" class="card-img-top">
     <div class="card-body">
         <div class="row">

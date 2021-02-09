@@ -78,10 +78,43 @@ class Chat extends Application
         users.id as user_id ,
         users.firstname as user_firstname,
         users.lastname as user_lastname,
+        users.username as user_username,
         users.email as user_email,
         users.avatar as user_avatar
         FROM users WHERE users.id IN ($prepared_query_parameters)";
         return Request::send($connection, $request_body, $subscriber_ids)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getSubscriberThirdParty(PDO $connection, string $subscriber_ids, int $current_user_id)
+    {
+        $subscriber_ids =  explode(',', $subscriber_ids);
+
+        $subscriber_ids = array_map(function ($subscriber_id) use ($current_user_id) {
+            if (intval($subscriber_id) !== intval($current_user_id)) {
+                return $subscriber_id;
+            }
+        }, $subscriber_ids);
+
+        $prepared_query_parameters = array_map(function ($subscriber_id) {
+            return '?';
+        }, $subscriber_ids);
+
+        $subscriber_ids = array_map(function ($subscriber_id) {
+            return intval($subscriber_id);
+        }, $subscriber_ids);
+
+        $prepared_query_parameters = implode(',', $prepared_query_parameters);
+
+        $request_body = "SELECT 
+        -- USERS
+        users.id as user_id ,
+        users.firstname as user_firstname,
+        users.lastname as user_lastname,
+        users.username as user_username,
+        users.email as user_email,
+        users.avatar as user_avatar
+        FROM users WHERE users.id IN ($prepared_query_parameters)";
+        return Request::send($connection, $request_body, $subscriber_ids)->fetchAll(PDO::FETCH_ASSOC)[0];
     }
 
     public static function getExistingChat(PDO $connection, array $subscribers)
@@ -144,7 +177,7 @@ class Chat extends Application
         JOIN users ON messages.id_user = users.id
         WHERE messages.created_at >= ? AND chats.id=? 
         OR messages.updated_at >= ? AND chats.id=?";
-        return Request::send($connection, $request_body, ["$timestamp",$this->id, "$timestamp", $this->id])->fetchAll(PDO::FETCH_ASSOC);
+        return Request::send($connection, $request_body, ["$timestamp", $this->id, "$timestamp", $this->id])->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function streamNewMessages(PDO $connection)
@@ -155,7 +188,7 @@ class Chat extends Application
         header('Connection: Keep-Alive');
         session_write_close();
         while (true) {
-    
+
             $json_data = json_encode($this->getNewMessages($connection, $timestamp));
             echo 'data: ' . $json_data;
             echo "\n\n";
@@ -168,5 +201,4 @@ class Chat extends Application
             sleep(1);
         }
     }
-
 }

@@ -1,4 +1,4 @@
-<main class="bg-brand-blue" style='min-height:100vh;padding-top:3rem'>
+<main class="bg-computer" style='min-height:100vh;padding-top:3rem'>
     <section id="map-container-header" class="container-xl w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
     </section>
     <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
@@ -22,10 +22,19 @@
                     </select>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="form-group my-2 col-12">
+                        <label for="adress">Entrer votre adresse :</label>
+                        <input type="text" class="form-control" name="adress" id="adress">
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="city">Ville :</label>
-                    <input type="text" class="form-control" name="city" id="city">
+                    <input type="text" class="form-control" name="city" id="locality">
                 </div>
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="postal_code">Code postal :</label>
@@ -64,3 +73,4 @@
 </main>
 
 <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_post.js' ?>"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_JS_MAPS_API_KEY ?>&libraries=places">

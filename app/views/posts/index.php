@@ -1,5 +1,5 @@
 <main class="d-flex bg-map" style='min-height:100vh;margin-top:3rem;'>
-    <div class='bg-brand-blue d-flex' style="min-height: 100vh;width:100vw">
+    <div class='bg-computer d-flex' style="min-height: 100vh;width:100vw">
         <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
 
             <div class="container bg-white w-100 shadow p-4" style="margin-top: 15%;">
@@ -31,7 +31,7 @@
                 <hr>
                 <form action="" method="POST" class="col-12 bg-light">
                     <div class="d-flex w-100 align-items-center">
-                        <img src="./assets/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
+                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
                     </div>
 

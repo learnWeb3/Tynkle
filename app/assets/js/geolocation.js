@@ -1,16 +1,18 @@
 const getLocation = async () => {
-    const position = await new Promise((resolve, reject)=>navigator.geolocation.getCurrentPosition(function(position){resolve(position)}))
+    const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(function (position) { resolve(position) }))
     return ({
-        lat:position.coords.latitude,
-        lon:position.coords.longitude
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
     })
 }
 
-const initMap = () =>{
+const initMap = () => {
     map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat, lng},
-      zoom: 8,
+        center: { lat, lng },
+        zoom: 8,
     });
 }
 
-export {getLocation, initMap}
+
+
+export { getLocation, initMap}
