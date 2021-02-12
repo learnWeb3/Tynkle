@@ -13,9 +13,9 @@
                         <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une plateforme : </label>
                             <select name="id_platform" id="id_platform" class="form-control">
                                 <option value="0">Veuillez choisir une plateforme :</option>
-                                <?php foreach ($platforms as $platform) : ?>
+                                <?php foreach ($platforms as $platform): ?>
                                     <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </select>
                        </div>
                     </div>
@@ -37,11 +37,14 @@
 
                     <div class="form-group my-2">
                         <select name="search_radius" id="search_radius" class="col-12">
+                        <option value="10">10 km</option>
+                        <option value="25">25 km</option>
                             <option value="50">50 km</option>
                             <option value="100">100 km</option>
+                            <option value="150">150 km</option>
+                            <option value="200">200 km</option>
                             <option value="250">250 km</option>
                             <option value="500">500 km</option>
-                            <option value="ALL" selected>Tous</option>
                         </select>
                     </div>
                     <button class="btn btn-brand active" id="geosearch">FILTRER MA RECHERCHE</button>
@@ -51,9 +54,9 @@
         </section>
 
         <section class="col-12 col-xl-8 offset-xl-3 bg-white d-flex flex-wrap" id="posts-container" data-nextpage="<?php echo $next_page ?>">
-            <?php foreach ($posts as $post) : ?>
-                <?php include '_publication_card.php' ?>
-            <?php endforeach; ?>
+            <?php foreach ($posts as $post): ?>
+                <?php include '_publication_card.php'?>
+            <?php endforeach;?>
         </section>
 
     </div>

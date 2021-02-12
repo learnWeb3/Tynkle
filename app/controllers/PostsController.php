@@ -144,7 +144,7 @@ class PostsController extends ApplicationController
                 } else {
                     die(http_response_code(422));
                 }
-            } else if ($this->route_name === 'index_post') {
+            } else  {
                 if (isset($_GET['breakdown_categories'])) {
                     $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
                 } else {

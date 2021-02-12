@@ -97,9 +97,18 @@ const geoSearch = () => {
       const postsContainer = document.querySelector("#posts-container");
       postsContainer.dataset.nextPage = data.next;
       postsContainer.innerHTML = "";
-      data?.map((postData) =>
-        postsContainer.appendChild(getPostTemplate(postData))
-      );
+      if (data.length > 0)
+      {
+        data.map((postData) =>
+        postsContainer.appendChild(getPostTemplate(postData)));
+      }else{
+        postsContainer.innerHTML = `
+        <div class='h-100 w-100 d-flex flex-column align-items-center justify-content-center'>
+          <h2>Pas de post pour le moment ...</h2>
+          <a class="my-4 btn btn-brand btn-lg active" href="${ROOT_PATH}/posts">NOUVELLE RECHERCHE</a>
+        </div>
+        `.trim()
+      }
     });
 };
 
