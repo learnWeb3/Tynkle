@@ -31,7 +31,7 @@ class PostsController extends ApplicationController
                             $_POST['city'],
                             $_POST['postal_code'],
                             $_POST['lat'],
-                            $_POST['lng']
+                            $_POST['lng'],
                         ),
                         $_POST,
                         [
@@ -42,7 +42,7 @@ class PostsController extends ApplicationController
                             "city" => 'required',
                             "postal_code" => 'required',
                             "lat" => 'required',
-                            "lng" => 'required'
+                            "lng" => 'required',
                         ]
                     )[0];
                 } catch (ModelException $e) {
@@ -132,13 +132,27 @@ class PostsController extends ApplicationController
     public function index()
     {
         if (isset($_GET['ajax'])) {
-            if (isset($_GET['breakdown_categories'])) {
-                $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
-            } else {
-                $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+            if ($this->route_name === 'index_post_geosearch') {
+                if (isset($_GET['lat'], $_GET['lng'], $_GET['distance'])) {
+                    if (isset($_GET['breakdown_categories'])) {
+                        $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
+                    } else {
+                        $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance']);
+                    }
+                    echo json_encode($posts);
+                    die();
+                } else {
+                    die(http_response_code(422));
+                }
+            } else if ($this->route_name === 'index_post') {
+                if (isset($_GET['breakdown_categories'])) {
+                    $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
+                } else {
+                    $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+                }
+                echo json_encode($posts);
+                die();
             }
-            echo json_encode($posts);
-            die();
         } else {
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];

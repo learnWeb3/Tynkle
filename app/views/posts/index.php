@@ -29,7 +29,7 @@
                     </div>
                 </form>
                 <hr>
-                <form action="" method="POST" class="col-12 bg-light">
+                <form action="" method="GET" class="col-12 bg-light">
                     <div class="d-flex w-100 align-items-center">
                         <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
@@ -41,8 +41,10 @@
                             <option value="100">100 km</option>
                             <option value="250">250 km</option>
                             <option value="500">500 km</option>
+                            <option value="ALL" selected>Tous</option>
                         </select>
                     </div>
+                    <button class="btn btn-brand active" id="geosearch">FILTRER MA RECHERCHE</button>
                 </form>
             </div>
 

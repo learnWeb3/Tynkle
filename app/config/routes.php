@@ -15,6 +15,7 @@ $routes = array(
     array('DELETE', ROOT_PATH . '/users/[:username]', 'users#destroy', 'destroy_user'),
     // '/posts'
     array('GET', ROOT_PATH . '/posts', 'posts#index', 'index_post'),
+    array('GET', ROOT_PATH . '/posts/geosearch', 'posts#index', 'index_post_geosearch'),
     array('GET', ROOT_PATH . '/posts/[i:id]', 'posts#show', 'show_post'),
     array('GET', ROOT_PATH . '/posts/[i:id]/edit', 'posts#edit', 'edit_post'),
     array('GET', ROOT_PATH . '/posts/new', 'posts#new', 'new_post'),

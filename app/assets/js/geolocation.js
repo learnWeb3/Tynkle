@@ -6,7 +6,7 @@ const getLocation = async () => {
   );
   return {
     lat: position.coords.latitude,
-    lon: position.coords.longitude,
+    lng: position.coords.longitude,
   };
 };
 

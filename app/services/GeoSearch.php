@@ -19,7 +19,7 @@ class GeoSearch
                                 *
                                 cos(( $table.lat * pi() / 180)) 
                                 * 
-                                cos((( $longitude - $table.lon) * pi()/180)))
+                                cos((( $longitude - $table.lng) * pi()/180)))
                         ) * 180/pi()
                     ) * 60 * 1.1515 * 1.609344
                 )
@@ -46,7 +46,7 @@ class GeoSearch
                                 *
                                 cos(( $table.lat * pi() / 180)) 
                                 * 
-                                cos((( $longitude - $table.lon) * pi()/180)))
+                                cos((( $longitude - $table.lng) * pi()/180)))
                         ) * 180/pi()
                     ) / 360 * 2 * pi() * $earth_radius
                 )
