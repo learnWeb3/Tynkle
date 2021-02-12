@@ -1,6 +1,5 @@
 <?php
 
-
 class ApplicationController
 {
     protected $connection;

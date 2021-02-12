@@ -3,32 +3,52 @@
 class PostsController extends ApplicationController
 {
 
-    public function __construct(array $params, string $asked_method)
+    public function __construct(array $params, string $route_name, string $asked_method)
     {
-        parent::__construct($params, $asked_method);
+        parent::__construct($params, $route_name, $asked_method);
         $this->beforeAction(['destroy', 'update', 'show', 'edit']);
     }
+
     public function create()
     {
         if (isset($this->current_user)) {
             $uploaded_file_paths = Uploader::uploadFileBatch(array_keys($_FILES));
             $cover_image = isset($uploaded_file_paths[0]) ? $uploaded_file_paths[0] : null;
             try {
-                $post = Post::create(
-                    $this->connection,
-                    ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
-                    array(
-                        $this->current_user->id,
-                        $_POST['id_breakdown_category'],
-                        json_encode($uploaded_file_paths),
-                        $cover_image,
-                        $_POST['title'],
-                        $_POST['content'],
-                        $_POST['budget'],
-                        $_POST['city'],
-                        $_POST['postal_code'],
-                    )
-                )[0];
+
+                try {
+                    $post = Post::create(
+                        $this->connection,
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+                        array(
+                            $this->current_user->id,
+                            $_POST['id_breakdown_category'],
+                            json_encode($uploaded_file_paths),
+                            $cover_image,
+                            $_POST['title'],
+                            $_POST['content'],
+                            $_POST['budget'],
+                            $_POST['city'],
+                            $_POST['postal_code'],
+                        ),
+                        $_POST,
+                        [
+                            'id_breakdown_category' => 'required',
+                            "title" => 'required',
+                            "content" => 'required',
+                            "budget" => 'required',
+                            "city" => 'required',
+                            "postal_code" => 'required',
+                        ]
+                    )[0];
+                } catch (ModelException $e) {
+                    $flash = new Flash(
+                        $e->getMessages(),
+                        'danger'
+                    );
+                    $flash->storeInSession();
+                    die(header('location:' . ROOT_PATH . '/posts/new'));
+                }
                 $flash = new Flash(
                     array("Annonce crée avec succès"),
                     'success'

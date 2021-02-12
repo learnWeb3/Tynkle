@@ -6,6 +6,7 @@ class SkillsController extends ApplicationController
     public function __construct(array $params,string $route_name, string $asked_method)
     {
         parent::__construct($params,$route_name, $asked_method);
+        $this->beforeAction(['update']);
     }
     
     public function create()
@@ -13,9 +14,19 @@ class SkillsController extends ApplicationController
         if (isset($this->current_user, $this->params['user_id'])) {
             try {
                 $this->current_user->updateSkills($this->connection, $_POST);
-                die(header('Location:' . ROOT_PATH . '/profile'));
+                $flash = new Flash(
+                    ['compétences mises à jour avec succès'],
+                    'success'
+                );
+                $flash->storeInSession();
+                die(header('Location:' . ROOT_PATH . '/profile#skills'));
             } catch (\Throwable $th) {
-                var_dump($th);
+                $flash = new Flash(
+                    ['Une erreure est survenue'],
+                    'danger'
+                );
+                $flash->storeInSession();
+                die(header('Location:' . ROOT_PATH . '/profile'));
             }
         } else if (isset($this->current_user, $_POST['name'])) {
             Skill::create(
@@ -40,9 +51,6 @@ class SkillsController extends ApplicationController
         }
     }
 
-    public function index()
-    {
-    }
 
     public function destroy()
     {

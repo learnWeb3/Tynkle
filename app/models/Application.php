@@ -1,18 +1,20 @@
 <?php
 
+use Rakit\Validation\Validator;
+
 class Application
 {
     // converting ModelName to table_names
     public static function getTableName($model_name)
     {
         preg_match_all("/[A-Z][a-z]+/", $model_name, $results);
-        $model_name =  isset($results[0]) ? implode("_", $results[0]) : $model_name;
+        $model_name = isset($results[0]) ? implode("_", $results[0]) : $model_name;
         $table_name = strtolower($model_name);
         $replace_y = str_replace("y", "ies", $table_name);
         return $replace_y === $table_name ? $table_name . "s" : $replace_y;
     }
 
-    // fetching last created row 
+    // fetching last created row
     public static function lastCreatedRow(\PDO $connection)
     {
         $table_name = self::getTableName(get_called_class());
@@ -21,29 +23,41 @@ class Application
     }
 
     // creating a record in database
-    public static function create(\PDO $connection, array $column_names, array $request_parameters)
+    public static function create(\PDO $connection, array $column_names, array $request_parameters, array $validated_fields = [], array $validation_rules = [])
     {
-        $table_name = self::getTableName(get_called_class());
-        $prepared_query_parameters = implode(",", array_map(function ($el) {
-            return "?";
-        }, $column_names));
-        $request_body = "INSERT INTO $table_name (" . implode(",", $column_names) . ") VALUES (" . $prepared_query_parameters . ")";
-        Request::send($connection, $request_body, $request_parameters);
-        return self::lastCreatedRow($connection)->fetchAll(\PDO::FETCH_ASSOC);
+        $validator = new Validator;
+        $validation = $validator->validate($validated_fields, $validation_rules);
+        if ($validation->fails()) {
+            $errors = $validation->errors();
+            throw new ModelException($errors->all());
+        } else {
+            $table_name = self::getTableName(get_called_class());
+            $prepared_query_parameters = implode(",", array_map(function ($el) {
+                return "?";
+            }, $column_names));
+            $request_body = "INSERT INTO $table_name (" . implode(",", $column_names) . ") VALUES (" . $prepared_query_parameters . ")";
+            Request::send($connection, $request_body, $request_parameters);
+            return self::lastCreatedRow($connection)->fetchAll(\PDO::FETCH_ASSOC);
+        }
     }
 
     // Updating a record in database
-    public static function update(\PDO $connection, array $column_names, array $request_parameters, string $target_column, $target_value)
+    public static function update(\PDO $connection, array $column_names, array $request_parameters, string $target_column, $target_value, array $validated_fields = [], array $validation_rules = [])
     {
-        $table_name = self::getTableName(get_called_class());
-        $prepared_query_parameters = implode(",", array_map(function ($el) {
-            return "$el=?";
-        }, $column_names));
-        $request_body = "UPDATE $table_name SET $prepared_query_parameters WHERE $target_column=$target_value";
-        $request = Request::send($connection, $request_body, $request_parameters);
-        return self::where($connection, $target_column, $target_value)->fetchAll(\PDO::FETCH_ASSOC)[0];
+        $validator = new Validator;
+        $validation = $validator->validate($validated_fields, $validation_rules);
+        if ($validation->fails()) {
+            $errors = $validation->errors();
+            throw new ModelException($errors->all());
+        } else {
+            $table_name = self::getTableName(get_called_class());
+            $prepared_query_parameters = implode(",", array_map(function ($el) {
+                return "$el=?";
+            }, $column_names));
+            $request_body = "UPDATE $table_name SET $prepared_query_parameters WHERE $target_column=$target_value";
+            $request = Request::send($connection, $request_body, $request_parameters);
+            return self::where($connection, $target_column, $target_value)->fetchAll(\PDO::FETCH_ASSOC)[0];}
     }
-
 
     // deleting a record in database
     public static function delete(\PDO $connection, array $request_parameters, string $target_column, $target_value)
@@ -55,8 +69,7 @@ class Application
         return "Entry of type $model with $target_column=$target_value has been deleted successfully";
     }
 
-
-    // fetching database datas by id 
+    // fetching database datas by id
     public static function find(\PDO $connection, int $id)
     {
         $table_name = self::getTableName(get_called_class());
@@ -64,7 +77,6 @@ class Application
         $request_parameters = [$id];
         return Request::send($connection, $request_body, $request_parameters);
     }
-
 
     // fetching databse datas by column name
     public static function where(\PDO $connection, string $column_name, $value)
@@ -90,13 +102,13 @@ class Application
         $table_name = self::getTableName(get_called_class());
         $request_body = "SELECT * FROM $table_name ORDER BY $table_name.created_at LIMIT $limit OFFSET $start";
         $request_parameters = [];
-        $results  = Request::send($connection, $request_body, $request_parameters)->fetchAll(\PDO::FETCH_ASSOC);
+        $results = Request::send($connection, $request_body, $request_parameters)->fetchAll(\PDO::FETCH_ASSOC);
         $next_start = $start += 10;
         $previous_start = $start - 10 >= 0 ? $start - 10 : 0;
         return array(
             "data" => $results,
             "next" => $path . "?start=$next_start&limit=$limit",
-            "previous" => $path . "?start=$previous_start&limit=$limit"
+            "previous" => $path . "?start=$previous_start&limit=$limit",
         );
     }
 
@@ -114,7 +126,7 @@ class Application
         return array(
             "data" => $results,
             "next" => $path . "?start=$next_start&limit=$limit",
-            "previous" => $path . "?start=$previous_start&limit=$limit"
+            "previous" => $path . "?start=$previous_start&limit=$limit",
         );
     }
 
