@@ -23,10 +23,12 @@
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row" id="maps" data-apiKey="<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>">
                 <div class="form-group my-2 col-12">
                         <label for="adress">Entrer votre adresse :</label>
                         <input type="text" class="form-control" name="adress" id="adress" required>
+                        <input type="hidden"  name="lat" id="lat">
+                        <input type="hidden"  name="lng" id="lng">
                     </div>
                 </div>
             </div>
@@ -73,4 +75,4 @@
 </main>
 
 <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_post.js' ?>"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_JS_MAPS_API_KEY ?>&libraries=places">
+<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY']; ?>&libraries=places">

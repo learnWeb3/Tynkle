@@ -1,4 +1,5 @@
 import { getPlatforms } from './API_CLIENT/index.js';
+import { geocode } from './geolocation.js';
 
 const handleClickDropzone = () => {
     Array.from(document.querySelectorAll('.dropzone-layer'))
@@ -61,7 +62,7 @@ function initAutocomplete(){
     autocomplete.addListener("place_changed", fillInAddress);
 }
 
-function fillInAddress(){
+async function fillInAddress(){
     const place = autocomplete.getPlace();
     for (const component in componentForm) {
         document.getElementById(component).value = "";
@@ -74,7 +75,16 @@ function fillInAddress(){
             document.getElementById(addressType).value = val;
         }
     }
+    const postal_code = document.querySelector('#postal_code').value
+    const locality = document.querySelector("#locality").value
+    const {lat, lng} = await geocode(locality, postal_code, API_KEY);
+    if (lat && lng)
+    {
+        document.querySelector("#lat").value = lat
+        document.querySelector("#lng").value = lng
+    }
 }
+const API_KEY = document.querySelector('#maps').dataset.apikey
 initAutocomplete();
 handleChangeSelect()
 handleClickDropzone();

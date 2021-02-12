@@ -3,7 +3,8 @@
         "altorouter/altorouter": "1.1.0",
         "fzaninotto/faker": "^1.9",
         "google/auth": "^1.14",
-        "rakit/validation": "^1.4"
+        "rakit/validation": "^1.4",
+        "vlucas/phpdotenv": "^5.3"
     },
     "autoload": {
         "classmap": ["./app/models/", "./app/controllers/", "./app/services/", "./app/helpers/"]

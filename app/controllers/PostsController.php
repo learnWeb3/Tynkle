@@ -19,7 +19,7 @@ class PostsController extends ApplicationController
                 try {
                     $post = Post::create(
                         $this->connection,
-                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
                         array(
                             $this->current_user->id,
                             $_POST['id_breakdown_category'],
@@ -30,6 +30,8 @@ class PostsController extends ApplicationController
                             $_POST['budget'],
                             $_POST['city'],
                             $_POST['postal_code'],
+                            $_POST['lat'],
+                            $_POST['lng']
                         ),
                         $_POST,
                         [
@@ -39,6 +41,8 @@ class PostsController extends ApplicationController
                             "budget" => 'required',
                             "city" => 'required',
                             "postal_code" => 'required',
+                            "lat" => 'required',
+                            "lng" => 'required'
                         ]
                     )[0];
                 } catch (ModelException $e) {
