@@ -1,13 +1,13 @@
 import { sendmessage, ROOT_PATH, deletemessage } from "./API_CLIENT/index.js";
 
-const handleSubmit = (form, input, chat_id, subscribers) => form.addEventListener('submit', async function (event) {
+const handleSubmit = (form, input, subscribers) => form.addEventListener('submit', async function (event) {
     event.preventDefault();
     const content = input.value;
     const data = {
         content,
         subscribers
     };
-    const response = await sendmessage(data, chat_id);
+    const response = await sendmessage(data);
 })
 
 
@@ -89,7 +89,7 @@ window.addEventListener('DOMContentLoaded', async function (event) {
     const subscribers = input.dataset.subscibersids.split(',');
     const current_user = input.dataset.current;
     const form = document.querySelector('#new_message');
-    await handleSubmit(form, input, chat_id, subscribers);
+    await handleSubmit(form, input, subscribers);
     deleteMessage('.delete-message')
     streamMessages(chat_id, current_chat_container, messages_container, current_user);
 });

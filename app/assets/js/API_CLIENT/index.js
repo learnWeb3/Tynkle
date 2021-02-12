@@ -94,8 +94,8 @@ const updateOffer = async (data, offer_id) =>
         .catch((error) => ({ data: null, status: 500 }))
 
 
-const sendmessage = async (data, chat_id) =>
-    fetch(ROOT_PATH + '/chats' + '/' + chat_id, {
+const sendmessage = async (data) =>
+    fetch(ROOT_PATH + '/chats', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
