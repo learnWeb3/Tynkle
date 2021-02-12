@@ -7,11 +7,11 @@
             <h5 class="my-4">Informations obligatoires *</h5>
             <div class="form-group my-2">
                 <label for='login'>Adresse email ou Identifiant *</label>
-                <input type='text' name='login' id='login' class="form-control" placeholder="prenom-nom@email.com">
+                <input type='text' name='login' id='login' class="form-control" placeholder="prenom-nom@email.com" required>
             </div>
             <div class="form-group my-2">
                 <label for="password">Mot de passe *</label>
-                <input type="password" id="password" name="password" class="form-control">
+                <input type="password" id="password" name="password" class="form-control" required>
             </div>
             <button type="submit" class='btn btn-lg btn-primary col-12 my-4'>CONNEXION</button>
             <p class="font-weight-bold text-center">ou</p>

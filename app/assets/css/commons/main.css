@@ -189,3 +189,11 @@ background-position: center;
 .anchor{
     padding-top: 5rem;
 }
+
+.error-message{
+    color: #FD0E35;
+}
+
+input.error{
+    border : 1px solid #FD0E35;
+}
