@@ -88,12 +88,12 @@
             </form>
         </section>
 
-        <div id="skills" class="w-100 d-flex align-items-center" style="min-height:95vh">
+        <div id="skills" class="w-100 d-flex align-items-center anchor" style="min-height:95vh">
             <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>" class="w-100 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Compétences</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <?php foreach ($platforms as $i => $platform) : ?>
-                    <h4 class="font-weight-bold" id="platform-<?php echo $platform['id'] ?>"><?php echo $platform['name'] ?></h4>
+                    <h4 class="font-weight-bold anchor" id="platform-<?php echo $platform['id'] ?>"><?php echo $platform['name'] ?></h4>
                     <?php foreach ($platform['breakdown_categories'] as $index => $breakdown_category_skill) : ?>
                         <h5><?php echo $breakdown_category_skill['name'] ?></h5>
                         <div class="row">

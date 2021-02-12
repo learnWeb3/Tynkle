@@ -6,6 +6,7 @@ class ChatsController extends ApplicationController
  public function __construct(array $params,string $route_name, string $asked_method)
     {
         parent::__construct($params,$route_name, $asked_method);
+        $this->beforeAction(["show", "update", "stream"]);
     }
 
     public function index()
@@ -123,9 +124,9 @@ class ChatsController extends ApplicationController
         }
     }
 
-    public function beforeAction()
+    public function beforeAction(array $targeted_method_names)
     {
-        if (in_array($this->asked_method, ["show", "update", "stream"])) {
+        if (in_array($this->asked_method, $targeted_method_names)) {
             $chat = Chat::find($this->connection, $this->params['chat_id'])->fetchAll(PDO::FETCH_ASSOC);
             if (empty($chat)) {
                 die(http_response_code(404));

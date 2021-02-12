@@ -6,6 +6,7 @@ class User extends Application
     {
         $this->id = $id;
     }
+
     public static function signIn(PDO $connection, string $login, string $password): void
     {
         $request_body = 'SELECT * FROM users WHERE email=? OR username=?';

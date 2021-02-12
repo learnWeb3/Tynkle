@@ -5,6 +5,7 @@ class OffersController extends ApplicationController
     public function __construct(array $params, string $route_name, string $asked_method)
     {
         parent::__construct($params, $route_name, $asked_method);
+        $this->beforeAction(['update']);
     }
 
     public function index()
@@ -40,12 +41,20 @@ class OffersController extends ApplicationController
                         Offer::create(
                             $this->connection,
                             ['content', 'object', 'amount', 'id_post', 'id_user'],
-                            [$this->json_params['content'], $this->json_params['object'], $this->json_params['amount'], $this->json_params['id_post'], $this->current_user->id]
+                            [$this->json_params['content'], $this->json_params['object'], $this->json_params['amount'], $this->json_params['id_post'], $this->current_user->id],
+                            $this->json_params,
+                            [
+                                'content'=>'required',
+                                'object'=>'required',
+                                'amount'=>'required',
+                                'id_post'=>'required'
+                            ]
                         )[0];
                         $message_content = "<a href='" . ROOT_PATH . "/activities" . "'>Vous avez reçu une nouvelle offre pour la consulter veuillez cliquer ici.</a>";
                         Chat::sendMessage($this->connection, $message_content, [$this->current_user->id, $post['id_user']], $this->current_user->id);
                         echo json_encode($new_offer);
                     } catch (Throwable $th) {
+                        $th->getMessage();
                         die(http_response_code(500));
                     }
                 } else {
@@ -59,9 +68,9 @@ class OffersController extends ApplicationController
         }
     }
 
-    public function beforeAction()
+    public function beforeAction(array $targeted_method_names)
     {
-        if (in_array($this->asked_method, ['update'])) {
+        if (in_array($this->asked_method, $targeted_method_names)) {
             if (isset($this->current_user, $this->params['id'])) {
                 $offer = Offer::find($this->connection, $this->params['id'])->fetchAll(PDO::FETCH_ASSOC);
                 if (empty($offer)) {
