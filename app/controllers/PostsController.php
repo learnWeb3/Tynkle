@@ -26,7 +26,7 @@ class PostsController extends ApplicationController
                         $_POST['content'],
                         $_POST['budget'],
                         $_POST['city'],
-                        $_POST['postal_code']
+                        $_POST['postal_code'],
                     )
                 )[0];
                 $flash = new Flash(
@@ -63,7 +63,7 @@ class PostsController extends ApplicationController
                             $_POST['content'],
                             $_POST['budget'],
                             $_POST['city'],
-                            $_POST['postal_code']
+                            $_POST['postal_code'],
                         ),
                         'id',
                         $this->params['id']
@@ -85,29 +85,31 @@ class PostsController extends ApplicationController
         }
     }
 
+    function new () {
 
-    public function new()
-    {
-
-        $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
-        $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-        $this->render(
-            'new',
-            array(
-                'title' => 'Tynkle: les annonces',
-                'description' => 'Tynkle: Retrouvez les demandes de dépannage',
-                'style_file_name' => 'new_post',
-                'breakdown_categories' => $breakdown_categories,
-                'platforms' => $platforms
-            ),
-        );
+        if (isset($this->current_user)) {
+            $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+            $this->render(
+                'new',
+                array(
+                    'title' => 'Tynkle: les annonces',
+                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'style_file_name' => 'new_post',
+                    'breakdown_categories' => $breakdown_categories,
+                    'platforms' => $platforms,
+                ),
+            );
+        } else {
+            $this->handleError(403);
+        }
     }
 
     public function index()
     {
         if (isset($_GET['ajax'])) {
             if (isset($_GET['breakdown_categories'])) {
-                $posts = Post::findBy($this->connection, '/posts',  'id_breakdown_category', $_GET['breakdown_categories']);
+                $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
             } else {
                 $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
             }
@@ -126,7 +128,7 @@ class PostsController extends ApplicationController
                     'posts' => $posts['data'],
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,
-                    'next_page' => $posts['next']
+                    'next_page' => $posts['next'],
                 ),
 
             );
@@ -137,7 +139,7 @@ class PostsController extends ApplicationController
     {
         if (isset($this->post)) {
             $post_data = $this->post->getDetails($this->connection);
-            $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);;
+            $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);
             $this->render(
                 'show',
                 array(
@@ -145,7 +147,7 @@ class PostsController extends ApplicationController
                     'description' => 'Tynkle: Retrouvez les demandes de dépannage',
                     'style_file_name' => 'offer',
                     'post' => $post_data,
-                    'similar_posts' => $similar_posts['data']
+                    'similar_posts' => $similar_posts['data'],
                 )
             );
         } else {
@@ -167,7 +169,7 @@ class PostsController extends ApplicationController
                     'style_file_name' => 'new_post',
                     'post' => $post_data,
                     'breakdown_categories' => $breakdown_categories,
-                    'platforms' => $platforms
+                    'platforms' => $platforms,
                 )
             );
         } else {
@@ -192,9 +194,21 @@ class PostsController extends ApplicationController
         if (in_array($this->asked_method, $targeted_method_names)) {
             $post = Post::find($this->connection, $this->params['id'])->fetchAll(PDO::FETCH_ASSOC);
             if (!empty($post)) {
-                $this->post = new Post($post[0]['id']);
+                if (in_array($this->asked_method, ['edit', 'update', 'destroy'])) {
+                    if (isset($this->current_user)) {
+                        if ($this->current_user->id === $post[0]['id']) {
+                            $this->post = new Post($post[0]['id']);
+                        } else {
+                            $this->handleError(403);
+                        }
+                    } else {
+                        $this->handleError(403);
+                    }
+                } else {
+                    $this->post = new Post($post[0]['id']);
+                }
             } else {
-                die($this->handleError(404));
+                $this->handleError(404);
             }
         }
     }

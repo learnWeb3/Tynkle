@@ -3,23 +3,21 @@
 class SkillsController extends ApplicationController
 {
 
-    public function __construct(array $params, string $asked_method)
+    public function __construct(array $params,string $route_name, string $asked_method)
     {
-        parent::__construct($params, $asked_method);
-        $this->beforeAction(['destroy', 'update']);
+        parent::__construct($params,$route_name, $asked_method);
     }
+    
     public function create()
     {
-        if (isset($this->current_user, $this->params['user_id']))
-        {
-          try {
-            $this->current_user->updateSkills($this->connection, $_POST);
-            die(header('Location:'.ROOT_PATH.'/profile'));
-          } catch (\Throwable $th) {
-              var_dump($th);
-          }
-        }
-        else if (isset($this->current_user, $_POST['name'])) {
+        if (isset($this->current_user, $this->params['user_id'])) {
+            try {
+                $this->current_user->updateSkills($this->connection, $_POST);
+                die(header('Location:' . ROOT_PATH . '/profile'));
+            } catch (\Throwable $th) {
+                var_dump($th);
+            }
+        } else if (isset($this->current_user, $_POST['name'])) {
             Skill::create(
                 $this->connection,
                 ['name'],

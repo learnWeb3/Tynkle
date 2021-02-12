@@ -1,21 +1,31 @@
 import { ROOT_PATH } from "./API_CLIENT/index.js";
 
-
 const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
-    return (`
+  return `
         <input class="form-check-input" type="checkbox" id="breakdown_category-${id}" data-breakdownId="${id}">
         <label class="form-check-label" for="breakdown_category-${id}">
             ${name}
-        </label>`).trim()
-}
+        </label>`.trim();
+};
 
-const getPostTemplate = ({id, platform_name, breakdown_category_name, postal_code, city, user_name, user_id, created_at, cover_image }) => {
-    const innerHTML = (`
+const getPostTemplate = ({
+  id,
+  title,
+  platform_name,
+  breakdown_category_name,
+  postal_code,
+  city,
+  user_name,
+  user_id,
+  created_at,
+  cover_image,
+}) => {
+  const innerHTML = `
     <img src="${cover_image}" height="450px" alt="" class="card-img-top">
     <div class="card-body">
         <div class="row">
             <div class="col-12 d-flex flex-column justify-content-start">
-                <h5 class="font-weight-bold"><?php echo htmlspecialchars($post['title']) ?></h5>
+                <h5 class="font-weight-bold">${title}</h5>
                 <p>${platform_name}-${breakdown_category_name}</p>
             </div>
             <div class="col-12 d-flex align-items-start">
@@ -43,43 +53,61 @@ const getPostTemplate = ({id, platform_name, breakdown_category_name, postal_cod
         </div>
 
         <div class="row my-4">
-            <a class="btn btn-lg btn-brand active" href="${ROOT_PATH+'/posts/'+id}">VOIR LES DETAILS</a>
+            <a class="btn btn-lg btn-brand active" href="${
+              ROOT_PATH + "/posts/" + id
+            }">VOIR LES DETAILS</a>
         </div>
     </div>
-    `).trim();
-    const card = document.createElement('div');
-    card.setAttribute('id', `post-${id}`)
-    card.classList.add('card', 'card-publication', 'col-12', 'col-xl-6', 'shadow', 'p-4', 'my-4')
-    card.innerHTML = innerHTML;
-    return card;
+    `.trim();
+  const card = document.createElement("div");
+  card.setAttribute("id", `post-${id}`);
+  card.classList.add(
+    "card",
+    "card-publication",
+    "col-12",
+    "col-xl-6",
+    "shadow",
+    "p-4",
+    "my-4"
+  );
+  card.innerHTML = innerHTML;
+  return card;
+};
 
-}
+const getAsktemplate = ({}) => {};
 
-const getAsktemplate = ({ }) => {
-
-}
-
-const getOfferTemplate = ({ id, object, content, amount, id_post, username, user_id, is_accepted, is_declined }) => {
-
-    const getButtons = (is_accepted, is_declined, id) => {
-        if (is_accepted === '0' && is_declined === '0') {
-            return `<button class="btn btn-md btn-success offer-action" data-action="1" data-offerId="${id}">ACCEPTER</button>
-            <button class="btn btn-md btn-red-crayola offer-action" data-action="0" data-offerId="${id}">DECLINER</button>`
-        } else if (is_accepted  === '1' && is_declined === '0') {
-            return `<p class='w-100 text-xl-end font-weight-bold text-success'>ANNONCE ACCEPTEE</p>`
-        } else if (is_accepted === '0' && is_declined === '1') {
-            return `<p class='w-100 text-xl-end font-weight-bold text-danger'>ANNONCE DECLINEE</p>`
-        }
+const getOfferTemplate = ({
+  id,
+  object,
+  content,
+  amount,
+  id_post,
+  username,
+  user_id,
+  is_accepted,
+  is_declined,
+}) => {
+  const getButtons = (is_accepted, is_declined, id) => {
+    if (is_accepted === "0" && is_declined === "0") {
+      return `<button class="btn btn-md btn-success offer-action" data-action="1" data-offerId="${id}">ACCEPTER</button>
+            <button class="btn btn-md btn-red-crayola offer-action" data-action="0" data-offerId="${id}">DECLINER</button>`;
+    } else if (is_accepted === "1" && is_declined === "0") {
+      return `<p class='w-100 text-xl-end font-weight-bold text-success'>ANNONCE ACCEPTEE</p>`;
+    } else if (is_accepted === "0" && is_declined === "1") {
+      return `<p class='w-100 text-xl-end font-weight-bold text-danger'>ANNONCE DECLINEE</p>`;
     }
-    const innerHTML = (`
+  };
+  const innerHTML = `
     <div class="row my-2">
         <div class="col-12 col-xl-4 d-flex align-items-center my-2">
             <h5 class="font-weight-bold">Objet:</h5>
             <h5 class="font-weight-bold">${object}</h5>
         </div>
         <div class="col-12 col-xl-8 d-flex align-items-center justify-content-xl-end my-2">
-            <img src="./assets/partials/publication_card/img/avatar_placeholder.svg" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
-            <a href="${ROOT_PATH + '/users/' + user_id}" class="font-weight-bold my-2">${username}</a>
+            <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
+            <a href="${
+              ROOT_PATH + "/users/" + user_id
+            }" class="font-weight-bold my-2">${username}</a>
         </div>
     </div>
     <div class="row my-2">
@@ -93,28 +121,43 @@ const getOfferTemplate = ({ id, object, content, amount, id_post, username, user
     </div>
     <div class="row d-flex justify-content-end my-2">
         <div class="col-12 col-xl-8 d-flex align-items-center">
-            <a class="font-weight-bold" href="${ROOT_PATH + '/posts/' + id_post}" class=""> Voir l'annonce</a>
+            <a class="font-weight-bold" href="${
+              ROOT_PATH + "/posts/" + id_post
+            }" class=""> Voir l'annonce</a>
         </div>
         <div class="col col-xl-4 d-flex align-items-center justify-content-between my-2">
            ${getButtons(is_accepted, is_declined, id)}
         </div>
     </div>
-    `).trim();
+    `.trim();
 
-    const card = document.createElement('div');
-    card.setAttribute('id', `offer-${id}`)
-    card.classList.add('card', 'card-proposition', 'col-12', 'col-xl-8', 'shadow', 'p-4', 'my-4')
-    card.innerHTML = innerHTML;
-    return card;
-}
-
+  const card = document.createElement("div");
+  card.setAttribute("id", `offer-${id}`);
+  card.classList.add(
+    "card",
+    "card-proposition",
+    "col-12",
+    "col-xl-8",
+    "shadow",
+    "p-4",
+    "my-4"
+  );
+  card.innerHTML = innerHTML;
+  return card;
+};
 
 const getNoResultTemplate = (redirectionLink, text, header) => {
-    return (`
+  return `
     <h2>${header}</h2>
     <a class="my-4 btn btn-brand btn-lg active" href="${redirectionLink}">${text}</a>
     
-    `).trim()
-}
+    `.trim();
+};
 
-export { getNoResultTemplate, getPostTemplate, getOfferTemplate, getAsktemplate, getBreakdownCategoriesCheckInputTemplate }
+export {
+  getNoResultTemplate,
+  getPostTemplate,
+  getOfferTemplate,
+  getAsktemplate,
+  getBreakdownCategoriesCheckInputTemplate,
+};

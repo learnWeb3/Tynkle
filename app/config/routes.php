@@ -38,6 +38,9 @@ $routes = array(
     array('DELETE', ROOT_PATH . '/skills/[i:id]', 'skills#destroy', 'destroy_skills'),
     // '/activity'
     array('GET', ROOT_PATH . '/activities', 'activities#index', 'index_activities'),
+    array('GET', ROOT_PATH . '/activities/posts', 'activities#index', 'index_activities_posts'),
+    array('GET', ROOT_PATH . '/activities/offers', 'activities#index', 'index_activities_offers'),
+    array('GET', ROOT_PATH . '/activities/asks', 'activities#index', 'index_activities_asks'),
     // '/offers'
     array('GET', ROOT_PATH . '/offers', 'offers#index', 'offers_index'),
     array('PUT', ROOT_PATH . '/offers/[i:id]', 'offers#update', 'offers_update'),

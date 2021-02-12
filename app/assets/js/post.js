@@ -45,7 +45,6 @@ const handleSubmit = (modalBody, sendButton, form, id_post, id_user) => {
                 modalBody.appendChild(p);
                 sendButton.remove();
             } else {
-
                 console.log(responseData);
                 alert('error');
             }

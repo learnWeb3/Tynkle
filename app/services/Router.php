@@ -7,7 +7,7 @@ class Router
         $router_action = explode('#', $match['target']);
         $controller_name = ucfirst($router_action[0]).'Controller';
         $method_name = $router_action[1];
-        $controller = new $controller_name($match['params'], $method_name);
+        $controller = new $controller_name($match['params'],  $match['name'], $method_name);
         $controller->$method_name();
     }
 
