@@ -34,11 +34,11 @@
             <div class="row">
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="city">Ville :</label>
-                    <input type="text" class="form-control" name="city" id="locality" required>
+                    <input type="text" class="form-control" name="city" id="locality" maxlength="100" required>
                 </div>
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="postal_code">Code postal :</label>
-                    <input type="text" class="form-control" name="postal_code" id="postal_code" required>
+                    <input type="text" class="form-control" name="postal_code" id="postal_code" pattern="\d{5}" data-bouncer-message="Le code postal n'est pas valide" required>
                 </div>
             </div>
             <div class="form-group my-2">
@@ -47,11 +47,11 @@
             </div>
             <div class="form-group my-2">
                 <label for="title">Choisir un titre pour votre annonce :</label>
-                <input type="text" class="form-control" name="title" id="title" required>
+                <input type="text" class="form-control" name="title" id="title" maxlength="55" required>
             </div>
             <div class="form-group my-2">
                 <label for="content">Decriver votre problème : </label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control" required></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control" maxlength="2500" required></textarea>
             </div>
 
             <div class="form-group">

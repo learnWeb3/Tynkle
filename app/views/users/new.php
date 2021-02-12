@@ -6,19 +6,19 @@
             <h5 class="my-4">Informations obligatoires *</h5>
             <div class="form-group my-2">
                 <label for="email">Identifiant *</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Prenom94">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Prenom94" required>
             </div>
             <div class="form-group my-2">
                 <label for="email">Adresse email *</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="prenom-nom@email.com">
+                <input type="email" id="email" name="email" class="form-control" placeholder="prenom-nom@email.com" required>
             </div>
             <div class="form-group my-2">
                 <label for="password">Mot de passe *</label>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control" name="password" required>
             </div>
             <div class="form-group my-2">
                 <label for="password_confirmation">Confirmer le mot de passe *</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
             </div>
 
             <div class="form-group my-2 d-flex col-12">
@@ -38,7 +38,7 @@
             </div>
             <button type="submit" class='btn btn-lg btn-success col-12 my-2'>INSCRIPTION</button>
             <p class="font-weight-bold text-center">ou</p>
-            <a href="" class="col-12 btn btn-lg btn-white d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="./assets/icons/google_brand.png" class="position-absolute mx-2" alt="signin with google" style='left:0;'>S'inscrire avec google</a>
+            <a href="" class="col-12 btn btn-lg btn-white d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-2" alt="signin with google" style='left:0;'>S'inscrire avec google</a>
 
             <?php include_once './app/views/templates/_shared_links.php' ?>
         </form>

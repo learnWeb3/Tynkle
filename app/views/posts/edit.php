@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="form-group col-12 col-lg-6 my-2">
                     <label for="id_platform">Plateforme de l'appareil : </label>
-                    <select name="id_platform" id="id_platform" class="form-control">
+                    <select name="id_platform" id="id_platform" class="form-control" required>
                         <?php foreach ($platforms as $platform) : ?>
                             <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
                         <?php endforeach; ?>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group col-12 col-lg-6 my-2">
                     <label for="id_breakdown_category">Type de panne : </label>
-                    <select name="id_breakdown_category" id="id_breakdown_category" class="form-control">
+                    <select name="id_breakdown_category" id="id_breakdown_category" class="form-control" required>
                         <?php foreach ($breakdown_categories as $breakdown_category) : ?>
                             <option value="<?php echo htmlspecialchars($breakdown_category['id']) ?>" <?php echo $post['breakdown_category_id'] === $breakdown_category['id'] && 'selected' ?>><?php echo htmlspecialchars($breakdown_category['name']) ?></option>
                         <?php endforeach; ?>
@@ -25,24 +25,24 @@
             <div class="row">
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="city">Ville :</label>
-                    <input type="text" class="form-control" name="city" id="city" value='<?php echo $post['city'] ?>'>
+                    <input type="text" class="form-control" name="city" id="city" value='<?php echo $post['city'] ?>' required>
                 </div>
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="postal_code">Code postal :</label>
-                    <input type="text" class="form-control" name="postal_code" id="postal_code" value='<?php echo $post['postal_code'] ?>'>
+                    <input type="text" class="form-control" name="postal_code" id="postal_code" value='<?php echo $post['postal_code'] ?>'  pattern="\d{5}" data-bouncer-message="Le code postal n'est pas valide" required>
                 </div>
             </div>
             <div class="form-group my-2">
                 <label for="budget">Votre budget :</label>
-                <input type="number" class="form-control" name="budget" id="budget" value='<?php echo $post['budget'] ?>'>
+                <input type="number" class="form-control" name="budget" id="budget" value='<?php echo $post['budget'] ?>' required>
             </div>
             <div class="form-group my-2">
                 <label for="title">Choisir un titre pour votre annonce :</label>
-                <input type="text" class="form-control" name="title" id="title" value="<?php echo $post['title'] ?>">
+                <input type="text" class="form-control" name="title" id="title" value="<?php echo $post['title'] ?>" maxlength="100" required>
             </div>
             <div class="form-group my-2">
                 <label for="content">Decriver votre problème : </label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control"><?php echo $post['content'] ?></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control" maxlength="2500" required><?php echo $post['content'] ?></textarea>
             </div>
 
             <div class="form-group my-2">
