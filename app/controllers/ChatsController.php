@@ -3,11 +3,9 @@
 class ChatsController extends ApplicationController
 {
 
-
-    public function __construct(array $params, string $asked_method)
+ public function __construct(array $params,string $route_name, string $asked_method)
     {
-        parent::__construct($params, $asked_method);
-        $this->beforeAction();
+        parent::__construct($params,$route_name, $asked_method);
     }
 
     public function index()

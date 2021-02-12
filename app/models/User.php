@@ -197,13 +197,33 @@ class User extends Application
 
     public function getCurrentPosts(PDO $connection)
     {
-        $request_body = "SELECT posts.*, 
+        $request_body = "SELECT
+        posts.id as id,
+        posts.title as title,
+        posts.content as content,
+        posts.cover_image as cover_image,
+        posts.images as images,
+        posts.budget as budget,
+        posts.created_at as created_at,
+        posts.updated_at as updated_at,
+        posts.city as city,
+        posts.lat as lat,
+        posts.lon as lon,
+        posts.postal_code as postal_code, 
         users.username, 
         users.lastname, 
         users.email, 
-        users.id as user_id 
+        users.id as user_id,
+        breakdown_categories.id as breakdown_category_id,
+        breakdown_categories.name as breakdown_category_name,
+        breakdown_categories.description as breakdown_category_description,
+        platforms.id as platform_id,
+        platforms.name as platform_name,
+        platforms.description as platform_description
         FROM posts 
-        JOIN users ON posts.id_user=users.id 
+        JOIN users ON posts.id_user=users.id
+        JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
+        JOIN platforms ON breakdown_categories.id_platform=platforms.id  
         WHERE posts.id_user = ?
         AND posts.is_solved = 0
         ORDER BY posts.created_at DESC";
@@ -212,13 +232,33 @@ class User extends Application
 
     public function getOldPosts(PDO $connection)
     {
-        $request_body = "SELECT posts.*, 
+        $request_body = "SELECT
+        posts.id as id,
+        posts.title as title,
+        posts.content as content,
+        posts.cover_image as cover_image,
+        posts.images as images,
+        posts.budget as budget,
+        posts.created_at as created_at,
+        posts.updated_at as updated_at,
+        posts.city as city,
+        posts.lat as lat,
+        posts.lon as lon,
+        posts.postal_code as postal_code, 
         users.username, 
         users.lastname, 
         users.email, 
-        users.id as user_id 
+        users.id as user_id,
+        breakdown_categories.id as breakdown_category_id,
+        breakdown_categories.name as breakdown_category_name,
+        breakdown_categories.description as breakdown_category_description,
+        platforms.id as platform_id,
+        platforms.name as platform_name,
+        platforms.description as platform_description
         FROM posts 
-        JOIN users ON posts.id_user=users.id 
+        JOIN users ON posts.id_user=users.id
+        JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
+        JOIN platforms ON breakdown_categories.id_platform=platforms.id  
         WHERE posts.id_user = ?
         AND posts.is_solved = 1
         ORDER BY posts.created_at DESC";
@@ -227,13 +267,33 @@ class User extends Application
 
     public function getPosts(PDO $connection)
     {
-        $request_body = "SELECT posts.*, 
+        $request_body = "SELECT 
+        posts.id as id,
+        posts.title as title,
+        posts.content as content,
+        posts.cover_image as cover_image,
+        posts.images as images,
+        posts.budget as budget,
+        posts.created_at as created_at,
+        posts.updated_at as updated_at,
+        posts.city as city,
+        posts.lat as lat,
+        posts.lon as lon,
+        posts.postal_code as postal_code, 
         users.username, 
         users.lastname, 
         users.email, 
-        users.id as user_id 
+        users.id as user_id,
+        breakdown_categories.id as breakdown_category_id,
+        breakdown_categories.name as breakdown_category_name,
+        breakdown_categories.description as breakdown_category_description,
+        platforms.id as platform_id,
+        platforms.name as platform_name,
+        platforms.description as platform_description
         FROM posts 
-        JOIN users ON posts.id_user=users.id 
+        JOIN users ON posts.id_user=users.id
+        JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
+        JOIN platforms ON breakdown_categories.id_platform=platforms.id 
         WHERE posts.id_user = ?
         ORDER BY posts.created_at DESC";
         return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);

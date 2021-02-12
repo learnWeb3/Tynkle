@@ -77,7 +77,7 @@
                         <button type="button" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2" data-bs-toggle="modal" data-bs-target="#new-offer">
                             FAIRE UNE OFFRE
                         </button>
-                        <button class=" btn btn-lg btn-outline-red-crayola active col-12 col-lg-3 m-2">POSER UNE QUESTION</button>
+                        <button class=" btn btn-lg btn-outline-red-crayola active col-12 col-lg-3 m-2" data-bs-toggle="modal" data-bs-target="#new-message">POSER UNE QUESTION</button>
                     <?php else : ?>
                         <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
                             CONNEXION
@@ -139,6 +139,33 @@
             </div>
         </div>
     </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="new-message" tabindex="-1" aria-labelledby="new-messageLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title front-weight-bold" id="new-messageLabel">POSER UNE QUESTION</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-block overflow-auto" style="min-height: 35vh">
+                    <form action="" data-idPost="<?php echo $post['id'] ?>" data-idUser="<?php echo $current_user  ?>" class="form-lg" method="post" id="new-message-form">
+                        <small>* champs obligatoires</small>
+                        <div class="form-group my-2">
+                            <label for="">Rediger votre message :</label>
+                            <textarea required name="content" id="content" class="form-control" rows="10" placeholder="Je vous propose de vous dépanner pour la panne ...."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-brand active" data-bs-dismiss="modal">FERMER</button>
+                    <button type="submit" form="new-message-form" class="btn btn-success">ENVOYER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </main>
 

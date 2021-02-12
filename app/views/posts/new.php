@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group col-12 col-lg-6 my-2">
                     <label for="id_breakdown_category">Type de panne : </label>
-                    <select name="id_breakdown_category" id="id_breakdown_category" class="form-control">
+                    <select name="id_breakdown_category" id="id_breakdown_category" class="form-control" required>
                         <?php foreach ($breakdown_categories as $breakdown_category) : ?>
                             <option value="<?php echo htmlspecialchars($breakdown_category['id']) ?>"><?php echo htmlspecialchars($breakdown_category['name']) ?></option>
                         <?php endforeach; ?>
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="form-group my-2 col-12">
                         <label for="adress">Entrer votre adresse :</label>
-                        <input type="text" class="form-control" name="adress" id="adress">
+                        <input type="text" class="form-control" name="adress" id="adress" required>
                     </div>
                 </div>
             </div>
@@ -34,24 +34,24 @@
             <div class="row">
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="city">Ville :</label>
-                    <input type="text" class="form-control" name="city" id="locality">
+                    <input type="text" class="form-control" name="city" id="locality" required>
                 </div>
                 <div class="form-group my-2 col-12 col-lg-6">
                     <label for="postal_code">Code postal :</label>
-                    <input type="text" class="form-control" name="postal_code" id="postal_code">
+                    <input type="text" class="form-control" name="postal_code" id="postal_code" required>
                 </div>
             </div>
             <div class="form-group my-2">
                 <label for="budget">Votre budget :</label>
-                <input type="number" class="form-control" name="budget" id="budget">
+                <input type="number" class="form-control" name="budget" id="budget" required>
             </div>
             <div class="form-group my-2">
                 <label for="title">Choisir un titre pour votre annonce :</label>
-                <input type="text" class="form-control" name="title" id="title">
+                <input type="text" class="form-control" name="title" id="title" required>
             </div>
             <div class="form-group my-2">
                 <label for="content">Decriver votre problème : </label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control" required></textarea>
             </div>
 
             <div class="form-group">

@@ -2,6 +2,12 @@
 
 class BreakdownsController extends ApplicationController
 {
+    
+    public function __construct(array $params,string $route_name, string $asked_method)
+    {
+        parent::__construct($params,$route_name, $asked_method);
+    }
+
     public function index()
     {
         if (isset($this->json_params['id_platform'])) {

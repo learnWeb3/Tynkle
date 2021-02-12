@@ -3,11 +3,11 @@
 class UserSkillsController extends ApplicationController
 {
 
-    public function __construct(array $params, string $asked_method)
+    public function __construct(array $params, string $route_name, string $asked_method)
     {
-        parent::__construct($params, $asked_method);
-        $this->beforeAction(['destroy']);
+        parent::__construct($params, $route_name, $asked_method);
     }
+
     public function create()
     {
         if (isset($this->current_user)) {

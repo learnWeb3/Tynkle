@@ -8,13 +8,15 @@ class ApplicationController
     protected $limit;
     protected $params;
     protected $asked_method;
+    protected $route_name;
 
-    public  function __construct(array $params, string $asked_method)
+    public  function __construct(array $params, string $route_name, string $asked_method)
     {
         $this->connection = Db::connect();
         $this->limit = isset($_GET['limit']) ? intval($_GET['limit']) : 10;
         $this->start = isset($_GET['start']) ? intval($_GET['start']) : 0;
         $this->params = $params;
+        $this->route_name = $route_name;
         $this->asked_method = $asked_method;
         $this->json_params = !empty(file_get_contents('php://input')) ?  json_decode(file_get_contents('php://input'), true) : [];
         $this->beforeAll();
