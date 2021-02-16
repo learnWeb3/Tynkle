@@ -6,11 +6,11 @@
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="posts" class="form-check-input" type="radio" name="posts_filter" id="posts_filter_current" value="current">
-            <label class="form-check-label" for="posts_filter_current">En cours</label>
+            <label class="form-check-label" for="posts_filter_current">en ligne</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="posts" class="form-check-input" type="radio" name="posts_filter" id="posts_filter_old" value="old">
-            <label class="form-check-label" for="posts_filter_old">Archivées</label>
+            <label class="form-check-label" for="posts_filter_old">archivées</label>
         </div>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 75vh;" id="posts-container">

@@ -14,7 +14,7 @@
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_current" value="current">
-            <label class="form-check-label" for="offers_filter_current">en cours</label>
+            <label class="form-check-label" for="offers_filter_current">acceptées</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_old" value="old">

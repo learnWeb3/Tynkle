@@ -131,13 +131,16 @@ class User extends Application
         users.username, 
         users.lastname, 
         users.email, 
-        users.id as user_id,
+        users.id as user_id
         FROM offers 
+        JOIN posts ON offers.id_post = posts.id
         JOIN users ON offers.id_user=users.id 
-        WHERE offers.id_user = ?
-        AND offers.is_accepted = 1
+        WHERE 
+        posts.id_user = ? AND offers.is_accepted = 1 
+        OR 
+        offers.id_user = ? AND offers.is_accepted = 1
         ORDER BY offers.created_at DESC";
-        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+        return  Request::send($connection, $request_body, [$this->id, $this->id])->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getOldOffers(PDO $connection)
@@ -148,11 +151,14 @@ class User extends Application
         users.email, 
         users.id as user_id 
         FROM offers 
+        JOIN posts ON offers.id_post = posts.id
         JOIN users ON offers.id_user=users.id 
-        WHERE offers.id_user = ?
-        AND offers.is_declined = 1
+        WHERE 
+        posts.id_user = ? AND offers.is_declined = 1 
+        OR 
+        offers.id_user = ? AND offers.is_declined = 1
         ORDER BY offers.created_at DESC";
-        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+        return  Request::send($connection, $request_body, [$this->id, $this->id])->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getOffers(PDO $connection)
