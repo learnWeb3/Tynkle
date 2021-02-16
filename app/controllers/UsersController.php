@@ -83,14 +83,14 @@ class UsersController extends ApplicationController
                         'success'
                     );
                     $flash->storeInSession();
-                    die(header('Location:' . ROOT_PATH . '/profile'));
+                    die(header('Location:' . ROOT_PATH . '/profile#account_informations'));
                 } catch (ModelException $e) {
                     $flash = new Flash(
                         $e->getMessages(),
                         'danger'
                     );
                     $flash->storeInSession();
-                    die(header('Location:' . ROOT_PATH . '/profile'));
+                    die(header('Location:' . ROOT_PATH . '/profile#account_informations'));
                 }
             } else {
                 $flash = new Flash(
@@ -129,14 +129,14 @@ class UsersController extends ApplicationController
                     'success'
                 );
                 $flash->storeInSession();
-                die(header('Location:' . ROOT_PATH . '/profile'));
+                die(header('Location:' . ROOT_PATH . '/profile#personnal_informations'));
             } catch (ModelException $e) {
                 $flash = new Flash(
                     ['Une erreure est survenue'],
                     'danger'
                 );
                 $flash->storeInSession();
-                die(header('Location:' . ROOT_PATH . '/profile'));
+                die(header('Location:' . ROOT_PATH . '/profile#personnal_informations'));
             }
         } else {
             $this->handleError(422);

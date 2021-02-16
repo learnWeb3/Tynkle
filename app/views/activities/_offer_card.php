@@ -19,7 +19,7 @@
             <p class="mb-0"> <?php echo $offer['content'] ?></p>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-            <p class="font-weight-bold text-end mb-0">Montant proposé: <?php echo $offer['amount'] ?> &euro;</p>
+            <p class="font-weight-bold text-end mb-0">Montant proposé : <?php echo $offer['amount'] ?> &euro;</p>
         </div>
     </div>
     <div class="row d-flex justify-content-end my-2">
