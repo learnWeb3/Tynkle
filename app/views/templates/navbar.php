@@ -10,7 +10,7 @@
                     <?php if ($is_current_user_logged_in) : ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                MON COMPTE
+                                Mon compte
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/profile' ?>">Mon profil</a></li>
