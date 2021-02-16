@@ -40,6 +40,17 @@
 		time: /(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])/,
 		month: /(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2]))/
 	},
+		customValidations: {
+					valueMismatch: function (field) {
+
+						var selector = field.getAttribute('data-bouncer-match');
+						if (!selector) return false;
+						var otherField = field.form.querySelector(selector);
+						if (!otherField) return false;
+						return otherField.value !== field.value;
+
+					}
+				},
             messages: {
 		missingValue: {
 			checkbox: 'Ce champ est obligatoire.',
@@ -48,6 +59,9 @@
 			'select-multiple': 'Ce champ est obligatoire.',
 			default: 'Ce champ est obligatoire.'
 		},
+		valueMismatch: function (field) {
+						var customMessage = field.getAttribute('data-bouncer-mismatch-message');
+						return customMessage ? customMessage : 'Les champs ne sont pas identiques'},
 		patternMismatch: {
 			email: 'Veuillez entrer une adresse email valide',
 			url: 'Veuillez entrer un url valide',

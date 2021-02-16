@@ -42,7 +42,7 @@ class UsersController extends ApplicationController
                 }
             } else {
                 $flash = new Flash(
-                    array("Erreur lors de la création de votre compte"),
+                    array("Les mots de passe ne sont pas identiques"),
                     'danger'
                 );
                 $flash->storeInSession();

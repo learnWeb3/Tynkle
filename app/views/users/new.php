@@ -5,25 +5,25 @@
             <h1 class="font-weight-bold">Rejoindre Tynkle</h1>
             <h5 class="my-4">Informations obligatoires *</h5>
             <div class="form-group my-2">
-                <label for="email">Identifiant *</label>
+                <label for="username" style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Veuillez choisir un identifiant unique">Identifiant *</label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="Prenom94" required>
             </div>
             <div class="form-group my-2">
-                <label for="email">Adresse email *</label>
+                <label for="email" style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Veuillez entrer une adresse email valide">Adresse email *</label>
                 <input type="email" id="email" name="email" class="form-control" placeholder="prenom-nom@email.com" required>
             </div>
             <div class="form-group my-2">
-                <label for="password">Mot de passe *</label>
-                <input type="password" class="form-control" name="password" required>
+                <label for="password" style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Veuillez choisir un mot de passe d'une logueur minimum de 6 caractères">Mot de passe *</label>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="form-group my-2">
-                <label for="password_confirmation">Confirmer le mot de passe *</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                <label for="password_confirmation" style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Les mots de passe doivent être identiques">Confirmer le mot de passe *</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" data-bouncer-match="#password" data-bouncer-mismatch-message="Les mots de passes ne sont pas identiques" required>
             </div>
 
             <div class="form-group my-2 d-flex col-12">
                 <div class="col-4">
-                    <label class="font-weight-bold">Devenir Helper ?</label>
+                    <label class="font-weight-bold" style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Souhaitez vous devenir dépanneur et aidez la communauté ?">Devenir Helper ?</label>
                 </div>
                 <div class="col-6">
                     <div class="form-check form-check-inline">

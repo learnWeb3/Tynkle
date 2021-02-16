@@ -6,11 +6,15 @@ document
         "Vous êtes sur le point de créer un profil en tant qu'Helper pour proposer vos services de dépannage"
       );
       if (user_confirmation) {
-          document.querySelector("#helper_role_2").checked = false
-          event.target.checked = true
-      }else{
-        event.target.checked = false
-        document.querySelector("#helper_role_2").checked = true
+        document.querySelector("#helper_role_2").checked = false;
+        event.target.checked = true;
+      } else {
+        event.target.checked = false;
+        document.querySelector("#helper_role_2").checked = true;
       }
     }
   });
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
