@@ -21,7 +21,7 @@
         <div class="col-12 py-4 d-flex align-items-center justify-content-center" id='new-message-container'>
             <form class="w-100" method="POST" id="new_message">
                 <input name="content" data-subscibersIds='<?php echo $chat['subscriber_ids']  ?>' data-current='<?php echo $current_user ?>' data-id='<?php echo $chat['id'] ?>' id="content" placeholder="Rediger votre message..." class="form-control-lg col-12 col-md-6 col-lg-9"></input>
-                <button type="submit" class="btn btn-lg btn-brand active col-12 col-md-6 col-lg-2">envoyer</button>
+                <button id="new_message_submit" type="submit" class="btn btn-lg btn-brand active col-12 col-md-6 col-lg-2">envoyer</button>
             </form>
         </div>
     </section>

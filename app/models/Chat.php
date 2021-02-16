@@ -46,6 +46,7 @@ class Chat extends Application
         messages.id as message_id, 
         messages.id_chat as message_id_chat,
         messages.content as message_content,
+        messages.ressource_link as message_ressource_link,
         messages.created_at as message_created_at,
         messages.updated_at as message_updated_at,users.id as user_id,
         users.firstname as user_firstname,users.lastname as user_lastname,
@@ -140,7 +141,7 @@ class Chat extends Application
         return $results;
     }
 
-    public static function sendMessage(PDO $connection, string $content, array $subscriber_ids, int $current_user_id)
+    public static function sendMessage(PDO $connection, string $content, array $subscriber_ids, int $current_user_id, $ressource_link=NULL)
     {
         $existing_chat = self::getExistingChat($connection, $subscriber_ids);
         if (empty($existing_chat)) {
@@ -151,11 +152,12 @@ class Chat extends Application
             },  $subscriber_ids);
             $existing_chat = $last_created_chat;
         }
-        Message::create($connection, ['id_user', 'id_chat', 'content'], [$current_user_id, $existing_chat[0]['id'], $content]);
+        Message::create($connection, ['id_user', 'id_chat', 'content', 'ressource_link'], [$current_user_id, $existing_chat[0]['id'], $content, $ressource_link]);
         $request_body = "SELECT 
         messages.id as message_id, 
         messages.id_chat as message_id_chat,
         messages.content as message_content,
+        messages.ressource_link as message_ressource_link,
         messages.created_at as message_created_at,
         messages.updated_at as message_updated_at,users.id as user_id,
         users.firstname as user_firstname,users.lastname as user_lastname,
