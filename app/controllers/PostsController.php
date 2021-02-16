@@ -177,6 +177,8 @@ class PostsController extends ApplicationController
     {
         if (isset($this->post)) {
             $post_data = $this->post->getDetails($this->connection);
+            $author = new User($post_data['user_id']);
+            $author_data = $author->getDetails($this->connection);
             $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);
             $this->render(
                 'show',
@@ -186,6 +188,7 @@ class PostsController extends ApplicationController
                     'style_file_name' => 'offer',
                     'post' => $post_data,
                     'similar_posts' => $similar_posts['data'],
+                    'author'=>$author_data
                 )
             );
         } else {

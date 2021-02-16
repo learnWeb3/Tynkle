@@ -25,7 +25,12 @@ class User extends Application
 
     public function getDetails(PDO $connection)
     {
-        $request_body = 'SELECT * FROM users WHERE users.id=?';
+        $request_body = 'SELECT *,
+        (SELECT AVG(reviews.score)
+        FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
+        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count
+        FROM users WHERE users.id=?';
         return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC)[0];
     }
 
@@ -343,6 +348,13 @@ class User extends Application
         JOIN users ON asks.id_user=users.id 
         WHERE asks.id_user = ?
         ORDER BY asks.created_at DESC";
+        return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAverageScore(PDO $connection)
+    {
+        $request_body = "SELECT AVG(reviews.score)
+        FROM reviews WHERE reviews.id_reviewed = ?";
         return  Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
     }
 
