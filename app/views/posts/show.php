@@ -29,7 +29,7 @@
                     <div class="row w-100">
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                             <div id="avatar" class="shadow-sm bg-white my-4">
-                                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg" alt="map pointer icon">
+                                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg" alt="user avatar">
                             </div>
                         </div>
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">

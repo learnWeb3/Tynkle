@@ -292,6 +292,7 @@ class User extends Application
         posts.lat as lat,
         posts.lng as lon,
         posts.postal_code as postal_code, 
+        posts.is_solved as is_solved,
         users.username, 
         users.lastname, 
         users.email, 

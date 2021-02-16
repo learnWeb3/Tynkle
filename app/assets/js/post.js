@@ -1,13 +1,5 @@
 import { ROOT_PATH, makeOffers, sendmessage } from "./API_CLIENT/index.js";
 
-const options = {
-  max_value: 5,
-  step_size: 0.5,
-  initial_value: 0,
-  cursor: "default",
-  readonly: true,
-};
-
 const initMap = (lat, lng) => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat, lng },
@@ -111,6 +103,14 @@ const handleNewOffer = () => {
 };
 
 // init js-rater library
+const options = {
+  max_value: 5,
+  step_size: 0.5,
+  initial_value: 0,
+  cursor: "default",
+  readonly: true,
+};
+
 $(".rating").rate(options);
 // parsing lat lon
 const lat = parseInt(document.querySelector("#map").dataset.lat);

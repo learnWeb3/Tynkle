@@ -176,6 +176,27 @@ class UsersController extends ApplicationController
 
     public function show()
     {
+        if (isset($this->params['id'])) {
+            if (User::find($this->connection, $this->params['id'])) {$author = new User($this->params['id']);
+                try {
+                    $user_data = $author->getDetails($this->connection);
+                    $user = new User($user_data['id']);
+                    $posts = $user->getPosts($this->connection);
+                    $this->render('show', array(
+                        'title' => "Tynkle: Profil de ",
+                        'description' => 'Tynkle: voir le profil de',
+                        'style_file_name' => 'user',
+                        'user' => $user_data,
+                        'posts'=>$posts
+                    ));
+                } catch (\Throwable $th) {
+                    $this->handleError(500);
+                }
+            } else {
+                $this->handleError(404);
+            }
+        }
+
     }
     public function destroy()
     {

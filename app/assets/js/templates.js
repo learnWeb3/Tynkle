@@ -15,7 +15,7 @@ const getPostTemplate = ({
   breakdown_category_name,
   postal_code,
   city,
-  user_name,
+  username,
   user_id,
   created_at,
   cover_image,
@@ -38,7 +38,7 @@ const getPostTemplate = ({
         <div class="row d-none d-lg-block">
             <div class="d-flex align-items-center w-100">
                 <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
-                <a class="font-italic m-2" href="/users/${user_id}">${user_name}</a>
+                <a class="font-italic m-2" href="${ROOT_PATH}/users/${user_id}">${username}</a>
             </div>
         </div>
         <div class="row">
