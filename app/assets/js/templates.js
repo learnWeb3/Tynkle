@@ -99,11 +99,11 @@ const getOfferTemplate = ({
   };
   const innerHTML = `
     <div class="row my-2">
-        <div class="col-12 col-xl-4 d-flex align-items-center my-2">
-            <h5 class="font-weight-bold">Objet:</h5>
+        <div class="col-12 col-xl-8 d-flex align-items-center my-2">
+            <h5 class="font-weight-bold">Objet : </h5>
             <h5 class="font-weight-bold">${object}</h5>
         </div>
-        <div class="col-12 col-xl-8 d-flex align-items-center justify-content-xl-end my-2">
+        <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
             <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
             <a href="${
               ROOT_PATH + "/users/" + user_id

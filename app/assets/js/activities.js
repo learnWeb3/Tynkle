@@ -22,7 +22,9 @@ const handleOfferCardAction = async (event) => {
       parameters,
       id_offer
     );
-    const { data, status } = await getFilteredContent("/offers?type=all");
+    const { data, status } = await getFilteredContent(
+      "/activities/offers?type=all"
+    );
     if (status === 200) {
       const container = document.querySelector("#offers-container");
       container.innerHTML = "";
