@@ -1,6 +1,6 @@
 
 <main class="bg-computer" style='min-height:100vh;padding-top:3rem'>
-    <section class="container bg-white d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
+    <section class="container bg-light d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
         <div class="col-12">
             <div class="p-4 rounded">
                 <div class="row w-100">
@@ -26,7 +26,15 @@
                     <h2 class="font-weight-bold">Avis :</h2>
                 </div>
                 <div class="col-12 d-flex flex-column justify-content-center">
-                    <p>Pas d'avis pour le moment</p>
+                <?php if (!empty($reviews)): ?>
+                       <?php foreach ($reviews as $review): ?>
+                            <?php include "_review_card.php"?>
+                       <?php endforeach;?>
+                <?php else: ?>
+                    <div class="card shadow-sm p-4">
+                        <p class="m-2 font-weight-bold">Pas d'avis pour le moment</p>
+                    </div>
+                <?php endif;?>
                 </div>
             </div>
         </div>
@@ -46,7 +54,7 @@
             <div class="card shadow-sm p-4 d-flex flex-column">
 
                     <h2 class="font-weight-bold w-100 text-center my-4">Me contacter :</h2>
-            
+
                     <div class="row d-flex justify-content-around">
                         <?php if ($current_user): ?>
                             <button type="button" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2" data-bs-toggle="modal" data-bs-target="#new-offer">
