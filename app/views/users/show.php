@@ -1,6 +1,6 @@
 
 <main class="bg-computer" style='min-height:100vh;padding-top:3rem'>
-    <section class="container bg-light d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
+    <section class="container-xl bg-light d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
         <div class="col-12">
             <div class="p-4 rounded">
                 <div class="row w-100">
