@@ -27,7 +27,7 @@
 
                 <div class="form-group my-2 d-flex col-12">
                     <div class="col-4">
-                        <label>Devenir Helper ?</label>
+                        <label>Devenir également Helper ?</label>
                     </div>
                     <div class="col-6">
                         <div class="form-check form-check-inline">
@@ -88,6 +88,8 @@
             </form>
         </section>
 
+        <?php if ($user['is_helper']) : ?>
+
         <div id="skills" class="w-100 d-flex align-items-center anchor" style="min-height:95vh">
             <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>" class="w-100 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Compétences</h2>
@@ -131,5 +133,7 @@
                 <button type="submit" class='btn btn-lg btn-primary col-12 col-lg-4 my-2'>VALIDER</button>
             </form>
         </div>
+
+       <?php endif; ?>
     </div>
 </main>

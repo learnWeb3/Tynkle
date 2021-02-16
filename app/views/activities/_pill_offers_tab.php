@@ -2,23 +2,23 @@
     <div class="d-flex flex-wrap w-100 align-self-start px-2 py-4">
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_all" value="all" checked>
-            <label class="form-check-label" for="offers_filter_all">toutes</label>
+            <label class="form-check-label" for="offers_filter_all">Toutes</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_sent" value="sent">
-            <label class="form-check-label" for="offers_filter_sent">envoyées</label>
+            <label class="form-check-label" for="offers_filter_sent">Envoyées</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_received" value="received">
-            <label class="form-check-label" for="offers_filter_received">reçues</label>
+            <label class="form-check-label" for="offers_filter_received">Reçues</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_current" value="current">
-            <label class="form-check-label" for="offers_filter_current">acceptées</label>
+            <label class="form-check-label" for="offers_filter_current">Acceptées</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="offers" class="form-check-input" type="radio" name="offers_filter" id="offers_filter_old" value="old">
-            <label class="form-check-label" for="offers_filter_old">déclinées</label>
+            <label class="form-check-label" for="offers_filter_old">Déclinées</label>
         </div>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 75vh;" id="offers-container">

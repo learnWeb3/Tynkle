@@ -27,7 +27,7 @@ class UsersController extends ApplicationController
                         ]
                     );
                     $flash = new Flash(
-                        array("Compte crée avec succès"),
+                        array("Compte crée avec succès, veuillez vous connecter"),
                         'success'
                     );
                     $flash->storeInSession();

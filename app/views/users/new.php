@@ -40,8 +40,9 @@
             <p class="font-weight-bold text-center">ou</p>
             <a href="" class="col-12 btn btn-lg btn-white d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-2" alt="signin with google" style='left:0;'>S'inscrire avec google</a>
 
-            <?php include_once './app/views/templates/_shared_links.php' ?>
+            <?php include_once './app/views/templates/_shared_links.php'?>
         </form>
     </section>
 
 </main>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_user.js' ?> "></script>

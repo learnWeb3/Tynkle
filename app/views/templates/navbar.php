@@ -13,14 +13,14 @@
                                 MON COMPTE
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/profile' ?>">PROFIL</a></li>
-                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/activities' ?>">ACTIVITE</a></li>
-                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/chats' ?>">MESSAGES</a></li>
+                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/profile' ?>">Mon profil</a></li>
+                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/activities' ?>">Mon activitée</a></li>
+                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/chats' ?>">Mes messages</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/posts/new' ?>">PUBLIER</a></li>
-                        <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/posts' ?>">LES POSTS</a></li>
-                        <li class="nav-item"><a class='nav-link text-danger font-weight-bold' id='logout' href="<?php echo ROOT_PATH . '/logout' ?>">DECONNEXION</a></li>
+                        <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/posts/new' ?>">Publier</a></li>
+                        <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/posts' ?>">Les annonces</a></li>
+                        <li class="nav-item"><a class='nav-link text-danger font-weight-bold' id='logout' href="<?php echo ROOT_PATH . '/logout' ?>">Déconnexion</a></li>
                     <?php else : ?>
                         <li class="nav-item"><a class='nav-link' href="<?php echo ROOT_PATH . '/signin' ?>">Connexion</a></li>
                         <li class="nav-item"><a class='nav-link' href="<?php echo ROOT_PATH . '/register' ?>">Inscription</a></li>
