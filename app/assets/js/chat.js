@@ -1,6 +1,7 @@
 import { sendmessage, ROOT_PATH, deletemessage } from "./API_CLIENT/index.js";
 
 const handleSubmit = (formButton, input, subscribers) => formButton.addEventListener('click', async function (event) {
+
     event.preventDefault();
     const content = input.value;
     const data = {
@@ -91,6 +92,7 @@ window.addEventListener('DOMContentLoaded', async function (event) {
     const form = document.querySelector('#new_message');
     const formButtonSubmit = document.querySelector('#new_message_submit');
     await handleSubmit(formButtonSubmit, input, subscribers);
+
     deleteMessage('.delete-message')
     streamMessages(chat_id, current_chat_container, messages_container, current_user);
 });

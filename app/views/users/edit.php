@@ -89,7 +89,6 @@
         </section>
 
         <?php if ($user['is_helper']) : ?>
-
         <div id="skills" class="w-100 d-flex align-items-center anchor" style="min-height:95vh">
             <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>" class="w-100 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Compétences</h2>

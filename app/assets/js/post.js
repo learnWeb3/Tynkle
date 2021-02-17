@@ -102,6 +102,7 @@ const handleNewOffer = () => {
   });
 };
 
+
 // init js-rater library
 const options = {
   max_value: 5,
@@ -112,6 +113,7 @@ const options = {
 };
 
 $(".rating").rate(options);
+
 // parsing lat lon
 const lat = parseInt(document.querySelector("#map").dataset.lat);
 const lng = parseInt(document.querySelector("#map").dataset.lon);
@@ -120,3 +122,4 @@ initMap(lat, lng);
 // listening click on send buttons
 handleNewMessage();
 handleNewOffer();
+
