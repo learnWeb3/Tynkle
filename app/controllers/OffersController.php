@@ -50,8 +50,8 @@ class OffersController extends ApplicationController
                                 'id_post'=>'required'
                             ]
                         )[0];
-                        $message_content = "<a href='" . ROOT_PATH . "/activities" . "'>Vous avez reçu une nouvelle offre pour la consulter veuillez cliquer ici.</a>";
-                        Chat::sendMessage($this->connection, $message_content, [$this->current_user->id, $post['id_user']], $this->current_user->id);
+                        $message_content = "Vous avez reçu une nouvelle offre";
+                        Chat::sendMessage($this->connection, $message_content, [$this->current_user->id, $post['id_user']], $this->current_user->id, "/activities");
                         echo json_encode($new_offer);
                     } catch (Throwable $th) {
                         $th->getMessage();

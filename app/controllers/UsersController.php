@@ -27,7 +27,7 @@ class UsersController extends ApplicationController
                         ]
                     );
                     $flash = new Flash(
-                        array("Compte crée avec succès"),
+                        array("Compte crée avec succès, veuillez vous connecter"),
                         'success'
                     );
                     $flash->storeInSession();
@@ -42,7 +42,7 @@ class UsersController extends ApplicationController
                 }
             } else {
                 $flash = new Flash(
-                    array("Erreur lors de la création de votre compte"),
+                    array("Les mots de passe ne sont pas identiques"),
                     'danger'
                 );
                 $flash->storeInSession();
@@ -83,14 +83,14 @@ class UsersController extends ApplicationController
                         'success'
                     );
                     $flash->storeInSession();
-                    die(header('Location:' . ROOT_PATH . '/profile'));
+                    die(header('Location:' . ROOT_PATH . '/profile#account_informations'));
                 } catch (ModelException $e) {
                     $flash = new Flash(
                         $e->getMessages(),
                         'danger'
                     );
                     $flash->storeInSession();
-                    die(header('Location:' . ROOT_PATH . '/profile'));
+                    die(header('Location:' . ROOT_PATH . '/profile#account_informations'));
                 }
             } else {
                 $flash = new Flash(
@@ -129,14 +129,14 @@ class UsersController extends ApplicationController
                     'success'
                 );
                 $flash->storeInSession();
-                die(header('Location:' . ROOT_PATH . '/profile'));
+                die(header('Location:' . ROOT_PATH . '/profile#personnal_informations'));
             } catch (ModelException $e) {
                 $flash = new Flash(
                     ['Une erreure est survenue'],
                     'danger'
                 );
                 $flash->storeInSession();
-                die(header('Location:' . ROOT_PATH . '/profile'));
+                die(header('Location:' . ROOT_PATH . '/profile#personnal_informations'));
             }
         } else {
             $this->handleError(422);
@@ -176,6 +176,29 @@ class UsersController extends ApplicationController
 
     public function show()
     {
+        if (isset($this->params['id'])) {
+            if (User::find($this->connection, $this->params['id'])) {$author = new User($this->params['id']);
+                try {
+                    $user_data = $author->getDetails($this->connection);
+                    $user = new User($user_data['id']);
+                    $posts = $user->getPosts($this->connection);
+                    $reviews = $user->getReviews($this->connection);
+                    $this->render('show', array(
+                        'title' => "Tynkle: Profil de ".$user_data['username'] ,
+                        'description' => 'Tynkle: voir le profil de '.$user_data['username'],
+                        'style_file_name' => 'user',
+                        'user' => $user_data,
+                        'posts'=>$posts, 
+                        "reviews"=>$reviews
+                    ));
+                } catch (\Throwable $th) {
+                    $this->handleError(500);
+                }
+            } else {
+                $this->handleError(404);
+            }
+        }
+
     }
     public function destroy()
     {

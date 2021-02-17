@@ -3,10 +3,12 @@
     </section>
     <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
         <h1 class="my-4">Modifier mon annonce :</h1>
+        <strong><small>* champs obligatoires</small></strong>
+        <hr>
         <form action="<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>" method="post" class="col-12 col-md-8 col-lg-6" enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group col-12 col-lg-6 my-2">
-                    <label for="id_platform">Plateforme de l'appareil : </label>
+                    <label for="id_platform">Plateforme de l'appareil : * </label>
                     <select name="id_platform" id="id_platform" class="form-control" required>
                         <?php foreach ($platforms as $platform) : ?>
                             <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
@@ -14,7 +16,7 @@
                     </select>
                 </div>
                 <div class="form-group col-12 col-lg-6 my-2">
-                    <label for="id_breakdown_category">Type de panne : </label>
+                    <label for="id_breakdown_category">Type de panne : * </label>
                     <select name="id_breakdown_category" id="id_breakdown_category" class="form-control" required>
                         <?php foreach ($breakdown_categories as $breakdown_category) : ?>
                             <option value="<?php echo htmlspecialchars($breakdown_category['id']) ?>" <?php echo $post['breakdown_category_id'] === $breakdown_category['id'] && 'selected' ?>><?php echo htmlspecialchars($breakdown_category['name']) ?></option>
@@ -24,24 +26,24 @@
             </div>
             <div class="row">
                 <div class="form-group my-2 col-12 col-lg-6">
-                    <label for="city">Ville :</label>
+                    <label for="city">Ville : * </label>
                     <input type="text" class="form-control" name="city" id="city" value='<?php echo $post['city'] ?>' required>
                 </div>
                 <div class="form-group my-2 col-12 col-lg-6">
-                    <label for="postal_code">Code postal :</label>
+                    <label for="postal_code">Code postal : * </label>
                     <input type="text" class="form-control" name="postal_code" id="postal_code" value='<?php echo $post['postal_code'] ?>'  pattern="\d{5}" data-bouncer-message="Le code postal n'est pas valide" required>
                 </div>
             </div>
             <div class="form-group my-2">
-                <label for="budget">Votre budget :</label>
+                <label for="budget">Votre budget : * </label>
                 <input type="number" class="form-control" name="budget" id="budget" value='<?php echo $post['budget'] ?>' required>
             </div>
             <div class="form-group my-2">
-                <label for="title">Choisir un titre pour votre annonce :</label>
+                <label for="title">Choisir un titre pour votre annonce : * </label>
                 <input type="text" class="form-control" name="title" id="title" value="<?php echo $post['title'] ?>" maxlength="100" required>
             </div>
             <div class="form-group my-2">
-                <label for="content">Decriver votre problème : </label>
+                <label for="content">Decriver votre problème : * </label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control" maxlength="2500" required><?php echo $post['content'] ?></textarea>
             </div>
 
@@ -52,7 +54,7 @@
                         <div class="dropzone-group my-4 mx-xl-4 col-12 col-lg-5 p-0">
                             <input type="file" name="image_<?php echo $count ?>" id="image_<?php echo $count ?>" class='dropzone'>
                             <div class="dropzone-layer">
-                                <p class='font-weight-bold'>cliquer pour ajouter une image</p>
+                                <p>cliquer pour ajouter une image</p>
                             </div>
                         </div>
                     <?php endfor; ?>

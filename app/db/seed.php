@@ -86,7 +86,7 @@ for ($count = 0; $count < 100; $count++) {
         $title = "Super titre $count";
         Post::create(
             $connection,
-            ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lon'],
+            ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
             array(
                 $random_user_id,
                 $random_breakdown_category_index,

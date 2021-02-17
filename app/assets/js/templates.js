@@ -15,7 +15,7 @@ const getPostTemplate = ({
   breakdown_category_name,
   postal_code,
   city,
-  user_name,
+  username,
   user_id,
   created_at,
   cover_image,
@@ -38,7 +38,7 @@ const getPostTemplate = ({
         <div class="row d-none d-lg-block">
             <div class="d-flex align-items-center w-100">
                 <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
-                <a class="font-italic m-2" href="/users/${user_id}">${user_name}</a>
+                <a class="font-italic m-2" href="${ROOT_PATH}/users/${user_id}">${username}</a>
             </div>
         </div>
         <div class="row">
@@ -99,11 +99,11 @@ const getOfferTemplate = ({
   };
   const innerHTML = `
     <div class="row my-2">
-        <div class="col-12 col-xl-4 d-flex align-items-center my-2">
-            <h5 class="font-weight-bold">Objet:</h5>
+        <div class="col-12 col-xl-8 d-flex align-items-center my-2">
+            <h5 class="font-weight-bold">Objet : </h5>
             <h5 class="font-weight-bold">${object}</h5>
         </div>
-        <div class="col-12 col-xl-8 d-flex align-items-center justify-content-xl-end my-2">
+        <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
             <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
             <a href="${
               ROOT_PATH + "/users/" + user_id
@@ -116,7 +116,7 @@ const getOfferTemplate = ({
             <p class="mb-0">${content}</p>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-            <p class="font-weight-bold text-end mb-0">Montant proposé:${amount} &euro;</p>
+            <p class="font-weight-bold text-end mb-0">Montant proposé : ${amount} &euro;</p>
         </div>
     </div>
     <div class="row d-flex justify-content-end my-2">

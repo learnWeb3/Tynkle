@@ -1,13 +1,5 @@
 import { ROOT_PATH, makeOffers, sendmessage } from "./API_CLIENT/index.js";
 
-const options = {
-  max_value: 5,
-  step_size: 0.5,
-  initial_value: 0,
-  cursor: "default",
-  readonly: true,
-};
-
 const initMap = (lat, lng) => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat, lng },
@@ -19,15 +11,17 @@ const initMap = (lat, lng) => {
   });
 };
 
-const handleNewMessage = () =>
-  {
-    const modalBody = document.querySelector("#new-message .modal-body");
-    const sendButton = document.querySelector(
-      "#new-message .modal-footer .btn.btn-success"
-    );
-    const form = document.querySelector("#new-message-form")
-    const input = document.querySelector("#new-message-form #content")
-    form.addEventListener("submit", async function (event) {
+const handleNewMessage = () => {
+  const modalBody = document.querySelector("#new-message .modal-body");
+  const sendButton = document.querySelector(
+    "#new-message .modal-footer .btn.btn-success"
+  );
+  const form = document.querySelector("#new-message-form");
+  const formButtonSubmit = document.querySelector(
+    "button#new-message-form-submit"
+  );
+  const input = document.querySelector("#new-message-form #content");
+  formButtonSubmit.addEventListener("click", async function (event) {
     event.preventDefault();
     const subscribers = [form.dataset.idauthor, form.dataset.iduser];
     const content = input.value;
@@ -58,17 +52,20 @@ const handleNewMessage = () =>
       console.error(responseData);
     }
   });
-}
+};
 
-const handleSubmit = () => {
+const handleNewOffer = () => {
   const sendButton = document.querySelector(
-        "#new-offer .modal-footer .btn.btn-success"
-      );
-  const modalBody = document.querySelector("#new-offer .modal-body")
-  const form = document.querySelector("#new-offer-form")
+    "#new-offer .modal-footer .btn.btn-success"
+  );
+  const modalBody = document.querySelector("#new-offer .modal-body");
+  const form = document.querySelector("#new-offer-form");
+  const formButtonSubmit = document.querySelector(
+    "button#new-offer-form-submit"
+  );
   const id_post = form.dataset.idpost;
   const id_user = form.dataset.iduser;
-  form.addEventListener("submit", async function (event) {
+  formButtonSubmit.addEventListener("click", async function (event) {
     event.preventDefault();
     if (id_user) {
       let data = {};
@@ -106,11 +103,23 @@ const handleSubmit = () => {
 };
 
 
+// init js-rater library
+const options = {
+  max_value: 5,
+  step_size: 0.5,
+  initial_value: 0,
+  cursor: "default",
+  readonly: true,
+};
 
 $(".rating").rate(options);
+
+// parsing lat lon
 const lat = parseInt(document.querySelector("#map").dataset.lat);
 const lng = parseInt(document.querySelector("#map").dataset.lon);
+// displaying map centered on lat/lon
 initMap(lat, lng);
-
+// listening click on send buttons
 handleNewMessage();
-handleSubmit();
+handleNewOffer();
+

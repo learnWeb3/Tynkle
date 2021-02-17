@@ -31,7 +31,7 @@ class SessionsController extends ApplicationController
             'new',
             array(
                 'title' => 'Tynkle: Se connecter',
-                'description' => 'Tynkle: De retour parmis nous ?',
+                'description' => 'Tynkle: De retour parmi nous ?',
                 'style_file_name' => 'signin',
             )
         );

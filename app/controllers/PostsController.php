@@ -19,7 +19,7 @@ class PostsController extends ApplicationController
                 try {
                     $post = Post::create(
                         $this->connection,
-                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
                         array(
                             $this->current_user->id,
                             $_POST['id_breakdown_category'],
@@ -30,6 +30,8 @@ class PostsController extends ApplicationController
                             $_POST['budget'],
                             $_POST['city'],
                             $_POST['postal_code'],
+                            $_POST['lat'],
+                            $_POST['lng'],
                         ),
                         $_POST,
                         [
@@ -39,6 +41,8 @@ class PostsController extends ApplicationController
                             "budget" => 'required',
                             "city" => 'required',
                             "postal_code" => 'required',
+                            "lat" => 'required',
+                            "lng" => 'required',
                         ]
                     )[0];
                 } catch (ModelException $e) {
@@ -128,13 +132,27 @@ class PostsController extends ApplicationController
     public function index()
     {
         if (isset($_GET['ajax'])) {
-            if (isset($_GET['breakdown_categories'])) {
-                $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
-            } else {
-                $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+            if ($this->route_name === 'index_post_geosearch') {
+                if (isset($_GET['lat'], $_GET['lng'], $_GET['distance'])) {
+                    if (isset($_GET['breakdown_categories'])) {
+                        $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
+                    } else {
+                        $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance']);
+                    }
+                    echo json_encode($posts);
+                    die();
+                } else {
+                    die(http_response_code(422));
+                }
+            } else  {
+                if (isset($_GET['breakdown_categories'])) {
+                    $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
+                } else {
+                    $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+                }
+                echo json_encode($posts);
+                die();
             }
-            echo json_encode($posts);
-            die();
         } else {
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
@@ -159,6 +177,8 @@ class PostsController extends ApplicationController
     {
         if (isset($this->post)) {
             $post_data = $this->post->getDetails($this->connection);
+            $author = new User($post_data['user_id']);
+            $author_data = $author->getDetails($this->connection);
             $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);
             $this->render(
                 'show',
@@ -168,6 +188,7 @@ class PostsController extends ApplicationController
                     'style_file_name' => 'offer',
                     'post' => $post_data,
                     'similar_posts' => $similar_posts['data'],
+                    'author'=>$author_data
                 )
             );
         } else {
@@ -216,8 +237,8 @@ class PostsController extends ApplicationController
             if (!empty($post)) {
                 if (in_array($this->asked_method, ['edit', 'update', 'destroy'])) {
                     if (isset($this->current_user)) {
-                        if ($this->current_user->id === $post[0]['id']) {
-                            $this->post = new Post($post[0]['id']);
+                        if ($this->current_user->id === $post[0]['id_user']) {
+                            $this->post = new Post($post[0]['id_user']);
                         } else {
                             $this->handleError(403);
                         }

@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/rater.js/rater.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_JS_MAPS_API_KEY ?>"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>"></script>
 </head>
 
 <body class='bg-light-grey'>
@@ -40,6 +40,17 @@
 		time: /(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])/,
 		month: /(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2]))/
 	},
+		customValidations: {
+					valueMismatch: function (field) {
+
+						var selector = field.getAttribute('data-bouncer-match');
+						if (!selector) return false;
+						var otherField = field.form.querySelector(selector);
+						if (!otherField) return false;
+						return otherField.value !== field.value;
+
+					}
+				},
             messages: {
 		missingValue: {
 			checkbox: 'Ce champ est obligatoire.',
@@ -48,6 +59,9 @@
 			'select-multiple': 'Ce champ est obligatoire.',
 			default: 'Ce champ est obligatoire.'
 		},
+		valueMismatch: function (field) {
+						var customMessage = field.getAttribute('data-bouncer-mismatch-message');
+						return customMessage ? customMessage : 'Les champs ne sont pas identiques'},
 		patternMismatch: {
 			email: 'Veuillez entrer une adresse email valide',
 			url: 'Veuillez entrer un url valide',

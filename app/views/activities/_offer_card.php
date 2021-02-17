@@ -1,10 +1,10 @@
 <div class="card col-12 col-xl-8 shadow p-4 my-4" id="offer-<?php echo $offer['id']  ?>">
     <div class="row my-2">
-        <div class="col-12 col-xl-4 d-flex align-items-center my-2">
+        <div class="col-12 col-xl-8 d-flex align-items-center my-2">
             <h5 class="font-weight-bold">Objet:</h5>
             <h5 class="font-weight-bold mx-2"> <?php echo $offer['object'] ?></h5>
         </div>
-        <div class="col-12 col-xl-8 d-flex align-items-center justify-content-xl-end my-2">
+        <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
             <img src="<?php echo ABSOLUTE_ASSET_PATH . "/partials/publication_card/img/avatar_placeholder.svg" ?>" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
             <p class="font-weight-bold my-2">Martin Dupont</p>
         </div>
@@ -19,7 +19,7 @@
             <p class="mb-0"> <?php echo $offer['content'] ?></p>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-            <p class="font-weight-bold text-end mb-0">Montant proposé: <?php echo $offer['amount'] ?> &euro;</p>
+            <p class="font-weight-bold text-end mb-0">Montant proposé : <?php echo $offer['amount'] ?> &euro;</p>
         </div>
     </div>
     <div class="row d-flex justify-content-end my-2">

@@ -25,8 +25,10 @@
                 <small class="m-2 mb-0">Posté le <?php echo htmlspecialchars($post['created_at']) ?></small>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid">
-                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid">
+            <?php if ($post['user_id'] === $current_user): ?>
+                    <a href="<?php echo ROOT_PATH . "/posts/" . $post['id'] . "/destroy" ?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid"></a>
+                    <a href="<?php echo ROOT_PATH . "/posts/" . $post['id'] . "/edit" ?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid"></a>
+                <?php endif;?>
             </div>
         </div>
 

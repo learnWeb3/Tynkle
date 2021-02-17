@@ -1,4 +1,4 @@
-<div class="card card-publication col-12 col-lg-6 shadow p-4 my-4" id="post-<?php echo $post['id']  ?>">
+<div class="card card-publication col-12 col-lg-6 shadow p-4 my-4" id="post-<?php echo $post['id'] ?>">
     <img src="<?php echo htmlspecialchars($post['cover_image']) ?>" height="450px" alt="" class="card-img-top">
     <div class="card-body">
         <div class="row">
@@ -16,7 +16,7 @@
         <div class="row d-none d-lg-block">
             <div class="d-flex align-items-center w-100">
                 <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/avatar_placeholder.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
-                <a class="font-italic m-2" href="/users/<?php echo $post['user_id'] ?>"><?php echo htmlspecialchars($post['username']) ?></a>
+                <a class="font-italic m-2" href="<?php echo ROOT_PATH ."/users/". $post['user_id'] ?>"><?php echo htmlspecialchars($post['username']) ?></a>
             </div>
         </div>
         <div class="row">
@@ -25,8 +25,10 @@
                 <small class="m-2 mb-0">Posté le <?php echo htmlspecialchars($post['created_at']) ?></small>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid">
-                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid">
+                <?php if ($post['user_id'] === $current_user): ?>
+                    <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/destroy" ?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid"></a>
+                    <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/edit" ?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid"></a>
+                <?php endif; ?>
             </div>
         </div>
 

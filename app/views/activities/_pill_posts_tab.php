@@ -2,11 +2,11 @@
 <div class="d-flex flex-wrap w-100 align-self-start px-2 py-4">
         <div class="form-check form-check-inline m-2">
             <input data-filterType="posts" class="form-check-input" type="radio" name="posts_filter" id="posts_filter_all" value="all" checked>
-            <label class="form-check-label" for="posts_filter_all">toutes</label>
+            <label class="form-check-label" for="posts_filter_all">Toutes</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="posts" class="form-check-input" type="radio" name="posts_filter" id="posts_filter_current" value="current">
-            <label class="form-check-label" for="posts_filter_current">En cours</label>
+            <label class="form-check-label" for="posts_filter_current">En ligne</label>
         </div>
         <div class="form-check form-check-inline m-2">
             <input data-filterType="posts" class="form-check-input" type="radio" name="posts_filter" id="posts_filter_old" value="old">

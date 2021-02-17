@@ -9,17 +9,19 @@
             <a class="nav-link font-weight-bold" href="#personnal_informations">Informations personnelles</a>
         </li>
 
+        <?php if ($user['is_helper']): ?>
         <li class="nav-item dropdown d-flex align-items-center w-100 my-2">
             <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/skills.svg" height="32" width="32" alt="skills">
             <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="skills-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Compétences
             </a>
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="skills-dropdown">
-                <?php foreach ($platforms as $index => $platform) : ?>
+                <?php foreach ($platforms as $index => $platform): ?>
                     <li class="dropdown-item"><a href="#platform-<?php echo $platform['id'] ?>">Compétences : <?php echo $platform['name'] ?></a></li>
-                <?php endforeach; ?>
+                <?php endforeach;?>
             </ul>
         </li>
+        <?php endif?>
     </ul>
     <ul class="nav flex-column bg-white shadow p-4 rounded">
         <li class="nav-item d-flex align-items-center w-100 my-2">
@@ -31,5 +33,4 @@
             <a class="nav-link active font-weight-bold" href="<?php echo ROOT_PATH . '/' ?>">Accueil</a>
         </li>
     </ul>
-
 </nav>
