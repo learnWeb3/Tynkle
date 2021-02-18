@@ -1,6 +1,6 @@
 <main class="d-flex bg-computer" style='min-height:100vh;'>
 
-    <?php require_once './app/views/users/_edit_nav_menu.php' ?>
+    <?php require_once './app/views/users/_edit_nav_menu.php'?>
 
     <div class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-light p-4" style="min-height:100vh; margin-top:3.5rem">
 
@@ -27,23 +27,27 @@
 
                 <div class="form-group my-2 d-flex col-12">
                     <div class="col-4">
-                        <label>Devenir également Helper ?</label>
+                    <?php if ($user['is_helper']): ?>
+                        <label style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Vous pouvez également obtenir de l'aide de la communauté".>Devenir également Helper ?</label>
+                        <?php else: ?>
+                            <label style="cursor: help;" data-placement="top" data-toggle="tooltip" title="Vous pouvez également partager vos compétences".>Devenir également Helper ?</label>
+                        <?php endif;?>
                     </div>
                     <div class="col-6">
                         <div class="form-check form-check-inline">
-                            <?php if ($user['is_helper']) : ?>
+                            <?php if ($user['is_helper']): ?>
                                 <input class="form-check-input" type="radio" name="is_helper" id="is_helper_1" value="1" checked>
-                            <?php else : ?>
+                            <?php else: ?>
                                 <input class="form-check-input" type="radio" name="is_helper" id="is_helper_1" value="1">
-                            <?php endif; ?>
+                            <?php endif;?>
                             <label class="form-check-label" for="is_helper_1">oui</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <?php if (!$user['is_helper']) : ?>
+                            <?php if (!$user['is_helper']): ?>
                                 <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="0" checked>
-                            <?php else : ?>
+                            <?php else: ?>
                                 <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="1">
-                            <?php endif; ?>
+                            <?php endif;?>
                             <label class="form-check-label" for="is_helper_0">non</label>
                         </div>
                     </div>
@@ -88,51 +92,51 @@
             </form>
         </section>
 
-        <?php if ($user['is_helper']) : ?>
+        <?php if ($user['is_helper']): ?>
         <div id="skills" class="w-100 d-flex align-items-center anchor" style="min-height:95vh">
             <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>" class="w-100 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Compétences</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
-                <?php foreach ($platforms as $i => $platform) : ?>
+                <?php foreach ($platforms as $i => $platform): ?>
                     <h4 class="font-weight-bold anchor" id="platform-<?php echo $platform['id'] ?>"><?php echo $platform['name'] ?></h4>
-                    <?php foreach ($platform['breakdown_categories'] as $index => $breakdown_category_skill) : ?>
+                    <?php foreach ($platform['breakdown_categories'] as $index => $breakdown_category_skill): ?>
                         <h5><?php echo $breakdown_category_skill['name'] ?></h5>
                         <div class="row">
                             <ul class="col-12">
-                                <?php foreach ($breakdown_category_skill['skills'] as $index => $skill) : ?>
+                                <?php foreach ($breakdown_category_skill['skills'] as $index => $skill): ?>
                                     <li class="row d-flex align-items-start justify-content-between">
                                         <div class="col-8">
                                             <p class="mb-0"><?php echo $skill['name'] ?></p>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-check form-check-inline">
-                                                <?php if ($skill['is_owned']) : ?>
+                                                <?php if ($skill['is_owned']): ?>
                                                     <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" checked id="yes_<?php echo $skill['id'] ?>" value="1">
-                                                <?php else : ?>
+                                                <?php else: ?>
                                                     <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" id="yes_<?php echo $skill['id'] ?>" value="1">
-                                                <?php endif; ?>
+                                                <?php endif;?>
                                                 <label class="form-check-label" for="yes_<?php echo $skill['id'] ?>">oui </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <?php if (!$skill['is_owned']) : ?>
+                                                <?php if (!$skill['is_owned']): ?>
                                                     <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" checked id="no_<?php echo $skill['id'] ?>" value="0">
-                                                <?php else : ?>
+                                                <?php else: ?>
                                                     <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>" id="no_<?php echo $skill['id'] ?>" value="0">
-                                                <?php endif; ?>
+                                                <?php endif;?>
 
                                                 <label class="form-check-label" for="no_<?php echo $skill['id'] ?>">non</label>
                                             </div>
                                         </div>
                                     </li>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </ul>
                         </div>
-                    <?php endforeach; ?>
-                <?php endforeach; ?>
+                    <?php endforeach;?>
+                <?php endforeach;?>
                 <button type="submit" class='btn btn-lg btn-primary col-12 col-lg-4 my-2'>VALIDER</button>
             </form>
         </div>
 
-       <?php endif; ?>
+       <?php endif;?>
     </div>
 </main>
