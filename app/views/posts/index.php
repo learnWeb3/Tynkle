@@ -1,8 +1,7 @@
 <main class="d-flex bg-map" style='min-height:100vh;margin-top:3rem;'>
     <div class='bg-computer d-flex' style="min-height: 100vh;width:100vw">
         <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
-
-            <div class="container bg-white w-100 shadow p-4" style="margin-top: 15%;">
+            <div class="container bg-white w-100 shadow p-4 d-block overflow-auto" style="margin-top: 15%;">
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>
                 <hr>
                 <form action="" method="GET" class="bg-light">
@@ -34,7 +33,6 @@
                         <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
                     </div>
-
                     <div class="form-group my-2">
                         <select name="search_radius" id="search_radius" class="col-12">
                         <option value="10">10 km</option>
@@ -47,7 +45,7 @@
                             <option value="500">500 km</option>
                         </select>
                     </div>
-                    <button class="btn btn-brand active" id="geosearch">FILTRER MA RECHERCHE</button>
+                    <button class="btn btn-brand active mt-2 mb-4" id="geosearch">FILTRER MA RECHERCHE</button>
                 </form>
             </div>
 
