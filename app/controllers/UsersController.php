@@ -1,4 +1,5 @@
 <?php
+
 class UsersController extends ApplicationController
 {
 
@@ -213,4 +214,14 @@ class UsersController extends ApplicationController
             !isset($this->current_user) && die($this->handleError(403));
         }
     }
+
+    public function google_auth(){
+      try {
+        User::googleAuthenticate($this->connection);
+      } catch (\Throwable $th) {
+          var_dump($th);
+         $this->handleError(500);
+      }
+    }
+      
 }

@@ -4,7 +4,8 @@
         "fzaninotto/faker": "^1.9",
         "google/auth": "^1.14",
         "rakit/validation": "^1.4",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "google/apiclient": "^2.9"
     },
     "autoload": {
         "classmap": ["./app/models/", "./app/controllers/", "./app/services/", "./app/helpers/"]

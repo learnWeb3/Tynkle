@@ -13,6 +13,7 @@ $routes = array(
     array('POST', ROOT_PATH . '/users/[:id]', 'users#update', 'update_user'),
     array('POST', ROOT_PATH . '/users/[:user_id]/skills', 'skills#create', 'create_user_skills'),
     array('DELETE', ROOT_PATH . '/users/[:username]', 'users#destroy', 'destroy_user'),
+    array('GET', ROOT_PATH . '/register/callback', 'users#google_auth', 'google_auth'),
     // '/posts'
     array('GET', ROOT_PATH . '/posts', 'posts#index', 'index_post'),
     array('GET', ROOT_PATH . '/posts/geosearch', 'posts#index', 'index_post_geosearch'),

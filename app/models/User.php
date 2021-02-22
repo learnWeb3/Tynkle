@@ -7,6 +7,42 @@ class User extends Application
         $this->id = $id;
     }
 
+    public static function googleAuthenticate(PDO $connection)
+    {
+        $client = new Google\Client();
+        $client->setAuthConfig('./app/config/google_auth.json');
+        $client->setScopes('email');
+        $redirect_uri = 'http://' . $_SERVER['SERVER_NAME'] . ROOT_PATH . '/register/callback';
+        $client->setRedirectUri($redirect_uri);
+        if (isset($_GET['code'])) {
+            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+            $client->setAccessToken($token);
+            if ($client->getAccessToken()) {
+                //session_destroy();
+                $token = $client->getAccessToken();
+                $data = $client->verifyIdToken();
+                if ($data['email']) {
+                    $potential_user = User::where($connection, 'email', $data['email'])->fetchAll(PDO::FETCH_ASSOC);
+                    if (!empty($potential_user)) {
+                        $_SESSION['current_user'] = $potential_user[0]['id'];
+                        header('location:'.ROOT_PATH);
+                    } else {
+                        User::create($connection, ['email','username', 'password'], [$data['email'],$data['email'],'foobar']);
+                        header('location:'.ROOT_PATH.'/signin');
+                    }
+
+                } else {
+                    throw (new Exception("Erreure lors de l'authentification Google"));
+                }
+            } else {
+                throw (new Exception("Erreure lors de l'authentification Google"));
+            }
+        } else {
+            $auth_url = $client->createAuthUrl();
+            header('location:' . $auth_url);
+        }
+    }
+
     public static function signIn(PDO $connection, string $login, string $password): void
     {
         $request_body = 'SELECT * FROM users WHERE email=? OR username=?';
@@ -362,12 +398,12 @@ class User extends Application
     public function getReviews(PDO $connection)
     {
 
-        $request_body = "SELECT 
+        $request_body = "SELECT
         reviews.*,
         users.username as username,
         users.id as user_id
-        FROM reviews 
-        JOIN users ON reviews.id_reviewer = users.id 
+        FROM reviews
+        JOIN users ON reviews.id_reviewer = users.id
         WHERE reviews.id_reviewed = ?";
         return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
 
