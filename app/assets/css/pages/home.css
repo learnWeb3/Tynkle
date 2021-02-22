@@ -1,0 +1,89 @@
+main {
+  margin-top: 4rem;
+  position: relative;
+}
+
+nav.submenu {
+  background-color: rgba(55, 58, 60, 1);
+  min-height: 3.5rem;
+  position: fixed;
+  width: 100%;
+  top: 4rem;
+  z-index: 1000;
+  align-items: center;
+}
+
+nav.submenu a.nav-link{
+  color: #FFF;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.wave-separator{
+  position: absolute;
+  bottom: -.25rem;
+  left:0;
+  fill: rgba(255, 255, 255);
+  width:100%
+}
+
+main section:nth-child(2) {
+  min-height: 100vh;
+  background-color: rgba(255, 255, 255,1);
+}
+
+main section:nth-child(4), main section:nth-child(6) {
+  min-height: 100vh;
+  background-color:rgba(255, 255, 255, 1);
+  color: #000
+}
+
+main section:nth-child(3), main section:nth-child(5), main section:nth-child(7) {
+  min-height: 150vh;
+  background-color: rgba(55, 58, 60, .66);
+  color: #FFF;
+}
+
+.icon-card {
+  height: 20rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-card p{
+  text-align: center;
+}
+
+.icon-circle{
+  height: 15rem;
+  width: 15rem;
+  border-radius: 50%;
+  background-color: #F3CF12;
+}
+
+.btn-yellow-tynkle{
+  border-radius: 2rem;
+  min-height: 3.5rem;
+  background-color: #F3CF12;
+  color: #000;
+}
+
+.bg-repair{
+  background-image: url(../../img/commons/repair.svg);
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+}
