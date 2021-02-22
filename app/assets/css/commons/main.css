@@ -197,3 +197,13 @@ background-position: center;
 input.error{
     border : 1px solid #FD0E35;
 }
+
+
+footer *{
+    color: white;
+    text-align: left;
+}
+
+footer ul{
+    list-style-type: none;
+}
