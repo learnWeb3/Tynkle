@@ -204,6 +204,14 @@ footer *{
     text-align: left;
 }
 
+footer a{
+    color: #cccccc;
+}
+
+footer a:hover{
+    color: #FFF;
+}
+
 footer ul{
     list-style-type: none;
 }

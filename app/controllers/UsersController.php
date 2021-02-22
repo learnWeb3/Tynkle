@@ -183,13 +183,15 @@ class UsersController extends ApplicationController
                     $user = new User($user_data['id']);
                     $posts = $user->getPosts($this->connection);
                     $reviews = $user->getReviews($this->connection);
+                    $platforms =  $user->getUserSkill($this->connection);
                     $this->render('show', array(
                         'title' => "Tynkle: Profil de ".$user_data['username'] ,
                         'description' => 'Tynkle: voir le profil de '.$user_data['username'],
                         'style_file_name' => 'user',
                         'user' => $user_data,
                         'posts'=>$posts, 
-                        "reviews"=>$reviews
+                        "reviews"=>$reviews,
+                        'platforms' => $platforms,
                     ));
                 } catch (\Throwable $th) {
                     $this->handleError(500);

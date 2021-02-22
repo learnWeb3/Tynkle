@@ -6,5 +6,6 @@ const options = {
     cursor: "default",
     readonly: true,
   };
+
   
 $(".rating").rate(options);

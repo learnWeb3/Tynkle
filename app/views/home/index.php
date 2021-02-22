@@ -6,7 +6,7 @@
             <div class="col-12 col-lg-6 d-flex flex-column justify-content-center">
                 <h1><b>Tynkle,</b> LA première plateforme exclusivement dédiée à l'entraide informatique et multimédia
                 </h1>
-                <button class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-4">VOIR LES ANNONCES</button>
+                <a href="<?php echo ROOT_PATH."/posts" ?>" class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-4">VOIR LES ANNONCES</a>
             </div>
             <div class="d-none d-lg-block col-lg-6">
 
@@ -22,19 +22,19 @@
 
         <div class="row w-100 d-flex align-items-center justify-content-around my-4">
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fab fa-envira"></i></div>
                 <p class="font-weight-bold my-2">Ecologique</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-euro-sign"></i></div>
                 <p class="font-weight-bold my-2">Budget Maîtrisé</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-shipping-fast"></i></div>
                 <p class="font-weight-bold my-2">Intervention Rapide</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-users"></i></div>
                 <p class="font-weight-bold my-2">Large Choix</p>
             </div>
         </div>
@@ -70,15 +70,15 @@
         <h2 class="display-5 text-center">Comment ça marche ? <br> Ton problème, notre solution.</h2>
         <div class="row w-100 d-flex align-items-center justify-content-around my-4">
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-phone-volume"></i></div>
                 <p class="font-weight-bold my-2">Contact des Helpers</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x far fa-lightbulb"></i></div>
                 <p class="font-weight-bold my-2">Trouve ta solution</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x far fa-star"></i></div>
                 <p class="font-weight-bold my-2">Note ton intervention</p>
             </div>
         </div>
@@ -114,19 +114,19 @@
         <div class="row w-100 d-flex align-items-center justify-content-around my-4">
 
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-search-location"></i></div>
                 <p class="font-weight-bold my-2">Trouve des missions autour de chez toi</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-coins"></i></div>
                 <p class="font-weight-bold my-2">Diversifie tes revenus</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-globe-americas"></i></div>
                 <p class="font-weight-bold my-2">Travaille ou tu veux et quand tu veux</p>
             </div>
             <div class="icon-card">
-                <div class="icon-circle"></div>
+                <div class="icon-circle"><i class="fa-5x fas fa-users"></i></div>
                 <p class="font-weight-bold my-2">Fais partis d'une communauté de passionnés</p>
             </div>
 
