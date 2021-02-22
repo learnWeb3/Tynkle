@@ -8,7 +8,7 @@
         <form action="<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>" method="post" class="col-12 col-md-8 col-lg-6" enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group col-12 col-lg-6 my-2">
-                    <label for="id_platform">Plateforme de l'appareil : * </label>
+                    <label for="id_platform">Categorie de l'appareil : * </label>
                     <select name="id_platform" id="id_platform" class="form-control" required>
                         <?php foreach ($platforms as $platform) : ?>
                             <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
