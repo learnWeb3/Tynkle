@@ -46,69 +46,7 @@
         </div>
         <div class="col-12 d-flex flex-column my-4 p-4">
             <h2 class="font-weight-bold">Les compétences :</h2>
-            <?php foreach ($platforms as $i => $platform): ?>
-            <div class="accordion-flush card shadow-sm" id="accordionSkills">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="<?php echo "heading-".$i ?>">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="<?php echo "#collapse"."tynklePlatform".$i ?>" aria-expanded="true"
-                            aria-controls="<?php echo "#collapse-".$i ?>">
-                            <?php echo $platform['name'] ?></h4>
-                        </button>
-                    </h2>
-                    <div id="<?php echo "collapse"."tynklePlatform".$i ?>" class="accordion-collapse collapse"
-                        aria-labelledby="<?php echo "heading-".$i ?>" data-bs-parent="#accordionSkills">
-                        <div class="accordion-body">
-                            <?php foreach ($platform['breakdown_categories'] as $index => $breakdown_category_skill): ?>
-                            <h5><?php echo $breakdown_category_skill['name'] ?></h5>
-                            <div class="row">
-                                <ul class="col-12">
-                                    <?php foreach ($breakdown_category_skill['skills'] as $index => $skill): ?>
-                                    <li class="row d-flex align-items-start justify-content-between">
-                                        <div class="col-8">
-                                            <p class="mb-0"><?php echo $skill['name'] ?></p>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-check form-check-inline">
-                                                <?php if ($skill['is_owned']): ?>
-                                                <input class="form-check-input" type="radio"
-                                                    name="<?php echo $skill['id'] ?>" checked
-                                                    id="yes_<?php echo $skill['id'] ?>" value="1">
-                                                <?php else: ?>
-                                                <input class="form-check-input" type="radio"
-                                                    name="<?php echo $skill['id'] ?>"
-                                                    id="yes_<?php echo $skill['id'] ?>" value="1">
-                                                <?php endif;?>
-                                                <label class="form-check-label" for="yes_<?php echo $skill['id'] ?>">oui
-                                                </label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <?php if (!$skill['is_owned']): ?>
-                                                <input class="form-check-input" type="radio"
-                                                    name="<?php echo $skill['id'] ?>" checked
-                                                    id="no_<?php echo $skill['id'] ?>" value="0">
-                                                <?php else: ?>
-                                                <input class="form-check-input" type="radio"
-                                                    name="<?php echo $skill['id'] ?>" id="no_<?php echo $skill['id'] ?>"
-                                                    value="0">
-                                                <?php endif;?>
-
-                                                <label class="form-check-label"
-                                                    for="no_<?php echo $skill['id'] ?>">non</label>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <?php endforeach;?>
-                                </ul>
-                            </div>
-                            <?php endforeach;?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <?php endforeach;?>
-
+            <?php include '_public_profile_skills.php' ?>
         </div>
         <div class="col-12">
             <div class="p-4 rounded">
