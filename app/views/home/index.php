@@ -138,7 +138,7 @@
                 les annonces en cours, <br> proposer mes services aux personnes qui en ont besoin</h3>
 
         </div>
-        <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator.png" ?>"
+        <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator_dark.png" ?>"
             alt="wave separator">
 
     </section>

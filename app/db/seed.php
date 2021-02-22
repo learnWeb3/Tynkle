@@ -32,9 +32,9 @@ $platforms = Platform::all($connection, '/', 0, 100)['data'];
 
 $breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
 $breakdown_categories_informatique = ["Dépanner mon PC/ MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
-$breakdown_categories_reseau =  ["Installation box internet", "Connecter mes appareils", "Dépanner ma connection internet", "Aide à l'utilisation"];
+$breakdown_categories_reseau =  ["Installation box internet", "Connecter mes appareils", "Dépanner ma connexion internet", "Aide à l'utilisation"];
 $breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
-$breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma NintendosSwitch", "Autres consoles"];
+$breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma Nintendo Switch", "Autres consoles"];
 $breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
 
 $breakdown_categories = [$breakdown_categories_informatique, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
@@ -111,56 +111,56 @@ for ($count = 0; $count < 100; $count++) {
 
 
 $skills = [
-    //  "Dépanner mon PC/ MAC" => 
+     "Dépanner mon PC/ MAC" => 
     ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
-    //  "Faire évoluer mon matériel" =>
+     "Faire évoluer mon matériel" =>
     ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
-    // "Installer un logiciel" => 
+    "Installer un logiciel" => 
     ["Installation Système exploitation", "Installation logiciel"],
-    // "Aide à l'utilisation" => 
+    "Aide à l'utilisation" => 
     ["Cours/Aide à l'utilisation"],
-    // "Dépanner mon smartphone" => 
+    "Dépanner mon smartphone" => 
     ["Apple iOS", "Android", "Windows Phone"],
-    // "Depanner ma tablette" => 
+    "Depanner ma tablette" => 
     ["Apple iOS", "Android", "Windows Phone"],
-    // "Changer une pièce" => 
+    "Changer une pièce" => 
     ["Apple iOS", "Android", "Windows Phone"],
-    // "Aide à l'utilisation" => 
+    "Aide à l'utilisation" => 
     ["Apple iOS", "Android", "Windows Phone"],
-    // "Installation box internet" => 
+    "Installation box internet" => 
     ["Installation box"],
-    // "Connecter mes appareils" => 
+    "Connecter mes appareils" => 
     ["Configuration réseau"],
-    // "Dépanner ma connection internet" => 
+    "Dépanner ma connexion internet" => 
     ["Configuration réseau"],
-    // "Aide à l'utilisation" => 
+    "Aide à l'utilisation" => 
     ["Cours/Aide à l'utilisation"],
-    // "Installation gros/petit électroménager" => 
+    "Installation gros/petit électroménager" => 
     ["Installation (gros/petit)"],
-    // "Réparation / entretien petit électroménager" => 
+    "Réparation / entretien petit électroménager" => 
     ["Réparation/Entretien petit"],
-    // "Réparation / entretien gros électroménager" =>
+    "Réparation / entretien gros électroménager" =>
     ["Réparation/Entretien gros"],
-    // "Réparer / configurer ma playstation" => 
+    "Réparer / configurer ma playstation" => 
     ["Réparation", "Changer le stockage"],
-    // "Réparer / configurer ma xBox" => 
+    "Réparer / configurer ma xBox" => 
     ["Réparation", "Changer le stockage"],
-    // "Réparer / configurer ma Nintendo Switch" => 
+    "Réparer / configurer ma Nintendo Switch" => 
     ["Réparation", "Changer le stockage"],
-    // "Autres consoles" => 
+    "Autres consoles" => 
     ["Réparation", "Changer le stockage"],
-    // "Depanner/installer ma TV" => 
+    "Depanner/installer ma TV" => 
     ["Installation/Configuration TV", "Réparation TV"],
-    // "Depanner/installer mon système audio" => 
+    "Depanner/installer mon système audio" => 
     ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-    // "Depanner/installer mon lecteur vidéo" => 
+    "Depanner/installer mon lecteur vidéo" => 
     ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-    // "Aide à l'utilisation" => 
+    "Aide à l'utilisation" => 
     ["Cours/Aide à l'utilisation"],
 ];
-foreach ($skills as $index => $skill_batch) {
-    $id_breakdown_category = $index + 1;
-    foreach ($skill_batch as $skill) {
+foreach ($skills as $breakdown_category => $related_skills) {
+    $id_breakdown_category = BreakdownCategory::like($connection, 'name', $breakdown_category)->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+    foreach ($related_skills as $skill) {
         try {
             Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_breakdown_category]);
             echo "skill $skill has been created \n";

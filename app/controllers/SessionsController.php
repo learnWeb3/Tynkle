@@ -17,7 +17,7 @@ class SessionsController extends ApplicationController
                     'success'
                 );
                 $flash->storeInSession();
-                die(header('location: ' . ROOT_PATH . '/posts'));
+                die(header('location: ' . ROOT_PATH . '/'));
             } catch (\Throwable $th) {
                 die(header('location: ' . ROOT_PATH . '/signin'));
             }
