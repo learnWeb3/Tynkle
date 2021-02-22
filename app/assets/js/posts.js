@@ -36,8 +36,9 @@ const handleChangeSelect = async () => {
       } else {
         const p = document.createElement("p");
         p.classList.add("my-2");
-        p.innerHTML = "Veuillez selectionner une plateforme";
+        p.innerHTML = "Veuillez selectionner une catégorie d'appareil";
         breakdown_categories.appendChild(p);
+        fetchFilteredPosts()
       }
     });
 };
@@ -61,24 +62,26 @@ const breakDownCategoriesToParams = () => {
     : null;
 };
 
+const fetchFilteredPosts = async (el) =>{
+  const breakdown_categories = breakDownCategoriesToParams();
+  const endpoint = breakdown_categories
+    ? `/posts?${breakdown_categories}`
+    : "/posts?";
+  const { data, status } = await getFilteredContent(endpoint);
+  const postsContainer = document.querySelector("#posts-container");
+  postsContainer.dataset.nextPage = data.next;
+  postsContainer.innerHTML = "";
+  data?.data?.map((postData) =>
+    postsContainer.appendChild(getPostTemplate(postData))
+  );
+}
+
 const handleChangeCheckbox = () => {
   const inputs = Array.from(
     document.querySelectorAll("#breakdown_categories input")
   );
   inputs.map((input) => {
-    input.addEventListener("change", async function (el) {
-      const breakdown_categories = breakDownCategoriesToParams();
-      const endpoint = breakdown_categories
-        ? `/posts?${breakdown_categories}`
-        : "/posts";
-      const { data, status } = await getFilteredContent(endpoint);
-      const postsContainer = document.querySelector("#posts-container");
-      postsContainer.dataset.nextPage = data.next;
-      postsContainer.innerHTML = "";
-      data?.data?.map((postData) =>
-        postsContainer.appendChild(getPostTemplate(postData))
-      );
-    });
+    input.addEventListener("change", fetchFilteredPosts);
   });
 };
 

@@ -9,9 +9,9 @@
 
                     <div class='d-block overflow-auto px-2'>
                        <div class="form-group my-2">
-                        <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une plateforme : </label>
-                            <select name="id_platform" id="id_platform" class="form-control">
-                                <option value="0">Veuillez choisir une plateforme :</option>
+                        <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une catégorie : </label>
+                            <select name="id_platform" id="id_platform" class="col-12">
+                                <option value="0">Toutes</option>
                                 <?php foreach ($platforms as $platform): ?>
                                     <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
                                 <?php endforeach;?>
