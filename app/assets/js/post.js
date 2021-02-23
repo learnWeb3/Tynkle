@@ -12,7 +12,7 @@ const initMap = (lat, lng) => {
   });
 };
 
-const handleNewMessage = (current_user) => {
+export const handleNewMessage = (current_user) => {
   const modalBody = document.querySelector("#new-message .modal-body");
   const sendButton = document.querySelector(
     "#new-message .modal-footer .btn.btn-success"
