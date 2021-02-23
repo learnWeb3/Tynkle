@@ -35,18 +35,8 @@ a:hover {
     border-color: rgb(0, 0, 0);
 }
 
-@media screen and (min-width: 1200px) {
-    #sign-container {
-        min-height: 75vh;
-        overflow: auto;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    #sign-container {
-        min-height: 100vh;
-        margin-top: 3.5rem;
-    }
+#sign-container {
+    min-height: 100vh;
 }
 
 .display-6 {
@@ -161,7 +151,7 @@ a:hover {
 /* ALERTS */
 
 .alert {
-    top: 3.5rem;
+    top: 4rem;
     z-index: 500000;
     display: flex;
 }
@@ -225,4 +215,10 @@ footer a:hover {
 
 footer ul {
     list-style-type: none;
+}
+
+/* PADDING UTILITIES */
+
+.p-6{
+    padding: 3.5rem;
 }

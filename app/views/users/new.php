@@ -1,6 +1,6 @@
-<main class="d-flex flex-column justify-content-center bg-signup" style='min-height:100vh;margin-top:3rem'>
+<main class="d-flex flex-column justify-content-center bg-signup" style='min-height:100vh;'>
 
-    <section class="col-12 col-xl-4 offset-xl-1 d-flex flex-column align-items-center  p-4 rounded-3 bg-white" id='sign-container'>
+    <section class="col-12 col-xl-5 d-flex flex-column align-items-center justify-content-center p-6 rounded-3 bg-white" id='sign-container'>
         <form action="<?php echo ROOT_PATH . '/users' ?>" class="w-100 d-block overflow-auto" method="post">
             <h1 class="font-weight-bold">Rejoindre Tynkle</h1>
             <h5 class="my-4">Informations obligatoires *</h5>

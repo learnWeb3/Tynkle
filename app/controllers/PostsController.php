@@ -114,11 +114,12 @@ class PostsController extends ApplicationController
         if (isset($this->current_user)) {
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+            $page_data = Page::getDetails($this->connection, "posts#new");
             $this->render(
                 'new',
                 array(
-                    'title' => 'Tynkle: les annonces',
-                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
                     'style_file_name' => 'new_post',
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,
@@ -157,11 +158,12 @@ class PostsController extends ApplicationController
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
             $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+            $page_data = Page::getDetails($this->connection, "posts#index");
             $this->render(
                 'index',
                 array(
-                    'title' => 'Tynkle: les annonces',
-                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
                     'style_file_name' => '',
                     'posts' => $posts['data'],
                     'breakdown_categories' => $breakdown_categories,
@@ -176,6 +178,7 @@ class PostsController extends ApplicationController
     public function show()
     {
         if (isset($this->post)) {
+            $page_data = Page::getDetails($this->connection, "posts#show");
             $post_data = $this->post->getDetails($this->connection);
             $author = new User($post_data['user_id']);
             $author_data = $author->getDetails($this->connection);
@@ -183,8 +186,8 @@ class PostsController extends ApplicationController
             $this->render(
                 'show',
                 array(
-                    'title' => "Tynkle: " . $post_data['title'],
-                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
                     'style_file_name' => 'offer',
                     'post' => $post_data,
                     'similar_posts' => $similar_posts['data'],
@@ -202,11 +205,12 @@ class PostsController extends ApplicationController
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
             $post_data = $this->post->getDetails($this->connection);
+            $page_data = Page::getDetails($this->connection, "posts#edit");
             $this->render(
                 'edit',
                 array(
-                    'title' => "Tynkle: " . $post_data['title'],
-                    'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
                     'style_file_name' => 'new_post',
                     'post' => $post_data,
                     'breakdown_categories' => $breakdown_categories,

@@ -3,9 +3,9 @@
 class ChatsController extends ApplicationController
 {
 
- public function __construct(array $params,string $route_name, string $asked_method)
+    public function __construct(array $params, string $route_name, string $asked_method)
     {
-        parent::__construct($params,$route_name, $asked_method);
+        parent::__construct($params, $route_name, $asked_method);
         $this->beforeAction(["show", "update", "stream"]);
     }
 
@@ -14,11 +14,12 @@ class ChatsController extends ApplicationController
         if (isset($this->current_user)) {
             try {
                 $chats = $this->current_user->getChats($this->connection);
+                $page_data = Page::getDetails($this->connection, "chat#index");
                 $this->render(
                     'index',
                     array(
-                        'title' => 'Tynkle: les annonces',
-                        'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
                         'style_file_name' => '',
                         'chats' => $chats,
                     ),
@@ -37,14 +38,15 @@ class ChatsController extends ApplicationController
             try {
                 $messages = $this->chat->getMessages($this->connection);
                 $chat = $this->chat->getDetails($this->connection);
+                $page_data = Page::getDetails($this->connection, "chat#show");
                 $this->render(
                     'show',
                     array(
-                        'title' => 'Tynkle: les annonces',
-                        'description' => 'Tynkle: Retrouvez les demandes de dépannage',
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
                         'style_file_name' => 'chat',
                         'messages' => $messages,
-                        'chat' => $chat
+                        'chat' => $chat,
                     ),
                 );
             } catch (Throwable $th) {
@@ -55,12 +57,11 @@ class ChatsController extends ApplicationController
         }
     }
 
-
     public function create()
     {
         if (isset($this->current_user)) {
 
-            if (isset($this->json_params['subscribers'],  $this->json_params['content'])) {
+            if (isset($this->json_params['subscribers'], $this->json_params['content'])) {
                 try {
                     echo json_encode(Chat::sendMessage($this->connection, $this->json_params['content'], $this->json_params['subscribers'], $this->current_user->id));
                 } catch (Throwable $th) {
@@ -73,7 +74,6 @@ class ChatsController extends ApplicationController
             die(http_response_code(403));
         }
     }
-
 
     public function delete()
     {
@@ -92,7 +92,7 @@ class ChatsController extends ApplicationController
                 }
             } else if (isset($this->params['message_id'])) {
                 $message = Message::find($this->connection, $this->params['message_id'])->fetchAll(PDO::FETCH_ASSOC);
-                if (!empty($message)  && $message[0]['id_user'] === $this->current_user->id) {
+                if (!empty($message) && $message[0]['id_user'] === $this->current_user->id) {
                     try {
                         Message::delete($this->connection, [], 'id', $message[0]['id']);
                         die(http_response_code(204));
@@ -109,7 +109,6 @@ class ChatsController extends ApplicationController
             die(http_response_code(403));
         }
     }
-
 
     public function stream()
     {

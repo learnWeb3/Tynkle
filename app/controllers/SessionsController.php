@@ -33,6 +33,8 @@ class SessionsController extends ApplicationController
                 'title' => 'Tynkle: Se connecter',
                 'description' => 'Tynkle: De retour parmi nous ?',
                 'style_file_name' => 'signin',
+                'navbar_present'=>false,
+                'footer_present'=>false
             )
         );
     }

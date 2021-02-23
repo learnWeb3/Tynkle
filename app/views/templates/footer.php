@@ -4,17 +4,17 @@
         <div class="col d-flex flex-column align-items-center">
             <ul>
                 <li class="font-weight-bold mb-2">À propos de nous</li>
-                <li><a href="">L'équipe</a></li>
-                <li><a href="">Nous contacter</a></li>
+                <li><a href="<?php echo ROOT_PATH."/team" ?>">L'équipe</a></li>
+                <li><a href="<?php echo ROOT_PATH."/contact" ?>">Nous contacter</a></li>
             </ul>
 
         </div>
         <div class="col d-flex flex-column align-items-center">
             <ul>
                 <li class="font-weight-bold mb-2">Liens pratiques</li>
-                <li><a href="">S'inscrire</a></li>
-                <li><a href="">Se connecter</a></li>
-                <li><a href="">Les annonces</a></li>
+                <li><a href="<?php echo ROOT_PATH."/register" ?>">S'inscrire</a></li>
+                <li><a href="<?php echo ROOT_PATH."/signin" ?>">Se connecter</a></li>
+                <li><a href="<?php echo ROOT_PATH."/posts" ?>">Les annonces</a></li>
             </ul>
         </div>
         <div class="col d-flex flex-column align-items-center">

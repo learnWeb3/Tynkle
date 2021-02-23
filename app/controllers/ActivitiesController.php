@@ -93,11 +93,12 @@ class ActivitiesController extends ApplicationController
                     $posts = $this->current_user->getPosts($this->connection);
                     $offers = $this->current_user->getOffers($this->connection);
                     $asks = $this->current_user->getAsks($this->connection);
+                    $page_data = Page::getDetails($this->connection, "activity#index");
                     $this->render(
                         'index',
                         array(
-                            'title' => 'Tynkle: Mon activité',
-                            'description' => 'Tynkle: Voir mes demandes, offres et annonces',
+                            'title' => $page_data['title'],
+                            'description' => $page_data['description'],
                             'style_file_name' => '',
                             'posts' => $posts,
                             "offers" => $offers,
@@ -112,15 +113,6 @@ class ActivitiesController extends ApplicationController
         } else {
             $this->handleError(403);
         }
-    }
-
-    public function show()
-    {
-
-    }
-    public function destroy()
-    {
-
     }
 
 }
