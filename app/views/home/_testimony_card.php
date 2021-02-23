@@ -1,5 +1,5 @@
 
-<div class="card col-12 col-lg-3">
+<div data-aos="flip-left"  data-aos-duration="1000" class="card col-12 col-lg-3">
     <img src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" class="card-img-top">
     <div class="card-body">
         <p class="card-title font-weight-bold">Bobby</p>

@@ -45,4 +45,14 @@ class SessionsController extends ApplicationController
             die(http_response_code(500));
         }
     }
+
+    public function show()
+    {
+        if ($_SESSION['current_user']) {
+            echo json_encode(["current_user" => $_SESSION['current_user']]);
+            die();
+        } else {
+            die(http_response_code(204));
+        }
+    }
 }

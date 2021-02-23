@@ -15,6 +15,3 @@ document
     }
   });
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
