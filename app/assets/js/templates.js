@@ -8,10 +8,11 @@ const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
         </label>`.trim();
 };
 
-
-const getMessageTemplate = ({username, id_user, content, created_at }, current_user) => {
-  return (
-      `<div class="row">
+const getMessageTemplate = (
+  { username, id_user, content, created_at },
+  current_user
+) => {
+  return `<div class="row">
           <div class="col-1 d-flex flex-column justify-content-center">
               <img src="${ROOT_PATH}/app/assets/img/commons/avatar_placeholder.svg" height="48" width="48" alt="map pointer icon" class="img-fluid">
           </div>
@@ -24,10 +25,8 @@ const getMessageTemplate = ({username, id_user, content, created_at }, current_u
           <p>
               ${content}
           </p>
-      </div>`
-  ).trim()
-
-}
+      </div>`.trim();
+};
 
 const getPostTemplate = (
   {
@@ -53,7 +52,7 @@ const getPostTemplate = (
     </div>
     `.trim();
     } else {
-      return '';
+      return "";
     }
   };
   const innerHTML = `
@@ -193,5 +192,5 @@ export {
   getOfferTemplate,
   getAsktemplate,
   getBreakdownCategoriesCheckInputTemplate,
-  getMessageTemplate
+  getMessageTemplate,
 };
