@@ -9,7 +9,7 @@
                 <h2 class="font-weight-bold">Information générales</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
-                    <label for="username">Adresse email *</label>
+                    <label for="username">Identifiant *</label>
                     <input type="text" name="username" id="username" class="form-control" placeholder="prenom.nom" value="<?php echo $user['username'] ?>">
                 </div>
                 <div class="form-group my-2">

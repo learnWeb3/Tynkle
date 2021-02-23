@@ -34,7 +34,8 @@ section {
   bottom: -.25rem;
   left:0;
   fill: rgba(255, 255, 255);
-  width:100%
+  width:100%;
+  fill-opacity: .75;
 }
 
 main section:nth-child(2) {
@@ -50,7 +51,7 @@ main section:nth-child(4), main section:nth-child(6) {
 
 main section:nth-child(3), main section:nth-child(5), main section:nth-child(7) {
   min-height: 150vh;
-  background-color: rgba(55, 58, 60, .66);
+  background-color: rgba(55, 58, 60, .75);
   color: #FFF;
 }
 

@@ -46,7 +46,9 @@ class Chat extends Application
         messages.ressource_link as message_ressource_link,
         messages.created_at as message_created_at,
         messages.updated_at as message_updated_at,users.id as user_id,
-        users.firstname as user_firstname,users.lastname as user_lastname,
+        users.firstname as user_firstname,
+        users.lastname as user_lastname,
+        users.username as user_username,
         users.email as user_email,
         users.avatar as user_avatar
         FROM messages

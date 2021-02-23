@@ -4,6 +4,7 @@ import {
   getFilteredContent,
   ROOT_PATH,
 } from "./API_CLIENT/index.js";
+import { current_user, setCurrentUserId } from "./current_user.js";
 import { getLocation } from "./geolocation.js";
 import {
   getPostTemplate,
@@ -38,7 +39,7 @@ const handleChangeSelect = async () => {
         p.classList.add("my-2");
         p.innerHTML = "Veuillez selectionner une catégorie d'appareil";
         breakdown_categories.appendChild(p);
-        fetchFilteredPosts()
+        fetchFilteredPosts();
       }
     });
 };
@@ -62,7 +63,7 @@ const breakDownCategoriesToParams = () => {
     : null;
 };
 
-const fetchFilteredPosts = async (el) =>{
+const fetchFilteredPosts = async (el) => {
   const breakdown_categories = breakDownCategoriesToParams();
   const endpoint = breakdown_categories
     ? `/posts?${breakdown_categories}`
@@ -72,9 +73,9 @@ const fetchFilteredPosts = async (el) =>{
   postsContainer.dataset.nextPage = data.next;
   postsContainer.innerHTML = "";
   data?.data?.map((postData) =>
-    postsContainer.appendChild(getPostTemplate(postData))
+    postsContainer.appendChild(getPostTemplate(postData, current_user))
   );
-}
+};
 
 const handleChangeCheckbox = () => {
   const inputs = Array.from(
@@ -102,7 +103,7 @@ const geoSearch = () => {
       postsContainer.innerHTML = "";
       if (data.length > 0) {
         data.map((postData) =>
-          postsContainer.appendChild(getPostTemplate(postData))
+          postsContainer.appendChild(getPostTemplate(postData, current_user))
         );
       } else {
         postsContainer.innerHTML = `
@@ -129,10 +130,9 @@ const initObserver = () => {
 
   const appendFollowingPosts = (followingPosts) =>
     followingPosts.data.map((followingPost) => {
-      console.log(followingPost);
       document
         .querySelector("#posts-container")
-        .appendChild(getPostTemplate(followingPost));
+        .appendChild(getPostTemplate(followingPost, current_user));
     });
 
   function callback(entries) {
@@ -162,6 +162,11 @@ const initObserver = () => {
   init(".card-publication");
 };
 
+// getting current user
+setCurrentUserId(current_user);
+// listening for change event on select
 handleChangeSelect();
+// initializing intersection observer
 initObserver();
+// listening for browser geolocation user ask
 geoSearch();

@@ -120,12 +120,24 @@ a:hover {
     background-color: #4ABDED;
 }
 
-.bg-computer{
-    background-image: url(https://images.pexels.com/photos/257923/pexels-photo-257923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+.bg-computer, .bg-problem, .bg-community  {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-background-position: center;
+    background-position: center;
+    transition: .5s ease-in-out;
+}
+
+.bg-community {
+    background-image: url(https://images.pexels.com/photos/4021803/pexels-photo-4021803.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+}
+
+.bg-computer {
+    background-image: url(https://images.pexels.com/photos/257923/pexels-photo-257923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+}
+
+.bg-problem {
+    background-image: url(https://images.pexels.com/photos/3760607/pexels-photo-3760607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
 @media screen and (max-width: 992px) {
@@ -186,32 +198,31 @@ background-position: center;
     flex-direction: column;
 }
 
-.anchor{
+.anchor {
     padding-top: 5rem;
 }
 
-.error-message{
+.error-message {
     color: #FD0E35;
 }
 
-input.error{
-    border : 1px solid #FD0E35;
+input.error {
+    border: 1px solid #FD0E35;
 }
 
-
-footer *{
+footer * {
     color: white;
     text-align: left;
 }
 
-footer a{
+footer a {
     color: #cccccc;
 }
 
-footer a:hover{
+footer a:hover {
     color: #FFF;
 }
 
-footer ul{
+footer ul {
     list-style-type: none;
 }

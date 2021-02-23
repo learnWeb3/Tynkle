@@ -8,18 +8,54 @@ const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
         </label>`.trim();
 };
 
-const getPostTemplate = ({
-  id,
-  title,
-  platform_name,
-  breakdown_category_name,
-  postal_code,
-  city,
-  username,
-  user_id,
-  created_at,
-  cover_image,
-}) => {
+
+const getMessageTemplate = ({username, id_user, content, created_at }, current_user) => {
+  return (
+      `<div class="row">
+          <div class="col-1 d-flex flex-column justify-content-center">
+              <img src="${ROOT_PATH}/app/assets/img/commons/avatar_placeholder.svg" height="48" width="48" alt="map pointer icon" class="img-fluid">
+          </div>
+          <div class="col">
+              <p class="font-weight-bold mb-0">${username}</p>
+              <p class="font-italic text-muted mb-0">${created_at}</p>
+          </div>
+      </div>
+      <div class="row my-2">
+          <p>
+              ${content}
+          </p>
+      </div>`
+  ).trim()
+
+}
+
+const getPostTemplate = (
+  {
+    id,
+    title,
+    platform_name,
+    breakdown_category_name,
+    postal_code,
+    city,
+    username,
+    user_id,
+    created_at,
+    cover_image,
+  },
+  current_user
+) => {
+  const getAuthorActions = (user_id, current_user) => {
+    if (current_user.id === user_id) {
+      return `
+    <div class="col-6 d-flex justify-content-end">
+      <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid">
+      <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid">
+    </div>
+    `.trim();
+    } else {
+      return '';
+    }
+  };
   const innerHTML = `
     <img src="${cover_image}" height="450px" alt="" class="card-img-top">
     <div class="card-body">
@@ -46,10 +82,7 @@ const getPostTemplate = ({
                 <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/clock.svg" height="16" width="16" alt="edit publication" class="img-fluid mr-2">
                 <small class="m-2 mb-0">Posté le ${created_at}</small>
             </div>
-            <div class="col-6 d-flex justify-content-end">
-                <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid">
-                <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid">
-            </div>
+           ${getAuthorActions(user_id, current_user)}
         </div>
 
         <div class="row my-4">
@@ -160,4 +193,5 @@ export {
   getOfferTemplate,
   getAsktemplate,
   getBreakdownCategoriesCheckInputTemplate,
+  getMessageTemplate
 };

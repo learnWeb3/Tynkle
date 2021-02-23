@@ -18,17 +18,26 @@ class User extends Application
             $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
             $client->setAccessToken($token);
             if ($client->getAccessToken()) {
-                //session_destroy();
                 $token = $client->getAccessToken();
                 $data = $client->verifyIdToken();
                 if ($data['email']) {
                     $potential_user = User::where($connection, 'email', $data['email'])->fetchAll(PDO::FETCH_ASSOC);
                     if (!empty($potential_user)) {
                         $_SESSION['current_user'] = $potential_user[0]['id'];
-                        header('location:'.ROOT_PATH);
+                        $flash = new Flash(
+                            array("Connexion réussie"),
+                            'success'
+                        );
+                        $flash->storeInSession();
+                        die(header('location: ' . ROOT_PATH . '/'));
                     } else {
                         User::create($connection, ['email','username', 'password'], [$data['email'],$data['email'],'foobar']);
-                        header('location:'.ROOT_PATH.'/signin');
+                        $flash = new Flash(
+                            array("Compte crée avec succès, veuillez vous connecter"),
+                            'success'
+                        );
+                        $flash->storeInSession();
+                        die(header('location:' . ROOT_PATH . '/signin'));
                     }
 
                 } else {

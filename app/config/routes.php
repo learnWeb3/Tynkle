@@ -6,6 +6,7 @@ $routes = array(
     array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),
     //  '/users'
     array('GET', ROOT_PATH . '/users', 'users#index', 'index_user'),
+    array('GET', ROOT_PATH . '/users/current', 'sessions#show', 'current_user'),
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),
     array('GET', ROOT_PATH . '/profile', 'users#edit', 'edit_user'),
     array('GET', ROOT_PATH . '/users/[:id]', 'users#show', 'show_user'),

@@ -3,8 +3,8 @@ import {
   updateOffer,
   ROOT_PATH,
 } from "./API_CLIENT/index.js";
+import { current_user, setCurrentUserId } from "./current_user.js";
 import {
-  getAsktemplate,
   getNoResultTemplate,
   getOfferTemplate,
   getPostTemplate,
@@ -90,7 +90,7 @@ const handleRadioClick = async (event) => {
         // })
       } else if (currentElementDataType === "posts") {
         data.map((element) => {
-          let post = getPostTemplate(element);
+          let post = getPostTemplate(element, current_user);
           container.appendChild(post);
         });
       }
@@ -107,4 +107,7 @@ const handleEvents = () => {
   });
 };
 
+// getting current user
+setCurrentUserId(current_user);
+// handleEvents on the page 
 handleEvents();
