@@ -1,4 +1,5 @@
 <main class="bg-computer" style='min-height:100vh;padding-top:3rem'>
+<?php include '_new_message_modal.php'?>
     <section class="container-xl bg-light d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
         <div class="col-12">
             <div class="p-4 rounded">
@@ -46,7 +47,7 @@
         </div>
         <div class="col-12 d-flex flex-column my-4 p-4">
             <h2 class="font-weight-bold">Les compétences :</h2>
-            <?php include '_public_profile_skills.php' ?>
+            <?php include '_public_profile_skills.php'?>
         </div>
         <div class="col-12">
             <div class="p-4 rounded">
@@ -65,12 +66,12 @@
         <div class="row w-100 my-4">
             <div class="card shadow-sm p-4 d-flex flex-column">
 
-                <h2 class="font-weight-bold w-100 text-center my-4">Me contacter :</h2>
+                <h2 class="font-weight-bold w-100 text-center my-4">Contact :</h2>
 
                 <div class="row d-flex justify-content-around">
                     <?php if ($current_user): ?>
                     <button type="button" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2" data-bs-toggle="modal"
-                        data-bs-target="#new-offer">
+                        data-bs-target="#new-message">
                         POSER UNE QUESTION
                     </button>
                     <?php else: ?>

@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-block overflow-auto" style="min-height: 35vh">
-                <form action="" data-idAuthor="<?php echo $post['user_id'] ?>" class="form-lg" method="post" id="new-message-form">
+                <form action="" data-idAuthor="<?php echo $user['id'] ?>" class="form-lg" method="post" id="new-message-form">
                     <small>* champs obligatoires</small>
                     <div class="form-group my-2">
                         <label for="">Rediger votre message :</label>

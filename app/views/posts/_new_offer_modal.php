@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-block overflow-auto" style="min-height: 35vh">
-                    <form action="" data-idPost="<?php echo $post['id'] ?>" data-idUser="<?php echo $current_user ?>" class="form-lg" method="post" id="new-offer-form">
+                    <form action="" data-idPost="<?php echo $post['id'] ?>" class="form-lg" method="post" id="new-offer-form">
                         <small>* champs obligatoires</small>
                         <div class="form-group my-2">
                             <label for="amount">Montant de l'offre : </label>
