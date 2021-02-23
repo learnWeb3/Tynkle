@@ -1,5 +1,5 @@
-import { setCurrentUserId, current_user } from "./current_user";
-import { handleNewMessage } from "./post";
+import { setCurrentUserId, current_user } from "./current_user.js";
+import { handleNewMessage } from "./modal.js";
 
 // init js-rater library
 const options = {
