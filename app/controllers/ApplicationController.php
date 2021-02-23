@@ -9,7 +9,7 @@ class ApplicationController
     protected $asked_method;
     protected $route_name;
 
-    public  function __construct(array $params, string $route_name, string $asked_method)
+    public function __construct(array $params, string $route_name, string $asked_method)
     {
         $this->connection = Db::connect();
         $this->limit = isset($_GET['limit']) ? intval($_GET['limit']) : 10;
@@ -17,7 +17,7 @@ class ApplicationController
         $this->params = $params;
         $this->route_name = $route_name;
         $this->asked_method = $asked_method;
-        $this->json_params = !empty(file_get_contents('php://input')) ?  json_decode(file_get_contents('php://input'), true) : [];
+        $this->json_params = !empty(file_get_contents('php://input')) ? json_decode(file_get_contents('php://input'), true) : [];
         $this->beforeAll();
     }
 
@@ -26,12 +26,16 @@ class ApplicationController
         array $template_vars = array(
             'title' => "Tynkle: dépannage informatique entre particuliers",
             'description' => '',
-            'style_file_name' => ''
+            'style_file_name' => '',
         )
     ) {
-        $is_current_user_logged_in = isset($_SESSION['current_user']) ?  true : false;
+        $is_current_user_logged_in = isset($_SESSION['current_user']) ? true : false;
         $current_user = isset($_SESSION['current_user']) ? $_SESSION['current_user'] : null;
         extract($template_vars);
+        if (!isset($navbar_present, $footer_present)) {
+            $navbar_present = true;
+            $footer_present = true;
+        }
         ob_start();
         require_once './app/views/' . strtolower(str_replace('Controller', '', get_class($this))) . '/' . $template_name . '.php';
         $current_view = ob_get_clean();

@@ -5,6 +5,7 @@ $routes = array(
     array('POST', ROOT_PATH . '/login', 'sessions#create', 'create_session'),
     array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),
     //  '/users'
+    array('GET', ROOT_PATH . '/users/admin', 'admin#index', 'index_admin'),
     array('GET', ROOT_PATH . '/users', 'users#index', 'index_user'),
     array('GET', ROOT_PATH . '/users/current', 'sessions#show', 'current_user'),
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),
@@ -49,5 +50,8 @@ $routes = array(
     array('PUT', ROOT_PATH . '/offers/[i:id]', 'offers#update', 'offers_update'),
     array('POST', ROOT_PATH . '/offers', 'offers#create', 'offers_create'),
     // '/asks'
-    array('POST', ROOT_PATH . '/asks', 'asks#create', 'asks_create')
+    array('POST', ROOT_PATH . '/asks', 'asks#create', 'asks_create'),
+    // '/pages'
+    array('PUT', ROOT_PATH . '/pages/[i:id]', 'pages#update', 'page_update'),
+    array('POST', ROOT_PATH . '/pages/[i:id]', 'pages#update', 'page_update_background_image')
 );

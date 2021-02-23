@@ -34,6 +34,15 @@
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/rater.js/rater.min.js"></script>
     <!-- GOOGLE MAPS JS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>"></script>
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HHGYMQKXZN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HHGYMQKXZN');
+    </script>
     <!-- AOS LIBRARY -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <!-- BOUNCER LIBRARY -->
@@ -43,10 +52,14 @@
 
 <body class='bg-light-grey'>
 
-    <?php include_once 'navbar.php'?>
+    <?php if ($navbar_present): ?>
+        <?php include_once 'navbar.php'?>
+    <?php endif;?>
     <?php include_once '_flash.php'?>
     <?php echo $current_view ?>
-    <?php include_once 'footer.php'?>
+    <?php if ($footer_present): ?>
+        <?php include_once 'footer.php'?>
+    <?php endif;?>
 
     <!-- NAVBAR SCRIPTS -->
     <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/navbar.js' ?>"></script>

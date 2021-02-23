@@ -10,14 +10,19 @@ class HomeController extends ApplicationController
 
     public function index()
     {
-        $this->render(
-            'index',
-            array(
-                'title' => 'Bienvenue sur Tynkle',
-                'description' => 'Dépanner ou être aider en toute sérénité',
-                'style_file_name' => 'home',
-            ),
-        );
+        try {
+            $page_data = Page::getDetails($this->connection, "home#index");
+            $this->render(
+                'index',
+                array(
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
+                    'style_file_name' => 'home',
+                ),
+            );
+        } catch (\Throwable $th) {
+            $this->handleError(500);
+        }
     }
 
 }

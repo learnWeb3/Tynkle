@@ -145,34 +145,43 @@ class UsersController extends ApplicationController
     }
 
     function new () {
-        $this->render(
-            'new',
-            array(
-                'title' => "Tynkle: S'inscrire",
-                'description' => 'Tynkle: rejoindre la communauté ?',
-                'style_file_name' => 'signup',
-            )
-        );
+        try {
+            $page_data = Page::getDetails($this->connection, "users#new");
+            $this->render(
+                'new',
+                array(
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
+                    'style_file_name' => 'signup',
+                    'navbar_present' => false,
+                    'footer_present' => false,
+                )
+            );
+        } catch (\Throwable $th) {
+            var_dump($th);
+            $this->handleError(500);
+        }
     }
 
     public function edit()
     {
         if (isset($this->current_user)) {
-            $this->render('edit', array(
-                'title' => "Tynkle: Mon compte",
-                'description' => 'Tynkle: mon compte',
-                'style_file_name' => 'profile',
-                'user' => $this->current_user->getDetails($this->connection),
-                'platforms' => $this->current_user->getUserSkill($this->connection),
-            ));
+            try {
+                $page_data = Page::getDetails($this->connection, "users#edit");
+                $this->render('edit', array(
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
+                    'style_file_name' => 'profile',
+                    'user' => $this->current_user->getDetails($this->connection),
+                    'platforms' => $this->current_user->getUserSkill($this->connection),
+                ));
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
         } else {
             $this->handleError(403);
         }
 
-    }
-
-    public function index()
-    {
     }
 
     public function show()
@@ -180,18 +189,19 @@ class UsersController extends ApplicationController
         if (isset($this->params['id'])) {
             if (User::find($this->connection, $this->params['id'])) {$author = new User($this->params['id']);
                 try {
+                    $page_data = Page::getDetails($this->connection, "users#show");
                     $user_data = $author->getDetails($this->connection);
                     $user = new User($user_data['id']);
                     $posts = $user->getPosts($this->connection);
                     $reviews = $user->getReviews($this->connection);
-                    $platforms =  $user->getUserSkill($this->connection);
+                    $platforms = $user->getUserSkill($this->connection);
                     $this->render('show', array(
-                        'title' => "Tynkle: Profil de ".$user_data['username'] ,
-                        'description' => 'Tynkle: voir le profil de '.$user_data['username'],
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
                         'style_file_name' => 'user',
                         'user' => $user_data,
-                        'posts'=>$posts, 
-                        "reviews"=>$reviews,
+                        'posts' => $posts,
+                        "reviews" => $reviews,
                         'platforms' => $platforms,
                     ));
                 } catch (\Throwable $th) {
@@ -215,13 +225,13 @@ class UsersController extends ApplicationController
         }
     }
 
-    public function google_auth(){
-      try {
-        User::googleAuthenticate($this->connection);
-      } catch (\Throwable $th) {
-          var_dump($th);
-         $this->handleError(500);
-      }
+    public function google_auth()
+    {
+        try {
+            User::googleAuthenticate($this->connection);
+        } catch (\Throwable $th) {
+            $this->handleError(500);
+        }
     }
-      
+
 }
