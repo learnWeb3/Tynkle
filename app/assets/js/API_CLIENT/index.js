@@ -18,6 +18,25 @@ const getCurrentUser = async (data) => {
   .catch((error) => ({ data: null, status: 500 }));
 };
 
+const searchUserbyAdmin = async (data) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + "/admin/users/search", options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+};
+
+
 
 const updatePageDetails = async (url, data) => {
   const options = {
@@ -36,6 +55,25 @@ const updatePageDetails = async (url, data) => {
   })
   .catch((error) => ({ data: null, status: 500 }));
 };
+
+const updateUserByAdmin = async (url, data) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + url, options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+};
+
 
 const getPlatforms = async (data) => {
   const options = {
@@ -165,5 +203,7 @@ export {
   getFilteredContent,
   updateOffer,
   getCurrentUser,
-  updatePageDetails
+  updatePageDetails,
+  updateUserByAdmin,
+  searchUserbyAdmin
 };

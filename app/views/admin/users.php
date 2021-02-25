@@ -1,0 +1,99 @@
+<main class="d-flex flex-column bg-computer" style='min-height:100vh;'>
+
+    <?php require_once '_nav_menu.php'?>
+
+    <section class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-light p-4"
+        style="min-height:100vh;">
+
+        <h2>Gérer les utlisateurs</h2>
+
+        <form class="col-12 col-lg-9 my-4 user-search" action="" method="get">
+            <input type="text" name="" id="" class="col-12 col-lg-9 form-control form-control-lg rounded-pill" placeholder="Rechercher un utilisateur">
+        </form>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">identifiant</th>
+                    <th scope="col">email</th>
+                    <th scope="col">helper</th>
+                    <th scope="col">admin</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php foreach ($users['data'] as $user): ?>
+                <tr>
+                    <th scope="row"><?php echo $user['id'] ?></th>
+                    <td><?php echo $user['username'] ?></td>
+                    <td><?php echo $user['email'] ?></td>
+                    <td>
+                        <form class="user-update" action="" method="post">
+                            <div class="form-check form-check-inline">
+                                <?php if ($user['is_helper']): ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_1" value="1"
+                                    checked>
+                                <?php else: ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_1"
+                                    value="1">
+                                <?php endif;?>
+                                <label class="form-check-label" for="is_helper_1">oui</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <?php if (!$user['is_helper']): ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_0" value="0"
+                                    checked>
+                                <?php else: ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_0"
+                                    value="1">
+                                <?php endif;?>
+                                <label class="form-check-label" for="is_helper_0">non</label>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form class="user-update" action="" method="post">
+                            <div class="form-check form-check-inline">
+                                <?php if ($user['is_admin']): ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_admin" id="is_admin_1" value="1"
+                                    checked>
+                                <?php else: ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_admin" id="is_admin_1" value="1">
+                                <?php endif;?>
+                                <label class="form-check-label" for="is_admin_1">oui</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <?php if (!$user['is_admin']): ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_admin" id="is_admin_0" value="0"
+                                    checked>
+                                <?php else: ?>
+                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_admin" id="is_admin_0" value="1">
+                                <?php endif;?>
+                                <label class="form-check-label" for="is_admin_0">non</label>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+                <?php endforeach;?>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center">
+                        <a href="<?php echo ROOT_PATH.$users['previous'] ?>"><i class="fas fa-chevron-left fa-2x"></i></a>
+                    </td>
+                    <td colspan="3"></td>
+                    <td class="text-center">
+                        <a href="<?php echo ROOT_PATH.$users['next'] ?>"><i class="fas fa-chevron-right fa-2x"></i></a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </section>
+
+</main>
+
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin_users.js' ?> "></script>

@@ -34,14 +34,17 @@
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/rater.js/rater.min.js"></script>
     <!-- GOOGLE MAPS JS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>"></script>
-    <!-- GOOGLE ANALYTICS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HHGYMQKXZN"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3E595GQR9"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-        gtag('config', 'G-HHGYMQKXZN');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K3E595GQR9');
     </script>
     <!-- AOS LIBRARY -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -53,12 +56,12 @@
 <body class='bg-light-grey'>
 
     <?php if ($navbar_present): ?>
-        <?php include_once 'navbar.php'?>
+    <?php include_once 'navbar.php'?>
     <?php endif;?>
     <?php include_once '_flash.php'?>
     <?php echo $current_view ?>
     <?php if ($footer_present): ?>
-        <?php include_once 'footer.php'?>
+    <?php include_once 'footer.php'?>
     <?php endif;?>
 
     <!-- NAVBAR SCRIPTS -->

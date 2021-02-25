@@ -1,5 +1,82 @@
 import { ROOT_PATH } from "./API_CLIENT/index.js";
 
+const getAdminUserRowTemplate = ({
+  username,
+  email,
+  id,
+  is_helper,
+  is_admin,
+}) => {
+  const getIsHelperInputs = (is_helper, id) => {
+    if (parseInt(is_helper) === 1) {
+      return `
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" data-userid="${id}" type="radio" name="is_helper" id="is_helper_1" value="1" checked>
+        <label class="form-check-label" for="is_helper_1">oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" data-userid="${id}" type="radio" name="is_helper" id="is_helper_0" value="0">
+      </div>
+      `.trim();
+    } else {
+      return `
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" data-userid="${id}" type="radio" name="is_helper" id="is_helper_1" value="1">
+          <label class="form-check-label" for="is_helper_1">oui</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" data-userid="${id}" type="radio" name="is_helper" id="is_helper_0" value="0" checked>
+          <label class="form-check-label" for="is_helper_0">non</label>
+        </div>
+        `.trim();
+    }
+  };
+
+  const getIsAdminInputs = (is_admin, id) => {
+    if (parseInt(is_admin) === 1) {
+      return `
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" data-userid="${id}" type="radio" name="is_admin" id="is_admin_1" value="1" checked>
+        <label class="form-check-label" for="is_admin_1">oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" data-userid="${id}" type="radio" name="is_admin" id="is_admin_0" value="0">
+        <label class="form-check-label" for="is_admin_0">non</label>
+      </div>
+      `.trim();
+    } else {
+      return `
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" data-userid="${id}" type="radio" name="is_admin" id="is_admin_1" value="1">
+          <label class="form-check-label" for="is_admin_1">oui</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" data-userid="${id}" type="radio" name="is_admin" id="is_admin_0" value="0" checked>
+          <label class="form-check-label" for="is_admin_0">non</label>
+        </div>
+        `.trim();
+    }
+  };
+
+  return `
+              <tr>
+                    <th scope="row">${id}</th>
+                    <td>${username}</td>
+                    <td>${email}</td>
+                    <td>
+                        <form class="user-update" action="" method="post">
+                         ${getIsHelperInputs(is_helper, id)}
+                        </form>
+                    </td>
+                    <td>
+                        <form class="user-update" action="" method="post">
+                          ${getIsAdminInputs(is_admin, id)}
+                        </form>
+                    </td>
+              </tr>
+    `.trim();
+};
+
 const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
   return `
         <input class="form-check-input" type="checkbox" id="breakdown_category-${id}" data-breakdownId="${id}">
@@ -193,4 +270,5 @@ export {
   getAsktemplate,
   getBreakdownCategoriesCheckInputTemplate,
   getMessageTemplate,
+  getAdminUserRowTemplate
 };
