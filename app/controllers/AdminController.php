@@ -161,7 +161,7 @@ class AdminController extends ApplicationController
             if (isset($this->current_user)) {
                 try {
                     $user_data = $this->current_user->getDetails($this->connection);
-                    if (!$user_data['is_admin'] === '1') {
+                    if ($user_data['is_admin'] === '0') {
                         $this->handleError(403);
                     }
                 } catch (\Throwable $th) {
