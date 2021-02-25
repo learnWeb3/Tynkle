@@ -30,6 +30,7 @@ class ApplicationController
         )
     ) {
         $is_current_user_logged_in = isset($_SESSION['current_user']) ? true : false;
+        $is_user_admin = isset($_SESSION['current_user']) ? $this->current_user->getDetails($this->connection)['is_admin'] : 0;
         $current_user = isset($_SESSION['current_user']) ? $_SESSION['current_user'] : null;
         extract($template_vars);
         if (!isset($navbar_present, $footer_present)) {

@@ -16,6 +16,9 @@
                                 <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/profile' ?>">Mon profil</a></li>
                                 <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/activities' ?>">Mon activitée</a></li>
                                 <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/chats' ?>">Mes messages</a></li>
+                                <?php if ($is_user_admin):?>
+                                <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/admin/insights' ?>">Administration</a></li>
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li class="nav-item"><a class='nav-link font-weight-bold' href="<?php echo ROOT_PATH . '/posts/new' ?>">Publier</a></li>
