@@ -27,16 +27,22 @@ class SessionsController extends ApplicationController
     }
 
     function new () {
-        $this->render(
-            'new',
-            array(
-                'title' => 'Tynkle: Se connecter',
-                'description' => 'Tynkle: De retour parmi nous ?',
-                'style_file_name' => 'signin',
-                'navbar_present'=>false,
-                'footer_present'=>false
-            )
-        );
+        try {
+            $page_data = Page::getDetails($this->connection, "sessions#new");
+            $this->render(
+                'new',
+                array(
+                    'title' => 'Tynkle: Se connecter',
+                    'description' => 'Tynkle: De retour parmi nous ?',
+                    'style_file_name' => 'signin',
+                    'navbar_present' => false,
+                    'footer_present' => false,
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                )
+            );
+        } catch (\Throwable $th) {
+            $this->handleError(500);
+        }
     }
     public function destroy()
     {

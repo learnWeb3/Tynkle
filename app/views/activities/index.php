@@ -1,4 +1,4 @@
-<main class="bg-computer" style='min-height:100vh;margin-top:3rem'>
+<main  style="background-image: url(<?php echo $background_image_path ?>);min-height:100vh;margin-top:3rem" class="bg-background">
     <section class="container d-flex flex-column align-items-center bg-light p-4">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">

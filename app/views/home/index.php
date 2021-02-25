@@ -1,4 +1,4 @@
-<main class="bg-computer">
+<main style="background-image: url(<?php echo $background_image_path ?>);" class="bg-background">
     <?php include '_submenu.php'?>
     <section>
         <div class="row w-100">

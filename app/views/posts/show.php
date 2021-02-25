@@ -1,4 +1,4 @@
-<main class="bg-computer" style='min-height:100vh;padding-top:3rem'>
+<main class="bg-background" style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;padding-top:3rem;'>
 
     <?php include '_new_offer_modal.php'?>
     <?php include '_new_message_modal.php'?>

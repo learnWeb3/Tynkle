@@ -1,5 +1,5 @@
-<main class="d-flex bg-map" style='min-height:100vh;margin-top:3rem;'>
-    <div class='bg-computer d-flex' style="min-height: 100vh;width:100vw">
+<main class="d-flex bg-background" style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;margin-top:3rem;'>
+    <div class='bg-background d-flex' style="min-height: 100vh;width:100vw">
         <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;" id="menu-navigation">
             <div class="container bg-white w-100 shadow p-4 d-block overflow-auto" style="margin-top: 15%;">
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>

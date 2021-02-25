@@ -110,7 +110,7 @@ a:hover {
     background-color: #4ABDED;
 }
 
-.bg-computer, .bg-problem, .bg-community  {
+.bg-background, .bg-computer, .bg-problem, .bg-community  {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;

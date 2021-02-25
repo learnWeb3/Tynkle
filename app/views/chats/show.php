@@ -1,4 +1,4 @@
-<main class="d-flex bg-computer" style='min-height:100vh;'>
+<main class="d-flex bg-background" style='min-height:100vh;'>
     <?php include '_chat_nav_menu.php' ?>
     <section class="col-12 col-lg-8 offset-lg-3 d-flex flex-column bg-light p-4" style="margin-top:3.5rem;" id="current-conversation">
         <div class="row">
