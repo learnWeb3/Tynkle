@@ -123,6 +123,7 @@ class PostsController extends ApplicationController
                     'style_file_name' => 'new_post',
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 ),
             );
         } else {
@@ -169,6 +170,7 @@ class PostsController extends ApplicationController
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,
                     'next_page' => $posts['next'],
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 ),
 
             );
@@ -191,7 +193,8 @@ class PostsController extends ApplicationController
                     'style_file_name' => 'offer',
                     'post' => $post_data,
                     'similar_posts' => $similar_posts['data'],
-                    'author'=>$author_data
+                    'author'=>$author_data,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 )
             );
         } else {
@@ -215,6 +218,7 @@ class PostsController extends ApplicationController
                     'post' => $post_data,
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 )
             );
         } else {

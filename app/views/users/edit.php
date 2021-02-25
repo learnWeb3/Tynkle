@@ -1,7 +1,5 @@
-<main class="d-flex bg-computer" style='min-height:100vh;'>
-
+<main  style="background-image: url(<?php echo $background_image_path ?>);min-height:100vh;" class="d-flex bg-background">
     <?php require_once './app/views/users/_edit_nav_menu.php'?>
-
     <div class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-light p-4"
         style="min-height:100vh; margin-top:3.5rem">
         <?php if (!$user['is_google']): ?>

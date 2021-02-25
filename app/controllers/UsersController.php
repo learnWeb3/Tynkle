@@ -155,10 +155,10 @@ class UsersController extends ApplicationController
                     'style_file_name' => 'signup',
                     'navbar_present' => false,
                     'footer_present' => false,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 )
             );
         } catch (\Throwable $th) {
-            var_dump($th);
             $this->handleError(500);
         }
     }
@@ -174,6 +174,7 @@ class UsersController extends ApplicationController
                     'style_file_name' => 'profile',
                     'user' => $this->current_user->getDetails($this->connection),
                     'platforms' => $this->current_user->getUserSkill($this->connection),
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 ));
             } catch (\Throwable $th) {
                 $this->handleError(500);
@@ -203,6 +204,7 @@ class UsersController extends ApplicationController
                         'posts' => $posts,
                         "reviews" => $reviews,
                         'platforms' => $platforms,
+                        'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                     ));
                 } catch (\Throwable $th) {
                     $this->handleError(500);

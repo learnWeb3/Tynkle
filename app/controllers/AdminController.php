@@ -23,6 +23,7 @@ class AdminController extends ApplicationController
                     'navbar_present' => false,
                     'footer_present' => false,
                     'pages' => $pages,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 )
             );
         } catch (\Throwable $th) {
@@ -72,6 +73,7 @@ class AdminController extends ApplicationController
                     'style_file_name' => 'admin',
                     'navbar_present' => false,
                     'footer_present' => false,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg',
                     'analytics' => array(
                         'user_number' => $user_number,
                         'users_by_country' => $users_by_country,
@@ -112,6 +114,7 @@ class AdminController extends ApplicationController
                     'navbar_present' => false,
                     'footer_present' => false,
                     'users' => $users,
+                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
                 )
             );
         } catch (\Throwable $th) {

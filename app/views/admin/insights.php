@@ -1,4 +1,4 @@
-<main class="d-flex flex-column bg-computer" style='min-height:100vh;'>
+<main class="d-flex flex-column bg-background" style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;'>
 
     <?php require_once '_nav_menu.php'?>
 

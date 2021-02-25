@@ -1,4 +1,4 @@
-<main class="bg-computer" style='min-height:100vh;padding-top:3rem'>
+<main style="background-image: url(<?php echo $background_image_path ?>);min-height:100vh;padding-top:3rem" class="bg-background">
     <section id="map-container-header" class="container-xl w-100 p-0 bg-white" style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
     </section>
     <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded" style='min-height:100vh;'>
