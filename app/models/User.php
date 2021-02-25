@@ -32,7 +32,7 @@ class User extends Application
                         $flash->storeInSession();
                         die(header('location: ' . ROOT_PATH . '/'));
                     } else {
-                        User::create($connection, ['email','username', 'password'], [$data['email'],$data['email'],'foobar']);
+                        User::create($connection, ['email','username', 'password', 'is_google'], [$data['email'],$data['email'],password_hash('foobar', PASSWORD_BCRYPT), 1]);
                         $flash = new Flash(
                             array("Compte crée avec succès, veuillez vous connecter"),
                             'success'
