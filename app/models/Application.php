@@ -88,12 +88,21 @@ class Application
     }
 
     // fetching database datas by regex pattern match on column
-    public static function like(\PDO $connection, string $column_name, $value)
+    public static function like(\PDO $connection, string $column_name, $value, int $start = 0, int $limit = 10)
     {
         $table_name = self::getTableName(get_called_class());
-        $request_body = "SELECT * FROM $table_name WHERE $column_name LIKE ?";
+        $request_body = "SELECT * FROM $table_name WHERE $column_name LIKE ? LIMIT $limit OFFSET $start";
         $request_parameters = [$value];
         return Request::send($connection, $request_body, $request_parameters);
+    }
+
+    // count all record in database for a given table
+
+    public static function count(PDO $connection)
+    {
+        $table_name = self::getTableName(get_called_class());
+        $request_body = "SELECT COUNT(id) as count FROM $table_name";
+        return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC)[0]['count'];
     }
 
     // fetching all datas related to a table

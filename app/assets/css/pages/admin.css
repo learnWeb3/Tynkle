@@ -1,0 +1,30 @@
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card-body{
+    padding: 0;
+}
+
+.card{
+    border: 5px solid rgba(74, 189, 237, .75);
+}
+.card p:first-child{
+    text-align: center;
+}
+
+.card .display-4{
+    font-size: 2.5rem;
+}
+
+.updated-success{
+    background-color: rgba(172, 255, 47, 0.75);
+}
+.updated-danger{
+    background-color: rgba(255, 0, 0, 0.75);
+}

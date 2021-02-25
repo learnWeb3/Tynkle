@@ -24,6 +24,7 @@ class User extends Application
                     $potential_user = User::where($connection, 'email', $data['email'])->fetchAll(PDO::FETCH_ASSOC);
                     if (!empty($potential_user)) {
                         $_SESSION['current_user'] = $potential_user[0]['id'];
+                        $_SESSION['access_token'] = $token;
                         $flash = new Flash(
                             array("Connexion réussie"),
                             'success'
@@ -41,16 +42,17 @@ class User extends Application
                     }
 
                 } else {
-                    throw (new Exception("Erreure lors de l'authentification Google"));
+                    throw (new Exception("Erreur lors du processus d'authentification"));
                 }
             } else {
-                throw (new Exception("Erreure lors de l'authentification Google"));
+                throw (new Exception("Erreur lors du processus d'authentification"));
             }
         } else {
             $auth_url = $client->createAuthUrl();
             header('location:' . $auth_url);
         }
     }
+
 
     public static function signIn(PDO $connection, string $login, string $password): void
     {

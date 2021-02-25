@@ -4,8 +4,14 @@ $routes = array(
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),
     array('POST', ROOT_PATH . '/login', 'sessions#create', 'create_session'),
     array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),
+    // '/admin'
+    array('GET', ROOT_PATH . '/admin/platform', 'admin#platform', 'platform_admin'),
+    array('GET', ROOT_PATH . '/admin/insights', 'admin#insights', 'insights_admin'),
+    array('GET', ROOT_PATH . '/admin/users', 'admin#users', 'users_admin'),
+    array('PUT', ROOT_PATH . '/admin/users/[:id]', 'admin#users_update', 'users_admin_update'),
+    array('POST', ROOT_PATH . '/admin/users/search', 'admin#users_search', 'users_admin_search'),
+    array('GET', ROOT_PATH . '/admin/register/callback', 'admin#google_auth', 'google_auth_admin'),
     //  '/users'
-    array('GET', ROOT_PATH . '/users/admin', 'admin#index', 'index_admin'),
     array('GET', ROOT_PATH . '/users', 'users#index', 'index_user'),
     array('GET', ROOT_PATH . '/users/current', 'sessions#show', 'current_user'),
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),
