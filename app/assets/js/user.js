@@ -1,5 +1,5 @@
 import { setCurrentUserId, current_user } from "./current_user.js";
-import { handleNewMessage } from "./modal.js";
+import { handleNewMessage,handleNewWarning } from "./modal.js";
 
 // init js-rater library
 const options = {
@@ -16,4 +16,5 @@ $(".rating").rate(options);
 // getting current user
 setCurrentUserId(current_user);
 // listening click on send buttons
+handleNewWarning('users');
 handleNewMessage(current_user);
