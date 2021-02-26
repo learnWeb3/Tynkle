@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-block overflow-auto" style="min-height: 35vh">
-                <form action="" data-idUser="<?php echo $user['id'] ?>" class="form-lg" method="post" id="warning-form">
+                <form action="" data-url="<?php echo '/warnings/users/'.$user['id'] ?>" class="form-lg" method="post" id="warning-form">
                     <small>* champs obligatoires</small>
                     <div class="form-group my-2">
                         <label for="">Rediger votre message :</label>

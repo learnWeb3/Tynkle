@@ -1,4 +1,46 @@
-import { ROOT_PATH, makeOffers, sendmessage } from "./API_CLIENT/index.js";
+import { ROOT_PATH, makeOffers, sendmessage, createWarning } from "./API_CLIENT/index.js";
+
+
+const handleNewWarning = (warningType) =>{
+  const sendButton = document.querySelector(
+    "#warning .modal-footer .btn.btn-success"
+  );
+  const modalBody = document.querySelector("#warning .modal-body");
+  const form = document.querySelector("#warning-form");
+  const formButtonSubmit = document.querySelector(
+    "button#warning-form-submit"
+  );
+  formButtonSubmit.addEventListener("click", async function (event) {
+    event.preventDefault();
+    const url = form.dataset.url;
+    const data = {
+      message:document.querySelector("#warning-form #content").value
+    }
+    const { data: responseData, status } = await createWarning(url, data);
+      if (status === 200) {
+        form.remove();
+        const img = new Image(64, 64);
+        const p = document.createElement("p");
+        const text = document.createTextNode("Signalement envoyé avec succès");
+        p.classList.add("font-weight-bold", "my-2");
+        p.appendChild(text);
+        img.src = ROOT_PATH + "/app/assets/icons/success.svg";
+        modalBody.classList.remove("d-block", "overflow-auto");
+        modalBody.classList.add(
+          "d-flex",
+          "justify-content-center",
+          "align-items-center",
+          "flex-column"
+        );
+        modalBody.appendChild(img);
+        modalBody.appendChild(p);
+        sendButton.remove();
+      } else {
+        console.error(responseData);
+      }
+
+  })
+}
 
 const handleNewMessage = (current_user) => {
   const modalBody = document.querySelector("#new-message .modal-body");
@@ -85,11 +127,10 @@ const handleNewOffer = (current_user) => {
         modalBody.appendChild(p);
         sendButton.remove();
       } else {
-        console.log(responseData);
-        alert("error");
+        console.error(responseData);
       }
     }
   });
 };
 
-export { handleNewMessage, handleNewOffer };
+export { handleNewMessage, handleNewOffer, handleNewWarning };

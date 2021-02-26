@@ -1,5 +1,5 @@
 import { current_user, setCurrentUserId } from "./current_user.js";
-import { handleNewMessage, handleNewOffer } from "./modal.js";
+import { handleNewMessage, handleNewOffer, handleNewWarning } from "./modal.js";
 
 const initMap = (lat, lng) => {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -30,5 +30,6 @@ initMap(lat, lng);
 // getting current user
 setCurrentUserId(current_user);
 // listening click on send buttons
+handleNewWarning('posts');
 handleNewMessage(current_user);
 handleNewOffer(current_user);

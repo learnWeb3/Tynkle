@@ -4,3 +4,21 @@
 .card-message.sender{
     align-self: flex-end;
 }
+
+@media screen and (max-width: 992px) {
+    #new-message-container {
+        height: 25vh;
+    }
+    #current-chat-container {
+        height: 65vh;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #new-message-container {
+        height: 15vh;
+    }
+    #current-chat-container {
+        height: 75vh;
+    }
+}
