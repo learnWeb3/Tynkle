@@ -158,7 +158,11 @@ class PostsController extends ApplicationController
         } else {
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-            $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+            if (isset($_GET['platform'])) {
+                $posts = Post::findBy($this->connection, '/posts', 'id', $_GET['platform'], 'platforms');
+            } else {
+                $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+            }
             $page_data = Page::getDetails($this->connection, "posts#index");
             $this->render(
                 'index',

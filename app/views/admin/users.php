@@ -7,8 +7,8 @@
 
         <h2>Gérer les utlisateurs</h2>
 
-        <form class="col-12 col-lg-9 my-4 user-search" action="" method="get">
-            <input type="text" name="" id="" class="col-12 col-lg-9 form-control form-control-lg rounded-pill" placeholder="Rechercher un utilisateur">
+        <form class="col-12 my-4 user-search" action="" method="get">
+            <input type="text" name="" id="" class="col-12 form-control form-control-lg rounded-pill" placeholder="Rechercher un utilisateur par email">
         </form>
 
         <table class="table table-hover">

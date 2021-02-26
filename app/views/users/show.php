@@ -1,5 +1,7 @@
-<main class="bg-background" style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;padding-top:3rem'>
-<?php include '_new_message_modal.php'?>
+<main class="bg-background"
+    style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;padding-top:3rem'>
+    <?php include '_new_message_modal.php'?>
+    <?php include '_warning_modal.php'?>
     <section class="container-xl bg-light d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
         <div class="col-12">
             <div class="p-4 rounded">
@@ -62,23 +64,41 @@
             </div>
         </div>
 
-
-        <div class="row w-100 my-4">
-            <div class="card shadow-sm p-4 d-flex flex-column">
-
-                <h2 class="font-weight-bold w-100 text-center my-4">Contact :</h2>
-
-                <div class="row d-flex justify-content-around">
+        <div class="d-flex align-items-center my-4 col-12">
+            <div class="card shadow-sm p-4 w-100">
+                <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
+                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Contact :</h3>
                     <?php if ($current_user): ?>
-                    <button type="button" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-lg btn-red-crayola mx-4 col-9 col-lg-3" data-bs-toggle="modal"
                         data-bs-target="#new-message">
                         POSER UNE QUESTION
                     </button>
                     <?php else: ?>
-                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
                         CONNEXION
                     </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
+                        INSCRIPTION
+                    </a>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center my-4 col-12">
+            <div class="card shadow-sm p-4 w-100">
+                <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
+                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur ?</h3>
+                    <?php if ($current_user): ?>
+                    <button type="button" class="btn btn-lg btn-brand active mx-4 col-9 col-lg-3" data-bs-toggle="modal"
+                        data-bs-target="#warning">
+                        SIGNALER
+                    </button>
+                    <?php else: ?>
+                        <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
+                        CONNEXION
+                    </a>
+                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
                         INSCRIPTION
                     </a>
                     <?php endif;?>

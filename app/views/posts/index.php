@@ -4,7 +4,7 @@
             <div class="container bg-white w-100 shadow p-4 d-block overflow-auto" style="margin-top: 15%;">
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>
                 <hr>
-                <form action="" method="GET" class="bg-light">
+                <form action="" method="GET" class="bg-white">
                     <h5 class="font-weight-bold">Rechercher par type d'appareil : </h5>
 
                     <div class='d-block overflow-auto px-2'>
@@ -21,14 +21,14 @@
 
                 </form>
                 <hr>
-                <form action="" class="bg-light overflow-auto px-2" method="GET">
+                <form action="" class="bg-white overflow-auto px-2" method="GET">
                     <p class="font-weight-bold mb-0">2 - Choisir un/plusieurs type de panne : </p>
                     <div class='d-block overflow-auto px-2' style="height:15vh" id="breakdown_categories">
                         <p class="my-2">Veuillez selectionner une plateforme</p>
                     </div>
                 </form>
                 <hr>
-                <form action="" method="GET" class="col-12 bg-light">
+                <form action="" method="GET" class="col-12 bg-white">
                     <div class="d-flex w-100 align-items-center">
                         <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
@@ -51,7 +51,7 @@
 
         </section>
 
-        <section class="col-12 col-xl-8 offset-xl-3 bg-white d-flex flex-wrap" id="posts-container" data-nextpage="<?php echo $next_page ?>">
+        <section class="col-12 col-xl-8 offset-xl-3 d-flex justify-content-center flex-wrap" id="posts-container" data-nextpage="<?php echo $next_page ?>">
             <?php foreach ($posts as $post): ?>
                 <?php include '_publication_card.php'?>
             <?php endforeach;?>
