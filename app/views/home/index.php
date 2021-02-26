@@ -41,6 +41,10 @@
                 <p class="font-weight-bold my-2">Large Choix</p>
             </div>
         </div>
+
+        <a  href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
+                    C'est parti !
+        </a>
         <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator.png" ?>"
             alt="wave separator">
 
@@ -57,9 +61,9 @@
                     votre choix <br>
                     Tout est possible ! dépannage, installation, formation, à vous de choisir !
                 </p>
-                <button data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-12 col-lg-4">
-                    C'est parti !
-                </button>
+                <a  href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-12 col-lg-4">
+                    Je m'inscris !
+                </a>
             </div>
             <div class="d-none d-lg-block col-lg-6">
 
@@ -91,6 +95,10 @@
                 de poster une annonce <br></h3>
 
         </div>
+
+        <a  href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
+                    C'est parti !
+        </a>
         <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator.png" ?>"
             alt="wave separator">
 
@@ -108,9 +116,9 @@
 
 
         </div>
-        <button data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-3">
+        <a  href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
             faire comme Ben
-        </button>
+        </a>
     </section>
     <section>
         <h2 data-aos="fade-up"  data-aos-duration="1000" class="display-5 text-center">Tu veux aider la communauté ? <br>Deviens Helper !</h2>
@@ -141,8 +149,13 @@
                 les annonces en cours, <br> proposer mes services aux personnes qui en ont besoin</h3>
 
         </div>
+
+        <a  href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up"  data-aos-duration="1000" class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
+                    C'est parti !
+        </a>
         <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator_dark.png" ?>"
             alt="wave separator">
+    
 
     </section>
 </main>

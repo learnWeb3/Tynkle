@@ -12,6 +12,8 @@ class Post extends Application
     {
         $request_body = "SELECT 
         posts.*,
+        users.id as user_id,
+        users.username as username, 
         breakdown_categories.id as breakdown_category_id,
         breakdown_categories.name as breakdown_category_name,
         platforms.name as platform_name,
@@ -19,6 +21,7 @@ class Post extends Application
         FROM posts
         JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
         JOIN platforms ON breakdown_categories.id_platform = platforms.id
+        JOIN users ON users.id = posts.id_user
         WHERE posts.$column_name IN ($values) 
         ORDER BY posts.created_at DESC";
         $results = Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);

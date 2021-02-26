@@ -1,6 +1,3 @@
-.bg-signup {
-  background-image: url(../../img/pages/signup.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+#sign-container {
+  min-height: 100vh;
 }

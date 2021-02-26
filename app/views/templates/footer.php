@@ -1,5 +1,4 @@
 <footer class="row d-flex flex-wrap bg-black justify-content-center align-items-center p-4">
-
     <div class="row col-12 col-lg-9">
         <div class="col d-flex flex-column align-items-center">
             <ul>
@@ -20,9 +19,9 @@
         <div class="col d-flex flex-column align-items-center">
             <ul>
                 <li class="font-weight-bold mb-2">Suivez-nous !</li>
-                <li><a href="">Facebook</a></li>
-                <li><a href="">Twitter</a></li>
-                <li><a href="">Instagram</a></li>
+                <li><a href="https://fr-fr.facebook.com/TynkleFR/">Facebook</a></li>
+                <li><a href="https://twitter.com/tynklefr?lang=fr">Twitter</a></li>
+                <li><a href="https://www.instagram.com/tynklefr/?hl=fr">Instagram</a></li>
             </ul>
         </div>
     </div>
