@@ -62,5 +62,8 @@ $routes = array(
     array('POST', ROOT_PATH . '/pages/[i:id]', 'pages#update', 'page_update_background_image'),
     // warnings
     array('POST', ROOT_PATH . '/warnings/posts/[i:id]', 'warnings#create', 'warning_posts'),
-    array('POST', ROOT_PATH . '/warnings/users/[i:id]', 'warnings#create', 'warning_users')
+    array('POST', ROOT_PATH . '/warnings/users/[i:id]', 'warnings#create', 'warning_users'),
+    array('GET', ROOT_PATH . '/warnings', 'warnings#index', 'warning_index'),
+    array('DELETE', ROOT_PATH . '/warnings/posts/[i:id]', 'warnings#destroy', 'warning_posts_destroy'),
+    array('DELETE', ROOT_PATH . '/warnings/users/[i:id]', 'warnings#destroy', 'warning_users_destroy')
 );

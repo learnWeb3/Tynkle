@@ -8,6 +8,29 @@ class Post extends Application
     }
 
 
+    public static function getSignaledPosts(PDO $connection)
+    {
+        $request_body = "SELECT 
+        posts.*,
+        post_warnings.message,
+        post_warnings.id as post_warning_id,
+        post_warnings.created_at as post_warning_created_at,
+        post_warnings.updated_at as post_warning_updated_at,
+        users.id as user_id,
+        users.username as username, 
+        breakdown_categories.id as breakdown_category_id,
+        breakdown_categories.name as breakdown_category_name,
+        platforms.name as platform_name,
+        platforms.id as platform_id
+        FROM posts
+        JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
+        JOIN platforms ON breakdown_categories.id_platform = platforms.id
+        JOIN users ON users.id = posts.id_user
+        JOIN post_warnings ON post_warnings.id_post = posts.id
+        ORDER BY posts.created_at DESC";
+        return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function findBy(PDO $connection, string $path, string $column_name, string $values ,$searched_table="posts", int $start = 0, int $limit = 10)
     {
         $request_body = "SELECT 

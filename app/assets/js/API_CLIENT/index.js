@@ -18,6 +18,21 @@ const getCurrentUser = async (data) => {
   .catch((error) => ({ data: null, status: 500 }));
 };
 
+const deleteWarnings = async (url) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+  };
+  return fetch(ROOT_PATH + url, options)
+  .then(async (res) => {
+    const status = res.status;
+    return { data: null, status: status }
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+};
+
 const searchUserbyAdmin = async (data) => {
   const options = {
     headers: {
@@ -223,4 +238,5 @@ export {
   updateUserByAdmin,
   searchUserbyAdmin,
   createWarning,
+  deleteWarnings
 };

@@ -7,6 +7,19 @@ class User extends Application
         $this->id = $id;
     }
 
+    public static function getSignaledUsers(PDO $connection)
+    {
+        $request_body = "SELECT 
+        users.*,
+        user_warnings.message,
+        user_warnings.id as user_warning_id,
+        user_warnings.created_at as user_warning_created_at,
+        user_warnings.updated_at as user_warning_updated_at
+        FROM users
+        JOIN user_warnings ON user_warnings.id_user = users.id";
+        return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function googleAuthenticate(PDO $connection)
     {
         $client = new Google\Client();
