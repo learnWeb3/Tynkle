@@ -8,7 +8,7 @@ class Post extends Application
     }
 
 
-    public static function findBy(PDO $connection, string $path, string $column_name, string $values, int $start = 0, int $limit = 10)
+    public static function findBy(PDO $connection, string $path, string $column_name, string $values ,$searched_table="posts", int $start = 0, int $limit = 10)
     {
         $request_body = "SELECT 
         posts.*,
@@ -22,7 +22,7 @@ class Post extends Application
         JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
         JOIN platforms ON breakdown_categories.id_platform = platforms.id
         JOIN users ON users.id = posts.id_user
-        WHERE posts.$column_name IN ($values) 
+        WHERE $searched_table.$column_name IN ($values) 
         ORDER BY posts.created_at DESC";
         $results = Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
         $next_start = $start += 10;
