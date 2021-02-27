@@ -145,7 +145,7 @@ class AdminController extends ApplicationController
                 echo json_encode(User::update($this->connection, ['is_helper'], [intval($this->json_params['is_helper'])], 'id', $this->params['id']));
                 die();
             } else if (isset($this->json_params['is_admin'], $this->params['id'])) {
-                echo json_encode(User::update($this->connection, ['is_admin'], [intval($this->json_params['is_helper'])], 'id', $this->params['id']));
+                echo json_encode(User::update($this->connection, ['is_admin'], [intval($this->json_params['is_admin'])], 'id', $this->params['id']));
                 die();
             } else {
                 http_response_code(422);

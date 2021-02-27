@@ -36,12 +36,12 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class='btn btn-lg btn-success col-12 my-2'>INSCRIPTION</button>
+            <button type="submit" class='btn btn-lg btn-success col-12 my-4'>INSCRIPTION</button>
             <p class="font-weight-bold text-center">ou</p>
         
         </form>
-        <form class="w-100 d-block overflow-auto" action="<?php echo ROOT_PATH."/register/callback" ?>" method="get">
-                <button type="submit" class="col-12 btn btn-lg btn-white d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-2" alt="signin with google" style='left:0;'>S'inscrire avec google</button>
+        <form class="col-12" action="<?php echo ROOT_PATH."/register/callback" ?>" method="get">
+                <button type="submit" class="col-12 btn btn-lg d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-4" alt="signin with google" style='left:0;'>S'inscrire avec google</button>
         </form>
         <?php include_once './app/views/templates/_shared_links.php'?>
     </section>

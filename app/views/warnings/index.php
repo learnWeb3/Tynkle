@@ -65,7 +65,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($users)): ?>
+                <?php if (empty($posts)): ?>
 
                 <tr><td colspan="8">Pas d'alerte sur les annonces pour le moment</td></tr>
 
