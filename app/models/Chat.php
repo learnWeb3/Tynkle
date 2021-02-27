@@ -166,8 +166,18 @@ class Chat extends Application
 
     public function getNewMessages(PDO $connection, string $timestamp)
     {
-        $request_body = "SELECT *,
-        messages.id as id_message
+        $request_body = "SELECT 
+        messages.id as message_id,
+        messages.id_chat as message_id_chat,
+        messages.content as message_content,
+        messages.ressource_link as message_ressource_link,
+        messages.created_at as message_created_at,
+        messages.updated_at as message_updated_at,users.id as user_id,
+        users.firstname as user_firstname,
+        users.lastname as user_lastname,
+        users.username as user_username,
+        users.email as user_email,
+        users.avatar as user_avatar
         FROM messages
         JOIN chats ON messages.id_chat=chats.id
         JOIN users ON messages.id_user = users.id
