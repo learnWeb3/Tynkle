@@ -136,6 +136,7 @@ class PostsController extends ApplicationController
         if (isset($_GET['ajax'])) {
             if ($this->route_name === 'index_post_geosearch') {
                 if (isset($_GET['lat'], $_GET['lng'], $_GET['distance'])) {
+                   try {
                     if (isset($_GET['breakdown_categories'])) {
                         $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
                     } else {
@@ -143,6 +144,10 @@ class PostsController extends ApplicationController
                     }
                     echo json_encode($posts);
                     die();
+                   } catch (\Throwable $th) {
+                      var_dump($th);
+                      die(http_response_code(500));
+                   }
                 } else {
                     die(http_response_code(422));
                 }

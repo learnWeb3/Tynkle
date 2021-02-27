@@ -73,8 +73,7 @@ const fetchFilteredPosts = async (el) => {
   postsContainer.dataset.nextPage = data.next;
   postsContainer.innerHTML = "";
   data?.data?.map((postData) =>
-   { console.log(postData);
-    postsContainer.appendChild(getPostTemplate(postData, current_user))}
+    postsContainer.appendChild(getPostTemplate(postData, current_user))
   );
 };
 

@@ -12,6 +12,10 @@ p, a {
     font-family: 'Montserrat', sans-serif;
 }
 
+.row{
+    --bs-gutter-x: 0;
+  }
+  
 body {
     min-height: 100vh;
 }

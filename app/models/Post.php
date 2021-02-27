@@ -222,7 +222,7 @@ class Post extends Application
                 JOIN platforms ON breakdown_categories.id_platform=platforms.id
             ) myTable
             WHERE distance <= $distance
-            AND breakdown_categories.id IN $breakdown_categories_ids
+            AND breakdown_category_id IN ($breakdown_categories_ids)
             LIMIT $limit;";
         }else{
             $request_body = "SELECT * FROM (
