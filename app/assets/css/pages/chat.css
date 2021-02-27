@@ -5,7 +5,7 @@
     align-self: flex-end;
 }
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     #new-message-container {
         height: 25vh;
     }
@@ -21,4 +21,4 @@
     #current-chat-container {
         height: 75vh;
     }
-}
+} */

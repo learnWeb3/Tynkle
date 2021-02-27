@@ -1,14 +1,31 @@
 const ROOT_PATH = "http://localhost/tynkle";
 
-const getCurrentUser = async (data) => {
+const getCurrentUser = async () => {
   const options = {
     headers: {
       "Content-Type": "application/json",
     },
     method: "GET",
-    body: JSON.stringify(data),
   };
   return fetch(ROOT_PATH + "/users/current", options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+};
+
+
+const getMessages = async (url) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  };
+  return fetch(ROOT_PATH + url, options)
   .then(async (res) => {
     const status = res.status;
     return status === 200
@@ -238,5 +255,6 @@ export {
   updateUserByAdmin,
   searchUserbyAdmin,
   createWarning,
-  deleteWarnings
+  deleteWarnings,
+  getMessages
 };

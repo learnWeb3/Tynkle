@@ -85,24 +85,49 @@ const getBreakdownCategoriesCheckInputTemplate = ({ id, name }) => {
         </label>`.trim();
 };
 
-const getMessageTemplate = (
-  { username, id_user, content, created_at },
-  current_user
-) => {
-  return `<div class="row">
-          <div class="col-1 d-flex flex-column justify-content-center">
-              <img src="${ROOT_PATH}/app/assets/img/commons/avatar_placeholder.svg" height="48" width="48" alt="map pointer icon" class="img-fluid">
-          </div>
-          <div class="col">
-              <p class="font-weight-bold mb-0">${username}</p>
-              <p class="font-italic text-muted mb-0">${created_at}</p>
+const getTypingAreaTemplate = (subscibersIds, chatId, currentUserId) => {
+  return `
+  <form id="new-message" action="#" class="bg-light d-flex align-items-center px-4" style="height: 10vh;">
+      <div class="input-group">
+      <input name="content" data-subscibersIds='${subscibersIds}' data-current='${currentUserId}' data-id='${chatId}' id="content" placeholder="Rediger votre message..." aria-describedby="button-addon2"
+      class="form-control rounded-0 border-0 py-4 bg-light"></input>
+          <div class="input-group-append">
+              <button id="button-addon2" type="submit" class="btn btn-link"> <i
+                      class="fa fa-paper-plane"></i></button>
           </div>
       </div>
-      <div class="row my-2">
-          <p>
-              ${content}
-          </p>
-      </div>`.trim();
+  </form>`.trim();
+};
+
+const getMessageTemplate = (
+  { user_username, user_id,message_id, message_content, message_created_at },
+  current_user
+) => {
+  if (parseInt(current_user.id) !== parseInt(user_id)) {
+    return `
+  <div id="message-${message_id}" class="media sender w-50 mb-3 d-flex"><img
+          src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user"
+          width="50" class="rounded-circle">
+      <div class="media-body mx-3">
+          <div class="bg-light rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-muted"> ${message_content}</p>
+          </div>
+          <p class="small text-muted">${message_created_at}</p>
+      </div>
+  </div>
+  `.trim();
+  } else {
+    return `
+    <div id="message-${message_id}" class="media recipient w-50 ml-auto mb-3">
+    <div class="media-body">
+        <div class="bg-primary rounded py-2 px-3 mb-2">
+            <p class="text-small mb-0 text-white">${message_content}</p>
+        </div>
+        <p class="small text-muted">${message_created_at}</p>
+    </div>
+</div>
+    `.trim();
+  }
 };
 
 const getPostTemplate = (
@@ -270,5 +295,6 @@ export {
   getAsktemplate,
   getBreakdownCategoriesCheckInputTemplate,
   getMessageTemplate,
-  getAdminUserRowTemplate
+  getAdminUserRowTemplate,
+  getTypingAreaTemplate,
 };
