@@ -9,11 +9,133 @@ class UsersController extends ApplicationController
         $this->beforeAction(['edit', "update"]);
     }
 
+    public function ask_new_password()
+    {
+        if (isset($_POST['email'])) {
+
+            try {
+                $potential_user = User::where($this->connection, 'email', $_POST['email'])->fetchAll(PDO::FETCH_ASSOC);
+                if (empty($potential_user)) {
+                    $flash = new Flash(
+                        array("L'utilisateur n'existe pas"),
+                        'danger'
+                    );
+                    $flash->storeInSession();
+                    die(header('location:'. ROOT_PATH.'/users/password/reset'));
+                } else {
+                    $mailer = new Mailer(
+                        'tynkle',
+                        $potential_user[0]['email'],
+                        'accountverification@tynkle.com',
+                        $potential_user[0]['email'],
+                        'Réinitialiser le mot de passe',
+                        "Bonjour vous avez demandé à reinitialiser votre mot de passe, veuillez cliquer sur le lien ci dessous afin de le reinitialiser.<br>Si cette action ne vient pas de vous merci d'ignorer cet email et de modifier votre mot de passe dans les paramètre de votre compte pour des raisons de sécurité.",
+                        __DIR__ . '/../views/templates/mailer/reset_password_confirmation_mail.php'
+                    );
+                    $mailer->send(
+                        array(
+                            "reset_password_token" => $potential_user[0]['reset_password_token'],
+                            "user_id" => $potential_user[0]['id'],
+                        )
+                    );
+                    $flash = new Flash(
+                        array("Un email pour réinitialiser le mot de passe de votre compte vous à été envoyé"),
+                        'success'
+                    );
+                    $flash->storeInSession();
+                    die(header('location:' . ROOT_PATH . '/signin'));
+                }
+            } catch (\Throwable $th) {
+                $flash = new Flash(
+                    array('Une erreure est survenue'),
+                    'danger'
+                );
+                $flash->storeInSession();
+                die(header('location:'. ROOT_PATH.'/users/password/reset'));
+            }
+
+        }else{
+            try {
+                $page_data = Page::getDetails($this->connection, "users#ask_new_password");
+                $this->render(
+                    'ask_new_password',
+                    array(
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
+                        'style_file_name' => 'reset_password',
+                        'navbar_present' => false,
+                        'footer_present' => false,
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    )
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
+        }
+
+    }
+
+    public function reset_password()
+    {
+        if (isset($this->params['id'], $_GET['reset_password_token'])) {
+            try {
+                $potential_user = new User($this->params['id']);
+                $user_data = $potential_user->getDetails($this->connection);
+                if ($user_data['reset_password_token'] === $_GET['reset_password_token']) {
+                    $page_data = Page::getDetails($this->connection, "users#reset_password");
+                    $this->render(
+                        'reset_password',
+                        array(
+                            'title' => $page_data['title'],
+                            'description' => $page_data['description'],
+                            'style_file_name' => 'reset_password',
+                            'navbar_present' => false,
+                            'footer_present' => false,
+                            'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                            'reset_password_token' => $_GET['reset_password_token'],
+                            'user_id' => $this->params['id'],
+                        )
+                    );} else {
+                    $this->handleError(403);
+                }
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
+        } else if (isset($_POST['user_id'], $_POST['reset_password_token'], $_POST['password'], $_POST['password_confirmation'])) {
+            if ($_POST['password'] !== $_POST['password_confirmation']) {
+                $flash = new Flash(
+                    array("Les mots de passe ne sont pas identiques"),
+                    'danger'
+                );
+                $flash->storeInSession();
+                die(header('location:' . ROOT_PATH . '/users/' . $_POST['user_id'] . '/reset-password'));
+            } else {
+                try {
+                    $reset_password_token = bin2hex(random_bytes(50));
+                    User::update($this->connection, ['reset_password_token', 'password'], [$reset_password_token, $_POST['password']], 'id', $_POST['user_id']);
+                    $flash = new Flash(
+                        array("Le mot de passe de votre compte à été mis à jour avec succès"),
+                        'success'
+                    );
+                    $flash->storeInSession();
+                    die(header('location:' . ROOT_PATH . '/signin'));
+                } catch (\Throwable $th) {
+                    $flash = new Flash(
+                        array($th->getMessage()),
+                        'danger'
+                    );
+                    $flash->storeInSession();
+                    die(header('location:' . ROOT_PATH . '/signin'));
+                }
+            }
+        } else {
+            $this->handleError(422);
+        }
+    }
 
     public function confirm()
     {
-        if (isset($this->params['id'], $_GET['verify_token']))
-        {
+        if (isset($this->params['id'], $_GET['verify_token'])) {
             try {
                 User::update($this->connection, ['is_verified'], [1], 'id', $this->params['id']);
                 $flash = new Flash(
@@ -21,11 +143,11 @@ class UsersController extends ApplicationController
                     'success'
                 );
                 $flash->storeInSession();
-                die(header('location:'. ROOT_PATH.'/'));
+                die(header('location:' . ROOT_PATH . '/'));
             } catch (\Throwable $th) {
                 $this->handleError(500);
             }
-        }else{
+        } else {
             $this->handleError(422);
         }
     }
@@ -35,18 +157,18 @@ class UsersController extends ApplicationController
         if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['password_confirmation'], $_POST['is_helper'])) {
             if ($_POST['password_confirmation'] === $_POST['password']) {
                 try {
-                    $verify_token = bin2hex(random_bytes(50)); 
+                    $verify_token = bin2hex(random_bytes(50));
                     $reset_password_token = bin2hex(random_bytes(50));
                     $user = User::create(
                         $this->connection,
                         ['email', 'password', 'username', 'is_helper', 'verify_token', 'reset_password_token'],
                         [
-                            $_POST['email'], 
-                            password_hash($_POST['password'], PASSWORD_BCRYPT), 
+                            $_POST['email'],
+                            password_hash($_POST['password'], PASSWORD_BCRYPT),
                             $_POST['username'],
                             intval($_POST['is_helper']),
                             $verify_token,
-                            $reset_password_token
+                            $reset_password_token,
                         ],
                         $_POST,
                         [
@@ -58,19 +180,19 @@ class UsersController extends ApplicationController
                     );
 
                     $mailer = new Mailer(
-                        'tynkle', 
-                        $user[0]['email'], 
-                        'accountverification@tynkle.com', 
-                        $user[0]['email'], 
-                        'Bienvenue sur Tynkle: la première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager', 
+                        'tynkle',
+                        $user[0]['email'],
+                        'accountverification@tynkle.com',
+                        $user[0]['email'],
+                        'Bienvenue sur Tynkle: la première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager',
                         "Bonjour vous venez de créer un compte sur Tynkle, merci de confirmer cotre compte afin de finaliser votre inscription.Dans le cas ou le lien ne fonctionnerai pas veuillez copier-coller&nbsp;l'url suivante dans la barre d'adresse de votre navigateur :",
                         __DIR__ . '/../views/templates/mailer/registration_confirmation_mail.php'
                     );
 
                     $mailer->send(
                         array(
-                            "verify_token"=>$user[0]['verify_token'],
-                            "user_id"=>$user[0]['id']
+                            "verify_token" => $user[0]['verify_token'],
+                            "user_id" => $user[0]['id'],
                         )
                     );
 
@@ -202,7 +324,7 @@ class UsersController extends ApplicationController
                     'style_file_name' => 'signup',
                     'navbar_present' => false,
                     'footer_present' => false,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 )
             );
         } catch (\Throwable $th) {
@@ -221,7 +343,7 @@ class UsersController extends ApplicationController
                     'style_file_name' => 'profile',
                     'user' => $this->current_user->getDetails($this->connection),
                     'platforms' => $this->current_user->getUserSkill($this->connection),
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 ));
             } catch (\Throwable $th) {
                 $this->handleError(500);
@@ -251,7 +373,7 @@ class UsersController extends ApplicationController
                         'posts' => $posts,
                         "reviews" => $reviews,
                         'platforms' => $platforms,
-                        'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     ));
                 } catch (\Throwable $th) {
                     $this->handleError(500);
