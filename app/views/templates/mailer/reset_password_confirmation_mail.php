@@ -810,7 +810,7 @@ button.es-button {
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td class="esd-block-button es-p35t es-p35b es-p10r es-p10l" align="center"><span class="es-button-border" style="border-radius: 40px; background: #f3cf12;"><a href="https://viewstripo.email/" class="es-button" target="_blank" style="border-width: 15px 30px; border-radius: 40px; background: #f3cf12; border-color: #f3cf12;">reinitialiser</a></span></td>
+                                                                                    <td class="esd-block-button es-p35t es-p35b es-p10r es-p10l" align="center"><span class="es-button-border" style="border-radius: 40px; background: #f3cf12;"><a href="<?php echo ABSOLUTE_REDIRECT_PATH . "/users/" . $user_id . '/reset-password?reset_password_token=' . $reset_password_token ?>" class="es-button" target="_blank" style="border-width: 15px 30px; border-radius: 40px; background: #f3cf12; border-color: #f3cf12;">réinitialiser</a></span></td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td class="esd-block-text es-p20t es-p30r es-p30l es-m-txt-l" align="left">
@@ -818,7 +818,7 @@ button.es-button {
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td class="esd-block-text es-p20t es-p30r es-p30l es-m-txt-l" align="left" esd-links-color="#4Abded"><a target="_blank" href="https://viewstripo.email/" style="color: #4abded;">XXX.XXXXXXX.XXX / XXXXXXXXXXXXX</a></td>
+                                                                                    <td class="esd-block-text es-p20t es-p30r es-p30l es-m-txt-l" align="left" esd-links-color="#4Abded"><a target="_blank" href="<?php echo ABSOLUTE_REDIRECT_PATH . "/users/" . $user_id . '/reset-password?reset_password_token=' . $reset_password_token ?>" style="color: #4abded;"><?php echo ABSOLUTE_REDIRECT_PATH . "/users/" . $user_id . '/reset-password?reset_password_token=' . $reset_password_token ?></a></td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td class="esd-block-text es-p20t es-p30r es-p30l es-m-txt-l" align="left">
@@ -908,9 +908,9 @@ button.es-button {
                                                                                         <table cellpadding="0" cellspacing="0" class="es-table-not-adapt es-social">
                                                                                             <tbody>
                                                                                                 <tr>
-                                                                                                    <td align="center" valign="top" class="es-p10r"><a target="_blank" href><img title="Facebook" src="https://ngglro.stripocdn.email/content/assets/img/social-icons/circle-colored/facebook-circle-colored.png" alt="Fb" width="32"></a></td>
-                                                                                                    <td align="center" valign="top" class="es-p10r"><a target="_blank" href><img title="Twitter" src="https://ngglro.stripocdn.email/content/assets/img/social-icons/circle-colored/twitter-circle-colored.png" alt="Tw" width="32"></a></td>
-                                                                                                    <td align="center" valign="top"><a target="_blank" href><img title="Instagram" src="https://ngglro.stripocdn.email/content/assets/img/social-icons/circle-colored/instagram-circle-colored.png" alt="Inst" width="32"></a></td>
+                                                                                                    <td align="center" valign="top" class="es-p10r"><a target="_blank" href="https://fr-fr.facebook.com/TynkleFR/"><img title="Facebook" src="https://ngglro.stripocdn.email/content/assets/img/social-icons/circle-colored/facebook-circle-colored.png" alt="Fb" width="32"></a></td>
+                                                                                                    <td align="center" valign="top" class="es-p10r"><a target="_blank" href="https://twitter.com/tynklefr?lang=fr"><img title="Twitter" src="https://ngglro.stripocdn.email/content/assets/img/social-icons/circle-colored/twitter-circle-colored.png" alt="Tw" width="32"></a></td>
+                                                                                                    <td align="center" valign="top"><a target="_blank" href="https://www.instagram.com/tynklefr/?hl=fr"><img title="Instagram" src="https://ngglro.stripocdn.email/content/assets/img/social-icons/circle-colored/instagram-circle-colored.png" alt="Inst" width="32"></a></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
@@ -947,9 +947,9 @@ button.es-button {
                                                                     <td class="esd-container-frame" width="540" valign="top" align="center">
                                                                         <table width="100%" cellspacing="0" cellpadding="0">
                                                                             <tbody>
-                                                                                <tr>
+                                                                            <tr>
                                                                                     <td class="esd-block-text" align="left">
-                                                                                        <p><strong><a target="_blank" href="https://viewstripo.email">Accueil</a> - <a target="_blank" href="https://viewstripo.email">Les annonces</a> -</strong></p>
+                                                                                        <p><strong><a target="_blank" href="<?php echo ABSOLUTE_REDIRECT_PATH . "/" ?>">Accueil</a> - <a target="_blank" href="<?php echo ABSOLUTE_REDIRECT_PATH . "/posts" ?>">Les annonces</a> -</strong></p>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
