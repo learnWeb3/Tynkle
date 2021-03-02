@@ -13,6 +13,7 @@
                 <li class="font-weight-bold mb-2">Liens pratiques</li>
                 <li><a href="<?php echo ROOT_PATH."/register" ?>">S'inscrire</a></li>
                 <li><a href="<?php echo ROOT_PATH."/signin" ?>">Se connecter</a></li>
+                <li><a href="<?php echo ROOT_PATH."/users/password/reset" ?>">Mot de passe oublié</a><small></small>
                 <li><a href="<?php echo ROOT_PATH."/posts" ?>">Les annonces</a></li>
             </ul>
         </div>
