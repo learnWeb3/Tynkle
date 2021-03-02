@@ -61,9 +61,7 @@ class Mailer
             ]
         ];
 
-        $response = $mj->post(Resources::$Email, ['body' => $body]);
-        echo json_encode($response->getData());
-        die();
+        $mj->post(Resources::$Email, ['body' => $body]);
     }
     
 }
