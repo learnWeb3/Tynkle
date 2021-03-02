@@ -9,16 +9,45 @@ class UsersController extends ApplicationController
         $this->beforeAction(['edit', "update"]);
     }
 
+
+    public function confirm()
+    {
+        if (isset($this->params['id'], $_GET['verify_token']))
+        {
+            try {
+                User::update($this->connection, ['is_verified'], [1], 'id', $this->params['id']);
+                $flash = new Flash(
+                    array("Votre compte a bien été validé vous pouvez vous connecter"),
+                    'success'
+                );
+                $flash->storeInSession();
+                die(header('location:'. ROOT_PATH.'/'));
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
+        }else{
+            $this->handleError(422);
+        }
+    }
+
     public function create()
     {
         if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['password_confirmation'], $_POST['is_helper'])) {
             if ($_POST['password_confirmation'] === $_POST['password']) {
                 try {
-                    User::create(
+                    $verify_token = bin2hex(random_bytes(50)); 
+                    $reset_password_token = bin2hex(random_bytes(50));
+                    $user = User::create(
                         $this->connection,
-                        ['email', 'password', 'username', 'is_helper'],
-                        [$_POST['email'], password_hash($_POST['password'], PASSWORD_BCRYPT), $_POST['username'],
-                            intval($_POST['is_helper'])],
+                        ['email', 'password', 'username', 'is_helper', 'verify_token', 'reset_password_token'],
+                        [
+                            $_POST['email'], 
+                            password_hash($_POST['password'], PASSWORD_BCRYPT), 
+                            $_POST['username'],
+                            intval($_POST['is_helper']),
+                            $verify_token,
+                            $reset_password_token
+                        ],
                         $_POST,
                         [
                             'username' => 'required',
@@ -27,8 +56,26 @@ class UsersController extends ApplicationController
                             "is_helper" => 'required',
                         ]
                     );
+
+                    $mailer = new Mailer(
+                        'tynkle', 
+                        $user[0]['email'], 
+                        'accountverification@tynkle.com', 
+                        $user[0]['email'], 
+                        'Bienvenue sur Tynkle: la première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager', 
+                        "Bonjour vous venez de créer un compte sur Tynkle, merci de confirmer cotre compte afin de finaliser votre inscription.Dans le cas ou le lien ne fonctionnerai pas veuillez copier-coller&nbsp;l'url suivante dans la barre d'adresse de votre navigateur :",
+                        __DIR__ . '/../views/templates/mailer/registration_confirmation_mail.php'
+                    );
+
+                    $mailer->send(
+                        array(
+                            "verify_token"=>$user[0]['verify_token'],
+                            "user_id"=>$user[0]['id']
+                        )
+                    );
+
                     $flash = new Flash(
-                        array("Compte crée avec succès, veuillez vous connecter"),
+                        array("Compte crée avec succès, vous avez reçu un email, veuillez confirmer votre compte"),
                         'success'
                     );
                     $flash->storeInSession();
