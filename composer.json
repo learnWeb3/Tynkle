@@ -5,7 +5,8 @@
         "google/auth": "^1.14",
         "rakit/validation": "^1.4",
         "vlucas/phpdotenv": "^5.3",
-        "google/apiclient": "^2.9"
+        "google/apiclient": "^2.9",
+        "mailjet/mailjet-apiv3-php": "^1.5"
     },
     "autoload": {
         "classmap": ["./app/models/", "./app/controllers/", "./app/services/", "./app/helpers/"]

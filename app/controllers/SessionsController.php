@@ -19,6 +19,11 @@ class SessionsController extends ApplicationController
                 $flash->storeInSession();
                 die(header('location: ' . ROOT_PATH . '/'));
             } catch (\Throwable $th) {
+                $flash = new Flash(
+                    array($th->getMessage()),
+                    'success'
+                );
+                $flash->storeInSession();
                 die(header('location: ' . ROOT_PATH . '/signin'));
             }
         } else {

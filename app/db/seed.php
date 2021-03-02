@@ -53,7 +53,10 @@ foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns
 for ($count = 0; $count < 100; $count++) {
     try {
         $username = $faker->userName;
-        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password'], array(
+        $verify_token = bin2hex(random_bytes(50));
+        $reset_password_token = bin2hex(random_bytes(50));
+        echo $reset_password_token;
+        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token'], array(
             $username,
             $faker->firstName(),
             $faker->lastName,
@@ -61,7 +64,9 @@ for ($count = 0; $count < 100; $count++) {
             $faker->email,
             $faker->address,
             $faker->phoneNumber,
-            password_hash('foobar', PASSWORD_BCRYPT)
+            password_hash('foobar', PASSWORD_BCRYPT),
+            $verify_token,
+            $reset_password_token
         ));
         echo "User $username created \n";
     } catch (\Throwable $th) {
