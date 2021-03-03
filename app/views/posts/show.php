@@ -15,21 +15,18 @@
             <div class="col-12 col-xl-6">
                 <div class="card shadow-sm p-4 rounded">
                     <div class="d-flex align-items-center justify-content-start my-2">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/tags.svg" height="36" width="36"
-                            alt="breakdown category">
+                    <i class="lni lni-tag lni-32"></i>
                         <p class="m-3 font-weight-bold" id="breakdown-type">
                             <?php echo htmlspecialchars($post['platform_name']) ?>-<?php echo htmlspecialchars($post['breakdown_category_name']) ?>
                         </p>
                     </div>
                     <div class="d-flex align-items-center justify-content-start my-2">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/cash-stack.svg" height="36" width="36"
-                            alt="budget">
+                        <i class="lni lni-euro lni-32"></i>
                         <p class="m-3 font-weight-bold" id="budget"><?php echo htmlspecialchars($post['budget']) ?>
                             &euro;</p>
                     </div>
                     <div class="d-flex align-items-center justify-content-start my-2">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/pointer.svg" height="36" width="36"
-                            alt="map pointer">
+                        <i class="lni lni-pointer lni-32"></i>
                         <p class="m-3 font-weight-bold" id='location'><?php echo htmlspecialchars($post['city']) ?>
                             <?php echo htmlspecialchars($post['postal_code']) ?></p>
                     </div>
@@ -40,8 +37,7 @@
                     <div class="row w-100">
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                             <div id="avatar" class="shadow-sm bg-white my-4">
-                                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg"
-                                    alt="user avatar">
+                                <i class="lni lni-user lni-64"></i>
                             </div>
                         </div>
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">

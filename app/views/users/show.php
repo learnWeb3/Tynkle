@@ -8,8 +8,7 @@
                 <div class="row w-100">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                         <div id="avatar" class="shadow-sm bg-white my-4">
-                            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg"
-                                alt="user avatar">
+                            <i class="lni lni-user lni-64"></i>
                         </div>
                         <h1 class="my-4"><a class="font-weight-bold font-italic m-2"
                                 href="/users/<?php echo $user['user_id'] ?>"><?php echo htmlspecialchars($user['username']) ?></a>

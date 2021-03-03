@@ -91,17 +91,17 @@
             <div class="row w-100 d-flex align-items-center justify-content-around my-4">
                 <div data-aos="flip-left" data-aos-duration="1000"
                     class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-trees"></i>
+                    <i class="lni lni-64 lni-wechat"></i>
                     <p class="font-weight-bold my-2">Contact des Helpers</p>
                 </div>
                 <div data-aos="flip-left" data-aos-duration="1000"
                     class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-euro"></i>
+                    <i class="lni lni-64 lni-bulb"></i>
                     <p class="font-weight-bold my-2">Trouve ta solution</p>
                 </div>
                 <div data-aos="flip-left" data-aos-duration="1000"
                     class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-alarm-clock"></i>
+                    <i class="lni lni-64 lni-star-half"></i>
                     <p class="font-weight-bold my-2">Note ton intervention</p>
                 </div>
             </div>
@@ -147,7 +147,7 @@
             <div class="row w-100 d-flex align-items-center justify-content-around my-4">
                 <div data-aos="flip-left" data-aos-duration="1000"
                     class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-trees"></i>
+                    <i class="lni lni-64 lni-search-alt"></i>
                     <p class="font-weight-bold my-2">Trouve des missions autour de chez toi</p>
                 </div>
                 <div data-aos="flip-left" data-aos-duration="1000"
@@ -157,12 +157,12 @@
                 </div>
                 <div data-aos="flip-left" data-aos-duration="1000"
                     class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-alarm-clock"></i>
+                    <i class="lni lni-64 lni-direction"></i>
                     <p class="font-weight-bold my-2">Travaille ou tu veux et quand tu veux</p>
                 </div>
                 <div data-aos="flip-left" data-aos-duration="1000"
                     class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-alarm-clock"></i>
+                    <i class="lni lni-64 lni-users"></i>
                     <p class="font-weight-bold my-2">Fais partis d'une communauté de passionnés</p>
                 </div>
             </div>

@@ -92,8 +92,7 @@ const getTypingAreaTemplate = (subscibersIds, chatId, currentUserId) => {
       <input name="content" data-subscibersIds='${subscibersIds}' data-current='${currentUserId}' data-id='${chatId}' id="content" placeholder="Rediger votre message..." aria-describedby="button-addon2"
       class="form-control rounded-0 border-0 py-4 bg-light"></input>
           <div class="input-group-append">
-              <button id="button-addon2" type="submit" class="btn btn-link"> <i
-                      class="fa fa-paper-plane"></i></button>
+              <button id="button-addon2" type="submit" class="btn btn-link"><i class="lni lni-facebook-messenger lni-32"></i></button>
           </div>
       </div>
   </form>`.trim();
@@ -105,9 +104,7 @@ const getMessageTemplate = (
 ) => {
   if (parseInt(current_user.id) !== parseInt(user_id)) {
     return `
-  <div id="message-${message_id}" class="media sender w-50 mb-3 d-flex"><img
-          src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user"
-          width="50" class="rounded-circle">
+  <div id="message-${message_id}" class="media sender w-50 mb-3 d-flex"> <i class="lni lni-user lni-32"></i>
       <div class="media-body mx-3">
           <div class="bg-light rounded py-2 px-3 mb-2">
               <p class="text-small mb-0 text-muted"> ${message_content}</p>
@@ -167,20 +164,20 @@ const getPostTemplate = (
             </div>
             <div class="col-12 d-flex align-items-start">
                 <div class="d-flex align-items-center w-100">
-                    <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/pointer.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
+                <i class="lni lni-pointer lni-16"></i>
                     <p class="m-2">${city} ${postal_code}</p>
                 </div>
             </div>
         </div>
         <div class="row d-none d-lg-block">
             <div class="d-flex align-items-center w-100">
-                <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
+                <i class="lni lni-user lni-16"></i>
                 <a class="font-italic m-2" href="${ROOT_PATH}/users/${user_id}">${username}</a>
             </div>
         </div>
         <div class="row">
             <div class="col-6 d-flex align-items-center">
-                <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/clock.svg" height="16" width="16" alt="edit publication" class="img-fluid mr-2">
+              <i class="lni lni-calendar lni-16"></i>
                 <small class="m-2 mb-0">Posté le ${created_at}</small>
             </div>
            ${getAuthorActions(user_id, current_user)}
