@@ -66,7 +66,6 @@
                         <p class=" display-4 mb-0"><?php echo $analytics['avg_time_on_page'] ?></p>
                     </div>
                 </div>
-            </div>
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Temps moyen / session : </p>
                 <div class="row h-100">
@@ -91,6 +90,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Bounces : </p>
                 <div class="row h-100">
@@ -99,10 +99,21 @@
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['bounces'] ?></p>
+=======
+            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+                <p class="text-muted">Bounces : </p>
+                <div class="row h-100">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="fas fa-bullseye fa-3x"></i>
+                    </div>
+                    <div class="col-8 d-flex align-items-center justify-content-center">
+                        <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['bounces'] ?></p>
+>>>>>>> a9ff8c5f098edeba709aab1353cad80e4ed02c4e
                     </div>
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Bounce Rate : </p>
                 <div class="row h-100">
@@ -111,6 +122,16 @@
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['bounce_rate'] ?></p>
+=======
+            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+                <p class="text-muted">Bounce Rate : </p>
+                <div class="row h-100">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="fas fa-bullseye fa-3x"></i>
+                    </div>
+                    <div class="col-8 d-flex align-items-center justify-content-center">
+                        <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['bounce_rate'] ?></p>
+>>>>>>> a9ff8c5f098edeba709aab1353cad80e4ed02c4e
                     </div>
                 </div>
             </div>

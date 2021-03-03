@@ -146,8 +146,8 @@ const getPostTemplate = (
     if (current_user.id === user_id) {
       return `
     <div class="col-6 d-flex justify-content-end">
-      <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid">
-      <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid">
+      <i class="lni lni-trash lni-16"></i>
+      <i class="lni lni-spinner-arrow lni-16"></i>
     </div>
     `.trim();
     } else {
@@ -235,7 +235,7 @@ const getOfferTemplate = ({
             <h5 class="font-weight-bold">${object}</h5>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-            <img src="${ROOT_PATH}/app/assets/partials/publication_card/img/avatar_placeholder.svg" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
+          <i class="lni lni-user lni-16"></i>
             <a href="${
               ROOT_PATH + "/users/" + user_id
             }" class="font-weight-bold my-2">${username}</a>

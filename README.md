@@ -17,12 +17,18 @@ plateforme web et changer de modèle économique.
 Pour lancer le serveur en local vous devez disposez de PHP 7, Apache, Mysql, PHPMyAdmin et Composer sur votre machine
 
 Vous devez également vous procurer un token d'accès aux services suivants:
-- MAPS JAVASCRIPT API
 - MAILJET API
 
 Vous devez impérativement utiliser les informations d'identification de votre projet disponible sur votre tableau de bord Google pour :
 - l'authentification de l'application via oAuth
 - Google Analytics via un compte de service ayant accès en lecture au compte google analytics
+
+Les API Google utilisées dans ce projet sont les suivantes : 
+
+- MAPS JAVASCRIPT API
+- PLACES API
+- Geocoder API
+- Analytics API
 
 La compte Googgle Analytics doit posséder une propriété "Universal Analytics" diponible dans les options avancé lors de la création de propriété.
 

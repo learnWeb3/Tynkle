@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/mdb.min.css">
     <!-- AOS LIBRARY STYLES -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- FONTAWESOME ICONS KIT -->
+    <!-- Line Icons Library -->
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
      <!-- COMMON CSS -->
      <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
@@ -32,6 +32,8 @@
     </script>
     <!-- RATER JS -->
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/rater.js/rater.min.js"></script>
+    <!-- FONTAWESOME ICONS KIT -->
+    <script src="https://kit.fontawesome.com/b67bd6560e.js" crossorigin="anonymous"></script>
     <!-- GOOGLE MAPS JS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
