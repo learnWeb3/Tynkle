@@ -15,21 +15,18 @@
             <div class="col-12 col-xl-6">
                 <div class="card shadow-sm p-4 rounded">
                     <div class="d-flex align-items-center justify-content-start my-2">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/tags.svg" height="36" width="36"
-                            alt="breakdown category">
+                    <i class="lni lni-tag lni-32"></i>
                         <p class="m-3 font-weight-bold" id="breakdown-type">
                             <?php echo htmlspecialchars($post['platform_name']) ?>-<?php echo htmlspecialchars($post['breakdown_category_name']) ?>
                         </p>
                     </div>
                     <div class="d-flex align-items-center justify-content-start my-2">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/cash-stack.svg" height="36" width="36"
-                            alt="budget">
+                        <i class="lni lni-euro lni-32"></i>
                         <p class="m-3 font-weight-bold" id="budget"><?php echo htmlspecialchars($post['budget']) ?>
                             &euro;</p>
                     </div>
                     <div class="d-flex align-items-center justify-content-start my-2">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/pointer.svg" height="36" width="36"
-                            alt="map pointer">
+                        <i class="lni lni-pointer lni-32"></i>
                         <p class="m-3 font-weight-bold" id='location'><?php echo htmlspecialchars($post['city']) ?>
                             <?php echo htmlspecialchars($post['postal_code']) ?></p>
                     </div>
@@ -40,8 +37,7 @@
                     <div class="row w-100">
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                             <div id="avatar" class="shadow-sm bg-white my-4">
-                                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg"
-                                    alt="user avatar">
+                                <i class="lni lni-user lni-64"></i>
                             </div>
                         </div>
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
@@ -90,27 +86,19 @@
                 </div>
             </div>
         </div>
+        <?php if ($current_user): ?>
         <div class="row w-100 my-4">
             <div class="col-12 align-items-center justify-content-between flex-wrap my-4">
                 <div class="row my-4">
                     <h2 class="font-weight-bold">Cette annonce vous interesse ?</h2>
                 </div>
                 <div class="row d-flex justify-content-around">
-                    <?php if ($current_user): ?>
                     <button type="button" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2" data-bs-toggle="modal"
                         data-bs-target="#new-offer">
                         FAIRE UNE OFFRE
                     </button>
                     <button class=" btn btn-lg btn-outline-red-crayola active col-12 col-lg-3 m-2"
                         data-bs-toggle="modal" data-bs-target="#new-message">POSER UNE QUESTION</button>
-                    <?php else: ?>
-                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
-                        CONNEXION
-                    </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
-                        INSCRIPTION
-                    </a>
-                    <?php endif;?>
                     <?php if ($current_user === $post["user_id"]): ?>
                     <a class="btn btn-lg btn-brand active col-12 col-lg-3 m-2"
                         href="<?php echo ROOT_PATH . '/posts/' . $post['id'] . '/edit' ?>">EDITER</a>
@@ -118,6 +106,25 @@
                 </div>
             </div>
         </div>
+        <?php else: ?>
+
+        <div class="row w-100 my-4">
+            <div class="col-12 my-4">
+                <div class="row my-4">
+                    <h2 class="font-weight-bold text-center">Cette annonce vous interesse ?</h2>
+                </div>
+                <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
+                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                        CONNEXION
+                    </a>
+                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                        INSCRIPTION
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <?php endif;?>
         <div class="row w-100 my-4">
             <div class="col-12 align-items-center justify-content-between flex-wrap my-4">
                 <div class="row my-4">
@@ -130,26 +137,20 @@
                 </div>
             </div>
         </div>
+        <?php if ($current_user): ?>
         <div class="d-flex align-items-center my-4 col-12">
             <div class="card shadow-sm p-4 w-100">
                 <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
-                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur ?</h3>
-                    <?php if ($current_user): ?>
+                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur
+                        ?</h3>
                     <button type="button" class="btn btn-lg btn-brand active mx-4 col-9 col-lg-3" data-bs-toggle="modal"
                         data-bs-target="#warning">
                         SIGNALER
                     </button>
-                    <?php else: ?>
-                        <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
-                        CONNEXION
-                    </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
-                        INSCRIPTION
-                    </a>
-                    <?php endif;?>
                 </div>
             </div>
         </div>
+        <?php endif;?>
     </section>
 </main>
 

@@ -1,17 +1,17 @@
 <nav class="d-none col-xl-3 d-xl-flex flex-column justify-content-around fixed-bottom p-4" style="margin-top: 15%;height:100vh" id="menu-navigation">
     <ul class="nav flex-column bg-white shadow w-100 p-4 rounded">
         <li class="nav-item d-flex align-items-center w-100 my-2">
-            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/account.svg" height="32" width="32" alt="account informations">
+            <i class="lni lni-32 lni-users"></i>
             <a class="nav-link font-weight-bold" href="#account_informations">Informations générales</a>
         </li>
         <li class="nav-item d-flex align-items-center w-100 my-2">
-            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/details.svg" height="32" width="32" alt="personnal informations">
+        <i class="lni lni-32 lni-pencil"></i>
             <a class="nav-link font-weight-bold" href="#personnal_informations">Informations personnelles</a>
         </li>
 
         <?php if ($user['is_helper']): ?>
         <li class="nav-item dropdown d-flex align-items-center w-100 my-2">
-            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/skills.svg" height="32" width="32" alt="skills">
+        <i class="lni lni-32 lni-service"></i>
             <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="skills-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Compétences
             </a>
@@ -25,11 +25,11 @@
     </ul>
     <ul class="nav flex-column bg-white shadow p-4 rounded">
         <li class="nav-item d-flex align-items-center w-100 my-2">
-            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/chat.svg" height="32" width="32" alt="chats">
+        <i class="lni lni-32 lni-wechat"></i>
             <a href="<?php echo ROOT_PATH ?>/chats" class="nav-link font-weight-bold">Messages</a>
         </li>
         <li class="nav-item d-flex align-items-center w-100 my-2">
-            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/home.svg" height="32" width="32" alt="home">
+        <i class="lni lni-32 lni-home"></i>
             <a class="nav-link active font-weight-bold" href="<?php echo ROOT_PATH . '/' ?>">Accueil</a>
         </li>
     </ul>

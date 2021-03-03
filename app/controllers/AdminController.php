@@ -84,7 +84,7 @@ class AdminController extends ApplicationController
                         'user_evolution' => $user_evolution,
                         'new_users' => $new_users,
                         'session_per_user' => $session_per_user,
-                        'bounce_rate' => $bounce_rate,
+                        'bounce_rate' => round($bounce_rate,2),
                         'bounces' => $bounces,
                         'entrances_by_landing_page_paths' => $entrances_by_landing_page_paths,
                         'exits_by_exit_page_paths' => $exits_by_exit_page_paths,
