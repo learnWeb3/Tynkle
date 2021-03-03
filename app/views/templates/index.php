@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/mdb.min.css">
     <!-- COMMON CSS -->
     <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
-    <!-- PAGE SPECIFIC CSS -->
-    <?php if (!empty($style_file_name)): ?>
-    <link rel='stylesheet' href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/pages/<?php echo $style_file_name ?>.css">
-    <?php endif?>
     <!-- AOS LIBRARY STYLES -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- FONTAWESOME ICONS KIT -->
-    <script src="https://kit.fontawesome.com/b67bd6560e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+     <!-- PAGE SPECIFIC CSS -->
+     <?php if (!empty($style_file_name)): ?>
+    <link rel='stylesheet' href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/pages/<?php echo $style_file_name ?>.css">
+    <?php endif?>
     <!-- JQUERY LIBRARY -->
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/jquery-3.5.1.min.js"></script>
     <!-- POPPER JS -->
