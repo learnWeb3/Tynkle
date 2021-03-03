@@ -9,22 +9,22 @@
         <h1 class="my-4 font-weight-bold">Détails de votre activité</h1>
 
         <div class="row w-100 d-flex flex-wrap justify-content-between p-4" style="min-height: 25vh;">
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Utilisateur(s) : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-users fa-3x"></i>
+                        <i class="fas fa-users fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['user_number'] ?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Utilisateur(s) mois courant / mois précédent : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-chart-line fa-3x"></i>
+                        <i class="fas fa-chart-line fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['user_number'] ?></p>
@@ -32,22 +32,22 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Nombre de Posts : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="far fa-file-alt fa-3x"></i>
+                        <i class="far fa-file-alt fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['posts_count'] ?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Nombre de catégories de panne : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-tags fa-3x"></i>
+                        <i class="fas fa-tags fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0">
@@ -56,33 +56,33 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Temps moyen / page : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-stopwatch-20 fa-3x"></i>
+                        <i class="fas fa-stopwatch-20 fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['avg_time_on_page'] ?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Temps moyen / session : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-stopwatch-20 fa-3x"></i>
+                        <i class="fas fa-stopwatch-20 fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"> <?php echo $analytics['avg_session_duration'] ?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Nombre de page vues par session : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-eye fa-3x"></i>
+                        <i class="fas fa-eye fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['page_views_per_session'] ?>
@@ -91,11 +91,11 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Bounces : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-bullseye fa-3x"></i>
+                        <i class="fas fa-bullseye fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['bounces'] ?></p>
@@ -103,11 +103,11 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
+            <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Bounce Rate : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-bullseye fa-3x"></i>
+                        <i class="fas fa-bullseye fa-2x"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['bounce_rate'] ?></p>
