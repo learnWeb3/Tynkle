@@ -41,6 +41,8 @@ class AdminController extends ApplicationController
             $analytics_client = new Analytics($client);
             // GOOGLE ANALYTICS metrics
             // MAIN
+            $helper_count = User::where($this->connection, 'is_helper', 1)->rowCount();
+            $non_helper_count  = User::where($this->connection, 'is_helper', 0)->rowCount();
             $user_number = isset($analytics_client->getRows('users')[0][0]) ? $analytics_client->getRows('users')[0][0] : 'N/A';
             $users_by_country = $analytics_client->getChartDataByDimension('users', ['ga:country']);
             $users_by_device = $analytics_client->getChartDataByDimension('users', ['ga:deviceCategory']);
@@ -92,6 +94,16 @@ class AdminController extends ApplicationController
                         'posts_count' => Post::count($this->connection),
                         'breakdown_categories_count' => BreakdownCategory::count($this->connection),
                         'posts_by_breakdowncategories_and_platforms' => $posts_by_breakdowncategories_and_platforms,
+                        'users_by_type'=>json_encode(array(
+                            [
+                                'name' => "helper",
+                                'y' => $helper_count,
+                            ],
+                            [
+                                'name' => "demandeur",
+                                'y' => $non_helper_count,
+                            ]
+                        ))
                     ),
                 )
             );

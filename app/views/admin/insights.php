@@ -1,4 +1,5 @@
-<main class="d-flex flex-column bg-background" style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;'>
+<main class="d-flex flex-column bg-background"
+    style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;'>
 
     <?php require_once '_nav_menu.php'?>
 
@@ -24,7 +25,7 @@
                 <p class="text-muted">Utilisateur(s) mois courant / mois précédent : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-bar-chart lni-32"></i>
+                        <i class="lni lni-bar-chart lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['user_number'] ?></p>
@@ -36,7 +37,7 @@
                 <p class="text-muted">Nombre de Posts : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-files lni-32"></i>
+                        <i class="lni lni-files lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['posts_count'] ?></p>
@@ -47,7 +48,7 @@
                 <p class="text-muted">Nombre de catégories de panne : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-tag lni-32"></i>
+                        <i class="lni lni-tag lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0">
@@ -60,17 +61,18 @@
                 <p class="text-muted">Temps moyen / page : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-alarm-clock lni-32"></i>
+                        <i class="lni lni-alarm-clock lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['avg_time_on_page'] ?></p>
                     </div>
                 </div>
+            </div>
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Temps moyen / session : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-alarm-clock lni-32"></i>
+                        <i class="lni lni-alarm-clock lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"> <?php echo $analytics['avg_session_duration'] ?></p>
@@ -81,7 +83,7 @@
                 <p class="text-muted">Nombre de page vues par session : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-eye lni-32"></i>
+                        <i class="lni lni-eye lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['page_views_per_session'] ?>
@@ -90,58 +92,36 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Bounces : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-eye lni-32"></i>
+                        <i class="lni lni-eye lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['bounces'] ?></p>
-=======
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
-                <p class="text-muted">Bounces : </p>
-                <div class="row h-100">
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-bullseye fa-3x"></i>
-                    </div>
-                    <div class="col-8 d-flex align-items-center justify-content-center">
-                        <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['bounces'] ?></p>
->>>>>>> a9ff8c5f098edeba709aab1353cad80e4ed02c4e
                     </div>
                 </div>
             </div>
 
-<<<<<<< HEAD
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Bounce Rate : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                    <i class="lni lni-eye lni-32"></i>
+                        <i class="lni lni-eye lni-32"></i>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['bounce_rate'] ?></p>
-=======
-            <div class="col-12 col-md-6 col-lg-3 card shadow-sm p-4 m-4">
-                <p class="text-muted">Bounce Rate : </p>
-                <div class="row h-100">
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <i class="fas fa-bullseye fa-3x"></i>
-                    </div>
-                    <div class="col-8 d-flex align-items-center justify-content-center">
-                        <p class="font-weight-bold display-4 mb-0"><?php echo $analytics['bounce_rate'] ?></p>
->>>>>>> a9ff8c5f098edeba709aab1353cad80e4ed02c4e
                     </div>
                 </div>
             </div>
-
 
 
         </div>
         <div class="row w-100 d-flex flex-wrap" style="min-height: 100vh;">
             <div class="col-12 p-4" style="min-height: 25vh;" id="user-evolution"></div>
             <div class="col-12 col-lg-6 p-4" style="min-height: 25vh;" id="user-type"></div>
+            <div class="col-12 col-lg-6 p-4" style="min-height: 25vh;" id="user-platform"></div>
             <div class="col-12 col-lg-6 p-4" style="min-height: 25vh;" id="entrances_by_landing_page_paths"></div>
             <div class="col-12 col-lg-6 p-4" style="min-height: 25vh;" id="user-location"></div>
             <div class="col-12 col-lg-6 p-4" style="min-height: 25vh;" id="exits_by_exit_page_paths"></div>
@@ -164,7 +144,8 @@
 
 
 <script>
-drawPie('user-type', <?php echo $analytics['users_by_device'] ?>, "Utilisateurs par type d'appareil")
+drawPie('user-platform', <?php echo $analytics['users_by_device'] ?>, "Utilisateurs par type d'appareil")
+drawPie('user-type', <?php echo $analytics['users_by_type'] ?>, "helpers vs demandeurs")
 drawPie('user-location', <?php echo $analytics['users_by_country'] ?>, "Utilisateurs par pays")
 drawPie('entrances_by_landing_page_paths', <?php echo $analytics['entrances_by_landing_page_paths'] ?>,
     "Répartition du traffic en entrée")
