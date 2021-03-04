@@ -10,16 +10,16 @@
     <link rel="shortcut icon" href="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/favicon.png" type="image/png">
     <!-- MATERIALIZE FOR BOOTSTRAP MDB LIBRARY  -->
     <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/mdb.min.css">
-    <!-- COMMON CSS -->
-    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
-    <!-- PAGE SPECIFIC CSS -->
-    <?php if (!empty($style_file_name)): ?>
-    <link rel='stylesheet' href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/pages/<?php echo $style_file_name ?>.css">
-    <?php endif?>
     <!-- AOS LIBRARY STYLES -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- FONTAWESOME ICONS KIT -->
-    <script src="https://kit.fontawesome.com/b67bd6560e.js" crossorigin="anonymous"></script>
+    <!-- Line Icons Library -->
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+     <!-- COMMON CSS -->
+     <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
+     <!-- PAGE SPECIFIC CSS -->
+     <?php if (!empty($style_file_name)): ?>
+    <link rel='stylesheet' href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/pages/<?php echo $style_file_name ?>.css">
+    <?php endif?>
     <!-- JQUERY LIBRARY -->
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/jquery-3.5.1.min.js"></script>
     <!-- POPPER JS -->
@@ -32,6 +32,8 @@
     </script>
     <!-- RATER JS -->
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/rater.js/rater.min.js"></script>
+    <!-- FONTAWESOME ICONS KIT -->
+    <script src="https://kit.fontawesome.com/b67bd6560e.js" crossorigin="anonymous"></script>
     <!-- GOOGLE MAPS JS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->

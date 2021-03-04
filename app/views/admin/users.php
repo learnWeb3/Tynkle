@@ -8,10 +8,10 @@
         <h2>Gérer les utlisateurs</h2>
 
         <form class="col-12 my-4 user-search" action="" method="get">
-            <input type="text" name="" id="" class="col-12 form-control form-control-lg rounded-pill" placeholder="Rechercher un utilisateur par email">
+            <input type="text" name="" id="" class="col-12 form-control form-control-lg rounded-pill shadow" placeholder="Rechercher un utilisateur par email">
         </form>
 
-        <table class="table table-hover">
+        <table class="table table-light table-hover shadow">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -81,11 +81,11 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td class="text-center">
+                    <td class="text-start">
                         <a href="<?php echo ROOT_PATH.$users['previous'] ?>"><i class="fas fa-chevron-left fa-2x"></i></a>
                     </td>
                     <td colspan="3"></td>
-                    <td class="text-center">
+                    <td class="text-end">
                         <a href="<?php echo ROOT_PATH.$users['next'] ?>"><i class="fas fa-chevron-right fa-2x"></i></a>
                     </td>
                 </tr>

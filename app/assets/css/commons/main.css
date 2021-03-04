@@ -20,6 +20,10 @@ body {
     min-height: 100vh;
 }
 
+.lni-64{
+    font-size: 64px;
+}
+
 /* LINKS */
 
 a {

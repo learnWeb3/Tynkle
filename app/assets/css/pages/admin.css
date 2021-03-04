@@ -12,7 +12,7 @@
 }
 
 .card{
-    border: 5px solid rgba(74, 189, 237, .75);
+    border-left: .5rem solid #36b9cc;
 }
 .card p:first-child{
     text-align: center;

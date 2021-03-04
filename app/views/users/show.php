@@ -8,8 +8,7 @@
                 <div class="row w-100">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                         <div id="avatar" class="shadow-sm bg-white my-4">
-                            <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/avatar_placeholder.svg"
-                                alt="user avatar">
+                            <i class="lni lni-user lni-64"></i>
                         </div>
                         <h1 class="my-4"><a class="font-weight-bold font-italic m-2"
                                 href="/users/<?php echo $user['user_id'] ?>"><?php echo htmlspecialchars($user['username']) ?></a>
@@ -64,47 +63,50 @@
             </div>
         </div>
 
-        <div class="d-flex align-items-center my-4 col-12">
-            <div class="card shadow-sm p-4 w-100">
-                <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
-                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Contact :</h3>
-                    <?php if ($current_user): ?>
-                    <button type="button" class="btn btn-lg btn-red-crayola mx-4 col-9 col-lg-3" data-bs-toggle="modal"
-                        data-bs-target="#new-message">
-                        POSER UNE QUESTION
-                    </button>
-                    <?php else: ?>
-                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
-                        CONNEXION
-                    </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
-                        INSCRIPTION
-                    </a>
-                    <?php endif;?>
-                </div>
-            </div>
-        </div>
+        <?php if ($current_user): ?>
 
         <div class="d-flex align-items-center my-4 col-12">
             <div class="card shadow-sm p-4 w-100">
                 <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
-                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur ?</h3>
-                    <?php if ($current_user): ?>
+                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Contact :</h3>
+                    <button type="button" class="btn btn-lg btn-red-crayola mx-4 col-9 col-lg-3" data-bs-toggle="modal"
+                        data-bs-target="#new-message">
+                        POSER UNE QUESTION
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center my-4 col-12">
+            <div class="card shadow-sm p-4 w-100">
+                <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
+                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur
+                        ?</h3>
                     <button type="button" class="btn btn-lg btn-brand active mx-4 col-9 col-lg-3" data-bs-toggle="modal"
                         data-bs-target="#warning">
                         SIGNALER
                     </button>
-                    <?php else: ?>
-                        <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
-                        CONNEXION
-                    </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active m-2 col-9 col-lg-3">
-                        INSCRIPTION
-                    </a>
-                    <?php endif;?>
                 </div>
             </div>
         </div>
+        <?php else: ?>
+
+        <div class="row w-100 my-4">
+            <div class="col-12 my-4">
+                <div class="row my-4">
+                    <h2 class="font-weight-bold text-center">Contacter <strong><?php echo htmlspecialchars($user['username']) ?></strong> ?</h2>
+                </div>
+                <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
+                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                        CONNEXION
+                    </a>
+                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                        INSCRIPTION
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <?php endif;?>
     </section>
 </main>
 

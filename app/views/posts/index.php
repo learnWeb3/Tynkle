@@ -30,7 +30,7 @@
                 <hr>
                 <form action="" method="GET" class="col-12 bg-white">
                     <div class="d-flex w-100 align-items-center">
-                        <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/img/commons/pointer.svg" height="24" width="24" alt="map pointer">
+                    <i class="lni lni-pointer lni-32"></i>
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
                     </div>
                     <div class="form-group my-2">

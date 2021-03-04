@@ -1,7 +1,7 @@
 <a href="<?php echo ROOT_PATH . '/chats/' . $chat['id'] ?>" data-url='<?php echo '/chats/' . $chat['id'] ?>'
     class="list-group-item list-group-item-action list-group-item-light rounded-0 message">
-    <div class="media d-flex col-12"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
-            alt="user" width="50" class="rounded-circle">
+    <div class="media d-flex col-12">
+        <i class="lni lni-user lni-32"></i>
         <div class="media-body mx-4 w-100">
             <div class="d-flex align-items-center justify-content-between mb-1">
                 <h6 class="mb-0"><?php echo $chat["subscriber_third_party"]['user_username'] ?></h6><small

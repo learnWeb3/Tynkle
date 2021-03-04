@@ -10,7 +10,7 @@
 
         <h3 class="my-4">Les utilisateurs</h3>
 
-        <table id="warnings-users" class="table table-hover">
+        <table id="warnings-users" class="table table-light table-hover shadow">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -51,7 +51,7 @@
 
         <h3 class="my-4">Les annonces</h3>
 
-        <table id="warnings-posts" class="table table-hover">
+        <table id="warnings-posts" class="table table-light table-hover shadow">
             <thead>
                 <tr>
                     <th scope="col">#</th>

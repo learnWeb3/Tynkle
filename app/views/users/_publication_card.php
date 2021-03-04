@@ -8,26 +8,30 @@
             </div>
             <div class="col-12 d-flex align-items-start">
                 <div class="d-flex align-items-center w-100">
-                    <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/pointer.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
+                    <i class="lni lni-pointer lni-16"></i>
                     <p class="m-2"><?php echo htmlspecialchars($post['city']) ?> <?php echo htmlspecialchars($post['postal_code']) ?></p>
                 </div>
             </div>
         </div>
         <div class="row d-none d-lg-block">
             <div class="d-flex align-items-center w-100">
-                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/avatar_placeholder.svg" height="16" width="16" alt="map pointer icon" class="img-fluid">
+            <i class="lni lni-user lni-16"></i>
                 <a class="font-italic m-2" href="<?php echo ROOT_PATH ."/users/". $post['user_id'] ?>"><?php echo htmlspecialchars($post['username']) ?></a>
             </div>
         </div>
         <div class="row">
             <div class="col-6 d-flex align-items-center">
-                <img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/clock.svg" height="16" width="16" alt="edit publication" class="img-fluid mr-2">
+                <i class="lni lni-calendar lni-16"></i>
                 <small class="m-2 mb-0">Posté le <?php echo htmlspecialchars($post['created_at']) ?></small>
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <?php if ($post['user_id'] === $current_user): ?>
-                    <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/destroy" ?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/trash.svg" height="16" width="16" alt="delete publication" class="m-2 img-fluid"></a>
-                    <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/edit" ?>"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/partials/publication_card/img/edit.svg" height="16" width="16" alt="edit publication" class="m-2 img-fluid"></a>
+                    <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/destroy" ?>">
+                        <i class="lni lni-trash lni-16"></i>
+                    </a>
+                    <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/edit" ?>">
+                        <i class="lni lni-spinner-arrow lni-16"></i>
+                    </a>
                 <?php endif; ?>
             </div>
         </div>

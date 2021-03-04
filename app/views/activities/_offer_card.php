@@ -5,7 +5,7 @@
             <h5 class="font-weight-bold mx-2"> <?php echo $offer['object'] ?></h5>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-            <img src="<?php echo ABSOLUTE_ASSET_PATH . "/partials/publication_card/img/avatar_placeholder.svg" ?>" class="m-2" height="36" width="36" alt="map pointer icon" class="img-fluid">
+            <i class="lni lni-user lni-16"></i>
             <p class="font-weight-bold my-2">Martin Dupont</p>
         </div>
     </div>
