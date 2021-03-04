@@ -6,6 +6,7 @@ $routes = array(
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),
     array('POST', ROOT_PATH . '/login', 'sessions#create', 'create_session'),
     array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),
+    array('GET', ROOT_PATH . '/articles', 'articles#index', 'index_articles'),
     // '/admin'
     array('GET', ROOT_PATH . '/admin/platform', 'admin#platform', 'platform_admin'),
     array('GET', ROOT_PATH . '/admin/insights', 'admin#insights', 'insights_admin'),

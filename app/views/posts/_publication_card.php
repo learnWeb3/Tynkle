@@ -1,5 +1,5 @@
-<div class="card card-publication col-12 col-lg-6 shadow p-4 my-4" id="post-<?php echo $post['id'] ?>">
-    <img src="<?php echo htmlspecialchars($post['cover_image']) ?>" height="450px" alt="" class="card-img-top">
+<div class="card card-publication col-12 col-lg-6 shadow p-4 m-2 rounded" style="width: 25rem;" id="post-<?php echo $post['id'] ?>">
+    <img src="<?php echo htmlspecialchars($post['cover_image']) ?>" alt="" class="card-img-top">
     <div class="card-body">
         <div class="row">
             <div class="col-12 d-flex flex-column justify-content-start">
@@ -23,11 +23,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6 d-flex align-items-center">
+            <div class="col-12 d-flex align-items-center">
                 <i class="lni lni-calendar lni-16"></i>
                 <small class="m-2 mb-0">Posté le <?php echo htmlspecialchars($post['created_at']) ?></small>
             </div>
-            <div class="col-6 d-flex justify-content-end">
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
                 <?php if ($post['user_id'] === $current_user): ?>
                 <a href="<?php echo ROOT_PATH."/posts/".$post['id']."/destroy" ?>">
                     <i class="lni lni-trash lni-16"></i>
@@ -40,8 +42,8 @@
         </div>
 
         <div class="row my-4">
-            <a class="btn btn-lg btn-brand active" href=<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>>VOIR LES
-                DETAILS</a>
+            <a href="<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>" class="align-self-end font-weight-bold text-end">Voir les détails <i
+            class="lni lni-arrow-right"></i></a>
         </div>
     </div>
 </div>

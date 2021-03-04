@@ -35,6 +35,21 @@ a:hover {
 }
 
 
+/* TEXT COLOR */
+
+.text-brand-blue{
+    color: #4ABDED;
+}
+
+.text-brand-yellow{
+    color:#f3cf12;
+}
+
+.text-brand-red{
+    color:#FD0E35;
+}
+
+
 /* BACKGROUND COLORS */
 
 .bg-white-overlay {
@@ -104,6 +119,21 @@ a:hover {
     background-color: #373a3c;
     color: #f3cf12;
 }
+
+.btn-brand-blue {
+    background-color: #4ABDED;
+    color: #FFF;
+}
+
+.btn-yellow-tynkle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    min-height: 3.5rem;
+    background-color: #F3CF12;
+    color: #000;
+  }
 
 /* FORM CHECK */
 .form-check-input[type="checkbox"]:checked {

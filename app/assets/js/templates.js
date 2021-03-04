@@ -1,7 +1,6 @@
 import { ROOT_PATH } from "./API_CLIENT/index.js";
 
 const getAlertTemplate = (messages, type) => {
-
   const displayMessages = (messages) =>
     messages.map((message) => `<p class="p-0 m-0">${message}</p>`);
 
@@ -170,7 +169,7 @@ const getPostTemplate = (
     }
   };
   const innerHTML = `
-    <img src="${cover_image}" height="450px" alt="" class="card-img-top">
+    <img src="${cover_image}" alt="" class="card-img-top">
     <div class="card-body">
         <div class="row">
             <div class="col-12 d-flex flex-column justify-content-start">
@@ -191,22 +190,26 @@ const getPostTemplate = (
             </div>
         </div>
         <div class="row">
-            <div class="col-6 d-flex align-items-center">
+            <div class="col-12 d-flex align-items-center">
               <i class="lni lni-calendar lni-16"></i>
                 <small class="m-2 mb-0">Posté le ${created_at}</small>
             </div>
-           ${getAuthorActions(user_id, current_user)}
         </div>
-
+        <div class="row">
+          ${getAuthorActions(user_id, current_user)}
+        </div>
         <div class="row my-4">
-            <a class="btn btn-lg btn-brand active" href="${
-              ROOT_PATH + "/posts/" + id
-            }">VOIR LES DETAILS</a>
+        <a href="${
+          ROOT_PATH + "/posts/" + id
+        }" class="align-self-end font-weight-bold text-end">Voir les détails <i
+        class="lni lni-arrow-right"></i></a>
+  
         </div>
     </div>
     `.trim();
   const card = document.createElement("div");
   card.setAttribute("id", `post-${id}`);
+  card.style.width = "25rem"
   card.classList.add(
     "card",
     "card-publication",
@@ -214,7 +217,9 @@ const getPostTemplate = (
     "col-xl-6",
     "shadow",
     "p-4",
-    "my-4"
+    "my-4",
+    "rounded",
+    "m-2"
   );
   card.innerHTML = innerHTML;
   return card;
