@@ -22,7 +22,7 @@
             <div class="py-5 chat-box bg-white d-flex flex-column overflow-auto" id="messages-container"
                 style="height:70vh;">
                 <img data-aos="fade-bottom" data-aos-duration="1000" class="img-fluid"
-                    src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/chat.svg" ?>" alt="discuss here">
+                    src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/chat.svg" ?>" style="max-height: 30rem;" alt="discuss here">
                 <p class="h5 text-center">Veuillez séléctionner une conversation</p>
             </div>
         </div>

@@ -1,6 +1,8 @@
 <?php
 $routes = array(
-    array('GET', ROOT_PATH . '/', 'home#index', 'home'),
+    array('GET', ROOT_PATH . '/', 'static#home', 'home'),
+    array('GET', ROOT_PATH . '/contact', 'static#contact', 'contact'),
+    array('POST', ROOT_PATH . '/contact', 'static#contact', 'send_contact'),
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),
     array('POST', ROOT_PATH . '/login', 'sessions#create', 'create_session'),
     array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),

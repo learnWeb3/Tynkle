@@ -18,6 +18,25 @@ const getCurrentUser = async () => {
 };
 
 
+const sendContactMessage = async (data) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + "/contact", options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+};
+
+
 const getMessages = async (url) => {
   const options = {
     headers: {
@@ -256,5 +275,6 @@ export {
   searchUserbyAdmin,
   createWarning,
   deleteWarnings,
-  getMessages
+  getMessages,
+  sendContactMessage
 };

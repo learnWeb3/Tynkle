@@ -47,7 +47,7 @@ class UsersController extends ApplicationController
                 }
             } catch (\Throwable $th) {
                 $flash = new Flash(
-                    array('Une erreure est survenue'),
+                    array('Une erreur est survenue'),
                     'danger'
                 );
                 $flash->storeInSession();

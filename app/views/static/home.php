@@ -4,11 +4,13 @@
         <div class="row w-100 p-4" style="min-height:100vh;background-color:rgba(51,51,51,.66)">
             <div data-aos="zoom-in" data-aos-duration="1000"
                 class="container-xl d-flex justify-content-center align-items-center">
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-8">
                     <h1 class="text-white display-4 font-weight-bold my-5"><b>Tynkle,</b> LA première plateforme
                         exclusivement dédiée à l'entraide
-                        informatique et multimédia
+                        informatique, multimédia et électroménager
                     </h1>
+
+                    <h2 class="text-white">Au sein de la communauté vous pouvez obtenir de l'aide et/ou partager vos services, pour cela il suffit de remplir vos compétences</h2>
                     <form action="" method="get" class="w-100 my-5 d-block">
                         <div class="form-group">
                             <label class="text-white font-weight-bold" for="">Je cherche un dépaneur :</label>
@@ -17,7 +19,7 @@
                             </select>
                         </div>
                         <button type="submit"
-                            class="btn btn-lg btn-yellow-tynkle col-6 col-lg-3 rounded-pill">valider</button>
+                            class="btn btn-lg btn-yellow-tynkle col-6 col-lg-3 rounded-pill my-5">valider</button>
                     </form>
                 </div>
             </div>
@@ -105,12 +107,21 @@
                     <p class="font-weight-bold my-2">Note ton intervention</p>
                 </div>
             </div>
+
+            
         </div>
 
         <h3 data-aos="fade-up" data-aos-duration="1000" class="text-center font-weight-bold">Tu as besoin d'aide ?
             <br> Il te suffit de contacter des Helpers ou
             de poster une annonce <br>
         </h3>
+
+        <div class="row w-100 d-flex align-items-center justify-content-center">
+
+            <h3 data-aos="fade-up" data-aos-duration="1000" class="text-center font-weight-bold">Astuce, augmente ton taux de réponse en faisant les deux.</h3>
+
+        </div>
+
 
         <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
             class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">

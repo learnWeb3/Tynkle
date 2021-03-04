@@ -1,5 +1,20 @@
 import { ROOT_PATH } from "./API_CLIENT/index.js";
 
+const getAlertTemplate = (messages, type) => {
+
+  const displayMessages = (messages) =>
+    messages.map((message) => `<p class="p-0 m-0">${message}</p>`);
+
+  return `<div class="alert alert-${type} alert-dismissible fade show m-0 fixed-top" role="alert">
+      <div class="w-100 d-flex justify-content-center align-items-center flex-column">
+            ${displayMessages(messages)}
+      </div>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>`.trim();
+};
+
 const getAdminUserRowTemplate = ({
   username,
   email,
@@ -99,7 +114,7 @@ const getTypingAreaTemplate = (subscibersIds, chatId, currentUserId) => {
 };
 
 const getMessageTemplate = (
-  { user_username, user_id,message_id, message_content, message_created_at },
+  { user_username, user_id, message_id, message_content, message_created_at },
   current_user
 ) => {
   if (parseInt(current_user.id) !== parseInt(user_id)) {
@@ -294,4 +309,5 @@ export {
   getMessageTemplate,
   getAdminUserRowTemplate,
   getTypingAreaTemplate,
+  getAlertTemplate,
 };

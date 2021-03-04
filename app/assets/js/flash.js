@@ -1,4 +1,4 @@
-const handleDismissAlert = () =>
+export const handleDismissAlert = () =>
   document
     .querySelector(".alert .close")
     ?.addEventListener("click", function (event) {
