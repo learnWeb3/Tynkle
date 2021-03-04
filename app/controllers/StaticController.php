@@ -11,7 +11,7 @@ class StaticController extends ApplicationController
     public function home()
     {
         try {
-            $page_data = Page::getDetails($this->connection, "home#index");
+            $page_data = Page::getDetails($this->connection, "static#home");
             $this->render(
                 'home',
                 array(
@@ -65,7 +65,7 @@ class StaticController extends ApplicationController
            
        }else{
             try {
-                $page_data = Page::getDetails($this->connection, "home#index");
+                $page_data = Page::getDetails($this->connection, "static#contact");
                 $this->render(
                     'contact',
                     array(
