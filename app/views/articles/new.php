@@ -35,10 +35,9 @@
                     placeholder="Une invitation à aller plus loin avec Tynkle" required></textarea>
             </div>
 
-            <div class="form-group my-4" style="max-height: max-content;
-    max-width: max-content;">
-                <label for="">Choisir une image de couverture :</label>
-                <div id="image" class="col-12"></div>
+            <div class="form-group my-4">
+                <label for="cover_image">Choisir une image de couverture :</label>
+                <input type="file" class="form-control" name="cover_image" id="cover_image">
             </div>
 
             <div class="form-group my-4">

@@ -1,9 +1,14 @@
 <main class="d-flex flex-column justify-content-center align-items-center bg-background"
     style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;'>
 
-    <section id="editor" class="container-xl d-flex flex-column bg-light p-4 shadow" style="min-height:100vh; margin-top:3.5rem;">
+    <section id="editor" class="container-xl d-flex flex-column bg-light p-4" style="min-height:100vh; margin-top:3.5rem;">
 
+    </section>
 
+    <section class="container-xl bg-light d-flex align-items-center justify-content-center">
+        <?php if ($is_user_admin): ?>
+            <a href="<?php echo ROOT_PATH . '/articles/' . $article['id'] . '/edit' ?>" class="btn btn-lg btn-primary rounded-pill col-3 my-4">EDITER</a>
+        <?php endif;?>
     </section>
 
 </main>

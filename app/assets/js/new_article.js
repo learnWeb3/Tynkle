@@ -22,29 +22,37 @@ const toolbarOptions = [
   ["clean"], // remove formatting button
 ];
 
-const toolbarImageOptions = [["image"]];
+export const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
 
-const handleSaveDocument = (quillDocument, quillImage) => {
+
+const handleSaveDocument = (quillDocument) => {
   document
     .querySelector("#save-article")
     .addEventListener("click", async function (event) {
       event.preventDefault();
       const content = quillDocument.getContents();
-      const cover_image = quillImage.getContents();
-      const title = $("#title").val();
-      const description = $("#description").val();
+      const cover_image = document.querySelector('#cover_image').files ? document.querySelector('#cover_image').files[0] : null;
+      const title = $("#title").val().length > 0 ? $("#title").val() : null;
+      const description = $("#description").val().length > 0 ? $("#description").val() : null;
       if (
-        cover_image.ops[0].insert !== "\n" &&
-        title !== "" &&
-        description !== ""
+        cover_image &&
+        title &&
+        description
       ) {
-        const { status, data } = await saveArticle({
+
+        const base64CoverImage = await toBase64(cover_image);
+        const inputs = {
           content: JSON.stringify(content),
-          cover_image: JSON.stringify(cover_image),
+          cover_image : base64CoverImage,
           title,
           description,
-        });
-
+        }
+        const { status, data } = await saveArticle(inputs);
         if (status === 200) {
           $("body").append(
             getAlertTemplate(
@@ -79,13 +87,6 @@ var quillDocument = new Quill("#editor", {
   placeholder: "Contenu de l'article",
 });
 
-var quillImage = new Quill("#image", {
-  modules: {
-    toolbar: toolbarImageOptions,
-  },
-  theme: "snow",
-  placeholder: "Chosir une image de couverture",
-});
 
 // save quill document to database as json object
-handleSaveDocument(quillDocument, quillImage);
+handleSaveDocument(quillDocument);

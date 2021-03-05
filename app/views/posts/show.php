@@ -100,7 +100,7 @@
                     <button class=" btn btn-lg btn-outline-red-crayola active col-12 col-lg-3 m-2"
                         data-bs-toggle="modal" data-bs-target="#new-message">POSER UNE QUESTION</button>
                     <?php if ($current_user === $post["user_id"]): ?>
-                    <a class="btn btn-lg btn-brand active col-12 col-lg-3 m-2"
+                    <a class="btn btn-lg btn-primary col-12 col-lg-3 m-2"
                         href="<?php echo ROOT_PATH . '/posts/' . $post['id'] . '/edit' ?>">EDITER</a>
                     <?php endif;?>
                 </div>
@@ -114,10 +114,10 @@
                     <h2 class="font-weight-bold text-center">Cette annonce vous interesse ?</h2>
                 </div>
                 <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
-                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">
                         CONNEXION
                     </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">
                         INSCRIPTION
                     </a>
                 </div>
@@ -143,7 +143,7 @@
                 <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
                     <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur
                         ?</h3>
-                    <button type="button" class="btn btn-lg btn-brand active mx-4 col-9 col-lg-3" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-lg btn-primary mx-4 col-9 col-lg-3" data-bs-toggle="modal"
                         data-bs-target="#warning">
                         SIGNALER
                     </button>

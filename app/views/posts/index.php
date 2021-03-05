@@ -45,7 +45,7 @@
                             <option value="500">500 km</option>
                         </select>
                     </div>
-                    <button class="btn btn-brand active mt-2 mb-4" id="geosearch">FILTRER MA RECHERCHE</button>
+                    <button class="btn btn-primary mt-2 mb-4" id="geosearch">FILTRER MA RECHERCHE</button>
                 </form>
             </div>
 

@@ -1,6 +1,6 @@
 <div class="card m-2 p-4 shadow" style="width: 25rem;">
     <img class="card-img-top"
-        src="<?php echo json_decode($article['cover_image'], true)['ops'][0]['insert']['image'] ?>"
+        src="<?php echo $article['cover_image']?>"
         alt="Card image cap">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title my-2"><?php echo $article['title'] ?></h5>

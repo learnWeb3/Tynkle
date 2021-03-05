@@ -1,109 +1,51 @@
 import { updateArticle } from "./API_CLIENT/index.js";
 import { getAlertTemplate } from "./templates.js";
 import { handleDismissAlert } from "./flash.js";
+import { toBase64 } from "./new_article.js";
 
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike", "link", "image"], // toggled buttons
   ["blockquote", "code-block"],
 
-  [
-    {
-      header: 1,
-    },
-    {
-      header: 2,
-    },
-  ], // custom button values
-  [
-    {
-      list: "ordered",
-    },
-    {
-      list: "bullet",
-    },
-  ],
-  [
-    {
-      script: "sub",
-    },
-    {
-      script: "super",
-    },
-  ], // superscript/subscript
-  [
-    {
-      indent: "-1",
-    },
-    {
-      indent: "+1",
-    },
-  ], // outdent/indent
-  [
-    {
-      direction: "rtl",
-    },
-  ], // text direction
+  [{ header: 1 }, { header: 2 }], // custom button values
+  [{ list: "ordered" }, { list: "bullet" }],
+  [{ script: "sub" }, { script: "super" }], // superscript/subscript
+  [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+  [{ direction: "rtl" }], // text direction
 
-  [
-    {
-      size: ["small", false, "large", "huge"],
-    },
-  ], // custom dropdown
-  [
-    {
-      header: [1, 2, 3, 4, 5, 6, false],
-    },
-  ],
+  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-  [
-    {
-      color: [],
-    },
-    {
-      background: [],
-    },
-  ], // dropdown with defaults from theme
-  [
-    {
-      font: [],
-    },
-  ],
-  [
-    {
-      align: [],
-    },
-  ],
+  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  [{ font: [] }],
+  [{ align: [] }],
 
   ["clean"], // remove formatting button
 ];
 
-const toolbarImageOptions = [["image"]];
-
-const handleSaveDocument = (quillDocument, quillImage, id) => {
+const handleSaveDocument = (quillDocument, id) => {
   document
     .querySelector("#save-article")
     .addEventListener("click", async function (event) {
       event.preventDefault();
       const content = quillDocument.getContents();
-      const cover_image = quillImage.getContents();
-      const title = $("#title").val();
-      const description = $("#description").val();
+      const cover_image =
+        document.querySelector("#cover_image").files.length > 0
+          ? document.querySelector("#cover_image").files[0]
+          : document.querySelector("#cover_image").dataset.image;
+      const title = $("#title").val().length > 0 ? $("#title").val() : null;
+      const description =
+        $("#description").val().length > 0 ? $("#description").val() : null;
 
-      console.log( {
-        content: JSON.stringify(content),
-        cover_image: JSON.stringify(cover_image),
-        title,
-        description,
-      });
-      if (
-        cover_image.ops[0].insert !== "\n" &&
-        title !== "" &&
-        description !== ""
-      ) {
+      if (cover_image && title && description) {
+        const base64CoverImage =
+          document.querySelector("#cover_image").files.length > 0
+            ? await toBase64(cover_image)
+            : cover_image;
         const { status, data } = await updateArticle(
           {
             content: JSON.stringify(content),
-            cover_image: JSON.stringify(cover_image),
+            cover_image: base64CoverImage,
             title,
             description,
           },
@@ -145,13 +87,6 @@ var quillDocument = new Quill("#editor", {
     toolbar: toolbarOptions,
   },
 });
-var quillImage = new Quill("#image", {
-  theme: "snow",
-  readOnly: false,
-  modules: {
-    toolbar: toolbarImageOptions,
-  },
-});
+
 quillDocument.setContents(content);
-quillImage.setContents(coverImage);
-handleSaveDocument(quillDocument, quillImage, id);
+handleSaveDocument(quillDocument, id);
