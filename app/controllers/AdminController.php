@@ -23,7 +23,7 @@ class AdminController extends ApplicationController
                     'navbar_present' => false,
                     'footer_present' => false,
                     'pages' => $pages,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 )
             );
         } catch (\Throwable $th) {
@@ -42,7 +42,7 @@ class AdminController extends ApplicationController
             // GOOGLE ANALYTICS metrics
             // MAIN
             $helper_count = User::where($this->connection, 'is_helper', 1)->rowCount();
-            $non_helper_count  = User::where($this->connection, 'is_helper', 0)->rowCount();
+            $non_helper_count = User::where($this->connection, 'is_helper', 0)->rowCount();
             $user_number = isset($analytics_client->getRows('users')[0][0]) ? $analytics_client->getRows('users')[0][0] : 'N/A';
             $users_by_country = $analytics_client->getChartDataByDimension('users', ['ga:country']);
             $users_by_device = $analytics_client->getChartDataByDimension('users', ['ga:deviceCategory']);
@@ -75,7 +75,7 @@ class AdminController extends ApplicationController
                     'style_file_name' => 'admin',
                     'navbar_present' => false,
                     'footer_present' => false,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg',
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     'analytics' => array(
                         'user_number' => $user_number,
                         'users_by_country' => $users_by_country,
@@ -86,7 +86,7 @@ class AdminController extends ApplicationController
                         'user_evolution' => $user_evolution,
                         'new_users' => $new_users,
                         'session_per_user' => $session_per_user,
-                        'bounce_rate' => round($bounce_rate,2),
+                        'bounce_rate' => round($bounce_rate, 2),
                         'bounces' => $bounces,
                         'entrances_by_landing_page_paths' => $entrances_by_landing_page_paths,
                         'exits_by_exit_page_paths' => $exits_by_exit_page_paths,
@@ -94,7 +94,7 @@ class AdminController extends ApplicationController
                         'posts_count' => Post::count($this->connection),
                         'breakdown_categories_count' => BreakdownCategory::count($this->connection),
                         'posts_by_breakdowncategories_and_platforms' => $posts_by_breakdowncategories_and_platforms,
-                        'users_by_type'=>json_encode(array(
+                        'users_by_type' => json_encode(array(
                             [
                                 'name' => "helper",
                                 'y' => $helper_count,
@@ -102,8 +102,8 @@ class AdminController extends ApplicationController
                             [
                                 'name' => "demandeur",
                                 'y' => $non_helper_count,
-                            ]
-                        ))
+                            ],
+                        )),
                     ),
                 )
             );
@@ -126,7 +126,7 @@ class AdminController extends ApplicationController
                     'navbar_present' => false,
                     'footer_present' => false,
                     'users' => $users,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 )
             );
         } catch (\Throwable $th) {
@@ -141,8 +141,7 @@ class AdminController extends ApplicationController
                 $users = User::like($this->connection, 'email', $this->json_params['email'])->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode($users);
                 die();
-            } 
-            else {
+            } else {
                 die(http_response_code(422));
             }
         } catch (\Throwable $th) {

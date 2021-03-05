@@ -12,14 +12,18 @@ class UserSkillsController extends ApplicationController
     public function create()
     {
         if (isset($this->current_user)) {
-            UserSkill::create(
-                $this->connection,
-                ['id_user', 'id_skill'],
-                array(
-                    $this->current_user['id'],
-                    $_POST['id_skill'],
-                )
-            );
+            try {
+                UserSkill::create(
+                    $this->connection,
+                    ['id_user', 'id_skill'],
+                    array(
+                        $this->current_user['id'],
+                        $_POST['id_skill'],
+                    )
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
         } else {
             $this->handleError(422);
         }
@@ -29,7 +33,11 @@ class UserSkillsController extends ApplicationController
     {
         if (isset($this->current_user)) {
             if ($this->user_skill['id_user'] === $this->current_user['id']) {
-                UserSkill::delete($this->connection, [], 'id', $this->user_skill['id']);
+                try {
+                    UserSkill::delete($this->connection, [], 'id', $this->user_skill['id']);
+                } catch (\Throwable $th) {
+                    $this->handleError(500);
+                }
             } else {
                 $this->handleError(403);
             }

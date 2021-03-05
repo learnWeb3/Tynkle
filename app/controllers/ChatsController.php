@@ -22,7 +22,7 @@ class ChatsController extends ApplicationController
                         'description' => $page_data['description'],
                         'style_file_name' => 'chats',
                         'chats' => $chats,
-                        'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     ),
                 );
             } catch (Throwable $th) {
@@ -39,7 +39,7 @@ class ChatsController extends ApplicationController
             try {
                 $messages = $this->chat->getMessages($this->connection);
                 $chat = $this->chat->getDetails($this->connection);
-                echo json_encode(array('chat'=>$chat, 'messages'=>$messages));
+                echo json_encode(array('chat' => $chat, 'messages' => $messages));
                 die();
             } catch (Throwable $th) {
                 die(http_response_code(500));

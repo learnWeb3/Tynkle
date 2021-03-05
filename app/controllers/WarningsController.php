@@ -9,7 +9,6 @@ class WarningsController extends ApplicationController
         $this->beforeAction(['index', 'destroy']);
     }
 
-
     public function index()
     {
         try {
@@ -25,8 +24,8 @@ class WarningsController extends ApplicationController
                     'navbar_present' => false,
                     'footer_present' => false,
                     'posts' => $posts,
-                    'users'=>$users,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                    'users' => $users,
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 )
             );
         } catch (\Throwable $th) {
@@ -36,19 +35,19 @@ class WarningsController extends ApplicationController
     public function create()
     {
         if (isset($this->current_user, $this->params['id'], $this->json_params['message'])) {
-          try {
-            if ($this->route_name === 'warning_posts') {
-                echo json_encode(PostWarning::create($this->connection, ['message', 'id_post'], [$this->json_params['message'], $this->params['id']]));
-                die();
-            } else if ($this->route_name === 'warning_users') {
-                echo json_encode(UserWarning::create($this->connection, ['message', 'id_user'], [$this->json_params['message'], $this->params['id']]));
-                die();
-            } else {
-                die(http_response_code(422));
+            try {
+                if ($this->route_name === 'warning_posts') {
+                    echo json_encode(PostWarning::create($this->connection, ['message', 'id_post'], [$this->json_params['message'], $this->params['id']]));
+                    die();
+                } else if ($this->route_name === 'warning_users') {
+                    echo json_encode(UserWarning::create($this->connection, ['message', 'id_user'], [$this->json_params['message'], $this->params['id']]));
+                    die();
+                } else {
+                    die(http_response_code(422));
+                }
+            } catch (\Throwable $th) {
+                die(http_response_code(500));
             }
-          } catch (\Throwable $th) {
-              die(http_response_code(500));
-          }
         } else {
             $this->handleError(422);
         }
@@ -62,19 +61,18 @@ class WarningsController extends ApplicationController
                     PostWarning::delete($this->connection, [], 'id', $this->params['id']);
                     die(http_response_code(204));
                 } else if ($this->route_name === 'warning_users_destroy') {
-                    UserWarning::delete($this->connection,[], 'id', $this->params['id']);
+                    UserWarning::delete($this->connection, [], 'id', $this->params['id']);
                     die(http_response_code(204));
                 } else {
                     die(http_response_code(422));
                 }
-              } catch (\Throwable $th) {
-                  die(http_response_code(500));
-              }
+            } catch (\Throwable $th) {
+                die(http_response_code(500));
+            }
         } else {
             $this->handleError(422);
         }
     }
-
 
     public function beforeAction(array $targeted_method_names)
     {

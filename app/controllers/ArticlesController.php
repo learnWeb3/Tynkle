@@ -22,7 +22,7 @@ class ArticlesController extends ApplicationController
                         'content' => 'required',
                         "title" => 'required',
                         "description" => 'required',
-                        "cover_image" => 'required'
+                        "cover_image" => 'required',
                     ]
                 );
                 die();
@@ -49,7 +49,7 @@ class ArticlesController extends ApplicationController
                         'content' => 'required',
                         "title" => 'required',
                         "description" => 'required',
-                        "cover_image" => 'required'
+                        "cover_image" => 'required',
                     ]
                 ));
                 die();

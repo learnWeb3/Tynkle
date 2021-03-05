@@ -8,11 +8,6 @@ class OffersController extends ApplicationController
         $this->beforeAction(['update']);
     }
 
-    public function index()
-    {
-
-    }
-
     public function update()
     {
         if (isset($this->offer)) {
@@ -44,10 +39,10 @@ class OffersController extends ApplicationController
                             [$this->json_params['content'], $this->json_params['object'], $this->json_params['amount'], $this->json_params['id_post'], $this->current_user->id],
                             $this->json_params,
                             [
-                                'content'=>'required',
-                                'object'=>'required',
-                                'amount'=>'required',
-                                'id_post'=>'required'
+                                'content' => 'required',
+                                'object' => 'required',
+                                'amount' => 'required',
+                                'id_post' => 'required',
                             ]
                         )[0];
                         $message_content = "Vous avez reçu une nouvelle offre";
