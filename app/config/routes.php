@@ -1,14 +1,19 @@
 <?php
 $routes = array(
+    // '/'
     array('GET', ROOT_PATH . '/', 'static#home', 'home'),
     array('GET', ROOT_PATH . '/contact', 'static#contact', 'contact'),
     array('POST', ROOT_PATH . '/contact', 'static#contact', 'send_contact'),
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),
     array('POST', ROOT_PATH . '/login', 'sessions#create', 'create_session'),
     array('DELETE', ROOT_PATH . '/logout', 'sessions#destroy', 'destroy_session'),
+    // '/articles'
     array('GET', ROOT_PATH . '/articles', 'articles#index', 'index_articles'),
     array('GET', ROOT_PATH . '/articles/new', 'articles#new', 'new_article'),
     array('GET', ROOT_PATH . '/articles/[i:id]', 'articles#show', 'show_article'),
+    array('GET', ROOT_PATH . '/articles/[i:id]/edit', 'articles#edit', 'edit_article'),
+    array('POST', ROOT_PATH . '/articles', 'articles#create', 'create_article'),
+    array('PUT', ROOT_PATH . '/articles/[i:id]', 'articles#update', 'update_article'),
     // '/admin'
     array('GET', ROOT_PATH . '/admin/platform', 'admin#platform', 'platform_admin'),
     array('GET', ROOT_PATH . '/admin/insights', 'admin#insights', 'insights_admin'),

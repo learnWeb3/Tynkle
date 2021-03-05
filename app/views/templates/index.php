@@ -60,7 +60,11 @@
 <body class='bg-light-grey'>
 
     <?php if ($navbar_present): ?>
+        <?php if ($navbar_blog): ?>
+            <?php include_once 'navbar_blog.php'?>
+        <?php else: ?>
     <?php include_once 'navbar.php'?>
+        <?php endif;?>
     <?php endif;?>
     <?php include_once '_flash.php'?>
     <?php echo $current_view ?>

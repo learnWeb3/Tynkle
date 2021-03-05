@@ -145,7 +145,6 @@ class PostsController extends ApplicationController
                     echo json_encode($posts);
                     die();
                    } catch (\Throwable $th) {
-                      var_dump($th);
                       die(http_response_code(500));
                    }
                 } else {
