@@ -112,20 +112,24 @@ class PostsController extends ApplicationController
     function new () {
 
         if (isset($this->current_user)) {
-            $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
-            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-            $page_data = Page::getDetails($this->connection, "posts#new");
-            $this->render(
-                'new',
-                array(
-                    'title' => $page_data['title'],
-                    'description' => $page_data['description'],
-                    'style_file_name' => 'new_post',
-                    'breakdown_categories' => $breakdown_categories,
-                    'platforms' => $platforms,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
-                ),
-            );
+            try {
+                $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+                $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+                $page_data = Page::getDetails($this->connection, "posts#new");
+                $this->render(
+                    'new',
+                    array(
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
+                        'style_file_name' => 'new_post',
+                        'breakdown_categories' => $breakdown_categories,
+                        'platforms' => $platforms,
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    ),
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
         } else {
             $this->handleError(403);
         }
@@ -136,29 +140,39 @@ class PostsController extends ApplicationController
         if (isset($_GET['ajax'])) {
             if ($this->route_name === 'index_post_geosearch') {
                 if (isset($_GET['lat'], $_GET['lng'], $_GET['distance'])) {
-                   try {
-                    if (isset($_GET['breakdown_categories'])) {
-                        $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
-                    } else {
-                        $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance']);
+                    try {
+                        if (isset($_GET['breakdown_categories'])) {
+                            $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
+                        } else {
+                            $posts = Post::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance']);
+                        }
+                        echo json_encode($posts);
+                        die();
+                    } catch (\Throwable $th) {
+                        die(http_response_code(500));
                     }
-                    echo json_encode($posts);
-                    die();
-                   } catch (\Throwable $th) {
-                      var_dump($th);
-                      die(http_response_code(500));
-                   }
                 } else {
                     die(http_response_code(422));
                 }
-            } else  {
+            } else {
                 if (isset($_GET['breakdown_categories'])) {
-                    $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
+                    try {
+                        $posts = Post::findBy($this->connection, '/posts', 'id_breakdown_category', $_GET['breakdown_categories']);
+                        echo json_encode($posts);
+                        die();
+                    } catch (\Throwable $th) {
+                        die(http_response_code(500));
+                    }
                 } else {
-                    $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+                    try {
+                        $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
+                        echo json_encode($posts);
+                        die();
+                    } catch (\Throwable $th) {
+                        die(http_response_code(500));
+                    }
                 }
-                echo json_encode($posts);
-                die();
+
             }
         } else {
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
@@ -179,7 +193,7 @@ class PostsController extends ApplicationController
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,
                     'next_page' => $posts['next'],
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 ),
 
             );
@@ -189,23 +203,27 @@ class PostsController extends ApplicationController
     public function show()
     {
         if (isset($this->post)) {
-            $page_data = Page::getDetails($this->connection, "posts#show");
-            $post_data = $this->post->getDetails($this->connection);
-            $author = new User($post_data['user_id']);
-            $author_data = $author->getDetails($this->connection);
-            $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);
-            $this->render(
-                'show',
-                array(
-                    'title' => $page_data['title'],
-                    'description' => $page_data['description'],
-                    'style_file_name' => 'offer',
-                    'post' => $post_data,
-                    'similar_posts' => $similar_posts['data'],
-                    'author'=>$author_data,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
-                )
-            );
+            try {
+                $page_data = Page::getDetails($this->connection, "posts#show");
+                $post_data = $this->post->getDetails($this->connection);
+                $author = new User($post_data['user_id']);
+                $author_data = $author->getDetails($this->connection);
+                $similar_posts = $this->post->getSimilarPosts($this->connection, '/posts', $this->limit, $this->start, $post_data['breakdown_category_id']);
+                $this->render(
+                    'show',
+                    array(
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
+                        'style_file_name' => 'offer',
+                        'post' => $post_data,
+                        'similar_posts' => $similar_posts['data'],
+                        'author' => $author_data,
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    )
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
         } else {
             $this->handleError(422);
         }
@@ -214,22 +232,26 @@ class PostsController extends ApplicationController
     public function edit()
     {
         if (isset($this->post)) {
-            $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
-            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-            $post_data = $this->post->getDetails($this->connection);
-            $page_data = Page::getDetails($this->connection, "posts#edit");
-            $this->render(
-                'edit',
-                array(
-                    'title' => $page_data['title'],
-                    'description' => $page_data['description'],
-                    'style_file_name' => 'new_post',
-                    'post' => $post_data,
-                    'breakdown_categories' => $breakdown_categories,
-                    'platforms' => $platforms,
-                    'background_image_path'=>$page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH.'/img/pages/home.jpeg'
-                )
-            );
+            try {
+                $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+                $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+                $post_data = $this->post->getDetails($this->connection);
+                $page_data = Page::getDetails($this->connection, "posts#edit");
+                $this->render(
+                    'edit',
+                    array(
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
+                        'style_file_name' => 'new_post',
+                        'post' => $post_data,
+                        'breakdown_categories' => $breakdown_categories,
+                        'platforms' => $platforms,
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    )
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
         } else {
             $this->handleError(422);
         }
@@ -238,7 +260,11 @@ class PostsController extends ApplicationController
     {
         if (isset($this->current_user)) {
             if ($this->post['id_user'] === $this->current_user['id']) {
-                Post::delete($this->connection, [], 'id', $this->post['id']);
+                try {
+                    Post::delete($this->connection, [], 'id', $this->post['id']);
+                } catch (\Throwable $th) {
+                    $this->handleError(500);
+                }
             } else {
                 $this->handleError(403);
             }

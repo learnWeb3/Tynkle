@@ -71,7 +71,7 @@
                     <?php endfor; ?>
                 </div>
             </div>
-            <button type="submit" class='btn btn-lg btn-brand active col-12 my-4'>publier</button>
+            <button type="submit" class='btn btn-lg btn-primary col-12 my-4'>publier</button>
         </form>
     </section>
 </main>

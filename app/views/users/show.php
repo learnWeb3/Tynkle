@@ -81,7 +81,7 @@
                 <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
                     <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur
                         ?</h3>
-                    <button type="button" class="btn btn-lg btn-brand active mx-4 col-9 col-lg-3" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-lg btn-primary mx-4 col-9 col-lg-3" data-bs-toggle="modal"
                         data-bs-target="#warning">
                         SIGNALER
                     </button>
@@ -96,10 +96,10 @@
                     <h2 class="font-weight-bold text-center">Contacter <strong><?php echo htmlspecialchars($user['username']) ?></strong> ?</h2>
                 </div>
                 <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
-                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                    <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">
                         CONNEXION
                     </a>
-                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-brand active col-12 col-lg-3 m-2">
+                    <a href="<?php echo ROOT_PATH ?>/register" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">
                         INSCRIPTION
                     </a>
                 </div>

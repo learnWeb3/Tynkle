@@ -54,6 +54,12 @@ class Mailer
                             'Name' => $this->recipient_entity
                         ]
                     ],
+                    'Cc' => [
+                        [
+                            'Email' => $this->sender_email,
+                            'Name' => $this->sender_entity
+                        ]
+                    ],
                     'Subject' => $this->message_subject,
                     'TextPart' => $this->message_content,
                     'HTMLPart' => $html

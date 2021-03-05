@@ -37,6 +37,9 @@ class ApplicationController
             $navbar_present = true;
             $footer_present = true;
         }
+        if (!isset($navbar_blog)) {
+            $navbar_blog = false;
+        }
         ob_start();
         require_once './app/views/' . strtolower(str_replace('Controller', '', get_class($this))) . '/' . $template_name . '.php';
         $current_view = ob_get_clean();

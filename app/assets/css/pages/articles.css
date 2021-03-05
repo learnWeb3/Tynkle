@@ -1,0 +1,12 @@
+#news {
+    min-height: 100vh;
+    margin-top: 4rem
+}
+
+.ql-toolbar.ql-snow{
+    width: 100%;
+}
+
+#editor .ql-editor.ql-blank,#editor .ql-editor{
+    min-height: 50vh;
+}

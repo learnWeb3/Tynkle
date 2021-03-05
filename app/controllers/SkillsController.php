@@ -3,12 +3,12 @@
 class SkillsController extends ApplicationController
 {
 
-    public function __construct(array $params,string $route_name, string $asked_method)
+    public function __construct(array $params, string $route_name, string $asked_method)
     {
-        parent::__construct($params,$route_name, $asked_method);
+        parent::__construct($params, $route_name, $asked_method);
         $this->beforeAction(['update']);
     }
-    
+
     public function create()
     {
         if (isset($this->current_user, $this->params['user_id'])) {
@@ -29,14 +29,18 @@ class SkillsController extends ApplicationController
                 die(header('Location:' . ROOT_PATH . '/profile'));
             }
         } else if (isset($this->current_user, $_POST['name'])) {
-            Skill::create(
-                $this->connection,
-                ['name'],
-                array(
-                    $this->current_user['id'],
-                    $_POST['name'],
-                )
-            );
+            try {
+                Skill::create(
+                    $this->connection,
+                    ['name'],
+                    array(
+                        $this->current_user['id'],
+                        $_POST['name'],
+                    )
+                );
+            } catch (\Throwable $th) {
+                die(http_response_code(500));
+            }
         } else {
             $this->handleError(422);
         }
@@ -45,16 +49,23 @@ class SkillsController extends ApplicationController
     public function update()
     {
         if (isset($_POST['name'])) {
-            Skill::update($this->connection, ['name'], [$_POST['name']], 'id', $this->skill['id']);
+            try {
+                Skill::update($this->connection, ['name'], [$_POST['name']], 'id', $this->skill['id']);
+            } catch (\Throwable $th) {
+                die(http_response_code(500));
+            }
         } else {
             $this->handleError(422);
         }
     }
 
-
     public function destroy()
     {
-        Skill::delete($this->connection, [], 'id', $this->skill['id']);
+        try {
+            Skill::delete($this->connection, [], 'id', $this->skill['id']);
+        } catch (\Throwable $th) {
+            die(http_response_code(500));
+        }
     }
 
     private function beforeAction(array $targeted_method_names)
