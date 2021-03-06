@@ -11,7 +11,7 @@
                             <i class="lni lni-user lni-64"></i>
                         </div>
                         <h1 class="my-4"><a class="font-weight-bold font-italic m-2"
-                                href="/users/<?php echo $user['user_id'] ?>"><?php echo htmlspecialchars($user['username']) ?></a>
+                                href="/users/<?php echo $user['user_id'] ?>"><?php echo $user['username'] ?></a>
                         </h1>
                     </div>
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
@@ -93,7 +93,7 @@
         <div class="row w-100 my-4">
             <div class="col-12 my-4">
                 <div class="row my-4">
-                    <h2 class="font-weight-bold text-center">Contacter <strong><?php echo htmlspecialchars($user['username']) ?></strong> ?</h2>
+                    <h2 class="font-weight-bold text-center">Contacter <strong><?php echo $user['username'] ?></strong> ?</h2>
                 </div>
                 <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
                     <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">

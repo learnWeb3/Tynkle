@@ -13,7 +13,7 @@
                             <select name="id_platform" id="id_platform" class="col-12">
                                 <option value="0">Toutes</option>
                                 <?php foreach ($platforms as $platform): ?>
-                                    <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
+                                    <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
                                 <?php endforeach;?>
                             </select>
                        </div>

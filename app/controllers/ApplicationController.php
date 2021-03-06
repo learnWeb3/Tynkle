@@ -32,6 +32,9 @@ class ApplicationController
         $is_current_user_logged_in = isset($_SESSION['current_user']) ? true : false;
         $is_user_admin = isset($_SESSION['current_user']) ? $this->current_user->getDetails($this->connection)['is_admin'] : 0;
         $current_user = isset($_SESSION['current_user']) ? $_SESSION['current_user'] : null;
+        $template_vars = array_map(function ($el) {
+            return $this->escape_templatevars($el);
+        }, $template_vars);
         extract($template_vars);
         if (!isset($navbar_present, $footer_present)) {
             $navbar_present = true;
@@ -58,4 +61,23 @@ class ApplicationController
             $this->current_user = new User($_SESSION['current_user']);
         }
     }
+    private function escape_templatevars($el)
+    {
+        if (is_string($el)) {
+            if (json_decode($el)) {
+                return $el;
+            } else {
+                return htmlspecialchars($el);
+            }
+        } else {
+            if (is_array($el)) {
+                return array_map(function ($el) {
+                    return $this->escape_templatevars($el);
+                }, $el);
+            } else {
+                return $el;
+            }
+        }
+    }
+
 }

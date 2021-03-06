@@ -35,6 +35,9 @@ class Application
             $prepared_query_parameters = implode(",", array_map(function ($el) {
                 return "?";
             }, $column_names));
+            $request_parameters = array_map(function($el){
+                return htmlspecialchars($el);
+            }, $request_parameters);
             $request_body = "INSERT INTO $table_name (" . implode(",", $column_names) . ") VALUES (" . $prepared_query_parameters . ")";
             Request::send($connection, $request_body, $request_parameters);
             return self::lastCreatedRow($connection)->fetchAll(\PDO::FETCH_ASSOC);
