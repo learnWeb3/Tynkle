@@ -10,25 +10,25 @@
     </section>
     <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded"
         style='min-height:100vh;'>
-        <h1 class="font-weight-bold text-center my-4" id="title"><?php echo htmlspecialchars($post['title']) ?></h1>
+        <h1 class="font-weight-bold text-center my-4" id="title"><?php echo $post['title'] ?></h1>
         <div class="row w-100">
             <div class="col-12 col-xl-6">
                 <div class="card shadow-sm p-4 rounded">
                     <div class="d-flex align-items-center justify-content-start my-2">
                     <i class="lni lni-tag lni-32"></i>
                         <p class="m-3 font-weight-bold" id="breakdown-type">
-                            <?php echo htmlspecialchars($post['platform_name']) ?>-<?php echo htmlspecialchars($post['breakdown_category_name']) ?>
+                            <?php echo $post['platform_name'] ?>-<?php echo $post['breakdown_category_name'] ?>
                         </p>
                     </div>
                     <div class="d-flex align-items-center justify-content-start my-2">
                         <i class="lni lni-euro lni-32"></i>
-                        <p class="m-3 font-weight-bold" id="budget"><?php echo htmlspecialchars($post['budget']) ?>
+                        <p class="m-3 font-weight-bold" id="budget"><?php echo $post['budget'] ?>
                             &euro;</p>
                     </div>
                     <div class="d-flex align-items-center justify-content-start my-2">
                         <i class="lni lni-pointer lni-32"></i>
-                        <p class="m-3 font-weight-bold" id='location'><?php echo htmlspecialchars($post['city']) ?>
-                            <?php echo htmlspecialchars($post['postal_code']) ?></p>
+                        <p class="m-3 font-weight-bold" id='location'><?php echo $post['city'] ?>
+                            <?php echo $post['postal_code'] ?></p>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                             <a class="font-weight-bold font-italic m-2"
-                                href="<?php echo ROOT_PATH . "/users/" . $post['user_id'] ?>"><?php echo htmlspecialchars($post['username']) ?></a>
+                                href="<?php echo ROOT_PATH . "/users/" . $post['user_id'] ?>"><?php echo $post['username'] ?></a>
                             <p class="font-weight-bold m-2"><?php echo $author['posts_count'] ?> annonces -
                                 <?php echo $author['offers_count'] ?> offres</p>
                             <div class="d-flex w-100 align-items-center">
@@ -61,15 +61,15 @@
             <div class="col-12">
                 <h4 class="my-2 font-weight-bold">Description: </h4>
                 <div class="card shadow-sm p-4 rounded">
-                    <p id="content"><?php echo htmlspecialchars($post['content']) ?></p>
+                    <p id="content"><?php echo $post['content'] ?></p>
                 </div>
             </div>
         </div>
         <div class="row w-100 my-4">
             <div class="col-12">
                 <h4 class="font-weight-bold">Localisation :</h4>
-                <div id="map" data-lon="<?php echo htmlspecialchars($post['lon']) ?>"
-                    data-lat="<?php echo htmlspecialchars($post['lat']) ?>" class="relative bg-white shadow-sm"
+                <div id="map" data-lon="<?php echo $post['lon'] ?>"
+                    data-lat="<?php echo $post['lat'] ?>" class="relative bg-white shadow-sm"
                     style="height:50vh">
                 </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="col-12">
                 <h4 class="font-weight-bold">Images - screenshots :</h4>
                 <div class="card-columns" style="min-height:50vh">
-                    <?php foreach (json_decode($post['images']) as $image_url): ?>
+                    <?php foreach ($post['images'] as $image_url): ?>
                     <div class="card">
                         <img class="img-fluid" src="<?php echo $image_url ?>" alt="post screenshot">
                     </div>

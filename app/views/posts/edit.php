@@ -11,7 +11,7 @@
                     <label for="id_platform">Categorie de l'appareil : * </label>
                     <select name="id_platform" id="id_platform" class="form-control" required>
                         <?php foreach ($platforms as $platform) : ?>
-                            <option value="<?php echo htmlspecialchars($platform['id']) ?>"> <?php echo htmlspecialchars($platform['name']) ?></option>
+                            <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -19,7 +19,7 @@
                     <label for="id_breakdown_category">Type de panne : * </label>
                     <select name="id_breakdown_category" id="id_breakdown_category" class="form-control" required>
                         <?php foreach ($breakdown_categories as $breakdown_category) : ?>
-                            <option value="<?php echo htmlspecialchars($breakdown_category['id']) ?>" <?php echo $post['breakdown_category_id'] === $breakdown_category['id'] && 'selected' ?>><?php echo htmlspecialchars($breakdown_category['name']) ?></option>
+                            <option value="<?php echo $breakdown_category['id'] ?>" <?php echo $post['breakdown_category_id'] === $breakdown_category['id'] && 'selected' ?>><?php echo $breakdown_category['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

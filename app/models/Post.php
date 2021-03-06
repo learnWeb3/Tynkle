@@ -126,7 +126,9 @@ class Post extends Application
         JOIN breakdown_categories ON posts.id_breakdown_category = breakdown_categories.id 
         JOIN platforms ON breakdown_categories.id_platform=platforms.id
         WHERE posts.id=?";
-        return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC)[0];
+        $post_data = Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC)[0];
+        $post_data['images'] = json_decode($post_data['images'], true);
+        return $post_data;
     }
 
 
