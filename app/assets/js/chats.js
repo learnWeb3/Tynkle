@@ -45,8 +45,10 @@ $(".message").on("click", async function (event) {
   event.preventDefault();
   const url = $(this).data("url");
   const messagesContainer = $("#messages-container");
-  messagesContainer.html('');
   const generalContainer = $("#general-container");
+  const typingZone = $('#new-message');
+  typingZone.remove();
+  messagesContainer.html('');
   const { status, data } = await getMessages(url);
   if (status === 200) {
     const { messages, chat } = data;
