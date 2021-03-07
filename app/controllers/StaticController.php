@@ -26,6 +26,27 @@ class StaticController extends ApplicationController
         }
     }
 
+    public function faq()
+    {
+        try {
+            $page_data = Page::getDetails($this->connection, "static#faq");
+            $faq_categories = FaqItem::getAll($this->connection);
+            $this->render(
+                'faq',
+                array(
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
+                    'style_file_name' => 'faq',
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    'faq_categories'=>$faq_categories
+                )
+            );
+        } catch (\Throwable $th) {
+            $this->handleError(500);
+        }
+    }
+
+
     public function contact()
     {
         if (isset($this->json_params['email'], $this->json_params['lastname'], $this->json_params['firstname'], $this->json_params['subject'], $this->json_params['message'])) {

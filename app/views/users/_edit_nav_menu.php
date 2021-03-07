@@ -8,7 +8,6 @@
         <i class="lni lni-32 lni-pencil"></i>
             <a class="nav-link font-weight-bold" href="#personnal_informations">Informations personnelles</a>
         </li>
-
         <?php if ($user['is_helper']): ?>
         <li class="nav-item dropdown d-flex align-items-center w-100 my-2">
         <i class="lni lni-32 lni-service"></i>
@@ -21,7 +20,7 @@
                 <?php endforeach;?>
             </ul>
         </li>
-        <?php endif?>
+        <?php endif; ?>
     </ul>
     <ul class="nav flex-column bg-white shadow p-4 rounded">
         <li class="nav-item d-flex align-items-center w-100 my-2">

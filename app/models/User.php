@@ -36,8 +36,7 @@ class User extends Application
                 if ($data['email']) {
                     $potential_user = User::where($connection, 'email', $data['email'])->fetchAll(PDO::FETCH_ASSOC);
                     if (!empty($potential_user)) {
-                        if ($potential_user[0]['is_verified'])
-                        {
+                        if ($potential_user[0]['is_verified']) {
                             $_SESSION['current_user'] = $potential_user[0]['id'];
                             $_SESSION['access_token'] = $token;
                             $flash = new Flash(
@@ -46,7 +45,7 @@ class User extends Application
                             );
                             $flash->storeInSession();
                             die(header('location: ' . ROOT_PATH . '/'));
-                        }else{
+                        } else {
                             $flash = new Flash(
                                 array("Le compte n'a pas encore été confirmé, veuillez vérifier votre boite mail"),
                                 'danger'
@@ -68,19 +67,19 @@ class User extends Application
                             ]);
 
                         $mailer = new Mailer(
-                            'tynkle', 
-                            $data['email'], 
-                            'accountverification@tynkle.com', 
-                            $data['email'], 
-                            'Bienvenue sur Tynkle: la première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager', 
+                            'tynkle',
+                            $data['email'],
+                            'accountverification@tynkle.com',
+                            $data['email'],
+                            'Bienvenue sur Tynkle: la première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager',
                             "Bonjour vous venez de créer un compte sur Tynkle, merci de confirmer cotre compte afin de finaliser votre inscription.Dans le cas ou le lien ne fonctionnerai pas veuillez copier-coller&nbsp;l'url suivante dans la barre d'adresse de votre navigateur :",
                             __DIR__ . '/../views/templates/mailer/registration_confirmation_mail.php'
                         );
 
                         $mailer->send(
                             array(
-                                "verify_token"=>$user[0]['verify_token'],
-                                "user_id"=>$user[0]['id']
+                                "verify_token" => $user[0]['verify_token'],
+                                "user_id" => $user[0]['id'],
                             )
                         );
 
@@ -110,15 +109,14 @@ class User extends Application
         $potential_user = Request::send($connection, $request_body, [$login, $login])->fetchAll(PDO::FETCH_ASSOC);
         if (isset($potential_user[0])) {
             $user = $potential_user[0];
-            if ($user['is_verified'])
-            {
+            if ($user['is_verified']) {
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['current_user'] = $user['id'];
                 } else {
                     throw new Exception('Informations de connexion non valides');
                 }
 
-            }else{
+            } else {
                 throw new Exception("Le compte n'a pas encore été confirmé, veuillez vérifier votre boite mail");
             }
         } else {
@@ -163,9 +161,21 @@ class User extends Application
                     $skill['is_owned'] = $skill_check['is_owned'];
                     return $skill;
                 }, $breakdown_category['skills']);
+                $breakdown_category['skill_number'] = count($breakdown_category['skills']);
+                $breakdown_category['skill_owned_number'] = count(array_filter($breakdown_category['skills'], function ($el) {
+                    if ($el['is_owned'] === '1') {
+                        return $el;
+                    }
+                }));
                 return $breakdown_category;
             }, $breakdown_categories);
             $platform['breakdown_categories'] = $breakdown_categories;
+            $platform['total_skill_number'] = array_reduce($platform['breakdown_categories'], function ($carry, $item) {
+                return $carry += $item['skill_number'];
+            });
+            $platform['total_skill_owned_number'] = array_reduce($platform['breakdown_categories'], function ($carry, $item) {
+                return $carry += $item['skill_owned_number'];
+            });
             $results[] = $platform;
         }
         return $results;
