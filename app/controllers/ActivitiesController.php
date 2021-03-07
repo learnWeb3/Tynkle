@@ -94,15 +94,17 @@ class ActivitiesController extends ApplicationController
                     $offers = $this->current_user->getOffers($this->connection);
                     $asks = $this->current_user->getAsks($this->connection);
                     $page_data = Page::getDetails($this->connection, "activity#index");
+                    $favorites_users = $this->current_user->getFollows($this->connection);
                     $this->render(
                         'index',
                         array(
                             'title' => $page_data['title'],
                             'description' => $page_data['description'],
-                            'style_file_name' => '',
+                            'style_file_name' => 'activities',
                             'posts' => $posts,
                             "offers" => $offers,
                             "asks" => $asks,
+                            'favorites_users'=>$favorites_users,
                             'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                         ),
                     );

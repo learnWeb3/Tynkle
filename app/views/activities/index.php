@@ -10,11 +10,15 @@
             <li class="nav-item" role="presentation">
                 <a class="nav-link" id="pills-asks-tab" data-bs-toggle="pill" href="#pills-asks" role="tab" aria-controls="pills-asks" aria-selected="false">Mes demandes</a>
             </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-favorites-tab" data-bs-toggle="pill" href="#pills-favorites" role="tab" aria-controls="pills-favorites" aria-selected="false">Mes favoris</a>
+            </li>
         </ul>
         <div class="tab-content w-100" id="pills-tabContent">
             <?php include '_pill_posts_tab.php' ?>
             <?php include '_pill_offers_tab.php' ?>
             <?php include '_pill_aks_tab.php' ?>
+            <?php include '_pill_favorites.php' ?>
         </div>
     </section>
 </main>
