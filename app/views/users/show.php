@@ -10,13 +10,18 @@
                         <div id="avatar" class="shadow-sm bg-white my-4">
                             <i class="lni lni-user lni-64"></i>
                         </div>
-                        <h1 class="my-4"><a class="font-weight-bold font-italic m-2"
-                                href="/users/<?php echo $user['user_id'] ?>"><?php echo $user['username'] ?></a>
+                        <h1 class="my-4">
+                            <a class="font-weight-bold font-italic m-2"
+                                    href="/users/<?php echo $user['user_id'] ?>"><?php echo $user['username'] ?>
+                            </a>
                         </h1>
                     </div>
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                         <p class="font-weight-bold m-2"><?php echo $user['posts_count'] ?> annonces -
                             <?php echo $user['offers_count'] ?> offres</p>
+                        
+                            <p class="font-weight-bold m-2"><span  id="followers_count"><?php echo $user['follower_count'] ?></span> abbonné(s) -
+                            <?php echo $user['followed_count'] ?> abbonnements </p>
                         <div class="d-flex align-items-center">
                             <div class="rating m-2"
                                 data-rate-value='<?php echo $user['reviews_score'] ? $user['reviews_score'] : '0' ?>'>
@@ -24,6 +29,16 @@
                             <p class="font-weight-bold m-2">
                                 <?php echo $user['reviews_score'] ? $user['reviews_score'] : '0' ?>/5</p>
                         </div>
+                        <div class="col-12 d-flex align-items-center justify-content-center flex-wrap" id="follow-actions">
+                        <button class="btn btn-lg bg-yellow-tynkle text-dark col-12 col-lg-3 m-2"><i class="lni lni-star mx-2"></i>LAISSER UN AVIS</button>
+                            <?php if ($follow_id): ?>
+                            <button id="unfollow" data-follow="<?php echo $follow_id ?>" data-user="<?php echo  $user['id']  ?>" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>NE PLUS SUIVRE</button>
+                            <?php else : ?>
+                            <button id="follow" data-user="<?php echo  $user['id']  ?>" class="btn btn-lg btn-primary col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>SUIVRE</button>
+                            <?php endif; ?>
+                            
+                        </div>
+                        
                     </div>
                 </div>
             </div>

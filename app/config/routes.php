@@ -28,6 +28,8 @@ $routes = array(
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),
     array('GET', ROOT_PATH . '/profile', 'users#edit', 'edit_user'),
     array('GET', ROOT_PATH . '/users/[:id]', 'users#show', 'show_user'),
+    array('POST', ROOT_PATH . '/users/[:id]/follows', 'follows#create', 'follow_create'),
+    array('DELETE', ROOT_PATH . '/follows/[:id]', 'follows#destroy', 'follow_delete'),
     array('GET', ROOT_PATH . '/users/[:id]/confirm', 'users#confirm', 'confirm_user'),
     array('GET', ROOT_PATH . '/users/password/reset', 'users#ask_new_password', 'ask_new_password_user'),
     array('POST', ROOT_PATH . '/users/password/reset', 'users#ask_new_password', 'send_new_password_user'),

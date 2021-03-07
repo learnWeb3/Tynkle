@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : Dim 07 mars 2021 à 10:38
+-- Généré le : Dim 07 mars 2021 à 13:01
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.13
 
@@ -197,6 +197,27 @@ INSERT INTO `faq_items` (`id`, `id_faq_category`, `label`, `content`, `created_a
 (13, 5, 'Favoris', 'Ici vous retrouverez tous les Helpers que vous avez ajoutés dans vos favoris. Vous pouvez ajouter et retirer un Helper de vos favoris directement depuis son profil en appuyant sur Favoris', '2021-03-07 08:52:54', '0000-00-00 00:00:00'),
 (14, 5, 'Modification / Annulation.', 'Vous avez un empêchement quelconque qui ne vous permet pas d’être présent(e) le jour du rendez-vous ? Via la messagerie, vous avez la possibilité de communiquer à la personne alors n’hésitez pas à vous s’en servir si vous avez fait le choix de ne pas échanger vos numéros de téléphone.', '2021-03-07 08:52:54', '0000-00-00 00:00:00'),
 (15, 6, 'Contact', 'Vous souhaitez envoyer un message à Tynkle, ce dernier sera traité le plus rapidement possible, tenant compte des jours ouvrés.', '2021-03-07 08:52:54', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `follows`
+--
+
+CREATE TABLE `follows` (
+  `id` int(11) NOT NULL,
+  `id_follower` int(11) NOT NULL,
+  `id_followed` int(11) NOT NULL,
+  `cretaed_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `follows`
+--
+
+INSERT INTO `follows` (`id`, `id_follower`, `id_followed`, `cretaed_at`, `updated_at`) VALUES
+(18, 101, 61, '2021-03-07 13:01:06', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -940,6 +961,12 @@ ALTER TABLE `faq_items`
   ADD KEY `id_faq_category` (`id_faq_category`);
 
 --
+-- Index pour la table `follows`
+--
+ALTER TABLE `follows`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `messages`
 --
 ALTER TABLE `messages`
@@ -1087,6 +1114,12 @@ ALTER TABLE `faq_categories`
 --
 ALTER TABLE `faq_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT pour la table `follows`
+--
+ALTER TABLE `follows`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `messages`

@@ -365,6 +365,7 @@ class UsersController extends ApplicationController
                     $posts = $user->getPosts($this->connection);
                     $reviews = $user->getReviews($this->connection);
                     $platforms = $user->getUserSkill($this->connection);
+                    $follow_id = (isset($this->current_user)) ? $this->current_user->getCurrentUserFollow($this->connection, $user_data['id']) : null;
                     $this->render('show', array(
                         'title' => $page_data['title'],
                         'description' => $page_data['description'],
@@ -373,6 +374,7 @@ class UsersController extends ApplicationController
                         'posts' => $posts,
                         "reviews" => $reviews,
                         'platforms' => $platforms,
+                        'follow_id'=> $follow_id,
                         'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     ));
                 } catch (\Throwable $th) {

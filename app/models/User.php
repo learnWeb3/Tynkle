@@ -7,6 +7,18 @@ class User extends Application
         $this->id = $id;
     }
 
+    public function getCurrentUserFollow(PDO $connection, $id_followed)
+    {
+        $request_body = "SELECT id
+        FROM follows
+        WHERE follows.id_follower = ? AND follows.id_followed = ?";
+        $result = Request::send($connection, $request_body, [
+            $this->id,
+            $id_followed,
+        ])->fetchAll(PDO::FETCH_ASSOC);
+        return empty($result) ? null : $result[0]['id'];
+    }
+
     public static function getSignaledUsers(PDO $connection)
     {
         $request_body = "SELECT
@@ -130,7 +142,9 @@ class User extends Application
         (SELECT AVG(reviews.score)
         FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
         (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
-        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) follower_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) followed_count
         FROM users WHERE users.id=?';
         return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC)[0];
     }
