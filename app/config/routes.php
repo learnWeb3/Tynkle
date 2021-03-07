@@ -15,6 +15,12 @@ $routes = array(
     array('GET', ROOT_PATH . '/articles/[i:id]/edit', 'articles#edit', 'edit_article'),
     array('POST', ROOT_PATH . '/articles', 'articles#create', 'create_article'),
     array('PUT', ROOT_PATH . '/articles/[i:id]', 'articles#update', 'update_article'),
+    // '/rules'
+    array('GET', ROOT_PATH . '/rules/[i:id]', 'rules#show', 'show_rule'),
+    array('GET', ROOT_PATH . '/rules/[i:id]/edit', 'rules#edit', 'edit_rule'),
+    array('PUT', ROOT_PATH . '/rules/[i:id]', 'rules#update', 'update_rule'),
+    array('GET', ROOT_PATH . '/rules/new', 'rules#new', 'new_rule'),
+    array('POST', ROOT_PATH . '/rules', 'rules#create', 'create_rule'),
     // '/admin'
     array('GET', ROOT_PATH . '/admin/platform', 'admin#platform', 'platform_admin'),
     array('GET', ROOT_PATH . '/admin/insights', 'admin#insights', 'insights_admin'),

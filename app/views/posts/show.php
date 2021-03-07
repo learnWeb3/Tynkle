@@ -15,7 +15,7 @@
             <div class="col-12 col-xl-6">
                 <div class="card shadow-sm p-4 rounded">
                     <div class="d-flex align-items-center justify-content-start my-2">
-                    <i class="lni lni-tag lni-32"></i>
+                        <i class="lni lni-tag lni-32"></i>
                         <p class="m-3 font-weight-bold" id="breakdown-type">
                             <?php echo $post['platform_name'] ?>-<?php echo $post['breakdown_category_name'] ?>
                         </p>
@@ -68,22 +68,27 @@
         <div class="row w-100 my-4">
             <div class="col-12">
                 <h4 class="font-weight-bold">Localisation :</h4>
-                <div id="map" data-lon="<?php echo $post['lon'] ?>"
-                    data-lat="<?php echo $post['lat'] ?>" class="relative bg-white shadow-sm"
-                    style="height:50vh">
+                <div id="map" data-lon="<?php echo $post['lon'] ?>" data-lat="<?php echo $post['lat'] ?>"
+                    class="relative bg-white shadow-sm" style="height:50vh">
                 </div>
             </div>
         </div>
         <div class="row w-100 my-4">
             <div class="col-12">
                 <h4 class="font-weight-bold">Images - screenshots :</h4>
-                <div class="card-columns" style="min-height:50vh">
-                    <?php foreach ($post['images'] as $image_url): ?>
-                    <div class="card">
-                        <img class="img-fluid" src="<?php echo $image_url ?>" alt="post screenshot">
-                    </div>
-                    <?php endforeach;?>
-                </div>
+                    <ul id="lightgallery" style="padding-left: 0;">
+                        <?php foreach ($post['images'] as $image_url): ?>
+                        <li data-src="<?php echo $image_url ?>"
+                            data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>"
+                            data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
+                            <a href="">
+                                <div class="demo-gallery-poster">
+                                    <img src="<?php echo $image_url ?>">
+                                </div>
+                            </a>
+                        </li>
+                        <?php endforeach;?>
+                    </ul>
             </div>
         </div>
         <?php if ($current_user): ?>
