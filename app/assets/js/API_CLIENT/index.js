@@ -17,6 +17,42 @@ const getCurrentUser = async () => {
   .catch((error) => ({ data: null, status: 500 }));
 };
 
+const follow = (userId, data) =>{
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + "/users/"+userId+'/follows', options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+}
+
+const unFollow = (followId) =>{
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: 'DELETE'
+  };
+  return fetch(ROOT_PATH + '/follows/'+followId, options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+}
+
+
 
 const saveArticle = (data) =>{
   const options = {
@@ -315,5 +351,7 @@ export {
   getMessages,
   sendContactMessage,
   saveArticle,
-  updateArticle
+  updateArticle,
+  follow,
+  unFollow
 };

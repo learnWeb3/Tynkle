@@ -14,6 +14,14 @@ const getAlertTemplate = (messages, type) => {
     </div>`.trim();
 };
 
+
+const getUnfollowButton = (followId, userId) => `<button id="unfollow" data-follow="${followId}" data-user="${userId}" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>NE PLUS SUIVRE</button>`
+const getFollowButton = (userId) => {
+  return (
+   ` <button id="follow" data-user="${userId}" class="btn btn-lg btn-primary col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>SUIVRE</button>`
+  )
+}
+
 const getAdminUserRowTemplate = ({
   username,
   email,
@@ -315,4 +323,6 @@ export {
   getAdminUserRowTemplate,
   getTypingAreaTemplate,
   getAlertTemplate,
+  getUnfollowButton,
+  getFollowButton
 };
