@@ -1,0 +1,7 @@
+.ql-toolbar.ql-snow{
+    width: 100%;
+}
+
+#editor .ql-editor.ql-blank,#editor .ql-editor{
+    min-height: 50vh;
+}

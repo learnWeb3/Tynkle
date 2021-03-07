@@ -272,3 +272,30 @@ input.error {
 .p-6{
     padding: 3.5rem;
 }
+
+
+/* LIGHTGALLERY */
+
+#lightgallery{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+#lightgallery li{
+    margin-top: 2rem;
+}
+
+@media screen and (min-width:1200px)
+{#lightgallery .demo-gallery-poster img{
+    height: 18rem;
+    width: 18rem;
+}}
+
+@media screen and (max-width:1200px)
+{
+    #lightgallery .demo-gallery-poster img{
+        height: 18rem;
+        width:100%;
+    }
+}

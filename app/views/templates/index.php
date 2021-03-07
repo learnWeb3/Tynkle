@@ -16,6 +16,7 @@
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
     <!-- QUILL JS RICH TEXT EDITOR -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css">
      <!-- COMMON CSS -->
      <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
      <!-- PAGE SPECIFIC CSS -->
@@ -32,14 +33,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/js/lightgallery-all.min.js"></script>
     <!-- RATER JS -->
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/rater.js/rater.min.js"></script>
     <!-- FONTAWESOME ICONS KIT -->
     <script src="https://kit.fontawesome.com/b67bd6560e.js" crossorigin="anonymous"></script>
     <!-- GOOGLE MAPS JS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY'] ?>"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3E595GQR9"></script>
+    <!-- AOS LIBRARY -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- BOUNCER LIBRARY -->
+    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/bouncer/bouncer.polyfills.min.js"></script>
+    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/bouncer/bouncer.js"></script>
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3E595GQR9"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -50,11 +60,6 @@
 
     gtag('config', 'G-K3E595GQR9');
     </script>
-    <!-- AOS LIBRARY -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <!-- BOUNCER LIBRARY -->
-    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/bouncer/bouncer.polyfills.min.js"></script>
-    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/bouncer/bouncer.js"></script>
 </head>
 
 <body class='bg-light-grey'>

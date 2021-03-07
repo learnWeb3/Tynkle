@@ -12,7 +12,6 @@ const initMap = (lat, lng) => {
   });
 };
 
-
 // init js-rater library
 const options = {
   max_value: 5,
@@ -22,6 +21,11 @@ const options = {
   readonly: true,
 };
 $(".rating").rate(options);
+
+$("#lightgallery").lightGallery({
+  pager: true,
+});
+
 // parsing lat lon
 const lat = parseInt(document.querySelector("#map").dataset.lat);
 const lng = parseInt(document.querySelector("#map").dataset.lon);
@@ -30,6 +34,6 @@ initMap(lat, lng);
 // getting current user
 setCurrentUserId(current_user);
 // listening click on send buttons
-handleNewWarning('posts');
+handleNewWarning("posts");
 handleNewMessage(current_user);
 handleNewOffer(current_user);
