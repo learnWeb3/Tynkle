@@ -68,9 +68,9 @@
         <div class="col-12">
             <div class="p-4 rounded">
                 <div class="col-12 d-flex flex-column justify-content-center">
-                    <h2 class="font-weight-bold">Les publications :</h2>
+                    <h2 class="font-weight-bold">Les annonces :</h2>
                 </div>
-                <div class="col-12 d-flex flex-wrap" id="posts-container">
+                <div class="col-12 d-flex flex-wrap justify-content-start justify-content-center justify-content-lg-start" id="posts-container">
                     <?php foreach ($posts as $post): ?>
                     <?php include '_publication_card.php'?>
                     <?php endforeach;?>
