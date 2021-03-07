@@ -2,6 +2,7 @@
 $routes = array(
     // '/'
     array('GET', ROOT_PATH . '/', 'static#home', 'home'),
+    array('GET', ROOT_PATH . '/faq', 'static#faq', 'faq'),
     array('GET', ROOT_PATH . '/contact', 'static#contact', 'contact'),
     array('POST', ROOT_PATH . '/contact', 'static#contact', 'send_contact'),
     array('GET', ROOT_PATH . '/signin', 'sessions#new', 'new_session'),

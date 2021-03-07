@@ -31,30 +31,6 @@
                     <td>
                         <form class="user-update" action="" method="post">
                             <div class="form-check form-check-inline">
-                                <?php if ($user['is_helper']): ?>
-                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_1" value="1"
-                                    checked>
-                                <?php else: ?>
-                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_1"
-                                    value="1">
-                                <?php endif;?>
-                                <label class="form-check-label" for="is_helper_1">oui</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <?php if (!$user['is_helper']): ?>
-                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_0" value="0"
-                                    checked>
-                                <?php else: ?>
-                                <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_helper" id="is_helper_0"
-                                    value="1">
-                                <?php endif;?>
-                                <label class="form-check-label" for="is_helper_0">non</label>
-                            </div>
-                        </form>
-                    </td>
-                    <td>
-                        <form class="user-update" action="" method="post">
-                            <div class="form-check form-check-inline">
                                 <?php if ($user['is_admin']): ?>
                                 <input class="form-check-input" data-userid="<?php echo $user['id'] ?>" type="radio" name="is_admin" id="is_admin_1" value="1"
                                     checked>

@@ -1,10 +1,13 @@
-<main  style="background-image: url(<?php echo $background_image_path ?>);min-height:100vh;" class="d-flex bg-background">
+<main style="background-image: url(<?php echo $background_image_path ?>);min-height:100vh;"
+    class="d-flex bg-background">
     <?php require_once './app/views/users/_edit_nav_menu.php'?>
-    <div class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-light p-4"
+    <div class="col-12 col-xl-8 offset-xl-3 d-flex flex-column align-items-start bg-white p-4"
         style="min-height:100vh; margin-top:3.5rem">
         <?php if (!$user['is_google']): ?>
-        <section style="min-height:95vh" class="w-100 d-flex align-items-center" id="account_informations">
-            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] ?>" class="w-100 mb-4 p-4" method="POST">
+        <section style="min-height:95vh" class="w-100 d-flex align-items-center justify-content-center"
+            id="account_informations">
+            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] ?>" class="col-12 col-lg-9 mb-4 p-4"
+                method="POST">
                 <h2 class="font-weight-bold">Information générales</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
@@ -65,8 +68,10 @@
         <?php endif?>
 
 
-        <section id="personnal_informations" class="w-100 d-flex align-items-center" style="min-height:95vh">
-            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] ?>" class="w-100 my-4 p-4" method="POST">
+        <section id="personnal_informations" class="w-100 d-flex  align-items-center justify-content-center"
+            style="min-height:95vh">
+            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] ?>" class="col-12 col-lg-9 my-4 p-4"
+                method="POST">
                 <h2 class="font-weight-bold">Information personnelles</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <div class="form-group my-2">
@@ -109,24 +114,31 @@
         </section>
 
         <?php if ($user['is_helper']): ?>
-        <div id="skills" class="w-100 d-flex align-items-center anchor" style="min-height:95vh">
-            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>" class="w-100 my-4 p-4"
-                method="POST">
+        <div id="skills" class="w-100 d-flex  align-items-center justify-content-center anchor" style="min-height:95vh">
+            <form action="<?php echo ROOT_PATH . '/users/' . $user['id'] . '/skills' ?>"
+                class="col-12 col-lg-9 my-4 p-4" method="POST">
                 <h2 class="font-weight-bold">Compétences</h2>
                 <h5 class="my-4">Informations obligatoires *</h5>
                 <?php foreach ($platforms as $i => $platform): ?>
-                <h4 class="font-weight-bold anchor" id="platform-<?php echo $platform['id'] ?>">
-                    <?php echo $platform['name'] ?></h4>
+                <h4 class="font-weight-bold anchor w-100 d-flex align-items-center justify-content-between"
+                    id="platform-<?php echo $platform['id'] ?>">
+                    <?php echo $platform['name'] ?>
+                    <span
+                        class="mx-4 badge bg-yellow-tynkle text-dark"><?php echo $platform['total_skill_owned_number'] ?>/<?php echo $platform['total_skill_number'] ?></span>
+                    <span class="visually-hidden">number of skills owned on total number of skills of platform</span>
+                </h4>
                 <?php foreach ($platform['breakdown_categories'] as $index => $breakdown_category_skill): ?>
-                <h5><?php echo $breakdown_category_skill['name'] ?></h5>
-                <div class="row">
+                <h5 class="w-100 d-flex align-items-center justify-content-between">
+                    <?php echo $breakdown_category_skill['name'] ?>
+                </h5>
+                <div class="row w-100">
                     <ul class="col-12">
                         <?php foreach ($breakdown_category_skill['skills'] as $index => $skill): ?>
                         <li class="row d-flex align-items-start justify-content-between">
                             <div class="col-8">
                                 <p class="mb-0"><?php echo $skill['name'] ?></p>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 d-flex justify-content-end">
                                 <div class="form-check form-check-inline">
                                     <?php if ($skill['is_owned']): ?>
                                     <input class="form-check-input" type="radio" name="<?php echo $skill['id'] ?>"
@@ -158,7 +170,6 @@
                 <button type="submit" class='btn btn-lg btn-primary col-12 col-lg-4 my-2'>VALIDER</button>
             </form>
         </div>
-
         <?php endif;?>
     </div>
 </main>
