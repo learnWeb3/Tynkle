@@ -7,6 +7,30 @@ class User extends Application
         $this->id = $id;
     }
 
+    public function getFollows(PDO $connection)
+    {
+        $request_body = 'SELECT 
+        users.id, 
+        users.username,
+        users.created_at,
+        users.updated_at,
+        follows.id_followed as id_followed,
+        follows.id_follower as id_follower,
+        (SELECT username FROM users WHERE users.id = id_followed) followed_username,
+        (SELECT AVG(reviews.score)
+        FROM reviews WHERE reviews.id_reviewed = id) reviews_score,
+        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) follower_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) followed_count
+        FROM users 
+        JOIN follows ON follows.id_follower = users.id 
+        WHERE users.id = ?';
+        return Request::send($connection, $request_body, [
+            $this->id
+        ])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getCurrentUserFollow(PDO $connection, $id_followed)
     {
         $request_body = "SELECT id

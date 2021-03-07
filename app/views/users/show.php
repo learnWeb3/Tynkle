@@ -12,15 +12,16 @@
                         </div>
                         <h1 class="my-4">
                             <a class="font-weight-bold font-italic m-2"
-                                    href="/users/<?php echo $user['user_id'] ?>"><?php echo $user['username'] ?>
+                                href="/users/<?php echo $user['user_id'] ?>"><?php echo $user['username'] ?>
                             </a>
                         </h1>
                     </div>
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                         <p class="font-weight-bold m-2"><?php echo $user['posts_count'] ?> annonces -
                             <?php echo $user['offers_count'] ?> offres</p>
-                        
-                            <p class="font-weight-bold m-2"><span  id="followers_count"><?php echo $user['follower_count'] ?></span> abbonné(s) -
+
+                        <p class="font-weight-bold m-2"><span
+                                id="followers_count"><?php echo $user['follower_count'] ?></span> abbonné(s) -
                             <?php echo $user['followed_count'] ?> abbonnements </p>
                         <div class="d-flex align-items-center">
                             <div class="rating m-2"
@@ -29,16 +30,27 @@
                             <p class="font-weight-bold m-2">
                                 <?php echo $user['reviews_score'] ? $user['reviews_score'] : '0' ?>/5</p>
                         </div>
-                        <div class="col-12 d-flex align-items-center justify-content-center flex-wrap" id="follow-actions">
-                        <button class="btn btn-lg bg-yellow-tynkle text-dark col-12 col-lg-3 m-2"><i class="lni lni-star mx-2"></i>LAISSER UN AVIS</button>
+
+                        <?php if ($current_user): ?>
+                        <div class="col-12 d-flex align-items-center justify-content-center flex-wrap"
+                            id="follow-actions">
+                            <button class="btn btn-lg bg-yellow-tynkle text-dark col-12 col-lg-3 m-2"><i
+                                    class="lni lni-star mx-2"></i>LAISSER UN AVIS</button>
                             <?php if ($follow_id): ?>
-                            <button id="unfollow" data-follow="<?php echo $follow_id ?>" data-user="<?php echo  $user['id']  ?>" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>NE PLUS SUIVRE</button>
+                            <button id="unfollow" data-follow="<?php echo $follow_id ?>"
+                                data-user="<?php echo  $user['id']  ?>"
+                                class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2"> <i
+                                    class="lni lni-heart mx-2"></i>NE PLUS SUIVRE</button>
                             <?php else : ?>
-                            <button id="follow" data-user="<?php echo  $user['id']  ?>" class="btn btn-lg btn-primary col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>SUIVRE</button>
+                            <button id="follow" data-user="<?php echo  $user['id']  ?>"
+                                class="btn btn-lg btn-primary col-12 col-lg-3 m-2"> <i
+                                    class="lni lni-heart mx-2"></i>SUIVRE</button>
                             <?php endif; ?>
-                            
+
                         </div>
-                        
+
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>
@@ -70,7 +82,8 @@
                 <div class="col-12 d-flex flex-column justify-content-center">
                     <h2 class="font-weight-bold">Les annonces :</h2>
                 </div>
-                <div class="col-12 d-flex flex-wrap justify-content-start justify-content-center justify-content-lg-start" id="posts-container">
+                <div class="col-12 d-flex flex-wrap justify-content-start justify-content-center justify-content-lg-start"
+                    id="posts-container">
                     <?php foreach ($posts as $post): ?>
                     <?php include '_publication_card.php'?>
                     <?php endforeach;?>
@@ -108,7 +121,8 @@
         <div class="row w-100 my-4">
             <div class="col-12 my-4">
                 <div class="row my-4">
-                    <h2 class="font-weight-bold text-center">Contacter <strong><?php echo $user['username'] ?></strong> ?</h2>
+                    <h2 class="font-weight-bold text-center">Contacter <strong><?php echo $user['username'] ?></strong>
+                        ?</h2>
                 </div>
                 <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
                     <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">

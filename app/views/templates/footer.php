@@ -5,6 +5,7 @@
                 <li class="font-weight-bold mb-2">À propos de nous</li>
                 <li><a href="<?php echo ROOT_PATH."/team" ?>">L'équipe</a></li>
                 <li><a href="<?php echo ROOT_PATH."/contact" ?>">Nous contacter</a></li>
+                <li><a href="<?php echo ROOT_PATH."/terms-of-use" ?>">CGU & Mentions légales</a></li>
             </ul>
 
         </div>
