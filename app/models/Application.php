@@ -119,8 +119,8 @@ class Application
         $request_body = "SELECT * FROM $table_name ORDER BY $table_name.created_at LIMIT $limit OFFSET $start";
         $request_parameters = [];
         $results = Request::send($connection, $request_body, $request_parameters)->fetchAll(\PDO::FETCH_ASSOC);
-        $next_start = $start + 10;
-        $previous_start = $start - 10 >= 0 ? $start - 10 : 0;
+        $next_start = $start + $limit;
+        $previous_start = $start - $limit >= 0 ? $start - $limit : 0;
         return array(
             "data" => $results,
             "next" => $path . "?start=$next_start&limit=$limit",

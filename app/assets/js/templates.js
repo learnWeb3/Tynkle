@@ -1,5 +1,22 @@
 import { ROOT_PATH } from "./API_CLIENT/index.js";
 
+const getArticleTemplate = ({cover_image, title, description, id}, ROOT_PATH) => {
+  return `
+  <div class="card m-2 p-4 shadow" style="width: 25rem;">
+    <img class="card-img-top"
+        src="${cover_image}"
+        alt="Card image cap">
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title my-2">${title}</h5>
+        <p class="card-text">${description}</p>
+        <a href="${ROOT_PATH+'/articles/'+id}" class="align-self-end text-brand-blue font-weight-bold">Lire la suite <i
+                class="lni lni-arrow-right"></i></a>
+    </div>
+</div>
+
+  `.trim();
+};
+
 const getAlertTemplate = (messages, type) => {
   const displayMessages = (messages) =>
     messages.map((message) => `<p class="p-0 m-0">${message}</p>`);
@@ -14,13 +31,11 @@ const getAlertTemplate = (messages, type) => {
     </div>`.trim();
 };
 
-
-const getUnfollowButton = (followId, userId) => `<button id="unfollow" data-follow="${followId}" data-user="${userId}" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>NE PLUS SUIVRE</button>`
+const getUnfollowButton = (followId, userId) =>
+  `<button id="unfollow" data-follow="${followId}" data-user="${userId}" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>NE PLUS SUIVRE</button>`;
 const getFollowButton = (userId) => {
-  return (
-   ` <button id="follow" data-user="${userId}" class="btn btn-lg btn-primary col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>SUIVRE</button>`
-  )
-}
+  return ` <button id="follow" data-user="${userId}" class="btn btn-lg btn-primary col-12 col-lg-3 m-2"> <i class="lni lni-heart mx-2"></i>SUIVRE</button>`;
+};
 
 const getAdminUserRowTemplate = ({
   username,
@@ -223,7 +238,7 @@ const getPostTemplate = (
     "shadow",
     "p-4",
     "m-2",
-    "rounded",
+    "rounded"
   );
   card.innerHTML = innerHTML;
   return card;
@@ -320,5 +335,6 @@ export {
   getTypingAreaTemplate,
   getAlertTemplate,
   getUnfollowButton,
-  getFollowButton
+  getFollowButton,
+  getArticleTemplate
 };
