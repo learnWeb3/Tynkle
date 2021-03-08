@@ -15,6 +15,8 @@ $routes = array(
     array('GET', ROOT_PATH . '/articles/[i:id]/edit', 'articles#edit', 'edit_article'),
     array('POST', ROOT_PATH . '/articles', 'articles#create', 'create_article'),
     array('PUT', ROOT_PATH . '/articles/[i:id]', 'articles#update', 'update_article'),
+    // '/reviews'
+    array('POST', ROOT_PATH . '/reviews', 'reviews#create', 'create_review'),
     // '/rules'
     array('GET', ROOT_PATH . '/rules/[i:id]', 'rules#show', 'show_rule'),
     array('GET', ROOT_PATH . '/rules/[i:id]/edit', 'rules#edit', 'edit_rule'),
@@ -89,5 +91,5 @@ $routes = array(
     array('POST', ROOT_PATH . '/warnings/users/[i:id]', 'warnings#create', 'warning_users'),
     array('GET', ROOT_PATH . '/warnings', 'warnings#index', 'warning_index'),
     array('DELETE', ROOT_PATH . '/warnings/posts/[i:id]', 'warnings#destroy', 'warning_posts_destroy'),
-    array('DELETE', ROOT_PATH . '/warnings/users/[i:id]', 'warnings#destroy', 'warning_users_destroy')
+    array('DELETE', ROOT_PATH . '/warnings/users/[i:id]', 'warnings#destroy', 'warning_users_destroy'),
 );
