@@ -112,7 +112,7 @@ class UsersController extends ApplicationController
             } else {
                 try {
                     $reset_password_token = bin2hex(random_bytes(50));
-                    User::update($this->connection, ['reset_password_token', 'password'], [$reset_password_token, $_POST['password']], 'id', $_POST['user_id']);
+                    User::update($this->connection, ['reset_password_token', 'password'], [$reset_password_token, password_hash($_POST['password'], PASSWORD_BCRYPT)], 'id', $_POST['user_id']);
                     $flash = new Flash(
                         array("Le mot de passe de votre compte à été mis à jour avec succès"),
                         'success'
