@@ -762,7 +762,7 @@ button.es-button {
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td class="esd-block-text es-p35t es-p5b es-p30r es-p30l" align="center">
-                                                                                        <h1>Nouveau contact !</h1>
+                                                                                        <h1 class="text-center display-4">Nouveau contact !</h1>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
