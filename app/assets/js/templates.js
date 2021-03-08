@@ -217,17 +217,13 @@ const getPostTemplate = (
     `.trim();
   const card = document.createElement("div");
   card.setAttribute("id", `post-${id}`);
-  card.style.width = "25rem"
   card.classList.add(
     "card",
     "card-publication",
-    "col-12",
-    "col-xl-6",
     "shadow",
     "p-4",
-    "my-4",
+    "m-2",
     "rounded",
-    "m-2"
   );
   card.innerHTML = innerHTML;
   return card;
@@ -308,7 +304,7 @@ const getOfferTemplate = ({
 const getNoResultTemplate = (redirectionLink, text, header) => {
   return `
     <h2>${header}</h2>
-    <a class="my-4 btn btn-brand btn-lg active" href="${redirectionLink}">${text}</a>
+    <a class="my-4 btn btn-primary btn-lg " href="${redirectionLink}">${text}</a>
     
     `.trim();
 };

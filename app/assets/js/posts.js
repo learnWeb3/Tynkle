@@ -109,7 +109,7 @@ const geoSearch = () => {
         postsContainer.innerHTML = `
         <div class='h-100 w-100 d-flex flex-column align-items-center justify-content-center'>
           <h2>Pas de publication pour le moment ...</h2>
-          <a class="my-4 btn btn-brand btn-lg active" href="${ROOT_PATH}/posts">NOUVELLE RECHERCHE</a>
+          <a class="my-4 btn btn-primary btn-lg " href="${ROOT_PATH}/posts">NOUVELLE RECHERCHE</a>
         </div>
         `.trim();
       }

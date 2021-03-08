@@ -7,7 +7,7 @@
             <?php endforeach; ?>
         <?php else : ?>
             <h2>Pas de favoris pour le moment ...</h2>
-            <a class="my-4 btn btn-brand btn-lg active" href="<?php echo ROOT_PATH ?>/posts/new">DEMANDER DE L'AIDE</a>
+            <a class="my-4 btn btn-primary btn-lg " href="<?php echo ROOT_PATH ?>/posts/new">DEMANDER DE L'AIDE</a>
         <?php endif; ?>
     </div>
 </div>

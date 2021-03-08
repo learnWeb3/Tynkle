@@ -188,7 +188,7 @@ class PostsController extends ApplicationController
                 array(
                     'title' => $page_data['title'],
                     'description' => $page_data['description'],
-                    'style_file_name' => '',
+                    'style_file_name' => 'posts',
                     'posts' => $posts['data'],
                     'breakdown_categories' => $breakdown_categories,
                     'platforms' => $platforms,

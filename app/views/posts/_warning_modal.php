@@ -16,7 +16,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-brand active" data-bs-dismiss="modal">FERMER</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">FERMER</button>
                 <button id="warning-form-submit" type="submit" form="warning-form" class="btn btn-success">ENVOYER</button>
             </div>
         </div>

@@ -22,7 +22,7 @@ class WarningsController extends ApplicationController
                     'description' => $page_data['description'],
                     'style_file_name' => 'admin',
                     'navbar_present' => false,
-                    'footer_present' => false,
+                    'footer_present' => true,
                     'posts' => $posts,
                     'users' => $users,
                     'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',

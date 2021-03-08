@@ -28,7 +28,7 @@
             <?php endforeach; ?>
         <?php else : ?>
             <h2>Pas d'offre pour le moment ...</h2>
-            <a class="my-4 btn btn-brand btn-lg active" href="<?php echo ROOT_PATH ?>/posts">VENIR EN AIDE A LA COMMUNAUTE</a>
+            <a class="my-4 btn btn-primary btn-lg " href="<?php echo ROOT_PATH ?>/posts">VENIR EN AIDE A LA COMMUNAUTE</a>
         <?php endif; ?>
     </div>
 </div>

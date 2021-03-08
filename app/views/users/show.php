@@ -2,9 +2,10 @@
     style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;padding-top:3rem'>
     <?php include '_new_message_modal.php'?>
     <?php include '_warning_modal.php'?>
+    <?php include '_new_review_modal.php'?>
     <section class="container-xl bg-light d-flex flex-column justify-content-center align-items-center p-4 shadow-sm">
-        <div class="col-12">
-            <div class="p-4 rounded">
+        <div class="col-12" id="user-profile-header">
+            <div class="p-4 rounded" style="background-color: rgba(255,255,255,.75);">
                 <div class="row w-100">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                         <div id="avatar" class="shadow-sm bg-white my-4">
@@ -34,8 +35,10 @@
                         <?php if ($current_user): ?>
                         <div class="col-12 d-flex align-items-center justify-content-center flex-wrap"
                             id="follow-actions">
-                            <button class="btn btn-lg bg-yellow-tynkle text-dark col-12 col-lg-3 m-2"><i
-                                    class="lni lni-star mx-2"></i>LAISSER UN AVIS</button>
+                            <button type="button" class="btn btn-lg bg-yellow-tynkle text-dark col-12 col-lg-3 m-2"
+                                data-bs-toggle="modal" data-bs-target="#new-review">
+                                <i class="lni lni-star mx-2"></i>LAISSER UN AVIS
+                            </button>
                             <?php if ($follow_id): ?>
                             <button id="unfollow" data-follow="<?php echo $follow_id ?>"
                                 data-user="<?php echo  $user['id']  ?>"
@@ -82,8 +85,7 @@
                 <div class="col-12 d-flex flex-column justify-content-center">
                     <h2 class="font-weight-bold">Les annonces :</h2>
                 </div>
-                <div class="col-12 d-flex flex-wrap justify-content-start justify-content-center justify-content-lg-start"
-                    id="posts-container">
+                <div class="card-columns col-12" id="posts-container">
                     <?php foreach ($posts as $post): ?>
                     <?php include '_publication_card.php'?>
                     <?php endforeach;?>

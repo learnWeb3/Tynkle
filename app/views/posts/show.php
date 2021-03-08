@@ -76,19 +76,19 @@
         <div class="row w-100 my-4">
             <div class="col-12">
                 <h4 class="font-weight-bold">Images - screenshots :</h4>
-                    <ul id="lightgallery" style="padding-left: 0;">
-                        <?php foreach ($post['images'] as $image_url): ?>
-                        <li data-src="<?php echo $image_url ?>"
-                            data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>"
-                            data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
-                            <a href="">
-                                <div class="demo-gallery-poster">
-                                    <img src="<?php echo $image_url ?>">
-                                </div>
-                            </a>
-                        </li>
-                        <?php endforeach;?>
-                    </ul>
+                <ul id="lightgallery" style="padding-left: 0;">
+                    <?php foreach ($post['images'] as $image_url): ?>
+                    <li data-src="<?php echo $image_url ?>"
+                        data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>"
+                        data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
+                        <a href="">
+                            <div class="demo-gallery-poster">
+                                <img src="<?php echo $image_url ?>">
+                            </div>
+                        </a>
+                    </li>
+                    <?php endforeach;?>
+                </ul>
             </div>
         </div>
         <?php if ($current_user): ?>
@@ -135,7 +135,7 @@
                 <div class="row my-4">
                     <h2 class="font-weight-bold">Vous pourriez être intéressé par :</h2>
                 </div>
-                <div class="col-12 d-flex flex-wrap" id="posts-container">
+                <div class="card-columns col-12 p-4" id="posts-container">
                     <?php foreach ($similar_posts as $post): ?>
                     <?php include '_publication_card.php'?>
                     <?php endforeach;?>

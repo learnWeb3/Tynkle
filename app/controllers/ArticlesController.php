@@ -7,6 +7,7 @@ class ArticlesController extends ApplicationController
     {
         parent::__construct($params, $route_name, $asked_method);
         $this->beforeAction(['show', 'edit', 'update', 'destroy']);
+        $this->checkAdminRights([ 'edit', 'update', 'destroy', "create", 'new']);
     }
 
     public function create()
@@ -173,6 +174,24 @@ class ArticlesController extends ApplicationController
                 }
             } else {
                 $this->handleError(422);
+            }
+        }
+    }
+
+    public function checkAdminRights(array $targeted_method_names)
+    {
+        if (in_array($this->asked_method, $targeted_method_names)) {
+            if (isset($this->current_user)) {
+                try {
+                    $user_data = $this->current_user->getDetails($this->connection);
+                    if ($user_data['is_admin'] === '0') {
+                        $this->handleError(403);
+                    }
+                } catch (\Throwable $th) {
+                    $this->handleError(500);
+                }
+            } else {
+                $this->handleError(403);
             }
         }
     }

@@ -6,7 +6,7 @@ class AdminController extends ApplicationController
     public function __construct(array $params, string $route_name, string $asked_method)
     {
         parent::__construct($params, $route_name, $asked_method);
-        $this->beforeAction(['platform', 'insights', 'users', 'users_update', 'users_search']);
+        $this->checkAdminRights(['platform', 'insights', 'users', 'users_update', 'users_search']);
     }
 
     public function platform()
@@ -21,7 +21,7 @@ class AdminController extends ApplicationController
                     'description' => $page_data['description'],
                     'style_file_name' => 'admin',
                     'navbar_present' => false,
-                    'footer_present' => false,
+                    'footer_present' => true,
                     'pages' => $pages,
                     'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 )
@@ -74,7 +74,7 @@ class AdminController extends ApplicationController
                     'description' => $page_data['description'],
                     'style_file_name' => 'admin',
                     'navbar_present' => false,
-                    'footer_present' => false,
+                    'footer_present' => true,
                     'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     'analytics' => array(
                         'user_number' => $user_number,
@@ -124,7 +124,7 @@ class AdminController extends ApplicationController
                     'description' => $page_data['description'],
                     'style_file_name' => 'admin',
                     'navbar_present' => false,
-                    'footer_present' => false,
+                    'footer_present' => true,
                     'users' => $users,
                     'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                 )
@@ -166,7 +166,7 @@ class AdminController extends ApplicationController
         }
     }
 
-    public function beforeAction(array $targeted_method_names)
+    public function checkAdminRights(array $targeted_method_names)
     {
         if (in_array($this->asked_method, $targeted_method_names)) {
             if (isset($this->current_user)) {

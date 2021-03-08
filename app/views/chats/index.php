@@ -15,7 +15,7 @@
             </div>
             <?php else: ?>
             <p>Pas de message pour le moment ...</p>
-            <a class="my-2 btn btn-md btn-brand active" href="<?php echo ROOT_PATH ?>/posts">VOIR LES ANNONCES</a>
+            <a class="my-2 btn btn-md btn-primary" href="<?php echo ROOT_PATH ?>/posts">VOIR LES ANNONCES</a>
             <?php endif;?>
         </div>
         <div class="col-12 col-xl-7 p-4 d-block overflow-y-auto" style="height:90vh;" id="general-container">
