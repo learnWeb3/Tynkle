@@ -5,8 +5,8 @@
             <h5 class="font-weight-bold mx-2"> <?php echo $offer['object'] ?></h5>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-            <i class="lni lni-user lni-16"></i>
-            <p class="font-weight-bold my-2">Martin Dupont</p>
+            <i class="lni lni-user lni-16 mx-2"></i>
+            <p class="font-weight-bold m-0">Martin Dupont</p>
         </div>
     </div>
     <div class="row my-2">

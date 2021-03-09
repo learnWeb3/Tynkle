@@ -274,10 +274,10 @@ const getOfferTemplate = ({
             <h5 class="font-weight-bold">${object}</h5>
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
-          <i class="lni lni-user lni-16"></i>
+          <i class="lni lni-user lni-16 mx-2"></i>
             <a href="${
               ROOT_PATH + "/users/" + user_id
-            }" class="font-weight-bold my-2">${username}</a>
+            }" class="font-weight-bold m-0">${username}</a>
         </div>
     </div>
     <div class="row my-2">

@@ -17,7 +17,7 @@ class User extends Application
         follows.id_followed as id_followed,
         follows.id_follower as id_follower,
         (SELECT username FROM users WHERE users.id = id_followed) followed_username,
-        (SELECT AVG(reviews.score)
+        (SELECT ROUND(AVG(reviews.score),2)
         FROM reviews WHERE reviews.id_reviewed = id) reviews_score,
         (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
         (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
@@ -163,7 +163,7 @@ class User extends Application
     public function getDetails(PDO $connection)
     {
         $request_body = 'SELECT *,
-        (SELECT AVG(reviews.score)
+        (SELECT ROUND(AVG(reviews.score),2)
         FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
         (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
         (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
@@ -505,7 +505,7 @@ class User extends Application
 
     public function getAverageScore(PDO $connection)
     {
-        $request_body = "SELECT AVG(reviews.score)
+        $request_body = "SELECT ROUND(AVG(reviews.score),2)
         FROM reviews WHERE reviews.id_reviewed = ?";
         return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
     }
