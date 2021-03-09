@@ -9,7 +9,7 @@
     <meta name="description" content="<?php echo $description; ?>">
     <link rel="shortcut icon" href="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/favicon.png" type="image/png">
     <!-- MATERIALIZE FOR BOOTSTRAP MDB LIBRARY  -->
-    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/mdb.min.css">
+    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/vendor/mdb.min.css">
     <!-- AOS LIBRARY STYLES -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Line Icons Library -->
