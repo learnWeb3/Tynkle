@@ -12,6 +12,7 @@ class StaticController extends ApplicationController
     {
         try {
             $page_data = Page::getDetails($this->connection, "static#home");
+            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
             $this->render(
                 'home',
                 array(
@@ -19,6 +20,7 @@ class StaticController extends ApplicationController
                     'description' => $page_data['description'],
                     'style_file_name' => 'home',
                     'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    'platforms'=>$platforms
                 )
             );
         } catch (\Throwable $th) {

@@ -13,9 +13,11 @@
                     <h2 class="text-white">Au sein de la communauté vous pouvez obtenir de l'aide et/ou partager vos services, pour cela il suffit de remplir vos compétences</h2>
                     <form action="" method="get" class="w-100 my-5 d-block">
                         <div class="form-group">
-                            <label class="text-white font-weight-bold" for="">Je cherche un dépaneur :</label>
-                            <select name="" id="" class="form-control-lg col-12 col-lg-6 my-2 mx-lg-2">
-                                <option value="">informatique</option>
+                        <label class="text-white font-weight-bold" for="id_platform">Je cherche un dépaneur :</label>
+                            <select class="form-control-lg col-12 col-lg-6 my-2 mx-lg-2" name="id_platform" id="id_platform">
+                                <?php foreach ($platforms as $platform): ?>
+                                <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <button type="submit"
