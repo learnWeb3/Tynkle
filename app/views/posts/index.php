@@ -65,4 +65,4 @@
 
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts/posts.js' ?> "></script>

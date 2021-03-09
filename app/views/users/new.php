@@ -47,4 +47,4 @@
     </section>
 
 </main>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_user.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/users/new_user.js' ?> "></script>

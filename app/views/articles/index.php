@@ -23,4 +23,4 @@
 
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles/articles.js' ?> "></script>

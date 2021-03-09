@@ -96,4 +96,4 @@
 
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin_users.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin/admin_users.js' ?> "></script>

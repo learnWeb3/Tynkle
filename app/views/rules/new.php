@@ -16,4 +16,4 @@
 </main>
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_rule.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/rules/new_rule.js' ?> "></script>

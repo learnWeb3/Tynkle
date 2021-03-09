@@ -17,4 +17,4 @@
 <script>
 const content = <?php echo $article['content'] ?>;
 </script>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/article.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles/article.js' ?> "></script>

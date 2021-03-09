@@ -91,4 +91,4 @@
     </section>
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH ?>/app/assets/js/new_post.js"></script>
+<script type="module" src="<?php echo ROOT_PATH ?>/app/assets/js/posts/new_post.js"></script>

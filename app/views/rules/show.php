@@ -17,4 +17,4 @@
 <script>
 const content = <?php echo $rule['content'] ?>;
 </script>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/rule.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/rules/rule.js' ?> "></script>

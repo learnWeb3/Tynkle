@@ -55,4 +55,4 @@
 </main>
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_article.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles/new_article.js' ?> "></script>

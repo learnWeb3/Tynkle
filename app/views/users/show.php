@@ -142,4 +142,4 @@
 </main>
 
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/user.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/users/user.js' ?>"></script>

@@ -29,4 +29,4 @@
     </div>
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/chats.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/chats/chats.js' ?>"></script>

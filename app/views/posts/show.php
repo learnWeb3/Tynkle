@@ -160,4 +160,4 @@
 </main>
 
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/post.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts/post.js' ?>"></script>
