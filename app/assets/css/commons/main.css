@@ -1,4 +1,5 @@
 /* TYPOGRAPHY */
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
 * {
     outline: 0;
@@ -12,15 +13,15 @@ p, a {
     font-family: 'Montserrat', sans-serif;
 }
 
-.row{
+.row {
     --bs-gutter-x: 0;
-  }
-  
+}
+
 body {
     min-height: 100vh;
 }
 
-.lni-64{
+.lni-64 {
     font-size: 64px;
 }
 
@@ -34,21 +35,19 @@ a:hover {
     color: #383838;
 }
 
-
 /* TEXT COLOR */
 
-.text-brand-blue{
+.text-brand-blue {
     color: #4ABDED;
 }
 
-.text-brand-yellow{
-    color:#f3cf12;
+.text-brand-yellow {
+    color: #f3cf12;
 }
 
-.text-brand-red{
-    color:#FD0E35;
+.text-brand-red {
+    color: #FD0E35;
 }
-
 
 /* BACKGROUND COLORS */
 
@@ -72,10 +71,9 @@ a:hover {
     background-color: #f3cf12;
 }
 
-
 /* BACKGROUND IMAGES */
 
-.bg-background, .bg-computer, .bg-problem, .bg-community  {
+.bg-background, .bg-computer, .bg-problem, .bg-community {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -95,8 +93,6 @@ a:hover {
     background-image: url(https://images.pexels.com/photos/3760607/pexels-photo-3760607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
-
-
 /* EXTENDED DISPLAY */
 
 .display-6 {
@@ -105,7 +101,7 @@ a:hover {
 
 /* BUTTONS */
 
-.btn{
+.btn {
     border-radius: 1.5rem;
 }
 
@@ -137,9 +133,10 @@ a:hover {
     min-height: 3.5rem;
     background-color: #F3CF12;
     color: #000;
-  }
+}
 
 /* FORM CHECK */
+
 .form-check-input[type="checkbox"]:checked {
     background-image: none;
     background-color: #373a3c;
@@ -166,7 +163,7 @@ a:hover {
 
 /* FOOTER */
 
-footer{
+footer {
     position: relative;
     z-index: 1;
 }
@@ -191,8 +188,6 @@ footer ul {
 /* CARD COLUMNS */
 
 .card-columns {
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
     -webkit-column-gap: 1.25rem;
     -moz-column-gap: 1.25rem;
     column-gap: 1.25rem;
@@ -201,24 +196,32 @@ footer ul {
 @media (min-width: 576px) {
     .card-columns {
         column-count: 1;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
     }
 }
 
 @media (min-width: 768px) {
     .card-columns {
         column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
     }
 }
 
 @media (min-width: 992px) {
     .card-columns {
         column-count: 3;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
     }
 }
 
 @media (min-width: 1200px) {
     .card-columns {
         column-count: 3;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
     }
 }
 
@@ -261,7 +264,7 @@ footer ul {
     font-size: 2rem;
 }
 
-.rate{
+.rate {
     font-size: 4rem;
 }
 
@@ -309,36 +312,71 @@ input.error {
     border: 1px solid #FD0E35;
 }
 
-
 /* PADDING UTILITIES */
 
-.p-6{
+.p-6 {
     padding: 3.5rem;
 }
 
-
 /* LIGHTGALLERY */
 
-#lightgallery{
+#lightgallery {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
     flex-wrap: wrap;
 }
-#lightgallery li{
+
+#lightgallery li {
     margin-top: 2rem;
 }
 
-@media screen and (min-width:1200px)
-{#lightgallery .demo-gallery-poster img{
-    height: 18rem;
-    width: 18rem;
-}}
-
-@media screen and (max-width:1200px)
-{
-    #lightgallery .demo-gallery-poster img{
+@media screen and (min-width:1200px) {
+    #lightgallery .demo-gallery-poster img {
         height: 18rem;
-        width:100%;
+        width: 18rem;
     }
+}
+
+@media screen and (max-width:1200px) {
+    #lightgallery .demo-gallery-poster img {
+        height: 18rem;
+        width: 100%;
+    }
+}
+
+#autocomplete-menu {
+    position: absolute;
+    box-shadow: rgb(201, 211, 223) 0px 1px 4px;
+    z-index: 1;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(173, 185, 201);
+    color: rgb(28, 28, 28);
+    border-radius: 0px 0px 5px 5px;
+    top: 4rem;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 10rem;
+}
+
+#autocomplete-menu .item {
+    display: flex;
+    flex-flow: row nowrap;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    -moz-box-align: center;
+    align-items: center;
+    padding: 1em;
+    cursor: pointer;
+}
+
+#autocomplete-menu .item:hover {
+    background-color: #1266f1;
+    color: rgb(255, 255, 255);
+}
+
+.form-group {
+    position: relative;
 }

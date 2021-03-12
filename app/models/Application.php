@@ -168,4 +168,5 @@ class Application
         $prepared_parameters = implode(' AND ', $prepared_parameters);
         return ["keys" => $prepared_parameters, "values" => $prepared_values];
     }
+
 }

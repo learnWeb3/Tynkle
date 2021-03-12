@@ -83,6 +83,7 @@ $routes = array(
     array('POST', ROOT_PATH . '/offers', 'offers#create', 'offers_create'),
     // '/asks'
     array('POST', ROOT_PATH . '/asks', 'asks#create', 'asks_create'),
+    array('GET', ROOT_PATH . '/asks/new', 'asks#new', 'ask_new'),
     // '/pages'
     array('PUT', ROOT_PATH . '/pages/[i:id]', 'pages#update', 'page_update'),
     array('POST', ROOT_PATH . '/pages/[i:id]', 'pages#update', 'page_update_background_image'),

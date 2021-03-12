@@ -1,6 +1,54 @@
 import { ROOT_PATH } from "../API_CLIENT/index.js";
 
-const getArticleTemplate = ({cover_image, title, description, id}, ROOT_PATH) => {
+const getBreakdownTemplate = ({
+  created_at,
+  description,
+  id,
+  id_platform,
+  name,
+  updated_at,
+}) => `<div class="radio-card-group bg-white shadow" style="position:relative">
+<p class="my-2 text-center ">${name}</p>
+<input style="position:absolute; z-index:1; left:0" type='radio' class='radio-card' name='platform' id="platform" value='${id}'/>
+</div>`;
+
+const getBreakdownTemplateChecked = ({
+  created_at,
+  description,
+  id,
+  id_platform,
+  name,
+  updated_at,
+}) => `<div class="radio-card-group bg-white shadow-sm" style="position:relative">
+    <p class="my-2 text-center ">${name}</p>
+    <input checked style="position:absolute; z-index:1; left:0" type='radio' class='radio-card' name='platform' id="platform" value='${id}'/>
+    </div>`;
+
+const getPlatformTemplate = ({ id, name, icon, description }) => {
+  return `<div class="radio-card-group bg-white shadow-sm" style="position:relative">
+    <div class="row w-100">
+      <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><i class='lni lni-32 lni-${icon}'/></div>
+      <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><p class="my-2 text-center ">${name}</p></div>
+      <div class="d-none d-lg-flex col-lg-6 align-items-center"><p class="my-2 text-left">${description}</p></div>
+    </div>
+    <input style="position:absolute; z-index:1; left:0" type='radio' class='radio-card' name='platform' id="platform" value='${id}'/>
+    </div>`;
+};
+
+const getPlatformTemplateChecked = ({ id, name, icon, description }) => {
+  return `<div class="radio-card-group bg-white shadow-sm" style="position:relative">
+  <div class="row w-100">
+    <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><i class='lni lni-32 lni-${icon}'/></div>
+    <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><p class="my-2 text-center ">${name}</p></div>
+    <div class="d-none d-lg-flex col-lg-6 d-flex align-items-center"><p class="my-2 text-left">${description}</p></div>
+  </div>
+  <input checked style="position:absolute; z-index:1; left:0" type='radio' class='radio-card' name='platform' id="platform" value='${id}'/>
+  </div>`;
+};
+const getArticleTemplate = (
+  { cover_image, title, description, id },
+  ROOT_PATH
+) => {
   return `
   <div class="card m-2 p-4 shadow" style="width: 25rem;">
     <img class="card-img-top"
@@ -9,7 +57,9 @@ const getArticleTemplate = ({cover_image, title, description, id}, ROOT_PATH) =>
     <div class="card-body d-flex flex-column">
         <h5 class="card-title my-2">${title}</h5>
         <p class="card-text">${description}</p>
-        <a href="${ROOT_PATH+'/articles/'+id}" class="align-self-end text-brand-blue font-weight-bold">Lire la suite <i
+        <a href="${
+          ROOT_PATH + "/articles/" + id
+        }" class="align-self-end text-brand-blue font-weight-bold">Lire la suite <i
                 class="lni lni-arrow-right"></i></a>
     </div>
 </div>
@@ -336,5 +386,9 @@ export {
   getAlertTemplate,
   getUnfollowButton,
   getFollowButton,
-  getArticleTemplate
+  getArticleTemplate,
+  getBreakdownTemplate,
+  getBreakdownTemplateChecked,
+  getPlatformTemplate,
+  getPlatformTemplateChecked,
 };

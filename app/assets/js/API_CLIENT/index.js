@@ -264,6 +264,24 @@ const updateUserByAdmin = async (url, data) => {
     .catch((error) => ({ data: null, status: 500 }));
 };
 
+const getBreakdowns = async (data) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + "/breakdowns", options)
+  .then(async (res) => {
+    const status = res.status;
+    return status === 200
+      ? { data: await res.json(), status: status }
+      : { data: null, status: status };
+  })
+  .catch((error) => ({ data: null, status: 500 }));
+};
+
 const getPlatforms = async (data) => {
   const options = {
     headers: {
@@ -424,4 +442,5 @@ export {
   saveRule,
   reviewUser,
   getFollowingArticles,
+  getBreakdowns,
 };

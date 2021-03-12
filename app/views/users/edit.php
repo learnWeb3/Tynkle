@@ -93,16 +93,19 @@
                     <label for="adress">Adresse :</label>
                     <input type="text" name="adress" id="adress" class="form-control" placeholder="221B Baker Street"
                         value="<?php echo $user['adress'] ?>">
+                    <div id="autocomplete-menu" class="d-none col-12 col-lg-6"></div>
                 </div>
+                <input type="hidden" name="lat" id="lat"  value="<?php echo $user['lat'] ?>">
+                <input type="hidden" name="lon" id="lon"  value="<?php echo $user['lon'] ?>">
                 <div class="form-group my-2">
                     <label for="city">Ville :</label>
                     <input type="text" name="city" id="city" class="form-control" placeholder="LONDRES"
-                        value="<?php echo $user['city'] ?>">
+                        value="<?php echo $user['city'] ?>" readonly>
                 </div>
                 <div class="form-group my-2">
                     <label for="postal_code">Code postal :</label>
                     <input type="text" name="postal_code" id="postal_code" class="form-control" placeholder="28000"
-                        value="<?php echo $user['postal_code'] ?>">
+                        value="<?php echo $user['postal_code'] ?>" readonly>
                 </div>
                 <div class="form-group my-2">
                     <label for="phone_number">Téléphone :</label>
@@ -173,3 +176,5 @@
         <?php endif;?>
     </div>
 </main>
+
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/users/edit_user.js' ?> "></script>

@@ -13,7 +13,7 @@ const appendFollowingArticles = (followingArticles) =>
 $("#see-more").on("click", async function (event) {
   event.preventDefault();
   const { status, data } = await getFollowingArticles(nextPage);
-  if (data.next !== document.querySelector("#see-more").dataset['next']) {
+  if (data && data.next !== document.querySelector("#see-more").dataset['next']) {
     appendFollowingArticles(data.data);
     console.log(data.next);
     document.querySelector("#see-more").dataset['next'] = data.next;

@@ -16,4 +16,3 @@ try {
     var_dump($th);
     die(Router::handleError(500));
 }
-

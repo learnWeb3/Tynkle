@@ -30,4 +30,17 @@ const geocode = async (locality, postal_code, API_KEY) => {
   }
 };
 
-export { getLocation, initMap, geocode };
+const getDataGouvAdresses = async (userInput) => {
+  const dataGouvBasePath = "https://api-adresse.data.gouv.fr/search/?q=";
+  const params = userInput.split(" ").join("+") + 'autocomplete=1';
+  return fetch(dataGouvBasePath + params)
+    .then(async (res) => {
+      const status = res.status;
+      return status === 200
+        ? { data: await res.json(), status: status }
+        : { data: null, status: status };
+    })
+    .catch((error) => ({ data: null, status: 500 }));
+};
+
+export { getLocation, initMap, geocode, getDataGouvAdresses };

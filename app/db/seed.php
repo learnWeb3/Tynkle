@@ -57,23 +57,30 @@ for ($count = 0; $count < 100; $count++) {
         $username = $faker->userName;
         $verify_token = bin2hex(random_bytes(50));
         $reset_password_token = bin2hex(random_bytes(50));
-        echo $reset_password_token;
-        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token'], array(
+        $geocoder = new Geocoder();
+        $coordinates = $geocoder->getCoordinates();
+        $adress_parts = $geocoder->reverseGeocode($coordinates['location']['lng'], $coordinates['location']['lat']);
+        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token', 'lat', 'lon', 'city', 'postal_code'], array(
             $username,
             $faker->firstName(),
             $faker->lastName,
             $faker->date(),
             $faker->email,
-            $faker->address,
+            $adress_parts["route"],
             $faker->phoneNumber,
             password_hash('foobar', PASSWORD_BCRYPT),
             $verify_token,
             $reset_password_token,
+            $coordinates['location']['lat'],
+            $coordinates['location']['lng'],
+            $adress_parts["locality"],
+            $adress_parts["postal_code"],
         ));
         echo "User $username created \n";
     } catch (\Throwable $th) {
         echo "user has not been created due to an internal error\n";
     }
+    sleep(rand(1,3));
 }
 
 $users = User::all($connection, '/', 0, 100)['data'];

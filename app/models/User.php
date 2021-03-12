@@ -9,8 +9,8 @@ class User extends Application
 
     public function getFollows(PDO $connection)
     {
-        $request_body = 'SELECT 
-        users.id, 
+        $request_body = 'SELECT
+        users.id,
         users.username,
         users.created_at,
         users.updated_at,
@@ -23,11 +23,11 @@ class User extends Application
         (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
         (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) follower_count,
         (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) followed_count
-        FROM users 
-        JOIN follows ON follows.id_follower = users.id 
+        FROM users
+        JOIN follows ON follows.id_follower = users.id
         WHERE users.id = ?';
         return Request::send($connection, $request_body, [
-            $this->id
+            $this->id,
         ])->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -92,7 +92,10 @@ class User extends Application
                     } else {
                         $verify_token = bin2hex(random_bytes(50));
                         $reset_password_token = bin2hex(random_bytes(50));
-                        $user = User::create($connection, ['email', 'username', 'password', 'is_google', 'verify_token', 'reset_password_token'],
+                        $geocoder = new Geocoder();
+                        $coordinates = $geocoder->getCoordinates();
+                        $adress_parts = $geocoder->reverseGeocode($coordinates['location']['lng'], $coordinates['location']['lat']);
+                        $user = User::create($connection, ['email', 'username', 'password', 'is_google', 'verify_token', 'reset_password_token', 'lat', 'lon', 'adress', 'city', 'postal_code'],
                             [
                                 $data['email'],
                                 $data['email'],
@@ -100,6 +103,11 @@ class User extends Application
                                 1,
                                 $verify_token,
                                 $reset_password_token,
+                                $coordinates['location']['lat'],
+                                $coordinates['location']['lng'],
+                                $adress_parts["route"],
+                                $adress_parts["locality"],
+                                $adress_parts["postal_code"],
                             ]);
 
                         $mailer = new Mailer(
@@ -522,6 +530,60 @@ class User extends Application
         WHERE reviews.id_reviewed = ?";
         return Request::send($connection, $request_body, [$this->id])->fetchAll(PDO::FETCH_ASSOC);
 
+    }
+
+    public static function getNearBy(PDO $connection, float $latitude, float $longitude, int $distance, string $breakdown_categories_ids = null, int $limit = 100, $earth_radius = 6371)
+    {
+
+        if ($breakdown_categories_ids) {
+            $request_body = "SELECT * FROM (
+                SELECT
+                    (
+                        (
+                            (
+                                acos(
+                                    sin(( $latitude * pi() / 180))
+                                    *
+                                    sin(( posts.lat * pi() / 180)) +
+
+                                    cos(( $latitude * pi() /180 ))
+                                    *
+                                    cos(( posts.lat * pi() / 180))
+                                    *
+                                    cos((( $longitude - posts.lng) * pi()/180)))
+                            ) * 180/pi()
+                        ) / 360 * 2 * pi() * $earth_radius
+                    )
+                as distance FROM users
+            ) myTable
+            WHERE distance <= $distance
+            AND breakdown_category_id IN ($breakdown_categories_ids)
+            LIMIT $limit;";
+        } else {
+            $request_body = "SELECT * FROM (
+                SELECT
+                    (
+                        (
+                            (
+                                acos(
+                                    sin(( $latitude * pi() / 180))
+                                    *
+                                    sin(( posts.lat * pi() / 180)) +
+
+                                    cos(( $latitude * pi() /180 ))
+                                    *
+                                    cos(( posts.lat * pi() / 180))
+                                    *
+                                    cos((( $longitude - posts.lng) * pi()/180)))
+                            ) * 180/pi()
+                        ) / 360 * 2 * pi() * $earth_radius
+                    )
+                as distance FROM users
+            ) myTable
+            WHERE distance <= $distance
+            LIMIT $limit;";
+        }
+        return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

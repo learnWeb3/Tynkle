@@ -37,4 +37,28 @@ class AsksController extends ApplicationController
         }
     }
 
+    function new () {
+        try {
+            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+            $breakdowns = BreakdownCategory::all($this->connection, '/brteakdowns', 0, 100)['data'];
+            $page_data = Page::getDetails($this->connection, "asks#new");
+            $this->render(
+                'new',
+                array(
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
+                    'style_file_name' => 'asks',
+                    'navbar_present' => false,
+                    'footer_present' => false,
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                    'platforms' => $platforms,
+                    'json_platforms'=>json_encode($platforms),
+                    'json_breakdowns'=>json_encode($breakdowns)
+                )
+            );
+        } catch (\Throwable $th) {
+            $this->handleError(500);
+        }
+    }
+
 }

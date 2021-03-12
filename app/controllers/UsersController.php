@@ -21,7 +21,7 @@ class UsersController extends ApplicationController
                         'danger'
                     );
                     $flash->storeInSession();
-                    die(header('location:'. ROOT_PATH.'/users/password/reset'));
+                    die(header('location:' . ROOT_PATH . '/users/password/reset'));
                 } else {
                     $mailer = new Mailer(
                         'tynkle',
@@ -51,10 +51,10 @@ class UsersController extends ApplicationController
                     'danger'
                 );
                 $flash->storeInSession();
-                die(header('location:'. ROOT_PATH.'/users/password/reset'));
+                die(header('location:' . ROOT_PATH . '/users/password/reset'));
             }
 
-        }else{
+        } else {
             try {
                 $page_data = Page::getDetails($this->connection, "users#ask_new_password");
                 $this->render(
@@ -154,14 +154,17 @@ class UsersController extends ApplicationController
 
     public function create()
     {
-        if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['password_confirmation'], $_POST['is_helper'])) {
+        if (isset($_POST['email'], $_POST['password'], $_POST['username'], $_POST['password_confirmation'], $_POST['is_helper'], $_POST['cgu_accepted'])) {
             if ($_POST['password_confirmation'] === $_POST['password']) {
                 try {
                     $verify_token = bin2hex(random_bytes(50));
                     $reset_password_token = bin2hex(random_bytes(50));
+                    $geocoder = new Geocoder();
+                    $coordinates = $geocoder->getCoordinates();
+                    $adress_parts = $geocoder->reverseGeocode($coordinates['location']['lng'], $coordinates['location']['lat']);
                     $user = User::create(
                         $this->connection,
-                        ['email', 'password', 'username', 'is_helper', 'verify_token', 'reset_password_token'],
+                        ['email', 'password', 'username', 'is_helper', 'verify_token', 'reset_password_token', 'lat', 'lon', 'adress', 'city', 'postal_code'],
                         [
                             $_POST['email'],
                             password_hash($_POST['password'], PASSWORD_BCRYPT),
@@ -169,6 +172,11 @@ class UsersController extends ApplicationController
                             intval($_POST['is_helper']),
                             $verify_token,
                             $reset_password_token,
+                            $coordinates['location']['lat'],
+                            $coordinates['location']['lng'],
+                            $adress_parts["route"],
+                            $adress_parts["locality"],
+                            $adress_parts["postal_code"],
                         ],
                         $_POST,
                         [
@@ -176,6 +184,7 @@ class UsersController extends ApplicationController
                             'email' => 'required|email',
                             'password' => 'required|min:6',
                             "is_helper" => 'required',
+                            "cgu_accepted" => 'required',
                         ]
                     );
 
@@ -270,7 +279,7 @@ class UsersController extends ApplicationController
                 $flash->storeInSession();
                 die(header('Location:' . ROOT_PATH . '/profile'));
             }
-        } else if (isset($_POST['firstname'], $_POST['lastname'], $_POST['birthdate'], $_POST['adress'], $_POST['city'], $_POST['postal_code'], $_POST['phone_number'])) {
+        } else if (isset($_POST['firstname'], $_POST['lastname'], $_POST['birthdate'], $_POST['adress'], $_POST['city'], $_POST['postal_code'], $_POST['phone_number'], $_POST['lat'], $_POST['lon'])) {
             $firstname = empty($_POST['firstname']) ? $user_data['firstname'] : $_POST['firstname'];
             $lastname = empty($_POST['lastname']) ? $user_data['lastname'] : $_POST['lastname'];
             $birthdate = empty($_POST['birthdate']) ? $user_data['birthdate'] : $_POST['birthdate'];
@@ -278,10 +287,12 @@ class UsersController extends ApplicationController
             $city = empty($_POST['city']) ? $user_data['city'] : $_POST['city'];
             $postal_code = empty($_POST['postal_code']) ? $user_data['postal_code'] : $_POST['postal_code'];
             $phone_number = empty($_POST['phone_number']) ? $user_data['phone_number'] : $_POST['phone_number'];
+            $lat = empty($_POST['lat']) ? $user_data['lat'] : $_POST['lat'];
+            $lon = empty($_POST['lon']) ? $user_data['lon'] : $_POST['lon'];
             try {
                 User::update(
                     $this->connection,
-                    ['firstname', 'lastname', 'birthdate', 'adress', 'city', 'postal_code', 'phone_number'],
+                    ['firstname', 'lastname', 'birthdate', 'adress', 'city', 'postal_code', 'phone_number', 'lat', 'lon'],
                     array(
                         $firstname,
                         $lastname,
@@ -290,6 +301,8 @@ class UsersController extends ApplicationController
                         $city,
                         $postal_code,
                         $phone_number,
+                        $lat,
+                        $lon,
                     ),
                     'id',
                     $this->current_user->id,
@@ -354,6 +367,15 @@ class UsersController extends ApplicationController
 
     }
 
+    public function index()
+    {
+        try {
+            User::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public function show()
     {
         if (isset($this->params['id'])) {
@@ -374,7 +396,7 @@ class UsersController extends ApplicationController
                         'posts' => $posts,
                         "reviews" => $reviews,
                         'platforms' => $platforms,
-                        'follow_id'=> $follow_id,
+                        'follow_id' => $follow_id,
                         'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     ));
                 } catch (\Throwable $th) {
