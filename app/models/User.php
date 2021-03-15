@@ -9,23 +9,13 @@ class User extends Application
 
     public function getFollows(PDO $connection)
     {
-        $request_body = 'SELECT
-        users.id,
-        users.username,
-        users.created_at,
-        users.updated_at,
-        follows.id_followed as id_followed,
-        follows.id_follower as id_follower,
-        (SELECT username FROM users WHERE users.id = id_followed) followed_username,
-        (SELECT ROUND(AVG(reviews.score),2)
-        FROM reviews WHERE reviews.id_reviewed = id) reviews_score,
-        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
-        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
-        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) follower_count,
-        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) followed_count
-        FROM users
-        JOIN follows ON follows.id_follower = users.id
-        WHERE users.id = ?';
+        $request_body = "SELECT *,
+        (SELECT username FROM users WHERE users.id = follows.id_followed) followed_username,
+        (SELECT created_at FROM users WHERE users.id = follows.id_followed) created_at,
+        (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = follows.id_followed) reviews_score,
+        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = follows.id_followed) posts_count,
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = follows.id_followed) offers_count
+        FROM follows WHERE id_follower = ?";
         return Request::send($connection, $request_body, [
             $this->id,
         ])->fetchAll(PDO::FETCH_ASSOC);
@@ -532,55 +522,66 @@ class User extends Application
 
     }
 
-    public static function getNearBy(PDO $connection, float $latitude, float $longitude, int $distance, string $breakdown_categories_ids = null, int $limit = 100, $earth_radius = 6371)
+    public static function getNearBy(PDO $connection, float $latitude, float $longitude, int $distance, string $breakdown_categories_ids = null, int $limit = 10, $earth_radius = 6371)
     {
 
         if ($breakdown_categories_ids) {
-            $request_body = "SELECT * FROM (
-                SELECT
-                    (
+            $request_body = "SELECT *, 
+            (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = myTable.id) reviews_score,
+            (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = myTable.id) posts_count,
+            (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = myTable.id) offers_count
+            FROM (
+                SELECT *,
+                (SELECT ROUND(AVG(reviews.score) FROM reviews WHERE reviews.id_reviewed = id))
+                    ROUND((
                         (
                             (
                                 acos(
                                     sin(( $latitude * pi() / 180))
                                     *
-                                    sin(( posts.lat * pi() / 180)) +
+                                    sin(( users.lat * pi() / 180)) +
 
                                     cos(( $latitude * pi() /180 ))
                                     *
-                                    cos(( posts.lat * pi() / 180))
+                                    cos(( users.lat * pi() / 180))
                                     *
-                                    cos((( $longitude - posts.lng) * pi()/180)))
+                                    cos((( $longitude - users.lon) * pi()/180)))
                             ) * 180/pi()
                         ) / 360 * 2 * pi() * $earth_radius
-                    )
+                    ),2)
                 as distance FROM users
             ) myTable
             WHERE distance <= $distance
             AND breakdown_category_id IN ($breakdown_categories_ids)
+            ORDER BY distance ASC
             LIMIT $limit;";
         } else {
-            $request_body = "SELECT * FROM (
-                SELECT
-                    (
+            $request_body = "SELECT *, 
+            (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = myTable.id) reviews_score,
+            (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = myTable.id) posts_count,
+            (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = myTable.id) offers_count
+            FROM (
+                SELECT *,
+                   ROUND((
                         (
                             (
                                 acos(
                                     sin(( $latitude * pi() / 180))
                                     *
-                                    sin(( posts.lat * pi() / 180)) +
+                                    sin(( users.lat * pi() / 180)) +
 
                                     cos(( $latitude * pi() /180 ))
                                     *
-                                    cos(( posts.lat * pi() / 180))
+                                    cos(( users.lat * pi() / 180))
                                     *
-                                    cos((( $longitude - posts.lng) * pi()/180)))
+                                    cos((( $longitude - users.lon) * pi()/180)))
                             ) * 180/pi()
                         ) / 360 * 2 * pi() * $earth_radius
-                    )
+                    ),2)
                 as distance FROM users
             ) myTable
             WHERE distance <= $distance
+            ORDER BY distance ASC
             LIMIT $limit;";
         }
         return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);

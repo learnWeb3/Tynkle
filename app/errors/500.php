@@ -8,7 +8,7 @@
     <title>403-Accès interdit</title>
     <link rel="shortcut icon" href="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/favicon.png" type="image/png">
     <!-- MATERIALIZE FOR BOOTSTRAP MDB LIBRARY  -->
-    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/mdb.min.css">
+    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/vendor/mdb.min.css">
        <!-- COMMON CSS -->
        <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
     <!-- BOOTSTRAP JS -->

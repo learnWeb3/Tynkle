@@ -1,10 +1,15 @@
-import { getBreakdowns, ROOT_PATH } from "../API_CLIENT/index.js";
+import {
+  getBreakdowns,
+  getNearbyUsers,
+  ROOT_PATH,
+} from "../API_CLIENT/index.js";
 import { getDataGouvAdresses } from "../commons/geolocation.js";
 import {
   getBreakdownTemplate,
   getBreakdownTemplateChecked,
   getPlatformTemplate,
   getPlatformTemplateChecked,
+  getUserTemplate,
 } from "../templates/templates.js";
 
 class Multistep {
@@ -41,7 +46,7 @@ class Multistep {
   }
 
   getProgressBar() {
-    return `<div class="progress" style="height:2rem;font-weight:bold;">
+    return `<div class="progress">
     <div class="progress-bar progress-bar-animated" role="progressbar bg-info" style="width: ${
       this.current_progress * (this.current_step_index + 1)
     }%" aria-valuenow="${
@@ -52,7 +57,6 @@ class Multistep {
   </div>`;
   }
   async render() {
-    console.log(this.state);
     const stepTemplate = await this.step.getTemplate(this);
     const progressBarTemplate = this.getProgressBar();
     $(this.elementSelector).html(progressBarTemplate + " " + stepTemplate);
@@ -72,6 +76,7 @@ const state = {
   platformId: null,
   breakdownId: null,
   location: null,
+  coordinates: { lat: null, lon: null },
 };
 
 const steps = [
@@ -84,8 +89,8 @@ const steps = [
       });
       return `<div id='step-container'   style="min-height:66vh">
       <h2 class='text-center font-weight-bold my-4'>Type d'appareil</h2>
-      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12' style="min-height:50vh">
-      ${platformsTemplates.join(' ')}
+      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh;max-height:75%">
+      ${platformsTemplates.join(" ")}
       </div>
       <div class='row my-4 d-flex justify-content-center align-items-center'>
         <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
@@ -113,8 +118,8 @@ const steps = [
           : "";
       return `<div id='step-container'   style="min-height:66vh">
       <h2 class='text-center font-weight-bold my-4'>Type de panne :</h2>
-      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12' style="min-height:50vh">
-      ${breakdownTemplates.join(' ')}
+      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh; max-height:75%">
+      ${breakdownTemplates.join(" ")}
       </div>
       <div class='row my-4 d-flex justify-content-between align-items-center'>
       <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
@@ -160,56 +165,81 @@ const steps = [
       mstep.state.location = $("input").val();
     },
     afterRender: (mstep) => {
-      const handleClickItem = () =>  $("#autocomplete-menu .item").on('click', function(event){
-        $('#location').val(event.target.innerHTML);
-        mstep.state.coordinates = {lat: $(event.target).data('lat'), lon: $(event.target).data('lon')}
-        $("#autocomplete-menu").addClass("d-none");
-      });
-      const handleRemoveMenu = () =>
-      $(window).on("click", function (event) {
-        if (!Array.from(event.target.classList).includes("item")) {
+      const handleClickItem = () =>
+        $("#autocomplete-menu .item").on("click", function (event) {
+          $("#location").val(event.target.innerHTML);
+          mstep.state.coordinates.lat = $(event.target).data("lat");
+          mstep.state.coordinates.lon = $(event.target).data("lon");
           $("#autocomplete-menu").addClass("d-none");
-        }
-      });
+        });
+      const handleRemoveMenu = () =>
+        $(window).on("click", function (event) {
+          if (!Array.from(event.target.classList).includes("item")) {
+            $("#autocomplete-menu").addClass("d-none");
+          }
+        });
       $("#location").on("input", async (event) => {
         const { status, data } = await getDataGouvAdresses(event.target.value);
         if (status === 200) {
-          $("#autocomplete-menu").html("").removeClass('d-none');
+          $("#autocomplete-menu").html("").removeClass("d-none");
           data.features.map(({ properties, geometry: { coordinates } }) => {
             $("#autocomplete-menu").append(
-              `<div class='item' data-lat='${coordinates[0]}' data-lon='${coordinates[1]}'>${properties.label}</div>`
+              `<div class='item' data-lat='${coordinates[1]}' data-lon='${coordinates[0]}'>${properties.label}</div>`
             );
           });
           handleClickItem();
           handleRemoveMenu();
         }
       });
-      // handleBlur();
     },
   },
   {
-    getTemplate: (mstep) => {
-      const platformsTemplates = platforms.map((platform) => {
-        return mstep.state.platformId === parseInt(platform.id)
-          ? getPlatformTemplateChecked(platform)
-          : getPlatformTemplate(platform);
-      });
-      return `<div id='step-container'  style="min-height:66vh">
-      <h2 class='text-center font-weight-bold my-4'>Choisir mes helpers :</h2>
-      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12' style="min-height:50vh">
-      ${platformsTemplates.join(' ')}
-      </div>
-      <div class='row my-4 d-flex justify-content-between align-items-center'>
-      <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
-      précedent
-    </button>
-        <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
-          suivant
+    getTemplate: async (mstep) => {
+      const { status, data } = await getNearbyUsers(
+        mstep.state.coordinates.lat,
+        mstep.state.coordinates.lon
+      );
+      if (status === 200 && data.length > 0) {
+        const usersTemplates = data.map((user) => getUserTemplate(user));
+        return `<div id='step-container'  style="min-height:66vh">
+          <h2 class='text-center font-weight-bold my-4'>Choisir mes helpers :</h2>
+          <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh;max-height:75%;">
+          ${usersTemplates.join(" ")}
+          </div>
+          <div class='row my-4 d-flex justify-content-between align-items-center' style='max-height: 78%;'>
+          <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+          précedent
         </button>
-      </div>
-    </div>`;
+            <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
+              suivant
+            </button>
+          </div>
+        </div>`;
+      } else {
+        return `<div id='step-container'  style="min-height:66vh">
+          <h2 class='text-center font-weight-bold my-4'>Choisir mes helpers :</h2>
+          <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh;max-height:75%;">
+            <p>Nous n'avons trouvé personne dans votre entourage</p>
+          </div>
+          <div class='row my-4 d-flex justify-content-center align-items-center' style='max-height: 78%;'>
+          <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+          précedent
+        </button>
+          </div>
+        </div>`;
+      }
     },
     setState: (mstep) => {},
+    afterRender: (mstep) => {
+      const options = {
+        max_value: 5,
+        step_size: 0.5,
+        initial_value: 0,
+        cursor: "default",
+        readonly: true,
+      };
+      $(".rating").rate(options);
+    },
   },
   {
     getTemplate: (mstep) => {

@@ -39,9 +39,6 @@
     width: 15rem;
 }
 
-.btn{
-    border-radius: 0;
-}
 
 .progress-bar{
     background-color: #1266f1;
@@ -50,4 +47,9 @@
 
 #general-container{
     background-color: #FFF;
+    max-height: 80vh;
+}
+
+.progress{
+    height: 25px;
 }

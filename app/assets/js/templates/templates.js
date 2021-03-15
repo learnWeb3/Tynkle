@@ -1,5 +1,59 @@
 import { ROOT_PATH } from "../API_CLIENT/index.js";
 
+const getUserTemplate = ({
+  id,
+  username,
+  posts_count,
+  offers_count,
+  reviews_score,
+  created_at,
+  distance
+}) =>
+  `
+<div class="col-12 col-xl-9 m-4">
+    <div class="card shadow p-4 rounded">
+        <div class="row w-100">
+            <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
+                <div class="avatar shadow-sm bg-white my-4">
+                    <i class="lni lni-user lni-64"></i>
+                    <a class=" font-italic m-2 stretched-link"
+                    href="${
+                      ROOT_PATH + "/users/" + id
+                    }">${username}</a>
+                </div>
+               
+            </div>
+            <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
+                <p class=" m-2">${posts_count} annonces -
+                    ${offers_count} offres</p>
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="rating m-2"
+                            data-rate-value='${
+                              reviews_score ? reviews_score : 0
+                            }'>
+                        </div>
+                        <p class=" m-2">
+                            ${reviews_score ? reviews_score : 0}/5</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center">
+                        <i class="lni lni-calendar lni-16"></i>
+                        <small class="m-2 mb-0">Inscrit le ${created_at}</small>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-12 d-flex align-items-center">
+                    <i class="lni lni-pointer lni-16"></i>
+                    <small class="m-2 mb-0 font-weight-bold">A ${distance} Km</small>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+`.trim();
 const getBreakdownTemplate = ({
   created_at,
   description,
@@ -391,4 +445,5 @@ export {
   getBreakdownTemplateChecked,
   getPlatformTemplate,
   getPlatformTemplateChecked,
+  getUserTemplate,
 };

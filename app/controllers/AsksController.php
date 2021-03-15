@@ -49,7 +49,7 @@ class AsksController extends ApplicationController
                     'description' => $page_data['description'],
                     'style_file_name' => 'asks',
                     'navbar_present' => false,
-                    'footer_present' => false,
+                    'footer_present' => true,
                     'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     'platforms' => $platforms,
                     'json_platforms'=>json_encode($platforms),

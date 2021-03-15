@@ -59,7 +59,7 @@ const handleRadioClick = async (event) => {
     if (currentElementDataType === "offers") {
       url = `/activities/offers?type=${currentElementValue}`;
       container = document.querySelector("#offers-container");
-      redirectionLink = ROOT_PATH + "/offers";
+      redirectionLink = ROOT_PATH + "/posts";
       header = "Aucune offre pour le moment ...";
       text = "VENIR EN AIDE A LA COMMUNAUTE";
     } else if (currentElementDataType === "asks") {

@@ -12,7 +12,7 @@
                     <div class='d-block overflow-auto px-2'>
                         <div class="form-group my-2">
                             <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une catégorie : </label>
-                            <select name="id_platform" id="id_platform" class="col-12">
+                            <select name="id_platform" id="id_platform" class="form-control col-12">
                                 <option value="0">Toutes</option>
                                 <?php foreach ($platforms as $platform): ?>
                                 <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
@@ -36,7 +36,7 @@
                         <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
                     </div>
                     <div class="form-group my-2">
-                        <select name="search_radius" id="search_radius" class="col-12">
+                        <select name="search_radius" id="search_radius" class="form-control col-12">
                             <option value="10">10 km</option>
                             <option value="25">25 km</option>
                             <option value="50">50 km</option>

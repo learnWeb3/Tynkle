@@ -2,11 +2,11 @@
     style="min-height:100vh; background:#1266f1;
 background: linear-gradient(180deg, #1266f1 0%, #1266f1 33%, #fbfbfb 33%, #fbfbfb 100%);">
 
-    <section class="col-12 col-lg-6 d-flex flex-column shadow p-4 "
+    <section class="col-12 col-lg-5 d-flex flex-column shadow p-4 overflow-auto"
         id="general-container">
 
         <div class="row my-4">
-            <div class="progress" style="height: 2rem;">
+            <div class="progress">
                 <div class="progress-bar progress-bar-animated bg-info" role="progressbar"
                     style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
             </div>

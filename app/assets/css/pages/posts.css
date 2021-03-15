@@ -1,0 +1,11 @@
+.card-publication:hover, .card:hover {
+    -webkit-box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+.card-publication *{
+    transition: all .1 ease-in-out;
+}
+.card-publication:hover *{
+    color: rgb(0, 0, 0)
+}

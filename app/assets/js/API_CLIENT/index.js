@@ -17,6 +17,23 @@ const getCurrentUser = async () => {
     .catch((error) => ({ data: null, status: 500 }));
 };
 
+const getNearbyUsers = (lat, lon) =>{
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  };
+  return fetch(ROOT_PATH + `/users?lat=${lat}&lng=${lon}`, options)
+    .then(async (res) => {
+      const status = res.status;
+      return status === 200
+        ? { data: await res.json(), status: status }
+        : { data: null, status: status };
+    })
+    .catch((error) => ({ data: null, status: 500 }));
+}
+
 const follow = (userId, data) => {
   const options = {
     headers: {
@@ -443,4 +460,5 @@ export {
   reviewUser,
   getFollowingArticles,
   getBreakdowns,
+  getNearbyUsers
 };

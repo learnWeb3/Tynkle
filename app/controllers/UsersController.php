@@ -369,10 +369,17 @@ class UsersController extends ApplicationController
 
     public function index()
     {
-        try {
-            User::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], $_GET['distance'], $_GET['breakdown_categories']);
-        } catch (\Throwable $th) {
-            //throw $th;
+
+        if (isset($_GET['lat'], $_GET['lng'])) {
+            try {
+                $breakdown_categories_ids =  isset($_GET['breakdown_categories']) ?  $_GET['breakdown_categories'] : null;
+                echo json_encode(User::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], 500, $breakdown_categories_ids));
+                die();
+            } catch (\Throwable $th) {
+                die(http_response_code(500));
+            }
+        } else {
+            die(http_response_code(422));
         }
     }
 

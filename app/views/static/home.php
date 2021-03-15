@@ -79,9 +79,9 @@
                         votre choix <br>
                         Tout est possible ! dépannage, installation, formation, à vous de choisir !
                     </p>
-                    <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                    <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
                         class="btn btn-lg btn-yellow-tynkle my-4 col-12 col-lg-4">
-                        Je m'inscris !
+                        Je trouve un dépanneur !
                     </a>
                 </div>
             </div>

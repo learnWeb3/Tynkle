@@ -20,12 +20,12 @@ FaqItem::destroyAll($connection);
 Review::destroyAll($connection);
 
 $faker = Faker\Factory::create();
-$platforms = ["Informatique", 'Smartphone/tablette', "Reseau", "Electroménager", "Console de jeux", "Tv/multimédia"];
+$platforms = [["name"=>"Informatique", 'description'=>"PC/MAC et périphériques en tout genre", "icon"=>'windows'], ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],[ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']];
 
 foreach ($platforms as $platform) {
     try {
-        Platform::create($connection, ['name', 'description'], [$platform, $faker->text()]);
-        echo "Platform $platform created \n";
+        Platform::create($connection, ['name', 'description', 'icon'], [$platform['name'],$platform['description'], $platform['icon'] ]);
+        echo "Platform ".$platform['name']." created \n";
     } catch (\Throwable $th) {
         echo "platform $plateform has not been created due to an internal error\n";
     }
