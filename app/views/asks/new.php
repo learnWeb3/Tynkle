@@ -2,7 +2,7 @@
     style="min-height:100vh; background:#1266f1;
 background: linear-gradient(180deg, #1266f1 0%, #1266f1 33%, #fbfbfb 33%, #fbfbfb 100%);">
 
-    <section class="col-12 col-lg-5 d-flex flex-column shadow p-4 overflow-auto"
+    <section class="col-12 col-lg-6 d-flex flex-column shadow p-4"
         id="general-container">
 
         <div class="row my-4">

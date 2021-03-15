@@ -89,11 +89,11 @@ const steps = [
       });
       return `<div id='step-container'   style="min-height:66vh">
       <h2 class='text-center font-weight-bold my-4'>Type d'appareil</h2>
-      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh;max-height:75%">
+      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 ' >
       ${platformsTemplates.join(" ")}
       </div>
       <div class='row my-4 d-flex justify-content-center align-items-center'>
-        <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
+        <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="next-step">
           suivant
         </button>
       </div>
@@ -118,14 +118,14 @@ const steps = [
           : "";
       return `<div id='step-container'   style="min-height:66vh">
       <h2 class='text-center font-weight-bold my-4'>Type de panne :</h2>
-      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh; max-height:75%">
+      <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 ' >
       ${breakdownTemplates.join(" ")}
       </div>
       <div class='row my-4 d-flex justify-content-between align-items-center'>
-      <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+      <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="previous-step">
       précedent
     </button>
-        <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
+        <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="next-step">
           suivant
         </button>
       </div>
@@ -152,10 +152,10 @@ const steps = [
         </div>
       </form>
       <div class='row my-4 d-flex justify-content-between align-items-center'>
-      <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+      <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="previous-step">
       précedent
     </button>
-        <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
+        <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="next-step">
           suivant
         </button>
       </div>
@@ -203,14 +203,14 @@ const steps = [
         const usersTemplates = data.map((user) => getUserTemplate(user));
         return `<div id='step-container'  style="min-height:66vh">
           <h2 class='text-center font-weight-bold my-4'>Choisir mes helpers :</h2>
-          <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh;max-height:75%;">
+          <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 '>
           ${usersTemplates.join(" ")}
           </div>
-          <div class='row my-4 d-flex justify-content-between align-items-center' style='max-height: 78%;'>
-          <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+          <div class='row my-4 d-flex justify-content-between align-items-center' >
+          <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="previous-step">
           précedent
         </button>
-            <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
+            <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="next-step">
               suivant
             </button>
           </div>
@@ -218,11 +218,12 @@ const steps = [
       } else {
         return `<div id='step-container'  style="min-height:66vh">
           <h2 class='text-center font-weight-bold my-4'>Choisir mes helpers :</h2>
-          <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12 overflow-auto' style="min-height:50vh;max-height:75%;">
-            <p>Nous n'avons trouvé personne dans votre entourage</p>
+          <div class='d-flex flex-wrap justify-content-evenly align-items-center align-items-center col-12'>
+            <img src="${ROOT_PATH+'/app/assets/img/commons/nothing.svg'}" class='img-fluid'/>
+            <p class='my-4 font-weight-bold'>Nous n'avons trouvé personne dans votre entourage</p>
           </div>
-          <div class='row my-4 d-flex justify-content-center align-items-center' style='max-height: 78%;'>
-          <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+          <div class='row my-4 d-flex justify-content-center align-items-center' >
+          <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="previous-step">
           précedent
         </button>
           </div>
@@ -252,10 +253,10 @@ const steps = [
       </div>
     </form>
       <div class='row my-4 d-flex justify-content-between align-items-center'>
-      <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="previous-step">
+      <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="previous-step">
       précedent
     </button>
-        <button class='col-5 col-lg-2 btn btn-lg btn-primary' id="next-step">
+        <button class='col-5 col-lg-3 btn btn-lg btn-primary' id="next-step">
           suivant
         </button>
       </div>

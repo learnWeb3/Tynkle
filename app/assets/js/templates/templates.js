@@ -81,8 +81,8 @@ const getBreakdownTemplateChecked = ({
 const getPlatformTemplate = ({ id, name, icon, description }) => {
   return `<div class="radio-card-group bg-white shadow-sm" style="position:relative">
     <div class="row w-100">
-      <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><i class='lni lni-32 lni-${icon}'/></div>
-      <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><p class="my-2 text-center ">${name}</p></div>
+      <div class="col-2 col-lg-1 d-flex align-items-center justify-content-center"><i class='lni lni-32 lni-${icon}'/></div>
+      <div class="col-10 col-lg-5 d-flex align-items-center justify-content-center"><p class="my-2 text-center ">${name}</p></div>
       <div class="d-none d-lg-flex col-lg-6 align-items-center"><p class="my-2 text-left">${description}</p></div>
     </div>
     <input style="position:absolute; z-index:1; left:0" type='radio' class='radio-card' name='platform' id="platform" value='${id}'/>
@@ -92,8 +92,8 @@ const getPlatformTemplate = ({ id, name, icon, description }) => {
 const getPlatformTemplateChecked = ({ id, name, icon, description }) => {
   return `<div class="radio-card-group bg-white shadow-sm" style="position:relative">
   <div class="row w-100">
-    <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><i class='lni lni-32 lni-${icon}'/></div>
-    <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center"><p class="my-2 text-center ">${name}</p></div>
+    <div class="col-2 col-lg-1 d-flex align-items-center justify-content-center"><i class='lni lni-32 lni-${icon}'/></div>
+    <div class="col-10 col-lg-5 d-flex align-items-center justify-content-center"><p class="my-2 text-center ">${name}</p></div>
     <div class="d-none d-lg-flex col-lg-6 d-flex align-items-center"><p class="my-2 text-left">${description}</p></div>
   </div>
   <input checked style="position:absolute; z-index:1; left:0" type='radio' class='radio-card' name='platform' id="platform" value='${id}'/>
