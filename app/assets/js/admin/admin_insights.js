@@ -72,10 +72,8 @@ const drawLine = (elementId, data, headerTitle, yLabel, xLabel) =>
     ],
   });
 
-const drawSunBurst = (elementId, data, headerTitle) =>
-
-  {
-    return Highcharts.chart(elementId, {
+const drawSunBurst = (elementId, data, headerTitle) => {
+  return Highcharts.chart(elementId, {
     chart: {
       height: (9 / 16) * 100 + "%", // 16:9 ratio
     },
@@ -136,4 +134,5 @@ const drawSunBurst = (elementId, data, headerTitle) =>
       pointFormat:
         "Le nombre de posts de <b>{point.name}</b> est <b>{point.value}</b>",
     },
-  });}
+  });
+};

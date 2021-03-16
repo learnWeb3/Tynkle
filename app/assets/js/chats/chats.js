@@ -18,7 +18,6 @@ const streamMessages = (chat_id, messages_container, current_user) => {
   eventSource.onmessage = function (message) {
       const msgData = JSON.parse(message.data);
       if (msgData.length > 0) {
-        console.log(msgData)
           const isMessagePresent = document.querySelector('#message-' + msgData[0].message_id);
           if (!isMessagePresent) {
               messages_container.append(getMessageTemplate(msgData[0], current_user));

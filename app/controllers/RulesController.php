@@ -98,7 +98,6 @@ class RulesController extends ApplicationController
                     )
                 );
             } catch (\Throwable $th) {
-                var_dump($th);
                 $this->handleError(500);
             }
 

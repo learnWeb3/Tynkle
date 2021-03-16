@@ -13,6 +13,5 @@ try {
     $match = $router->match();
     isset($match['target']) ?  Router::route($match) : die(Router::handleError(404));
 } catch (Throwable $th) {
-    var_dump($th);
     die(Router::handleError(500));
 }

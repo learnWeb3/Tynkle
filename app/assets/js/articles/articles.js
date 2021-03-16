@@ -5,7 +5,6 @@ const nextPage = $("#see-more").data("next");
 
 const appendFollowingArticles = (followingArticles) =>
   followingArticles.map((followingArticle) => {
-    console.log(followingArticle);
   $("#articles-container")
       .append(getArticleTemplate(followingArticle, ROOT_PATH));
   });
@@ -15,7 +14,6 @@ $("#see-more").on("click", async function (event) {
   const { status, data } = await getFollowingArticles(nextPage);
   if (data && data.next !== document.querySelector("#see-more").dataset['next']) {
     appendFollowingArticles(data.data);
-    console.log(data.next);
     document.querySelector("#see-more").dataset['next'] = data.next;
   } else {
     $(this).remove();

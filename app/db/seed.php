@@ -314,7 +314,6 @@ foreach ($faq_categories as $faq_category) {
         FaqCategory::create($connection, ['name'], [$faq_category]);
         echo "$faq_category created and inserted in database in faq_categories table";
     } catch (\Throwable $th) {
-        var_dump($th);
         echo "faq_category $faq_category has not been created due to an internal error\n";
     }
 }

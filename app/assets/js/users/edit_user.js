@@ -3,7 +3,6 @@ import { getDataGouvAdresses } from "../commons/geolocation.js";
 const handleClickItem = () =>
   $("#autocomplete-menu .item").on("click", function (event) {
     $("#adress").val($(this).text());
-    console.log($(this));
     $('#city').val($(this).data('city'));
     $('#postal_code').val($(this).data('postcode'));
     $('#lat').val($(this).data('lat'));

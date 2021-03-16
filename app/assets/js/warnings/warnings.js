@@ -4,7 +4,6 @@ const handleDeleteClick = () => {
   $(".delete").on("click", async function (event) {
     event.preventDefault();
     const url = $(this).closest("tr").data("url");
-    console.log(url);
     const { status, data } = await deleteWarnings(url);
     if (status === 204) {
       $(this).closest("tr").remove();

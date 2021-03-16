@@ -6,7 +6,6 @@ const current_user = {
 
 const setCurrentUserId = async (current_user) => {
   const { status, data } = await getCurrentUser();
-  console.log(status)
   if (status === 200) {
     current_user["id"] = data.current_user;
   }

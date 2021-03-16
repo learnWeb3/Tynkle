@@ -156,7 +156,7 @@ const initObserver = () => {
               postsContainer.dataset.nextpage = data.next;
               initObserver();
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
         }
       }
     });

@@ -21,7 +21,6 @@ $("form button").on("click", async function (event) {
 
       if (status === 200) {
         const { image_url } = pageData;
-        console.log($(form).closest(".image-preview-container"));
         $(form).closest('.row').find(".image-preview-container").html(
           `<img src="${image_url}" alt="image d'arrière plan de la page"
             class="h-100 w-100">`
