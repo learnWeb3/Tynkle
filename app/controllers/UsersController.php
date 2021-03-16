@@ -372,7 +372,7 @@ class UsersController extends ApplicationController
 
         if (isset($_GET['lat'], $_GET['lng'])) {
             try {
-                $breakdown_categories_ids =  isset($_GET['breakdown_categories']) ?  $_GET['breakdown_categories'] : null;
+                $breakdown_categories_ids = isset($_GET['breakdown_categories']) ? $_GET['breakdown_categories'] : null;
                 echo json_encode(User::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], 500, $breakdown_categories_ids));
                 die();
             } catch (\Throwable $th) {
@@ -386,8 +386,9 @@ class UsersController extends ApplicationController
     public function show()
     {
         if (isset($this->params['id'])) {
-            if (User::find($this->connection, $this->params['id'])) {$author = new User($this->params['id']);
-                try {
+            try {
+                if (!empty(User::find($this->connection, $this->params['id'])->fetchAll(PDO::FETCH_ASSOC))) {
+                    $author = new User($this->params['id']);
                     $page_data = Page::getDetails($this->connection, "users#show");
                     $user_data = $author->getDetails($this->connection);
                     $user = new User($user_data['id']);
@@ -406,11 +407,11 @@ class UsersController extends ApplicationController
                         'follow_id' => $follow_id,
                         'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
                     ));
-                } catch (\Throwable $th) {
-                    $this->handleError(500);
+                } else {
+                    $this->handleError(404);
                 }
-            } else {
-                $this->handleError(404);
+            } catch (\Throwable $th) {
+                $this->handleError(500);
             }
         }
 

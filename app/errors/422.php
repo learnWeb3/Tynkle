@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>403-Accès interdit</title>
+    <title>422-Entité non traitable</title>
     <link rel="shortcut icon" href="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/favicon.png" type="image/png">
     <!-- MATERIALIZE FOR BOOTSTRAP MDB LIBRARY  -->
     <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/vendor/mdb.min.css">
