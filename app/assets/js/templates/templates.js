@@ -201,8 +201,8 @@ const getAdminUserRowTemplate = ({
 
   return `
               <tr>
-                    <th scope="row">${id}</th>
-                    <td>${username}</td>
+                    <th scope="row"><a href='${ROOT_PATH+'/users/'+id}'>${id}</a></th>
+                    <td><a href='${ROOT_PATH+'/users/'+id}'>${username}</a></td>
                     <td>${email}</td>
                     <td>
                         <form class="user-update" action="" method="post">
