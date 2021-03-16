@@ -51,21 +51,20 @@ const handleSaveDocument = (quillDocument, id) => {
           },
           id
         );
-        if (status === 200) {
-          $("body").append(
-            getAlertTemplate(
-              ["Votre document à été sauvegardé avec succès"],
-              "success"
+        status === 200
+          ? $("body").append(
+              getAlertTemplate(
+                ["Votre document à été sauvegardé avec succès"],
+                "success"
+              )
             )
-          );
-        } else {
-          $("body").append(
-            getAlertTemplate(
-              ["Erreur lors de la sauvegarde du document"],
-              "danger"
-            )
-          );
-        }
+          : $("body").append(
+              getAlertTemplate(
+                ["Erreur lors de la sauvegarde du document"],
+                "danger"
+              )
+            );
+
         handleDismissAlert();
       } else {
         $("body").append(

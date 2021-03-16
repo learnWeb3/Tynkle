@@ -22,13 +22,13 @@ const toolbarOptions = [
   ["clean"], // remove formatting button
 ];
 
-export const toBase64 = file => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => resolve(reader.result);
-  reader.onerror = error => reject(error);
-});
-
+export const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 const handleSaveDocument = (quillDocument) => {
   document
@@ -36,38 +36,35 @@ const handleSaveDocument = (quillDocument) => {
     .addEventListener("click", async function (event) {
       event.preventDefault();
       const content = quillDocument.getContents();
-      const cover_image = document.querySelector('#cover_image').files ? document.querySelector('#cover_image').files[0] : null;
+      const cover_image = document.querySelector("#cover_image").files
+        ? document.querySelector("#cover_image").files[0]
+        : null;
       const title = $("#title").val().length > 0 ? $("#title").val() : null;
-      const description = $("#description").val().length > 0 ? $("#description").val() : null;
-      if (
-        cover_image &&
-        title &&
-        description
-      ) {
-
+      const description =
+        $("#description").val().length > 0 ? $("#description").val() : null;
+      if (cover_image && title && description) {
         const base64CoverImage = await toBase64(cover_image);
         const inputs = {
           content: JSON.stringify(content),
-          cover_image : base64CoverImage,
+          cover_image: base64CoverImage,
           title,
           description,
-        }
+        };
         const { status, data } = await saveArticle(inputs);
-        if (status === 200) {
-          $("body").append(
-            getAlertTemplate(
-              ["Votre document à été sauvegardé avec succès"],
-              "success"
+        status === 200
+          ? $("body").append(
+              getAlertTemplate(
+                ["Votre document à été sauvegardé avec succès"],
+                "success"
+              )
             )
-          );
-        } else {
-          $("body").append(
-            getAlertTemplate(
-              ["Erreur lors de la sauvegarde du document"],
-              "danger"
-            )
-          );
-        }
+          : $("body").append(
+              getAlertTemplate(
+                ["Erreur lors de la sauvegarde du document"],
+                "danger"
+              )
+            );
+
         handleDismissAlert();
       } else {
         $("body").append(
@@ -86,7 +83,6 @@ var quillDocument = new Quill("#editor", {
   theme: "snow",
   placeholder: "Contenu de l'article",
 });
-
 
 // save quill document to database as json object
 handleSaveDocument(quillDocument);

@@ -46,7 +46,7 @@ const getUserTemplate = ({
                 <div class="row">
                 <div class="col-12 d-flex align-items-center">
                     <i class="lni lni-pointer lni-16"></i>
-                    <small class="m-2 mb-0 font-weight-bold">A ${distance} Km</small>
+                    <small class="m-2 mb-0 font-weight-bold">A ${distance} Km de chez vous</small>
                 </div>
             </div>
             </div>

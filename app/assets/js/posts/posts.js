@@ -22,10 +22,10 @@ const handleChangeSelect = async () => {
         .selectedOptions[0].value;
       Array.from(breakdown_categories.children).map((child) => child.remove());
       if (id_platform !== "0") {
-        const platforms = await getPlatforms({
+        const {data:platforms, status} = await getPlatforms({
           id_platform,
         });
-        if (platforms) {
+        if (status === 200) {
           platforms.map((platform) => {
             const div = document.createElement("div");
             div.classList.add("form-check");
@@ -66,8 +66,8 @@ const breakDownCategoriesToParams = () => {
 const fetchFilteredPosts = async (el) => {
   const breakdown_categories = breakDownCategoriesToParams();
   const endpoint = breakdown_categories
-    ? `/posts?${breakdown_categories}`
-    : "/posts?";
+    ? `/posts?ajax=true&${breakdown_categories}`
+    : "/posts?ajax=true";
   const { data, status } = await getFilteredContent(endpoint);
   if (status === 200) {
     const postsContainer = document.querySelector("#posts-container");
