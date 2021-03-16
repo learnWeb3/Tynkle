@@ -100,8 +100,8 @@ const geoSearch = () => {
       const { lat, lng } = await getLocation();
       const breakdown_categories = breakDownCategoriesToParams();
       const endpoint = breakdown_categories
-        ? `/posts/geosearch?lat=${lat}&lng=${lng}&distance=${distance}&${breakdown_categories}`
-        : `/posts/geosearch?lat=${lat}&lng=${lng}&distance=${distance}`;
+        ? `/posts/geosearch?ajax=true&lat=${lat}&lng=${lng}&distance=${distance}&${breakdown_categories}`
+        : `/posts/geosearch?ajax=true&lat=${lat}&lng=${lng}&distance=${distance}`;
       const { data, status } = await getFilteredContent(endpoint);
       const postsContainer = document.querySelector("#posts-container");
       postsContainer.dataset.nextPage = data.next;
@@ -116,6 +116,7 @@ const geoSearch = () => {
         postsContainer.classList.replace("card-columns", "container-xl");
         postsContainer.innerHTML = `
         <div class='h-100 w-100 d-flex flex-column align-items-center justify-content-center bg-white'>
+          <img src="${ROOT_PATH+'/app/assets/img/commons/nothing.svg'}" class='img-fluid my-4'/>
           <h2>Pas de publication pour le moment ...</h2>
           <a class="my-4 btn btn-primary btn-lg " href="${ROOT_PATH}/posts">NOUVELLE RECHERCHE</a>
         </div>
