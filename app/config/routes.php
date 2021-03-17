@@ -24,6 +24,7 @@ $routes = array(
     array('GET', ROOT_PATH . '/rules/new', 'rules#new', 'new_rule'),
     array('POST', ROOT_PATH . '/rules', 'rules#create', 'create_rule'),
     // '/admin'
+    array('GET', ROOT_PATH . '/admin/posts', 'admin#map_posts', 'map_post_admin'),
     array('GET', ROOT_PATH . '/admin/platform', 'admin#platform', 'platform_admin'),
     array('GET', ROOT_PATH . '/admin/insights', 'admin#insights', 'insights_admin'),
     array('GET', ROOT_PATH . '/admin/users', 'admin#users', 'users_admin'),

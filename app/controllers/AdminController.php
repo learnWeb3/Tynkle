@@ -9,6 +9,34 @@ class AdminController extends ApplicationController
         $this->checkAdminRights(['platform', 'insights', 'users', 'users_update', 'users_search']);
     }
 
+    public function map_posts()
+    {
+            try {
+                $page_data = Page::getDetails($this->connection, "admin#platform");
+                $pages = Page::getPagesGroupedByPageGroup($this->connection);
+                $posts = Post::getPostsGeojson($this->connection);
+                $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+                $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+                $this->render(
+                    'map_posts',
+                    array(
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
+                        'style_file_name' => 'admin',
+                        'navbar_present' => false,
+                        'footer_present' => false,
+                        'pages' => $pages,
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                        'posts' => json_encode($posts),
+                        'breakdown_categories' => $breakdown_categories,
+                        'platforms' => $platforms,
+                    )
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
+    }
+
     public function platform()
     {
         try {

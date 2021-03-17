@@ -17,6 +17,8 @@
     <!-- QUILL JS RICH TEXT EDITOR -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css">
+    <!-- MAPBOX STYLES -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
      <!-- COMMON CSS -->
      <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/commons/main.css">
      <!-- PAGE SPECIFIC CSS -->
