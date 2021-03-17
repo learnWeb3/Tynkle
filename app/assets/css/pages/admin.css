@@ -28,3 +28,16 @@
 .updated-danger{
     background-color: rgba(255, 0, 0, 0.75);
 }
+
+main{
+    position: relative;
+    min-height: 100vh;
+}
+
+#map { position: absolute; top: 0; bottom: 0; width: 100%;z-index: 0; }
+
+
+.mapboxgl-popup-content{
+    width: 25rem;
+    padding: 1rem;
+}

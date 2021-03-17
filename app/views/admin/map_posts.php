@@ -1,7 +1,5 @@
-<main class="d-flex bg-background"
-    style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;margin-top:3rem;'>
-    <div class='bg-background d-flex' style="min-height: 100vh;width:100vw">
-        <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;"
+<main>
+    <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;"
             id="menu-navigation">
             <div class="container bg-white w-100 shadow p-4 d-block overflow-auto" style="margin-top: 15%;">
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>
@@ -51,23 +49,16 @@
                 </form>
                 <hr>
                 <div class="d-flex w-100 align-items-center">
-                    <i class="lni lni-map lni-32"></i>
-                    <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH.'/admin/posts' ?>">Voir la carte</a></h5>
+                    <i class="lni lni-arrow-left" lni-32"></i>
+                    <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH.'/posts' ?>">Voir les annonces</a></h5>
                 </div>
             </div>
 
         </section>
-
-
-        <section class="card-columns col-12 col-xl-8 offset-xl-3 p-4" id="posts-container"
-            data-nextpage="<?php echo $next_page ?>">
-            <?php foreach ($posts as $post): ?>
-            <?php include '_publication_card.php'?>
-            <?php endforeach;?>
-        </section>
-
-    </div>
-
+    <div id="map"></div>
 </main>
-
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts/posts.js' ?> "></script>
+<script>
+const posts = <?php echo $posts; ?>
+</script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin/map_posts.js' ?> "></script>

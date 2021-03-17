@@ -82,7 +82,7 @@ const fetchFilteredPosts = async (el) => {
   }
 };
 
-const handleChangeCheckbox = () => {
+export const handleChangeCheckbox = () => {
   const inputs = Array.from(
     document.querySelectorAll("#breakdown_categories input")
   );
