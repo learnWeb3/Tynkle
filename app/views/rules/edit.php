@@ -27,4 +27,4 @@
 const content = <?php echo $rule['content'] ?>;
 const id = <?php echo $rule['id'] ?>
 </script>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/edit_rule.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/rules/edit_rule.js' ?> "></script>

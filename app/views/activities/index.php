@@ -23,4 +23,4 @@
     </section>
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/activities.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/activities/activities.js' ?>"></script>

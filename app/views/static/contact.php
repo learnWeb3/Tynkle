@@ -30,4 +30,4 @@
 
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/contact.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/static/contact.js' ?> "></script>

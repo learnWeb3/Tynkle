@@ -6,7 +6,7 @@
         <h1 class="font-weight-bold text-brand-blue display-4 my-4" style="border-bottom: .25rem solid #4ABDED;">Nouveautées</h1>
 
 
-        <div class="row w-100 d-flex flex-wrap justify-content-center align-items-center">
+        <div class="row w-100 d-flex flex-wrap justify-content-center align-items-center" id="articles-container">
 
             <?php foreach ($articles['data'] as $article): ?>
 
@@ -17,10 +17,10 @@
         </div>
 
 
-        <button class="btn btn-lg btn-brand-blue col-9 col-lg-3 mx-auto my-5 font-weight-bold">Plus de nouveautées ...</button>
+        <button id="see-more" class="btn btn-lg btn-brand-blue col-9 col-lg-3 mx-auto my-5 font-weight-bold" data-next="<?php echo $articles["next"] ?>">Plus de nouveautées ...</button>
 
     </section>
 
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles/articles.js' ?> "></script>

@@ -1,391 +1,131 @@
 const ROOT_PATH = "http://localhost/tynkle";
 
-const getCurrentUser = async () => {
+const headers = {
+  "Content-Type": "application/json",
+};
+
+const getData = async (path) => {
   const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
     method: "GET",
   };
-  return fetch(ROOT_PATH + "/users/current", options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-const follow = (userId, data) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'POST',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/users/"+userId+'/follows', options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-const reviewUser = (data) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'POST',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/reviews", options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-
-const unFollow = (followId) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'DELETE'
-  };
-  return fetch(ROOT_PATH + '/follows/'+followId, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-
-const saveRule = (data) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'POST',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/rules", options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-
-const saveArticle = (data) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'POST',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/articles", options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-const updateArticle = (data, id) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'PUT',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/articles/"+id, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-const updateRule = (data, id) =>{
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'PUT',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/rules/"+id, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-}
-
-
-const sendContactMessage = async (data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: 'POST',
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/contact", options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-
-const getMessages = async (url) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "GET",
-  };
-  return fetch(ROOT_PATH + url, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-const deleteWarnings = async (url) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "DELETE",
-  };
-  return fetch(ROOT_PATH + url, options)
-  .then(async (res) => {
-    const status = res.status;
-    return { data: null, status: status }
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-const searchUserbyAdmin = async (data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/admin/users/search", options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-const createWarning = async (url,data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + url, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-const updatePageDetails = async (url, data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "PUT",
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + url, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-const updateUserByAdmin = async (url, data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "PUT",
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + url, options)
-  .then(async (res) => {
-    const status = res.status;
-    return status === 200
-      ? { data: await res.json(), status: status }
-      : { data: null, status: status };
-  })
-  .catch((error) => ({ data: null, status: 500 }));
-};
-
-
-const getPlatforms = async (data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/breakdowns", options)
-    .then((results) => results.json())
-    .catch((error) => console.log(error));
-};
-
-const makeOffers = async (data) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(data),
-  };
-  return fetch(ROOT_PATH + "/offers", options)
+  return fetch(ROOT_PATH + path, options)
     .then(async (res) => {
       const status = res.status;
       return status === 200
-        ? { data: await res.text(), status: status }
+        ? { data: await res.json(), status: status }
         : { data: null, status: status };
     })
     .catch((error) => ({ data: null, status: 500 }));
 };
 
-const signout = async () => {
+const postData = async (path, data) => {
   const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
+    method: "POST",
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + path, options)
+    .then(async (res) => {
+      const status = res.status;
+      return status === 200
+        ? { data: await res.json(), status: status }
+        : { data: null, status: status };
+    })
+    .catch((error) => ({ data: null, status: 500 }));
+};
+
+const putData = async (path, data) => {
+  const options = {
+    headers,
+    method: "PUT",
+    body: JSON.stringify(data),
+  };
+  return fetch(ROOT_PATH + path, options)
+    .then(async (res) => {
+      const status = res.status;
+      return status === 200
+        ? { data: await res.json(), status: status }
+        : { data: null, status: status };
+    })
+    .catch((error) => ({ data: null, status: 500 }));
+};
+
+const destroyData = async (path) => {
+  const options = {
+    headers,
     method: "DELETE",
   };
-  return fetch(ROOT_PATH + "/logout", options)
-    .then((response) => {
-      return { status: response.status };
+  return fetch(ROOT_PATH + path, options)
+    .then(async (res) => {
+      const status = res.status;
+      return status === 200
+        ? { data: await res.json(), status: status }
+        : { data: null, status: status };
     })
-    .catch((error) => console.log(error));
+    .catch((error) => ({ data: null, status: 500 }));
 };
+
+const getCurrentUser = async () => await getData("/users/current");
+
+const getNearbyUsers = async (lat, lon) =>
+  await getData(`/users?lat=${lat}&lng=${lon}`);
+
+const follow = async (userId, data) =>
+  await postData("/users/" + userId + "/follows", data);
+
+const reviewUser = async (data) => await postData("/reviews", data);
+
+const unFollow = async (followId) => await destroyData("/follows/" + followId);
+
+const saveRule = async (data) => await postData("/rules", data);
+
+const saveArticle = async (data) => await postData("/articles", data);
+const updateArticle = async (data, id) =>
+  await putData("/articles/" + id, data);
+
+const updateRule = async (data, id) => await putData("/rules/" + id, data);
+
+const sendContactMessage = async (data) => await postData("/contact", data);
+
+const getMessages = async (url) => await getData(url);
+
+const deleteWarnings = async (url) => await destroyData(url);
+const searchUserbyAdmin = async (data) =>
+  await postData("/admin/users/search", data);
+
+const createWarning = async (url, data) => await postData(url, data);
+
+const updatePageDetails = async (url, data) => await putData(url, data);
+const updateUserByAdmin = async (url, data) => await putData(url, data);
+
+const getBreakdowns = async (data) => await postData("/breakdowns", data);
+
+const getPlatforms = async (data) => await postData("/breakdowns", data);
+
+const makeOffers = async (data) => await postData("/offers", data);
+
+const signout = async () => await destroyData("/logout");
 
 const getFollowingPosts = (nextPage) => {
   const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
     method: "GET",
   };
   return fetch(ROOT_PATH + nextPage + "&ajax=true", options);
 };
 
-const getFilteredContent = (endpoint) => {
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "GET",
-  };
-  return fetch(ROOT_PATH + endpoint + "&ajax=true", options)
-    .then(async (res) => {
-      const status = res.status;
-      return status === 200
-        ? { data: await res.json(), status: status }
-        : { data: null, status: status };
-    })
-    .catch((error) => ({ data: null, status: 500 }));
-};
+const getFollowingArticles = async (nextPage) =>
+  await getData(nextPage + "&ajax=true");
+
+const getFilteredContent = async (endpoint) => await getData(endpoint);
 
 const deletemessage = async (message_id) =>
-  fetch(ROOT_PATH + "/messages" + "/" + message_id, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (res) => {
-      const status = res.status;
-      return { status: status };
-    })
-    .catch((error) => ({ data: null, status: 500 }));
-
+  await destroyData("/messages" + "/" + message_id);
 const updateOffer = async (data, offer_id) =>
-  fetch(ROOT_PATH + "/offers" + "/" + offer_id, {
-    method: "PUT",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (res) => {
-      const status = res.status;
-      return status === 200
-        ? { data: await res.json(), status: status }
-        : { data: null, status: status };
-    })
-    .catch((error) => ({ data: null, status: 500 }));
+  await putData("/offers" + "/" + offer_id, data);
 
-const sendmessage = async (data) =>
-  fetch(ROOT_PATH + "/chats", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (res) => {
-      const status = res.status;
-      return status === 200
-        ? { data: await res.json(), status: status }
-        : { data: null, status: status };
-    })
-    .catch((error) => ({ data: null, status: 500 }));
+const sendmessage = async (data) => await postData("/chats", data);
 
 export {
   ROOT_PATH,
@@ -411,5 +151,8 @@ export {
   unFollow,
   updateRule,
   saveRule,
-  reviewUser
+  reviewUser,
+  getFollowingArticles,
+  getBreakdowns,
+  getNearbyUsers,
 };

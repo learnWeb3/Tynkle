@@ -20,12 +20,12 @@ FaqItem::destroyAll($connection);
 Review::destroyAll($connection);
 
 $faker = Faker\Factory::create();
-$platforms = ["Informatique", 'Smartphone/tablette', "Reseau", "Electroménager", "Console de jeux", "Tv/multimédia"];
+$platforms = [["name"=>"Informatique", 'description'=>"PC/MAC et périphériques en tout genre", "icon"=>'windows'], ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],[ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']];
 
 foreach ($platforms as $platform) {
     try {
-        Platform::create($connection, ['name', 'description'], [$platform, $faker->text()]);
-        echo "Platform $platform created \n";
+        Platform::create($connection, ['name', 'description', 'icon'], [$platform['name'],$platform['description'], $platform['icon'] ]);
+        echo "Platform ".$platform['name']." created \n";
     } catch (\Throwable $th) {
         echo "platform $plateform has not been created due to an internal error\n";
     }
@@ -57,23 +57,30 @@ for ($count = 0; $count < 100; $count++) {
         $username = $faker->userName;
         $verify_token = bin2hex(random_bytes(50));
         $reset_password_token = bin2hex(random_bytes(50));
-        echo $reset_password_token;
-        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token'], array(
+        $geocoder = new Geocoder();
+        $coordinates = $geocoder->getCoordinates();
+        $adress_parts = $geocoder->reverseGeocode($coordinates['location']['lng'], $coordinates['location']['lat']);
+        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token', 'lat', 'lon', 'city', 'postal_code'], array(
             $username,
             $faker->firstName(),
             $faker->lastName,
             $faker->date(),
             $faker->email,
-            $faker->address,
+            $adress_parts["route"],
             $faker->phoneNumber,
             password_hash('foobar', PASSWORD_BCRYPT),
             $verify_token,
             $reset_password_token,
+            $coordinates['location']['lat'],
+            $coordinates['location']['lng'],
+            $adress_parts["locality"],
+            $adress_parts["postal_code"],
         ));
         echo "User $username created \n";
     } catch (\Throwable $th) {
         echo "user has not been created due to an internal error\n";
     }
+    sleep(rand(1,3));
 }
 
 $users = User::all($connection, '/', 0, 100)['data'];
@@ -307,7 +314,6 @@ foreach ($faq_categories as $faq_category) {
         FaqCategory::create($connection, ['name'], [$faq_category]);
         echo "$faq_category created and inserted in database in faq_categories table";
     } catch (\Throwable $th) {
-        var_dump($th);
         echo "faq_category $faq_category has not been created due to an internal error\n";
     }
 }

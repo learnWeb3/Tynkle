@@ -89,4 +89,4 @@
         </table>
     </section>
 </main>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/warnings.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/warnings/warnings.js' ?>"></script>

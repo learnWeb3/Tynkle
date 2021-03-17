@@ -9,7 +9,7 @@
     <meta name="description" content="<?php echo $description; ?>">
     <link rel="shortcut icon" href="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/favicon.png" type="image/png">
     <!-- MATERIALIZE FOR BOOTSTRAP MDB LIBRARY  -->
-    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/mdb.min.css">
+    <link rel="stylesheet" href="<?php echo ABSOLUTE_ASSET_PATH ?>/css/vendor/mdb.min.css">
     <!-- AOS LIBRARY STYLES -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Line Icons Library -->
@@ -78,11 +78,11 @@
     <?php endif;?>
 
     <!-- NAVBAR SCRIPTS -->
-    <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/navbar.js' ?>"></script>
+    <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/commons/navbar.js' ?>"></script>
     <!-- ALERT SCRIPTS -->
-    <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/flash.js' ?>"></script>
+    <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/commons/flash.js' ?>"></script>
     <!-- AOS INIT + TOOLTIP BOOTSTRAP -->
-    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/template.js"></script>
+    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/templates/template.js"></script>
 </body>
 
 </html>

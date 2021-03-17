@@ -76,5 +76,5 @@
     </section>
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/new_post.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts/new_post.js' ?>"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_JS_MAPS_API_KEY']; ?>&libraries=places">

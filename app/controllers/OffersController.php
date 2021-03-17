@@ -32,6 +32,7 @@ class OffersController extends ApplicationController
                     try {
 
                         $post = Post::find($this->connection, $this->json_params['id_post'])->fetchAll(PDO::FETCH_ASSOC)[0];
+                        $author = $this->current_user->getDetails($this->connection);
                         $new_offer =
                         Offer::create(
                             $this->connection,
@@ -45,7 +46,7 @@ class OffersController extends ApplicationController
                                 'id_post' => 'required',
                             ]
                         )[0];
-                        $message_content = "Vous avez reçu une nouvelle offre";
+                        $message_content =  $author['username']." a envoyé une nouvelle offre. Offre disponible dans Mon compte - Mon activité";
                         Chat::sendMessage($this->connection, $message_content, [$this->current_user->id, $post['id_user']], $this->current_user->id, "/activities");
                         echo json_encode($new_offer);
                     } catch (Throwable $th) {

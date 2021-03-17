@@ -36,7 +36,7 @@
                 <div class="card shadow-sm p-4 rounded">
                     <div class="row w-100">
                         <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
-                            <div id="avatar" class="shadow-sm bg-white my-4">
+                            <div class="avatar shadow-sm bg-white my-4">
                                 <i class="lni lni-user lni-64"></i>
                             </div>
                         </div>
@@ -160,4 +160,4 @@
 </main>
 
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/post.js' ?>"></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/posts/post.js' ?>"></script>

@@ -25,8 +25,8 @@
 
                 <?php foreach ($users['data'] as $user): ?>
                 <tr>
-                    <th scope="row"><?php echo $user['id'] ?></th>
-                    <td><?php echo $user['username'] ?></td>
+                    <th scope="row"><a href="<?php echo ROOT_PATH.'/users/'. $user['id'] ?>"><?php echo $user['id'] ?></a></th>
+                    <td><a href="<?php echo ROOT_PATH.'/users/'. $user['id'] ?>"><?php echo $user['username'] ?></a></td>
                     <td><?php echo $user['email'] ?></td>
                     <td>
                         <form class="user-update" action="" method="post">
@@ -96,4 +96,4 @@
 
 </main>
 
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin_users.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin/admin_users.js' ?> "></script>

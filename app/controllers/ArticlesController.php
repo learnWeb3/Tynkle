@@ -6,8 +6,10 @@ class ArticlesController extends ApplicationController
     public function __construct(array $params, string $route_name, string $asked_method)
     {
         parent::__construct($params, $route_name, $asked_method);
+        $this->limit = isset($_GET['limit']) ? intval($_GET['limit']) : 4;
+        $this->start = isset($_GET['start']) ? intval($_GET['start']) : 0;
         $this->beforeAction(['show', 'edit', 'update', 'destroy']);
-        $this->checkAdminRights([ 'edit', 'update', 'destroy', "create", 'new']);
+        $this->checkAdminRights(['edit', 'update', 'destroy', "create", 'new']);
     }
 
     public function create()
@@ -64,23 +66,37 @@ class ArticlesController extends ApplicationController
 
     public function index()
     {
-        try {
-            $page_data = Page::getDetails($this->connection, "articles#index");
-            $this->render(
-                'index',
-                array(
-                    'title' => $page_data['title'],
-                    'description' => $page_data['description'],
-                    'style_file_name' => 'articles',
-                    'navbar_present' => true,
-                    'footer_present' => true,
-                    'navbar_blog' => true,
-                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
-                    'articles' => Article::all($this->connection, '/articles', $this->start, $this->limit),
-                )
-            );
-        } catch (\Throwable $th) {
-            $this->handleError(500);
+
+        $articles = Article::all($this->connection, '/articles', $this->start, $this->limit);
+        if (isset($_GET['ajax'])) {
+
+            echo json_encode($articles);
+            die();
+           
+        } else {
+
+
+            try {
+                $page_data = Page::getDetails($this->connection, "articles#index");
+                $this->render(
+                    'index',
+                    array(
+                        'title' => $page_data['title'],
+                        'description' => $page_data['description'],
+                        'style_file_name' => 'articles',
+                        'navbar_present' => true,
+                        'footer_present' => true,
+                        'navbar_blog' => true,
+                        'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                        'articles' => $articles,
+                    )
+                );
+            } catch (\Throwable $th) {
+                $this->handleError(500);
+            }
+
+    
+
         }
     }
 
