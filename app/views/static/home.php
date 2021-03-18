@@ -1,202 +1,247 @@
 <main style="background-image: url(<?php echo $background_image_path ?>);" class="bg-background">
-    <?php include '_submenu.php'?>
-    <section id="value-proposition">
-        <div class="row w-100 p-4" style="min-height:100vh;background-color:rgba(51,51,51,.66)">
+    <section id="value-proposition" style="min-height:50vh;">
+        <div class="row w-100 p-4" style="min-height:50vh;background-color:rgba(51,51,51,.5)">
             <div data-aos="zoom-in" data-aos-duration="1000"
                 class="container-xl d-flex justify-content-center align-items-center">
                 <div class="col-12 col-lg-8">
-                    <h1 class="text-white display-4 font-weight-bold my-5"><b>Tynkle,</b> LA première plateforme
+                    <h1 class="text-white font-weight-bold "><b>Tynkle,</b> LA première plateforme
                         exclusivement dédiée à l'entraide
                         informatique, multimédia et électroménager
                     </h1>
-
-                    <h2 class="text-white">Au sein de la communauté vous pouvez obtenir de l'aide et/ou partager vos services, pour cela il suffit de remplir vos compétences</h2>
-                    <form action="" method="get" class="w-100 my-5 d-block">
-                        <div class="form-group">
-                        <label class="text-white font-weight-bold" for="id_platform">Je cherche un dépaneur :</label>
-                            <select class="form-control-lg col-12 col-lg-6 my-2 mx-lg-2" name="id_platform" id="id_platform">
-                                <?php foreach ($platforms as $platform): ?>
-                                <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                        <button type="submit"
-                            class="btn btn-lg btn-yellow-tynkle col-6 col-lg-3 rounded-pill my-5">valider</button>
-                    </form>
+                    <h2 class="text-white font-weight-bold my-4">Au sein de la communauté vous pouvez obtenir de l'aide
+                        et/ou partager vos services, pour cela il suffit de remplir vos compétences</h2>
+                    <?php include '_search_bar.php' ?>
                 </div>
             </div>
         </div>
-        <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator.png" ?>"
-            alt="wave separator">
     </section>
-    <section class="bg-white">
-        <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center">Réparer plutot que jeter !</h2>
-        <div class="container-xl">
-            <div class="row w-100 d-flex align-items-center justify-content-around my-4">
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-trees"></i>
-                    <p class="font-weight-bold my-2">Ecologique</p>
-                </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-euro"></i>
-                    <p class="font-weight-bold my-2">Budget Maîtrisé</p>
-                </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-alarm-clock"></i>
-                    <p class="font-weight-bold my-2">Intervention Rapide</p>
-                </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-zoom-in"></i>
-                    <p class="font-weight-bold my-2">Large Choix</p>
-                </div>
-            </div>
+    <section class="bg-light">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
 
-    
-        </div>
+            <h2 class="display-5">Dernières annonces</h2>
 
-        <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
-                C'est parti !
-            </a>
-    </section>
-    <section>
-        <div class="row w-100 p-4">
             <div data-aos="zoom-in" data-aos-duration="1000"
-                class="container-xl d-flex justify-content-center align-items-center">
-                <div class="col-12 col-lg-6">
-                    <h2 class="display-5"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
-                    <p class="font-weight-bold my-4">Un appareil qui fait des siennes et une solution à portée de main
-                        en
-                        quelques
-                        clics <br>
-                        Trouver rapidement la solution à votre problème grâce à une intervention à distance ou sur le
-                        lieu
-                        de
-                        votre choix <br>
-                        Tout est possible ! dépannage, installation, formation, à vous de choisir !
-                    </p>
-                    <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
-                        class="btn btn-lg btn-yellow-tynkle my-4 col-12 col-lg-4">
-                        Je trouve un dépanneur !
-                    </a>
-                </div>
+                class="card-columns w-100 p-4">
+                <?php foreach ($posts as $post): ?>
+
+                    <?php include __DIR__.'/../posts/_publication_card.php'?>
+
+                <?php endforeach;?>
             </div>
+
+            <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                VOIR LES ANNONCES
+                <i class="lni lni-arrow-right"></i>
+            </a>
+
         </div>
     </section>
     <section class="bg-white">
-        <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center">Comment ça marche ? <br> Ton
-            problème, notre solution.</h2>
 
-        <div class="container-xl">
-            <div class="row w-100 d-flex align-items-center justify-content-around my-4">
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-wechat"></i>
-                    <p class="font-weight-bold my-2">Contact des Helpers</p>
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <div class="pb-lg-4">
+                <h2 class="mb-5">Réparer plutot que jeter !</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-trees"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Ecologique</h3>
+                        <p class="text-muted text-sm">Contribuer à réduire l'impact de l'homme sur l'environnement</p>
+                    </div>
                 </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-bulb"></i>
-                    <p class="font-weight-bold my-2">Trouve ta solution</p>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-euro"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Budget maitrisé</h3>
+                        <p class="text-muted text-sm">Faîtes des économies en réparant vos appareils</p>
+                    </div>
                 </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-star-half"></i>
-                    <p class="font-weight-bold my-2">Note ton intervention</p>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-alarm-clock"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Intervention Rapide</h3>
+                        <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-zoom-in"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Large Choix</h3>
+                        <p class="text-muted text-sm">Chosissez votre interlocuteur parmis une communautée en pleine
+                            expansion</p>
+                    </div>
                 </div>
             </div>
-
-            
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                C'est parti !
+                <i class="lni lni-arrow-right"></i>
+            </a>
         </div>
-
-        <h3 data-aos="fade-up" data-aos-duration="1000" class="text-center font-weight-bold">Tu as besoin d'aide ?
-            <br> Il te suffit de contacter des Helpers ou
-            de poster une annonce <br>
-        </h3>
-
-        <div class="row w-100 d-flex align-items-center justify-content-center">
-
-            <h3 data-aos="fade-up" data-aos-duration="1000" class="text-center font-weight-bold">Astuce, augmente ton taux de réponse en faisant les deux.</h3>
-
-        </div>
-
-
-        <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-            class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
-            C'est parti !
-        </a>
 
     </section>
+    <section class="bg-light">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
 
-    <section>
-        <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center">Ils ont fait confiance à
-            <b>Tynkle</b>
-        </h2>
+            <h2 class="display-5"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
+            <p class="font-weight-bold my-4">Un appareil qui fait des siennes et une solution à portée de main
+                en
+                quelques
+                clics <br>
+                Trouver rapidement la solution à votre problème grâce à une intervention à distance ou sur le
+                lieu
+                de
+                votre choix <br>
+                Tout est possible ! dépannage, installation, formation, à vous de choisir !
+            </p>
 
-        <div data-aos="zoom-in" data-aos-duration="1000"
-            class="row d-flex justify-content-center align-items-center w-100 p-4">
-            <?php for ($i = 0; $i < 3; $i++): ?>
+            <div data-aos="zoom-in" data-aos-duration="1000"
+                class="row d-flex justify-content-center align-items-center w-100 p-4">
+                <?php for ($i = 0; $i < 3; $i++): ?>
 
-            <?php include '_testimony_card.php'?>
+                <?php include '_testimony_card.php'?>
 
-            <?php endfor;?>
+                <?php endfor;?>
+            </div>
+
+            <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                Je trouve un dépanneur !
+                <i class="lni lni-arrow-right"></i>
+            </a>
+
         </div>
-
-        <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-            class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
-            faire comme Ben
-        </a>
     </section>
     <section class="bg-white">
-        <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center">Tu veux aider la communauté ?
-            <br>Deviens Helper !
-        </h2>
 
-        <div class="container-xl">
-            <div class="row w-100 d-flex align-items-center justify-content-around my-4">
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-search-alt"></i>
-                    <p class="font-weight-bold my-2">Trouve des missions autour de chez toi</p>
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <div class="pb-lg-4">
+                <h2 class="mb-5">Comment ça marche ? Ton
+                    problème, notre solution.</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-trees"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Contact des Helpers</h3>
+                        <p class="text-muted text-sm">Contribuer à réduire l'impact de l'homme sur l'environnement</p>
+                    </div>
                 </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-euro"></i>
-                    <p class="font-weight-bold my-2">Diversifie tes revenus</p>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-euro"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Trouve ta solution</h3>
+                        <p class="text-muted text-sm">Faîtes des économies en réparant vos appareils</p>
+                    </div>
                 </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-direction"></i>
-                    <p class="font-weight-bold my-2">Travaille ou tu veux et quand tu veux</p>
-                </div>
-                <div data-aos="flip-left" data-aos-duration="1000"
-                    class="icon-card col-12 col-lg-3 m-4 bg-white shadow p-4">
-                    <i class="lni lni-64 lni-users"></i>
-                    <p class="font-weight-bold my-2">Fais partis d'une communauté de passionnés</p>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-alarm-clock"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Note ton intervention</h3>
+                        <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
+                    </div>
                 </div>
             </div>
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                C'est parti !
+                <i class="lni lni-arrow-right"></i>
+            </a>
         </div>
 
-        <div class="row w-100 d-flex align-items-center justify-content-center">
 
-            <h3 data-aos="fade-up" data-aos-duration="1000" class="text-center font-weight-bold">En tant que dépanneur
-                je peux répondre à une demande, <br>
-                consulter
-                les annonces en cours, <br> proposer mes services aux personnes qui en ont besoin</h3>
+
+    </section>
+
+    <section class="bg-light">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center">Ils ont fait confiance à
+                <b>Tynkle</b>
+            </h2>
+
+            <div data-aos="zoom-in" data-aos-duration="1000"
+                class="row d-flex justify-content-center align-items-center w-100 p-4">
+                <?php for ($i = 0; $i < 3; $i++): ?>
+
+                <?php include '_testimony_card.php'?>
+
+                <?php endfor;?>
+            </div>
+
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                faire comme Ben
+                <i class="lni lni-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+    <section class="bg-white">
+
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <div class="pb-lg-4">
+                <h2 class="mb-5">Tu veux aider la communauté ? Deviens Helper !</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-search-alt"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Trouve des missions autour de chez toi</h3>
+                        <p class="text-muted text-sm">Contribuer à réduire l'impact de l'homme sur l'environnement</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-euro"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Diversifie tes revenus</h3>
+                        <p class="text-muted text-sm">Faîtes des économies en réparant vos appareils</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-direction"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Travaille ou tu veux et quand tu veux</h3>
+                        <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <i class="lni lni-32 lni-users"></i>
+                        </div>
+                        <h3 class="h6 text-uppercase">Fais partis d'une communauté de passionnés</h3>
+                        <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
+                    </div>
+                </div>
+            </div>
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                C'est parti !
+                <i class="lni lni-arrow-right"></i>
+            </a>
 
         </div>
-
-        <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-            class="btn btn-lg btn-yellow-tynkle my-4 col-9 col-lg-2">
-            C'est parti !
-        </a>
-        <img class="wave-separator" src="<?php echo ABSOLUTE_ASSET_PATH . "/img/commons/wave_separator_dark.png" ?>"
-            alt="wave separator">
-
 
     </section>
 </main>

@@ -34,7 +34,10 @@ class Post extends Application
         $post_coordinates = array_map(function ($post_coordinate) {
             return [
                 "type" => "Feature",
-                "geometry" => ["type" => "Point", "coordinates" => [floatval($post_coordinate['lat']), floatval($post_coordinate['lng'])]],
+                "geometry" => [
+                    "type" => "Point", 
+                    "coordinates" => [$post_coordinate['lng'], $post_coordinate['lat']]
+                ],
                 "properties" => [
                     "id" => $post_coordinate['id'],
                     "title" => $post_coordinate['title'],
@@ -51,7 +54,6 @@ class Post extends Application
         }, $posts_coordinates);
         return [
             "type" => "FeatureCollection",
-            "crs" => ["type" => "name", "properties" => ["name" => "urn:ogc:def:crs:OGC:1.3:CRS84"]],
             "features" => $post_coordinates,
         ];
 

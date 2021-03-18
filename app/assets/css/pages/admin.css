@@ -4,40 +4,49 @@
     padding: .5rem 1rem;
     text-decoration: none;
     background-color: #fff;
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
-.card-body{
+.card-body {
     padding: 0;
 }
 
-.card{
+.card {
     border-left: .5rem solid #36b9cc;
 }
-.card p:first-child{
+
+.card p:first-child {
     text-align: center;
 }
 
-.card .display-4{
+.card .display-4 {
     font-size: 2.5rem;
 }
 
-.updated-success{
+.updated-success {
     background-color: rgba(172, 255, 47, 0.75);
 }
-.updated-danger{
+
+.updated-danger {
     background-color: rgba(255, 0, 0, 0.75);
 }
 
-main{
+main {
     position: relative;
     min-height: 100vh;
 }
 
-#map { position: absolute; top: 0; bottom: 0; width: 100%;z-index: 0; }
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+}
 
-
-.mapboxgl-popup-content{
+.mapboxgl-popup-content {
     width: 25rem;
-    padding: 1rem;
+    padding: 1.5rem;
+    -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
 }

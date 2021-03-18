@@ -214,7 +214,7 @@ class PostsController extends ApplicationController
                     array(
                         'title' => $page_data['title'],
                         'description' => $page_data['description'],
-                        'style_file_name' => 'offer',
+                        'style_file_name' => 'post',
                         'post' => $post_data,
                         'similar_posts' => $similar_posts['data'],
                         'author' => $author_data,

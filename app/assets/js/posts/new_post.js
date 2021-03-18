@@ -30,7 +30,7 @@ const handleChangeSelect = async () => {
     document.querySelector('#id_platform').addEventListener('change', async () => {
         const breakdown_type_select_input = document.querySelector('#id_breakdown_category');
         const id_platform = document.querySelector('#id_platform').selectedOptions[0].value;
-        const platforms = await getPlatforms({
+        const {status, data : platforms} = await getPlatforms({
             id_platform
         });
         if (platforms) {

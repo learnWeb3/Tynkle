@@ -1,5 +1,5 @@
-<main class="d-flex bg-background"
-    style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;margin-top:3rem;'>
+<main class="d-flex bg-light"
+    style='min-height:100vh;margin-top:3rem;'>
     <div class='bg-background d-flex' style="min-height: 100vh;width:100vw">
         <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;"
             id="menu-navigation">
@@ -7,8 +7,10 @@
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>
                 <hr>
                 <form action="" method="GET" class="bg-white">
-                    <h5 class="font-weight-bold">Rechercher par type d'appareil : </h5>
-
+                <div class="d-flex w-100 align-items-center">
+                        <i class="lni lni-search-alt lni-32"></i>
+                        <h5 class="m-2 font-weight-bold">Rechercher par type d'appareil : </h5>
+                    </div>
                     <div class='d-block overflow-auto px-2'>
                         <div class="form-group my-2">
                             <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une catégorie : </label>
@@ -52,18 +54,21 @@
                 <hr>
                 <div class="d-flex w-100 align-items-center">
                     <i class="lni lni-map lni-32"></i>
-                    <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH.'/admin/posts' ?>">Voir la carte</a></h5>
+                    <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH . '/admin/posts' ?>">Voir la
+                            carte</a></h5>
                 </div>
             </div>
 
         </section>
 
 
-        <section class="card-columns col-12 col-xl-8 offset-xl-3 p-4" id="posts-container"
-            data-nextpage="<?php echo $next_page ?>">
-            <?php foreach ($posts as $post): ?>
-            <?php include '_publication_card.php'?>
-            <?php endforeach;?>
+        <section class="col-12 col-xl-8 offset-xl-3 d-flex flex-column justify-content-center align-items-center">
+            <div class="card-columns col-12 p-4" id="posts-container"
+                data-nextpage="<?php echo $next_page ?>">
+                <?php foreach ($posts as $post): ?>
+                <?php include '_publication_card.php'?>
+                <?php endforeach;?>
+            </div>
         </section>
 
     </div>
