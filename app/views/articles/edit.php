@@ -50,4 +50,4 @@
 const content = <?php echo $article['content'] ?>;
 const id = <?php echo $article['id'] ?>
 </script>
-<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/edit_article.js' ?> "></script>
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/articles/edit_article.js' ?> "></script>

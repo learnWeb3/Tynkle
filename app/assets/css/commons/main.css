@@ -21,8 +21,23 @@ body {
     min-height: 100vh;
 }
 
-.lni-64 {
+@media screen and (min-width:1200px)
+{.lni-64 {
     font-size: 64px;
+}}
+
+@media screen and (max-width:1200px)
+{.lni-64 {
+    font-size: 32px;
+}}
+
+/* REVIEWS */
+.review {
+    padding-top: 2rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    border-bottom: 1px solid #e9ecef;
 }
 
 /* LINKS */
@@ -101,9 +116,6 @@ a:hover {
 
 /* BUTTONS */
 
-.btn {
-    border-radius: 1.5rem;
-}
 
 .btn-red-crayola {
     background-color: #FD0E35;
@@ -283,12 +295,48 @@ footer ul {
 
 /* AVATAR */
 
+
+@media screen and (min-width:1200px)
+{
+    .avatar{
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media screen and (max-width:1200px)
+{
+    .avatar{
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+
+.avatar img{
+    height: 100%;
+    width: 100%;
+}
+
+.avatar a{
+    font-weight: bold;
+}
+.avatar a:hover{
+    text-decoration: underline;
+}
+
 .avatar {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    position: relative;
+    padding: 1rem;
+    text-align: center;
+    border: #dee2e6;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 1rem rgb(0 0 0 / 15%);
+    line-height: 3rem;
 }
 
 /* ANCHOR */
@@ -379,26 +427,3 @@ input.error {
 }
 
 
-/* AVATAR */
-
-.avatar{
-    height: 10rem;
-    width:10rem;
-    padding:1rem;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.avatar img{
-    height: 100%;
-    width: 100%;
-}
-
-.avatar a{
-    font-weight: bold;
-}
-.avatar a:hover{
-    text-decoration: underline;
-}

@@ -1,46 +1,42 @@
-<main class="bg-background"
-    style='background-image: url(<?php echo $background_image_path ?>);min-height:100vh;padding-top:3rem;'>
+<main class="bg-background row w-100"
+    style='background-image: url(<?php echo $background_image_path ?>);min-height:94vh;padding-top:3rem;'>
 
     <?php include '_new_offer_modal.php'?>
     <?php include '_new_message_modal.php'?>
     <?php include '_warning_modal.php'?>
 
-    <section id="map-container-header" class="container-xl w-100 p-0 bg-white"
-        style="height:33vh; background-image:url(https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position:center; background-size:contain;background-repeat:no-repeat">
-    </section>
-    <section class="container-xl relative d-flex flex-column align-items-center bg-light p-4 rounded"
-        style='min-height:100vh;'>
-        <h1 class="font-weight-bold text-center my-4" id="title"><?php echo $post['title'] ?></h1>
+    <section class="col-12 col-lg-6 relative bg-white shadow p-4 overflow-auto text-black" style='height:94vh;'>
+        <h1 class="font-weight-bold text-start w-100 display-1 my-2" id="title"><?php echo $post['title'] ?></h1>
+        <hr class="my-4">
         <div class="row w-100">
             <div class="col-12 col-xl-6">
-                <div class="card shadow-sm p-4 rounded">
-                    <div class="d-flex align-items-center justify-content-start my-2">
-                        <i class="lni lni-tag lni-32"></i>
-                        <p class="m-3 font-weight-bold" id="breakdown-type">
-                            <?php echo $post['platform_name'] ?>-<?php echo $post['breakdown_category_name'] ?>
-                        </p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-start my-2">
-                        <i class="lni lni-euro lni-32"></i>
-                        <p class="m-3 font-weight-bold" id="budget"><?php echo $post['budget'] ?>
-                            &euro;</p>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-start my-2">
-                        <i class="lni lni-pointer lni-32"></i>
-                        <p class="m-3 font-weight-bold" id='location'><?php echo $post['city'] ?>
-                            <?php echo $post['postal_code'] ?></p>
-                    </div>
+                <div class="d-flex align-items-center justify-content-start my-2">
+                    <i class="lni lni-tag lni-32"></i>
+                    <p class="m-3 font-weight-bold" id="breakdown-type">
+                        <?php echo $post['platform_name'] ?>-<?php echo $post['breakdown_category_name'] ?>
+                    </p>
                 </div>
+                <div class="d-flex align-items-center justify-content-start my-2">
+                    <i class="lni lni-euro lni-32"></i>
+                    <p class="m-3 font-weight-bold" id="budget"><?php echo $post['budget'] ?>
+                        &euro;</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-start my-2">
+                    <i class="lni lni-pointer lni-32"></i>
+                    <p class="m-3 font-weight-bold" id='location'><?php echo $post['city'] ?>
+                        <?php echo $post['postal_code'] ?></p>
+                </div>
+
             </div>
             <div class="col-12 col-xl-6">
-                <div class="card shadow-sm p-4 rounded">
+                <div class="p-4 rounded">
                     <div class="row w-100">
-                        <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
-                            <div class="avatar shadow-sm bg-white my-4">
+                        <div class="col-4 d-flex flex-column justify-content-center">
+                            <div class="avatar shadow-sm bg-white my-2">
                                 <i class="lni lni-user lni-64"></i>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
+                        <div class="col-8 d-flex flex-column justify-content-center">
                             <a class="font-weight-bold font-italic m-2"
                                 href="<?php echo ROOT_PATH . "/users/" . $post['user_id'] ?>"><?php echo $post['username'] ?></a>
                             <p class="font-weight-bold m-2"><?php echo $author['posts_count'] ?> annonces -
@@ -57,25 +53,19 @@
                 </div>
             </div>
         </div>
-        <div class="row w-100 my-4">
+        <hr class="my-4">
+        <div class="row w-100">
             <div class="col-12">
-                <h4 class="my-2 font-weight-bold">Description: </h4>
-                <div class="card shadow-sm p-4 rounded">
+                <h4 class="my-2 font-weight-bold text-black">Description: </h4>
+                <div class="p-4 rounded">
                     <p id="content"><?php echo $post['content'] ?></p>
                 </div>
             </div>
         </div>
-        <div class="row w-100 my-4">
+        <hr class="my-4">
+        <div class="row w-100">
             <div class="col-12">
-                <h4 class="font-weight-bold">Localisation :</h4>
-                <div id="map" data-lon="<?php echo $post['lon'] ?>" data-lat="<?php echo $post['lat'] ?>"
-                    class="relative bg-white shadow-sm" style="height:50vh">
-                </div>
-            </div>
-        </div>
-        <div class="row w-100 my-4">
-            <div class="col-12">
-                <h4 class="font-weight-bold">Images - screenshots :</h4>
+                <h4 class="font-weight-bold text-black">Images - screenshots :</h4>
                 <ul id="lightgallery" style="padding-left: 0;">
                     <?php foreach ($post['images'] as $image_url): ?>
                     <li data-src="<?php echo $image_url ?>"
@@ -92,10 +82,11 @@
             </div>
         </div>
         <?php if ($current_user): ?>
-        <div class="row w-100 my-4">
-            <div class="col-12 align-items-center justify-content-between flex-wrap my-4">
-                <div class="row my-4">
-                    <h2 class="font-weight-bold">Cette annonce vous interesse ?</h2>
+        <hr class="my-4">
+        <div class="row w-100">
+            <div class="col-12 align-items-center justify-content-between flex-wrap my-2">
+                <div class="row my-2">
+                    <h2 class="font-weight-bold text-center text-black">Cette annonce vous interesse ?</h2>
                 </div>
                 <div class="row d-flex justify-content-around">
                     <button type="button" class="btn btn-lg btn-red-crayola col-12 col-lg-3 m-2" data-bs-toggle="modal"
@@ -112,13 +103,13 @@
             </div>
         </div>
         <?php else: ?>
-
-        <div class="row w-100 my-4">
-            <div class="col-12 my-4">
-                <div class="row my-4">
-                    <h2 class="font-weight-bold text-center">Cette annonce vous interesse ?</h2>
+        <hr class="my-4">
+        <div class="row w-100">
+            <div class="col-12 my-2">
+                <div class="row my-2">
+                    <h2 class="font-weight-bold text-center text-black">Cette annonce vous interesse ?</h2>
                 </div>
-                <div class="row my-4 d-flex align-items-center justify-content-center flex-wrap ">
+                <div class="row my-2 d-flex align-items-center justify-content-center flex-wrap ">
                     <a href="<?php echo ROOT_PATH ?>/signin" class="btn btn-lg btn-primary col-12 col-lg-3 m-2">
                         CONNEXION
                     </a>
@@ -130,12 +121,13 @@
         </div>
 
         <?php endif;?>
-        <div class="row w-100 my-4">
-            <div class="col-12 align-items-center justify-content-between flex-wrap my-4">
-                <div class="row my-4">
-                    <h2 class="font-weight-bold">Vous pourriez être intéressé par :</h2>
+        <hr class="my-4">
+        <div class="row w-100">
+            <div class="col-12 align-items-center justify-content-between flex-wrap my-2">
+                <div class="row my-2">
+                    <h2 class="font-weight-bold text-center text-black">Vous pourriez être intéressé par :</h2>
                 </div>
-                <div class="card-columns col-12 p-4" id="posts-container">
+                <div class="card-columns col-12" id="posts-container">
                     <?php foreach ($similar_posts as $post): ?>
                     <?php include '_publication_card.php'?>
                     <?php endforeach;?>
@@ -143,19 +135,22 @@
             </div>
         </div>
         <?php if ($current_user): ?>
-        <div class="d-flex align-items-center my-4 col-12">
-            <div class="card shadow-sm p-4 w-100">
-                <div class="d-flex align-items-center justify-content-lg-between justify-content-center flex-wrap">
-                    <h3 class="font-weight-bold col-12 col-lg-3 my-4 text-lg-start text-center">Signaler cet utilisateur
-                        ?</h3>
-                    <button type="button" class="btn btn-lg btn-primary mx-4 col-9 col-lg-3" data-bs-toggle="modal"
-                        data-bs-target="#warning">
-                        SIGNALER
-                    </button>
-                </div>
+        <div class="d-flex flex-column justify-content-center align-items-center my-2 col-12">
+            <div class="row my-2">
+                <h3 class="font-weight-bold my-2 text-center text-black">Signaler cette annonce
+                    ?</h3>
             </div>
+            <button type="button" class="btn btn-lg btn-primary m-2 col-9 col-lg-3" data-bs-toggle="modal"
+                data-bs-target="#warning">
+                SIGNALER
+            </button>
         </div>
         <?php endif;?>
+    </section>
+
+    <section id="map" data-lon="<?php echo $post['lon'] ?>" data-lat="<?php echo $post['lat'] ?>"
+        class="col-12 col-lg-6 relative bg-white shadow-sm" style="height:94vh">
+
     </section>
 </main>
 

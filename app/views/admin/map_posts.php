@@ -5,8 +5,10 @@
                 <h4 class="font-weight-bold">Rechercher une annonce:</h4>
                 <hr>
                 <form action="" method="GET" class="bg-white">
-                    <h5 class="font-weight-bold">Rechercher par type d'appareil : </h5>
-
+                    <div class="d-flex w-100 align-items-center">
+                        <i class="lni lni-search-alt lni-32"></i>
+                        <h5 class="m-2 font-weight-bold">Rechercher par type d'appareil : </h5>
+                    </div>
                     <div class='d-block overflow-auto px-2'>
                         <div class="form-group my-2">
                             <label for="id_platform" class='font-weight-bold'> 1 - Selectionner une catégorie : </label>
@@ -49,7 +51,7 @@
                 </form>
                 <hr>
                 <div class="d-flex w-100 align-items-center">
-                    <i class="lni lni-arrow-left" lni-32"></i>
+                    <i class="lni lni-arrow-left lni-32"></i>
                     <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH.'/posts' ?>">Voir les annonces</a></h5>
                 </div>
             </div>
