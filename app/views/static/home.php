@@ -28,7 +28,7 @@
                 <?php endforeach;?>
             </div>
 
-            <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
+            <a href="<?php echo ROOT_PATH . "/posts" ?>" data-aos="fade-up" data-aos-duration="1000"
                 class="text-center my-4 col-9 col-lg-3 text-dark">
                 VOIR LES ANNONCES
                 <i class="lni lni-arrow-right"></i>
@@ -113,7 +113,7 @@
                 <?php endforeach;?>
             </div>
 
-            <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
+            <a href="<?php echo ROOT_PATH . "/users" ?>" data-aos="fade-up" data-aos-duration="1000"
                 class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 Je trouve un dépanneur !
                 <i class="lni lni-arrow-right"></i>
