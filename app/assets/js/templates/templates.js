@@ -7,7 +7,7 @@ const getUserTemplate = ({
   offers_count,
   reviews_score,
   created_at,
-  distance
+  distance,
 }) =>
   `
 <div class="col-12 col-xl-9 m-4">
@@ -18,9 +18,7 @@ const getUserTemplate = ({
                     <i class="lni lni-user lni-64"></i>
                 </div>
                 <a class=" font-italic m-2 stretched-link"
-                href="${
-                  ROOT_PATH + "/users/" + id
-                }">${username}</a>
+                href="${ROOT_PATH + "/users/" + id}">${username}</a>
             </div>
             <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                 <p class=" m-2">${posts_count} annonces -
@@ -53,6 +51,7 @@ const getUserTemplate = ({
     </div>
 </div>
 `.trim();
+
 const getBreakdownTemplate = ({
   created_at,
   description,
@@ -200,8 +199,12 @@ const getAdminUserRowTemplate = ({
 
   return `
               <tr>
-                    <th scope="row"><a href='${ROOT_PATH+'/users/'+id}'>${id}</a></th>
-                    <td><a href='${ROOT_PATH+'/users/'+id}'>${username}</a></td>
+                    <th scope="row"><a href='${
+                      ROOT_PATH + "/users/" + id
+                    }'>${id}</a></th>
+                    <td><a href='${
+                      ROOT_PATH + "/users/" + id
+                    }'>${username}</a></td>
                     <td>${email}</td>
                     <td>
                         <form class="user-update" action="" method="post">
@@ -427,6 +430,47 @@ const getNoResultTemplate = (redirectionLink, text, header) => {
     `.trim();
 };
 
+const getUserCardTemplate = ({
+  username,
+  followed_count,
+  city,
+  postal_code,
+  reviews_score,
+  id,
+  follower_count
+}) => `<div class='card m-4 col-lg-3'>
+            <div class='card-header'>
+                <div class='avatar shadow-sm bg-white my-2 mx-auto'>
+                    <i class='lni lni-user lni-64'></i>
+                </div>
+                <p class='card-title font-weight-bold text-center'>
+                    <a class='font-italic m-2 stretched-link' href='${ROOT_PATH+'/users/' + id}'>
+                      ${username}</a>
+                </p>
+            </div>
+            <div class='card-body'>
+                <p class='font-weight-bold m-2 w-100'><span id='followers_count'>${follower_count}</span>
+                    abbonné(s) -
+                    ${followed_count} abbonnements </p>
+                <div class='d-flex align-items-center w-100'>
+                    <i class='lni lni-pointer lni-16'></i>
+                    <p class='m-2'>${city}
+                        ${postal_code}</p>
+                </div>
+                <div class='d-flex align-items-center w-100'>
+                    <div class='rating m-2'
+                        data-rate-value='${reviews_score ? reviews_score : 0}'>
+                    </div>
+                    <p class='font-weight-bold m-2'>
+                    ${reviews_score ? reviews_score : 0}/5</p>
+                </div>
+                <div class='row my-4'>
+                    <a href='${ROOT_PATH + '/users/' + id}'
+                        class='align-self-end font-weight-bold text-end'>Voir le profil <i class='lni lni-arrow-right'></i></a>
+                </div>
+            </div>
+          </div>`.trim();
+
 export {
   getNoResultTemplate,
   getPostTemplate,
@@ -444,5 +488,6 @@ export {
   getBreakdownTemplateChecked,
   getPlatformTemplate,
   getPlatformTemplateChecked,
-  getUserTemplate,
+  getUserCardTemplate,
+  getUserTemplate
 };

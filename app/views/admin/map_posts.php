@@ -26,7 +26,7 @@
                 <form action="" class="bg-white overflow-auto px-2" method="GET">
                     <p class="font-weight-bold mb-0">2 - Choisir un/plusieurs type de panne : </p>
                     <div class='d-block overflow-auto px-2' style="height:15vh" id="breakdown_categories">
-                        <p class="my-2">Veuillez selectionner une plateforme</p>
+                        <p class="my-2">Veuillez selectionner une  catégorie</p>
                     </div>
                 </form>
                 <hr>
@@ -60,7 +60,8 @@
     <div id="map"></div>
 </main>
 <script>
-const posts = <?php echo $posts; ?>
+const MAPBOX_TOKEN = "<?php echo $_ENV['MAPBOX_TOKEN'] ?>";
+const posts = <?php echo $posts; ?>;
 </script>
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
 <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/admin/map_posts.js' ?> "></script>

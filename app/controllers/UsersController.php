@@ -9,6 +9,55 @@ class UsersController extends ApplicationController
         $this->beforeAction(['edit', "update"]);
     }
 
+    public function index()
+    {
+
+        if (isset($_GET['ajax'])) {
+        
+            if (isset($_GET['lat'], $_GET['lng'])) {
+                try {
+                    $breakdown_categories_ids = isset($_GET['breakdown_categories']) ? $_GET['breakdown_categories'] : null;
+                    echo json_encode(User::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], 500, $breakdown_categories_ids));
+                    die();
+                } catch (\Throwable $th) {
+                    die(http_response_code(500));
+                }
+            }else{
+                if (isset($_GET['breakdown_categories'])) {
+                    $users = User::findUserByBreakdownSkill($this->connection, '/posts', $_GET['breakdown_categories']);
+                } else {
+                    $users = User::getAll($this->connection, '/users', $this->start, $this->limit);
+                }
+                echo json_encode($users);
+                die();
+            }
+        
+        } else {
+            $page_data = Page::getDetails($this->connection, "users#index");
+            $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
+            $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
+            if (isset($_GET['breakdown'])) {
+                $users = User::findUserByBreakdownSkill($this->connection, '/posts', $_GET['breakdown']);
+            } else {
+                $users = User::getAll($this->connection, '/users', $this->start, $this->limit);
+            }
+            $this->render(
+                'index',
+                array(
+                    'title' => $page_data['title'],
+                    'description' => $page_data['description'],
+                    'style_file_name' => 'posts',
+                    'users' => $users['data'],
+                    'breakdown_categories' => $breakdown_categories,
+                    'platforms' => $platforms,
+                    'next_page' => $users['next'],
+                    'background_image_path' => $page_data['image_url'] ? $page_data['image_url'] : ABSOLUTE_ASSET_PATH . '/img/pages/home.jpeg',
+                ),
+            );
+        }
+
+    }
+
     public function ask_new_password()
     {
         if (isset($_POST['email'])) {
@@ -365,22 +414,6 @@ class UsersController extends ApplicationController
             $this->handleError(403);
         }
 
-    }
-
-    public function index()
-    {
-
-        if (isset($_GET['lat'], $_GET['lng'])) {
-            try {
-                $breakdown_categories_ids = isset($_GET['breakdown_categories']) ? $_GET['breakdown_categories'] : null;
-                echo json_encode(User::getNearBy($this->connection, $_GET['lat'], $_GET['lng'], 500, $breakdown_categories_ids));
-                die();
-            } catch (\Throwable $th) {
-                die(http_response_code(500));
-            }
-        } else {
-            die(http_response_code(422));
-        }
     }
 
     public function show()
