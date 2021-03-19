@@ -66,6 +66,7 @@ a:hover {
 
 /* BACKGROUND COLORS */
 
+
 .bg-white-overlay {
     background-color: rgba(255, 255, 255, 0.8);
 }
@@ -85,6 +86,14 @@ a:hover {
 .bg-yellow-tynkle {
     background-color: #f3cf12;
 }
+
+.bg-primary-light {
+    background-color: #eaedfe;
+}
+.bg-secondary-light {
+    background-color: #fce8f1;
+}
+
 
 /* BACKGROUND IMAGES */
 
@@ -106,6 +115,19 @@ a:hover {
 
 .bg-problem {
     background-image: url(https://images.pexels.com/photos/3760607/pexels-photo-3760607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+}
+
+/* ICONS */
+
+.icon-rounded {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 4rem;
 }
 
 /* EXTENDED DISPLAY */

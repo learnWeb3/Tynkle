@@ -1,4 +1,4 @@
-<main class="d-flex bg-light"
+<main class="d-flex bg-light text-dark"
     style='min-height:100vh;margin-top:3rem;'>
     <div class='bg-background d-flex' style="min-height: 100vh;width:100vw">
         <section class="d-none col-xl-3 d-xl-flex flex-column p-4 fixed-bottom" style="height:100vh;"
@@ -8,8 +8,8 @@
                 <hr>
                 <form action="" method="GET" class="bg-white">
                 <div class="d-flex w-100 align-items-center">
-                        <i class="lni lni-search-alt lni-32"></i>
-                        <h5 class="m-2 font-weight-bold">Rechercher par type d'appareil : </h5>
+                        <i class="lni lni-search-alt lni-32 text-dark"></i>
+                        <h5 class="m-2 font-weight-bold text-dark">Rechercher par type d'appareil : </h5>
                     </div>
                     <div class='d-block overflow-auto px-2'>
                         <div class="form-group my-2">
@@ -34,8 +34,8 @@
                 <hr>
                 <form action="" method="GET" class="col-12 bg-white">
                     <div class="d-flex w-100 align-items-center">
-                        <i class="lni lni-pointer lni-32"></i>
-                        <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
+                        <i class="lni lni-pointer lni-32 text-dark"></i>
+                        <h5 class="m-2 font-weight-bold text-dark">Chercher autour de moi</h5>
                     </div>
                     <div class="form-group my-2">
                         <select name="search_radius" id="search_radius" class="form-control col-12">
@@ -53,8 +53,8 @@
                 </form>
                 <hr>
                 <div class="d-flex w-100 align-items-center">
-                    <i class="lni lni-map lni-32"></i>
-                    <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH . '/admin/posts' ?>">Voir la
+                    <i class="lni lni-map lni-32 text-dark"></i>
+                    <h5 class="m-2"><a class="text-dark font-weight-bold" href="<?php echo ROOT_PATH . '/admin/posts' ?>">Voir la
                             carte</a></h5>
                 </div>
             </div>

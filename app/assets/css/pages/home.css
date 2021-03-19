@@ -28,13 +28,29 @@ nav.submenu a.nav-link {
   background-image: url(https://images.pexels.com/photos/3183177/pexels-photo-3183177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
+
+@media screen and (min-width:1200px)
+{
+  section{
+    padding: 3.5rem;
+  }
+}
+
+@media screen and (max-width:1200px)
+{
+  section{
+    padding: 0;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
 section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 3.5rem;
 }
 
 
@@ -77,6 +93,13 @@ section {
   height: 95vh;
   background-color: #373A3C;
   height: 6rem;
+}
+
+
+.card-publication {
+  filter: grayscale(0%);
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 

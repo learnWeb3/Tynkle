@@ -16,12 +16,11 @@ const getUserTemplate = ({
             <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                 <div class="avatar shadow-sm bg-white my-4">
                     <i class="lni lni-user lni-64"></i>
-                    <a class=" font-italic m-2 stretched-link"
-                    href="${
-                      ROOT_PATH + "/users/" + id
-                    }">${username}</a>
                 </div>
-               
+                <a class=" font-italic m-2 stretched-link"
+                href="${
+                  ROOT_PATH + "/users/" + id
+                }">${username}</a>
             </div>
             <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                 <p class=" m-2">${posts_count} annonces -

@@ -7,6 +7,18 @@ class User extends Application
         $this->id = $id;
     }
 
+    public static function getTopRated(PDO $connection, $limit=3)
+    {
+        $request_body = "SELECT *,
+        (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
+        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) follower_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) followed_count
+        FROM users ORDER BY reviews_score DESC LIMIT $limit";
+        return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getFollows(PDO $connection)
     {
         $request_body = "SELECT *,

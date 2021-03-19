@@ -14,7 +14,9 @@
                 <p class="text-muted">Utilisateur(s) : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-users lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-users"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class="display-4 mb-0"><?php echo $analytics['user_number'] ?></p>
@@ -25,7 +27,9 @@
                 <p class="text-muted">Utilisateur(s) mois courant / mois précédent : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-bar-chart lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-bar-chart"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['user_number'] ?></p>
@@ -37,22 +41,27 @@
                 <p class="text-muted">Nombre de Posts : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-files lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-files"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['posts_count'] ?></p>
                     </div>
                 </div>
             </div>
+
             <div class="col-12 col-md-6 col-lg-3 card shadow p-4 m-4">
                 <p class="text-muted">Nombre de catégories de panne : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-tag lni-32"></i>
-                    </div>
-                    <div class="col-8 d-flex align-items-center justify-content-center">
-                        <p class=" display-4 mb-0">
-                            <?php echo $analytics['breakdown_categories_count'] ?></p>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-tag"></i>
+                        </div>
+                        <div class="col-8 d-flex align-items-center justify-content-center">
+                            <p class=" display-4 mb-0">
+                                <?php echo $analytics['breakdown_categories_count'] ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,7 +70,9 @@
                 <p class="text-muted">Temps moyen / page : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-alarm-clock lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-alarm-clock"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['avg_time_on_page'] ?></p>
@@ -72,7 +83,9 @@
                 <p class="text-muted">Temps moyen / session : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-alarm-clock lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-alarm-clock"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"> <?php echo $analytics['avg_session_duration'] ?></p>
@@ -83,7 +96,9 @@
                 <p class="text-muted">Nombre de page vues par session : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-eye lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-eye"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['page_views_per_session'] ?>
@@ -96,7 +111,9 @@
                 <p class="text-muted">Bounces : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-eye lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-eye"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['bounces'] ?></p>
@@ -108,7 +125,9 @@
                 <p class="text-muted">Bounce Rate : </p>
                 <div class="row h-100">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <i class="lni lni-eye lni-32"></i>
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <i class="lni lni-32 lni-eye"></i>
+                        </div>
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-center">
                         <p class=" display-4 mb-0"><?php echo $analytics['bounce_rate'] ?></p>

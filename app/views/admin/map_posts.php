@@ -6,8 +6,8 @@
                 <hr>
                 <form action="" method="GET" class="bg-white">
                     <div class="d-flex w-100 align-items-center">
-                        <i class="lni lni-search-alt lni-32"></i>
-                        <h5 class="m-2 font-weight-bold">Rechercher par type d'appareil : </h5>
+                        <i class="lni lni-search-alt lni-32 text-dark"></i>
+                        <h5 class="m-2 font-weight-bold text-dark">Rechercher par type d'appareil : </h5>
                     </div>
                     <div class='d-block overflow-auto px-2'>
                         <div class="form-group my-2">
@@ -32,8 +32,8 @@
                 <hr>
                 <form action="" method="GET" class="col-12 bg-white">
                     <div class="d-flex w-100 align-items-center">
-                        <i class="lni lni-pointer lni-32"></i>
-                        <h5 class="m-2 font-weight-bold">Chercher autour de moi</h5>
+                        <i class="lni lni-pointer lni-32 text-dark"></i>
+                        <h5 class="m-2 font-weight-bold text-dark">Chercher autour de moi</h5>
                     </div>
                     <div class="form-group my-2">
                         <select name="search_radius" id="search_radius" class="form-control col-12">
@@ -51,8 +51,8 @@
                 </form>
                 <hr>
                 <div class="d-flex w-100 align-items-center">
-                    <i class="lni lni-arrow-left lni-32"></i>
-                    <h5 class="m-2 font-weight-bold"><a href="<?php echo ROOT_PATH.'/posts' ?>">Voir les annonces</a></h5>
+                    <i class="lni lni-arrow-left lni-32 text-dark"></i>
+                    <h5 class="m-2"><a class="text-dark font-weight-bold" href="<?php echo ROOT_PATH.'/posts' ?>">Voir les annonces</a></h5>
                 </div>
             </div>
 

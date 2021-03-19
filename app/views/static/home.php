@@ -4,7 +4,7 @@
             <div data-aos="zoom-in" data-aos-duration="1000"
                 class="container-xl d-flex justify-content-center align-items-center">
                 <div class="col-12 col-lg-8">
-                    <h1 class="text-white font-weight-bold "><b>Tynkle,</b> LA première plateforme
+                    <h1 class="text-white font-weight-bold display-2"><b>Tynkle,</b> LA première plateforme
                         exclusivement dédiée à l'entraide
                         informatique, multimédia et électroménager
                     </h1>
@@ -18,19 +18,18 @@
     <section class="bg-light">
         <div class="container d-flex flex-column justify-content-center align-items-center">
 
-            <h2 class="display-5">Dernières annonces</h2>
+            <h2 class="display-5 text-dark">Dernières annonces</h2>
 
-            <div data-aos="zoom-in" data-aos-duration="1000"
-                class="card-columns w-100 p-4">
+            <div data-aos="zoom-in" data-aos-duration="1000" class="card-columns w-100 p-4">
                 <?php foreach ($posts as $post): ?>
 
-                    <?php include __DIR__.'/../posts/_publication_card.php'?>
+                <?php include __DIR__.'/../posts/_publication_card.php'?>
 
                 <?php endforeach;?>
             </div>
 
             <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                class="text-center my-4 col-9 col-lg-3 text-dark">
                 VOIR LES ANNONCES
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -41,7 +40,7 @@
 
         <div class="container d-flex flex-column justify-content-center align-items-center">
             <div class="pb-lg-4">
-                <h2 class="mb-5">Réparer plutot que jeter !</h2>
+                <h2 class="mb-5 display-5 text-center text-dark aos-init aos-animate">Réparer plutot que jeter !</h2>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
@@ -83,7 +82,7 @@
                 </div>
             </div>
             <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 C'est parti !
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -93,7 +92,7 @@
     <section class="bg-light">
         <div class="container d-flex flex-column justify-content-center align-items-center">
 
-            <h2 class="display-5"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
+            <h2 class="display-5 text-dark"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
             <p class="font-weight-bold my-4">Un appareil qui fait des siennes et une solution à portée de main
                 en
                 quelques
@@ -107,15 +106,15 @@
 
             <div data-aos="zoom-in" data-aos-duration="1000"
                 class="row d-flex justify-content-center align-items-center w-100 p-4">
-                <?php for ($i = 0; $i < 3; $i++): ?>
+                <?php foreach ($users as $user): ?>
 
-                <?php include '_testimony_card.php'?>
+                <?php include __DIR__.'/_user_card.php'?>
 
-                <?php endfor;?>
+                <?php endforeach;?>
             </div>
 
             <a href="<?php echo ROOT_PATH . "/asks/new" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 Je trouve un dépanneur !
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -126,7 +125,7 @@
 
         <div class="container d-flex flex-column justify-content-center align-items-center">
             <div class="pb-lg-4">
-                <h2 class="mb-5">Comment ça marche ? Ton
+                <h2 class="mb-5 display-5 text-center text-dark aos-init aos-animate">Comment ça marche ? Ton
                     problème, notre solution.</h2>
             </div>
             <div class="row">
@@ -159,7 +158,7 @@
                 </div>
             </div>
             <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 C'est parti !
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -171,7 +170,8 @@
 
     <section class="bg-light">
         <div class="container d-flex flex-column justify-content-center align-items-center">
-            <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center">Ils ont fait confiance à
+            <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center text-dark">Ils ont fait
+                confiance à
                 <b>Tynkle</b>
             </h2>
 
@@ -185,7 +185,7 @@
             </div>
 
             <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 faire comme Ben
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -195,7 +195,8 @@
 
         <div class="container d-flex flex-column justify-content-center align-items-center">
             <div class="pb-lg-4">
-                <h2 class="mb-5">Tu veux aider la communauté ? Deviens Helper !</h2>
+                <h2 class="mb-5 display-5 text-center text-dark aos-init aos-animate">Tu veux aider la communauté ?
+                    Deviens Helper !</h2>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
@@ -236,7 +237,7 @@
                 </div>
             </div>
             <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 font-weight-bold ">
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 C'est parti !
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -245,3 +246,6 @@
 
     </section>
 </main>
+
+
+<script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/static/home.js' ?>"></script>

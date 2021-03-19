@@ -2,12 +2,10 @@
     <div class="card shadow-sm p-4 rounded">
         <div class="row w-100">
             <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
-                <div class="avatar shadow-sm bg-white my-4">
+                <div class="avatar shadow-sm bg-white my-2">
                     <i class="lni lni-user lni-64"></i>
-                    <a class=" font-italic m-2 stretched-link"
-                    href="<?php echo ROOT_PATH . "/users/" . $user['id_followed'] ?>"><?php echo $user['followed_username'] ?></a>
                 </div>
-               
+                <a class=" font-italic m-2 stretched-link" href="<?php echo ROOT_PATH . "/users/" . $user['id_followed'] ?>"> <?php echo $user['followed_username'] ?></a>
             </div>
             <div class="col-12 col-xl-6 d-flex flex-column justify-content-center">
                 <p class=" m-2"><?php echo $user['posts_count'] ?> annonces -

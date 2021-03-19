@@ -6,7 +6,7 @@
     <?php include '_warning_modal.php'?>
 
     <section class="col-12 col-lg-6 relative bg-white shadow p-4 overflow-auto text-black" style='height:94vh;'>
-        <h1 class="font-weight-bold text-start w-100 display-1 my-2" id="title"><?php echo $post['title'] ?></h1>
+        <h1 class="font-weight-bold text-start w-100 display-4 my-2" id="title"><?php echo $post['title'] ?></h1>
         <hr class="my-4">
         <div class="row w-100">
             <div class="col-12 col-xl-6">
