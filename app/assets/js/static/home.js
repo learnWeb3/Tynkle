@@ -14,7 +14,7 @@ const handleChange = () =>
   });
 
 const handleTabClick = () =>
-  $('.nav-link[role="tab"]').click((event) => {
+  $('.nav-link[role="tab"]').click(function(event){
     event.preventDefault();
     $('.nav-link[role="tab"]').removeClass("active");
     $(this).addClass("active");

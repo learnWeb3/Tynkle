@@ -69,7 +69,7 @@ const destroyData = async (path) => {
 const getCurrentUser = async () => await getData("/users/current");
 
 const getNearbyUsers = async (lat, lon) =>
-  await getData(`/users?lat=${lat}&lng=${lon}`);
+  await getData(`/users?ajax=true&lat=${lat}&lng=${lon}`);
 
 const follow = async (userId, data) =>
   await postData("/users/" + userId + "/follows", data);
@@ -108,6 +108,14 @@ const makeOffers = async (data) => await postData("/offers", data);
 const signout = async () => await destroyData("/logout");
 
 const getFollowingPosts = (nextPage) => {
+  const options = {
+    headers,
+    method: "GET",
+  };
+  return fetch(ROOT_PATH + nextPage + "&ajax=true", options);
+};
+
+const getFollowingUsers = (nextPage) => {
   const options = {
     headers,
     method: "GET",
@@ -155,4 +163,5 @@ export {
   getFollowingArticles,
   getBreakdowns,
   getNearbyUsers,
+  getFollowingUsers
 };

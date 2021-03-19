@@ -2,7 +2,7 @@ import { getFilteredContent, getPlatforms, ROOT_PATH } from "../API_CLIENT/index
 import { getBreakdownCategoriesCheckInputTemplate } from "../templates/templates.js";
 
 mapboxgl.accessToken =
-  "pk.eyJ1IjoiYW50b2luZS10ZWNoIiwiYSI6ImNra3MwOHVtMzA5bjcydXBpMzgzeWpqNDQifQ.wGsIMm4ekiX0oCNhyphoXA";
+  MAPBOX_TOKEN;
 var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/antoine-tech/ckkv8yq1v3vof17nzaeb0gmi7",

@@ -37,15 +37,15 @@
                             </div>
                         </div>
                         <div class="col-8 d-flex flex-column justify-content-center">
-                            <a class="font-weight-bold font-italic m-2"
+                            <a class="font-italic m-2"
                                 href="<?php echo ROOT_PATH . "/users/" . $post['user_id'] ?>"><?php echo $post['username'] ?></a>
-                            <p class="font-weight-bold m-2"><?php echo $author['posts_count'] ?> annonces -
+                            <p class="m-2"><?php echo $author['posts_count'] ?> annonces -
                                 <?php echo $author['offers_count'] ?> offres</p>
                             <div class="d-flex w-100 align-items-center">
                                 <div class="rating m-2"
                                     data-rate-value='<?php echo $author['reviews_score'] ? $author['reviews_score'] : '0' ?>'>
                                 </div>
-                                <p class="font-weight-bold m-2">
+                                <p class="m-2">
                                     <?php echo $author['reviews_score'] ? $author['reviews_score'] : '0' ?>/5</p>
                             </div>
                         </div>

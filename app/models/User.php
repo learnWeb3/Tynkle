@@ -7,7 +7,49 @@ class User extends Application
         $this->id = $id;
     }
 
-    public static function getTopRated(PDO $connection, $limit=3)
+    public static function getAll(PDO $connection, string $path = '/users', int $start, int $limit)
+    {
+        $request_body = "SELECT *,
+        (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
+        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) follower_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) followed_count
+        FROM users ORDER by users.created_at DESC limit $limit OFFSET $start";
+        $results = Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
+        $next_start = $start += 10;
+        $previous_start = $start - 10 >= 0 ? $start - 10 : 0;
+        return array(
+            "data" => $results,
+            "next" => $path . "?start=$next_start&limit=$limit",
+            "previous" => $path . "?start=$previous_start&limit=$limit",
+        );
+    }
+
+    public static function findUserByBreakdownSkill(PDO $connection, string $path, int $id_breakdown, int $start = 0, int $limit = 10)
+    {
+        $request_body = "SELECT * FROM
+        (SELECT
+        *,
+        (SELECT COUNT(user_skills.id) FROM user_skills JOIN skills ON skills.id = user_skills.id_skill WHERE skills.id_breakdown_category IN (?) AND user_skills.id_user = users.id) skill_count,
+        (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
+        (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = users.id) posts_count,
+        (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = users.id) offers_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_follower = users.id) follower_count,
+        (SELECT COUNT(follows.id) FROM follows WHERE follows.id_followed = users.id) followed_count
+        FROM users) t1
+        WHERE t1.skill_count > 0 ORDER BY t1.skill_count DESC";
+        $results = Request::send($connection, $request_body, [$id_breakdown])->fetchAll(PDO::FETCH_ASSOC);
+        $next_start = $start += 10;
+        $previous_start = $start - 10 >= 0 ? $start - 10 : 0;
+        return array(
+            "data" => $results,
+            "next" => $path . "?start=$next_start&limit=$limit",
+            "previous" => $path . "?start=$previous_start&limit=$limit",
+        );
+    }
+
+    public static function getTopRated(PDO $connection, $limit = 3)
     {
         $request_body = "SELECT *,
         (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = users.id) reviews_score,
@@ -538,7 +580,7 @@ class User extends Application
     {
 
         if ($breakdown_categories_ids) {
-            $request_body = "SELECT *, 
+            $request_body = "SELECT *,
             (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = myTable.id) reviews_score,
             (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = myTable.id) posts_count,
             (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = myTable.id) offers_count
@@ -568,7 +610,7 @@ class User extends Application
             ORDER BY distance ASC
             LIMIT $limit;";
         } else {
-            $request_body = "SELECT *, 
+            $request_body = "SELECT *,
             (SELECT ROUND(AVG(reviews.score),2) FROM reviews WHERE reviews.id_reviewed = myTable.id) reviews_score,
             (SELECT COUNT(posts.id) FROM posts WHERE posts.id_user = myTable.id) posts_count,
             (SELECT COUNT(offers.id) FROM offers WHERE offers.id_user = myTable.id) offers_count

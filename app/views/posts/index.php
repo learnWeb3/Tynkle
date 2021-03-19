@@ -28,7 +28,7 @@
                 <form action="" class="bg-white overflow-auto px-2" method="GET">
                     <p class="font-weight-bold mb-0">2 - Choisir un/plusieurs type de panne : </p>
                     <div class='d-block overflow-auto px-2' style="height:15vh" id="breakdown_categories">
-                        <p class="my-2">Veuillez selectionner une plateforme</p>
+                        <p class="my-2">Veuillez selectionner une  catégorie</p>
                     </div>
                 </form>
                 <hr>

@@ -1,15 +1,14 @@
 <div class="container position-relative mt-n6 z-index-20">
     <ul class="nav nav-tabs search-bar-nav-tabs" role="tablist">
-        <li class="nav-item mr-2"><a class="nav-link active" href="#buy" data-target="#buy" data-toggle="tab"
-                role="tab">DEMANDER DE
-                L'AIDE</a></li>
-        <li class="nav-item mr-2"><a class="nav-link" href="#rent" data-target="#rent" data-toggle="tab"
-                role="tab">VENIR EN AIDE</a></li>
+        <li class="nav-item mr-2"><a class="nav-link active" href="#ask-help" data-target="#ask-help" data-toggle="tab"
+                role="tab">JE CHERCHE DE L'AIDE</a></li>
+        <li class="nav-item mr-2"><a class="nav-link" href="#help" data-target="#help" data-toggle="tab"
+                role="tab">JE PROPOSE MON AIDE</a></li>
     </ul>
     <div class="search-bar search-bar-with-tabs p-3 p-lg-4">
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="buy" role="tabpanel">
-                <form action="#">
+            <div class="tab-pane fade show active" id="ask-help" role="tabpanel">
+                <form action="<?php echo ROOT_PATH . '/users' ?>" method="GET">
                     <div class="row">
                         <div class="col-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control"  name="platform" title="platform">
@@ -32,8 +31,8 @@
                     </div>
                 </form>
             </div>
-            <div class="tab-pane fade" id="rent" role="tabpanel">
-                <form action="#">
+            <div class="tab-pane fade" id="help" role="tabpanel">
+                <form action="<?php echo ROOT_PATH . '/posts' ?>" method="GET">
                     <div class="row">
                         <div class="col-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control"  name="platform" title="platform">
