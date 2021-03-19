@@ -11,9 +11,6 @@
     padding: 0;
 }
 
-.card {
-    border-left: .5rem solid #36b9cc;
-}
 
 .card p:first-child {
     text-align: center;
