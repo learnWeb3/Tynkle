@@ -90,7 +90,7 @@
 
     </section>
     <section class="bg-light">
-        <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
 
             <h2 class="display-5 text-dark"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
             <p class="font-weight-bold my-4">Un appareil qui fait des siennes et une solution à portée de main
@@ -105,7 +105,7 @@
             </p>
 
             <div data-aos="zoom-in" data-aos-duration="1000"
-                class="row d-flex justify-content-center align-items-center w-100 p-4">
+                class="card-columns w-100 p-4">
                 <?php foreach ($users as $user): ?>
 
                 <?php include __DIR__.'/_user_card.php'?>
@@ -169,7 +169,7 @@
     </section>
 
     <section class="bg-light">
-        <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
             <h2 data-aos="fade-up" data-aos-duration="1000" class="display-5 text-center text-dark">Ils ont fait
                 confiance à
                 <b>Tynkle</b>
