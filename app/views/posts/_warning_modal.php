@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="warning" tabindex="-1" aria-labelledby="warningLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title front-weight-bold" id="warningLabel">SIGNALER CETTE ANNONCE</h5>
@@ -16,7 +16,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">FERMER</button>
+                <button type="button" class="btn btn-red-crayola" data-bs-dismiss="modal">FERMER</button>
                 <button id="warning-form-submit" type="submit" form="warning-form" class="btn btn-success">ENVOYER</button>
             </div>
         </div>

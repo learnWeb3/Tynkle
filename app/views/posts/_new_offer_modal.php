@@ -1,6 +1,6 @@
   <!-- Modal -->
   <div class="modal fade" id="new-offer" tabindex="-1" aria-labelledby="new-offerLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title front-weight-bold" id="new-offerLabel">FAIRE UNE OFFRE</h5>
@@ -25,7 +25,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">FERMER</button>
+                    <button type="button" class="btn btn-red-crayola" data-bs-dismiss="modal">FERMER</button>
                     <button id="new-offer-form-submit" type="submit" form="new-offer-form" class="btn btn-success">ENVOYER</button>
                 </div>
             </div>

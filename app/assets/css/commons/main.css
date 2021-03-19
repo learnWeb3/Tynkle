@@ -21,17 +21,20 @@ body {
     min-height: 100vh;
 }
 
-@media screen and (min-width:1200px)
-{.lni-64 {
-    font-size: 64px;
-}}
+@media screen and (min-width:1200px) {
+    .lni-64 {
+        font-size: 64px;
+    }
+}
 
-@media screen and (max-width:1200px)
-{.lni-64 {
-    font-size: 32px;
-}}
+@media screen and (max-width:1200px) {
+    .lni-64 {
+        font-size: 32px;
+    }
+}
 
 /* REVIEWS */
+
 .review {
     padding-top: 2rem;
     padding-right: 1rem;
@@ -66,7 +69,6 @@ a:hover {
 
 /* BACKGROUND COLORS */
 
-
 .bg-white-overlay {
     background-color: rgba(255, 255, 255, 0.8);
 }
@@ -90,10 +92,10 @@ a:hover {
 .bg-primary-light {
     background-color: #eaedfe;
 }
+
 .bg-secondary-light {
     background-color: #fce8f1;
 }
-
 
 /* BACKGROUND IMAGES */
 
@@ -137,7 +139,6 @@ a:hover {
 }
 
 /* BUTTONS */
-
 
 .btn-red-crayola {
     background-color: #FD0E35;
@@ -278,7 +279,6 @@ footer ul {
     background-color: rgba(255, 255, 255, 1);
 }
 
-
 /* ALERTS */
 
 .alert {
@@ -317,37 +317,42 @@ footer ul {
 
 /* AVATAR */
 
+@media screen and (min-width:1200px) {
+    .avatar {
+        width: 8rem;
+        height: 8rem;
+    }
+    .avatar-lg {
+        width: 16rem;
+        height: 16rem;
+    }
+}
 
-@media screen and (min-width:1200px)
-{
-    .avatar{
+@media screen and (max-width:1200px) {
+    .avatar {
+        width: 4rem;
+        height: 4rem;
+    }
+    .avatar-lg {
         width: 8rem;
         height: 8rem;
     }
 }
 
-@media screen and (max-width:1200px)
-{
-    .avatar{
-        width: 4rem;
-        height: 4rem;
-    }
-}
-
-
-.avatar img{
+.avatar img, .avatar-lg img {
     height: 100%;
     width: 100%;
 }
 
-.avatar a{
+.avatar a, .avatar-lg a {
     font-weight: bold;
 }
-.avatar a:hover{
+
+.avatar a:hover, .avatar-lg a:hover {
     text-decoration: underline;
 }
 
-.avatar {
+.avatar, .avatar-lg {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -444,8 +449,20 @@ input.error {
     color: rgb(255, 255, 255);
 }
 
+/* FORMS */
+
 .form-group {
     position: relative;
 }
 
+.form-check {
+    min-height: 1.6rem;
+    padding-left: 2rem;
+    margin-bottom: .125rem;
+}
 
+/* DROPDOWNS */
+
+.dropdown-menu {
+    padding: 1rem;
+}

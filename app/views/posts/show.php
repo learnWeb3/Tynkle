@@ -29,7 +29,7 @@
 
             </div>
             <div class="col-12 col-xl-6">
-                <div class="p-4 rounded">
+                <div>
                     <div class="row w-100">
                         <div class="col-4 d-flex flex-column justify-content-center">
                             <div class="avatar shadow-sm bg-white my-2">
@@ -42,7 +42,7 @@
                             <p class="m-2"><?php echo $author['posts_count'] ?> annonces -
                                 <?php echo $author['offers_count'] ?> offres</p>
                             <div class="d-flex w-100 align-items-center">
-                                <div class="rating m-2"
+                                <div class="rating"
                                     data-rate-value='<?php echo $author['reviews_score'] ? $author['reviews_score'] : '0' ?>'>
                                 </div>
                                 <p class="m-2">
