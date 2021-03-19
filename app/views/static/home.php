@@ -1,10 +1,10 @@
 <main style="background-image: url(<?php echo $background_image_path ?>);" class="bg-background">
-    <section id="value-proposition" style="min-height:50vh;">
-        <div class="row w-100 p-4" style="min-height:50vh;background-color:rgba(51,51,51,.5)">
+    <section id="value-proposition" style="min-height:66vh;">
+        <div class="row w-100 p-4" style="min-height:66vh;background-color:rgba(51,51,51,.5)">
             <div data-aos="zoom-in" data-aos-duration="1000"
                 class="container-xl d-flex justify-content-center align-items-center">
                 <div class="col-12 col-lg-8">
-                    <h1 class="text-white font-weight-bold display-2"><b>Tynkle,</b> LA première plateforme
+                    <h1 class="text-white font-weight-bold display-4"><b>Tynkle,</b> LA première plateforme
                         exclusivement dédiée à l'entraide
                         informatique, multimédia et électroménager
                     </h1>
