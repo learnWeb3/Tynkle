@@ -24,7 +24,6 @@ class UsersController extends ApplicationController
     {
 
         if (isset($_GET['ajax'])) {
-
             if (isset($_GET['lat'], $_GET['lng'])) {
                 try {
                     $breakdown_categories_ids = isset($_GET['breakdown_categories']) ? $_GET['breakdown_categories'] : null;
@@ -42,7 +41,6 @@ class UsersController extends ApplicationController
                 echo json_encode($users);
                 die();
             }
-
         } else {
             $page_data = Page::getDetails($this->connection, "users#index");
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
