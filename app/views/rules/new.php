@@ -9,7 +9,7 @@
 
         <div id="editor" class="col-12"></div>
 
-        <button id="save-rule" class="btn-lg btn-primary rounded-pill col-3 my-4">SAUVEGARDER</button>
+        <button id="save-rule" class="btn-lg btn-primary col-3 my-4">SAUVEGARDER</button>
 
     </section>
 

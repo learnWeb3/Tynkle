@@ -7,7 +7,7 @@
 
     <section class="container-xl bg-light d-flex align-items-center justify-content-center">
         <?php if ($is_user_admin): ?>
-            <a href="<?php echo ROOT_PATH . '/articles/' . $article['id'] . '/edit' ?>" class="btn btn-lg btn-primary rounded-pill col-3 my-4">EDITER</a>
+            <a href="<?php echo ROOT_PATH . '/articles/' . $article['id'] . '/edit' ?>" class="btn btn-lg btn-primary col-3 my-4">EDITER</a>
         <?php endif;?>
     </section>
 

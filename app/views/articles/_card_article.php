@@ -5,7 +5,7 @@
     <div class="card-body d-flex flex-column">
         <h5 class="card-title my-2"><?php echo $article['title'] ?></h5>
         <p class="card-text"><?php echo $article['description'] ?></p>
-        <a href="<?php echo ROOT_PATH . '/articles/' . $article['id'] ?>" class="align-self-end text-brand-blue font-weight-bold">Lire la suite <i
+        <a href="<?php echo ROOT_PATH . '/articles/' . $article['id'] ?>" class="align-self-end text-dark font-weight-bold">Lire la suite <i
                 class="lni lni-arrow-right"></i></a>
     </div>
 </div>

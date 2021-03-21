@@ -57,19 +57,19 @@ const handleRadioClick = async (event) => {
     const currentElementValue = currentElement.value;
     let url, container, redirectionLink, text, header;
     if (currentElementDataType === "offers") {
-      url = `/activities/offers?type=${currentElementValue}`;
+      url = `/activities/offers?ajax=true&type=${currentElementValue}`;
       container = document.querySelector("#offers-container");
       redirectionLink = ROOT_PATH + "/posts";
       header = "Aucune offre pour le moment ...";
       text = "VENIR EN AIDE A LA COMMUNAUTE";
     } else if (currentElementDataType === "asks") {
-      url = `/activities/asks?type=${currentElementValue}`;
+      url = `/activities/asks?ajax=true&type=${currentElementValue}`;
       container = document.querySelector("#asks-container");
       redirectionLink = ROOT_PATH + "/posts";
       header = "Aucune demande pour le moment ...";
       text = "VOIR LES ANNONCES";
     } else if (currentElementDataType === "posts") {
-      url = `/activities/posts?type=${currentElementValue}`;
+      url = `/activities/posts?ajax=true&type=${currentElementValue}`;
       container = document.querySelector("#posts-container");
       redirectionLink = ROOT_PATH + "/posts/new";
       header = "Aucune annonce pour le moment ...";
@@ -107,7 +107,9 @@ const handleEvents = () => {
   });
 };
 
-// getting current user
-setCurrentUserId(current_user);
-// handleEvents on the page 
-handleEvents();
+$(document).ready(function () {
+  // getting current user
+  setCurrentUserId(current_user);
+  // handleEvents on the page
+  handleEvents();
+});

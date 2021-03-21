@@ -9,11 +9,22 @@ class UsersController extends ApplicationController
         $this->beforeAction(['edit', "update"]);
     }
 
+    public function streamAlerts()
+    {
+
+        try {
+            $this->current_user->streamAlerts($this->connection);
+        } catch (Throwable $th) {
+            die(http_response_code(500));
+        }
+
+    }
+
     public function index()
     {
 
         if (isset($_GET['ajax'])) {
-        
+
             if (isset($_GET['lat'], $_GET['lng'])) {
                 try {
                     $breakdown_categories_ids = isset($_GET['breakdown_categories']) ? $_GET['breakdown_categories'] : null;
@@ -22,7 +33,7 @@ class UsersController extends ApplicationController
                 } catch (\Throwable $th) {
                     die(http_response_code(500));
                 }
-            }else{
+            } else {
                 if (isset($_GET['breakdown_categories'])) {
                     $users = User::findUserByBreakdownSkill($this->connection, '/posts', $_GET['breakdown_categories']);
                 } else {
@@ -31,7 +42,7 @@ class UsersController extends ApplicationController
                 echo json_encode($users);
                 die();
             }
-        
+
         } else {
             $page_data = Page::getDetails($this->connection, "users#index");
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];

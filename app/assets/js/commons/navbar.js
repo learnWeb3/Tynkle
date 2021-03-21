@@ -14,6 +14,7 @@ const logout = async (logoutButton, navbarLink) => {
         }
     });
 }
+
 const navbarLink = document.querySelector('nav .navbar-nav');
 const logoutButton = document.querySelector('#logout');
 logout(logoutButton, navbarLink);

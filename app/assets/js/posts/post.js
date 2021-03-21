@@ -29,8 +29,10 @@ $("#lightgallery").lightGallery({
 });
 
 // parsing lat lon
-const lat = parseInt(document.querySelector("#map").dataset.lat);
-const lng = parseInt(document.querySelector("#map").dataset.lon);
+const lat = parseFloat(document.querySelector("#map").dataset.lat);
+const lng = parseFloat(document.querySelector("#map").dataset.lon);
+
+console.log(lat, lng)
 // displaying map centered on lat/lon
 initMap(lat, lng);
 // getting current user
