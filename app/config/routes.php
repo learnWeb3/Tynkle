@@ -32,6 +32,7 @@ $routes = array(
     array('POST', ROOT_PATH . '/admin/users/search', 'admin#users_search', 'users_admin_search'),
     array('GET', ROOT_PATH . '/admin/register/callback', 'admin#google_auth', 'google_auth_admin'),
     //  '/users'
+    array('GET', ROOT_PATH . '/users/stream', 'users#streamAlerts', 'stream_user_alerts'),
     array('GET', ROOT_PATH . '/users', 'users#index', 'index_user'),
     array('GET', ROOT_PATH . '/users/current', 'sessions#show', 'current_user'),
     array('GET', ROOT_PATH . '/register', 'users#new', 'new_user'),

@@ -187,6 +187,7 @@ section {
 
 .nav-tabs.search-bar-nav-tabs {
   border-bottom: none;
+  flex-wrap: nowrap;
 }
 
 .nav-tabs.search-bar-nav-tabs .nav-link {

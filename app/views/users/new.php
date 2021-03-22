@@ -31,12 +31,12 @@
                     data-bouncer-mismatch-message="Les mots de passes ne sont pas identiques" required>
             </div>
 
-            <div class="form-group my-2 d-flex col-12">
-                <div class="col-4">
+            <div class="form-group my-2 d-lg-flex col-12">
+                <div class="col-12 col-lg-4">
                     <label class="font-weight-bold" style="cursor: help;" data-placement="top" data-toggle="tooltip"
                         title="Souhaitez vous devenir dépanneur et aidez la communauté ?">Devenir Helper ?</label>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="is_helper" id="helper_role_1" value="1">
                         <label class="form-check-label" for="helper_role_1">oui</label>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group my-2 p-2">
+            <div class="form-group my-2">
                 <div class="form-check">
                     <input class="form-check-input" name="cgu_accepted" type="checkbox" id="cgu_accepted" required>
                     <label class="form-check-label" for="cgu_accepted">
@@ -65,8 +65,8 @@
         <form class="col-12" action="<?php echo ROOT_PATH."/register/callback" ?>" method="get">
             <button type="submit"
                 class="col-12 btn btn-lg d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img
-                    src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-4"
-                    alt="signin with google" style='left:0;'>S'inscrire avec google</button>
+                    src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute"
+                    alt="signin with google" style='left:.5rem;'>S'inscrire avec google</button>
         </form>
         <?php include_once './app/views/templates/_shared_links.php'?>
     </section>

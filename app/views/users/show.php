@@ -8,7 +8,7 @@
             <div class="p-4 rounded" style="background-color: rgba(255,255,255,.75);">
                 <div class="row w-100">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                        <div class="avatar shadow-sm bg-white my-4">
+                        <div class="avatar-lg shadow-sm bg-white my-4">
                             <i class="lni lni-user lni-64"></i>
                         </div>
                         <h1 class="my-4">
@@ -21,11 +21,11 @@
                         <p class="font-weight-bold m-2"><?php echo $user['posts_count'] ?> annonces -
                             <?php echo $user['offers_count'] ?> offres</p>
 
-                        <p class="font-weight-bold m-2"><span
-                                id="followers_count"><?php echo $user['follower_count'] ?></span> abbonné(s) -
-                            <?php echo $user['followed_count'] ?> abbonnements </p>
+                        <p class="font-weight-bold m-2 text-center"><span
+                                id="followers_count"><?php echo $user['follower_count'] ?></span> abonné(s) -
+                            <?php echo $user['followed_count'] ?> abonnements </p>
                         <div class="d-flex align-items-center">
-                            <div class="rating m-2"
+                            <div class="rating"
                                 data-rate-value='<?php echo $user['reviews_score'] ? $user['reviews_score'] : '0' ?>'>
                             </div>
                             <p class="font-weight-bold m-2">

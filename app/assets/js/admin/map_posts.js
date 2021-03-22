@@ -146,7 +146,7 @@ map.on("load", function () {
             <div class="row my-4">
                 <a href="${
                     ROOT_PATH + "/posts/" + id
-                    }" class="align-self-end font-weight-bold text-end">Voir les détails <i
+                    }" class="align-self-end font-weight-bold text-start text-lg-end">Voir les détails <i
                     class="lni lni-arrow-right"></i>
                 </a>
             </div>

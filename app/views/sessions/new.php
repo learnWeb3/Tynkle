@@ -17,7 +17,7 @@
             <p class="font-weight-bold text-center">ou</p>
         </form>
         <form class="col-12" action="<?php echo ROOT_PATH."/register/callback" ?>" method="get">
-                <button type="submit" class="col-12 btn btn-lg d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute mx-4" alt="signin with google" style='left:0;'>Se connecter avec google</button>
+                <button type="submit" class="col-12 btn btn-lg d-flex align-items-center justify-content-center position-relative font-weight-bold my-2"><img src="<?php echo ABSOLUTE_ASSET_PATH ?>/icons/google_brand.png" class="position-absolute" alt="signin with google" style='left:.5rem;'>Se connecter avec google</button>
         </form>
         <?php include_once './app/views/templates/_shared_links.php'?>
     </section>

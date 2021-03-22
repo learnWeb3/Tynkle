@@ -1,4 +1,4 @@
-<div class="card card-publication shadow p-4 m-2 rounded" id="post-<?php echo $post['id'] ?>">
+<div class="card card-publication shadow my-2 rounded" id="post-<?php echo $post['id'] ?>">
     <img src="<?php echo $post['cover_image']?>" alt="" class="card-img-top">
     <div class="card-body">
         <div class="row">
@@ -42,7 +42,7 @@
         </div>
 
         <div class="row my-4">
-            <a href="<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>" class="align-self-end font-weight-bold text-end">Voir les détails <i
+            <a href="<?php echo ROOT_PATH . "/posts/" . $post['id'] ?>" class="align-self-end font-weight-bold text-start text-lg-end">Voir les détails <i
             class="lni lni-arrow-right"></i></a>
         </div>
     </div>

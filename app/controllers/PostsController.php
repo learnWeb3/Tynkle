@@ -77,7 +77,7 @@ class PostsController extends ApplicationController
                     $cover_image = isset($uploaded_file_paths[0]) ? $uploaded_file_paths[0] : null;
                     Post::update(
                         $this->connection,
-                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code'],
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
                         array(
                             $this->current_user->id,
                             $_POST['id_breakdown_category'],
@@ -88,6 +88,8 @@ class PostsController extends ApplicationController
                             $_POST['budget'],
                             $_POST['city'],
                             $_POST['postal_code'],
+                            $_POST['lat'],
+                            $_POST['lng'],
                         ),
                         'id',
                         $this->params['id']

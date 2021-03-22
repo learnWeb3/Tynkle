@@ -48,7 +48,7 @@
 
         </form>
 
-        <button id="save-article" class="btn-lg btn-primary rounded-pill col-3 my-4">SAUVEGARDER</button>
+        <button id="save-article" class="btn-lg btn-primary col-3 my-4">SAUVEGARDER</button>
 
     </section>
 

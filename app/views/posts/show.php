@@ -1,9 +1,14 @@
-<main class="bg-background row w-100"
+<main class="bg-background row flex-row-reverse w-100"
     style='background-image: url(<?php echo $background_image_path ?>);min-height:94vh;padding-top:3rem;'>
 
     <?php include '_new_offer_modal.php'?>
     <?php include '_new_message_modal.php'?>
     <?php include '_warning_modal.php'?>
+
+    <section id="map" data-lon="<?php echo $post['lon'] ?>" data-lat="<?php echo $post['lat'] ?>"
+        class="col-12 col-lg-6 relative bg-white shadow-sm" style="height:94vh">
+
+    </section>
 
     <section class="col-12 col-lg-6 relative bg-white shadow p-4 overflow-auto text-black" style='height:94vh;'>
         <h1 class="font-weight-bold text-start w-100 display-4 my-2" id="title"><?php echo $post['title'] ?></h1>
@@ -29,7 +34,7 @@
 
             </div>
             <div class="col-12 col-xl-6">
-                <div class="p-4 rounded">
+                <div>
                     <div class="row w-100">
                         <div class="col-4 d-flex flex-column justify-content-center">
                             <div class="avatar shadow-sm bg-white my-2">
@@ -42,7 +47,7 @@
                             <p class="m-2"><?php echo $author['posts_count'] ?> annonces -
                                 <?php echo $author['offers_count'] ?> offres</p>
                             <div class="d-flex w-100 align-items-center">
-                                <div class="rating m-2"
+                                <div class="rating"
                                     data-rate-value='<?php echo $author['reviews_score'] ? $author['reviews_score'] : '0' ?>'>
                                 </div>
                                 <p class="m-2">
@@ -148,10 +153,6 @@
         <?php endif;?>
     </section>
 
-    <section id="map" data-lon="<?php echo $post['lon'] ?>" data-lat="<?php echo $post['lat'] ?>"
-        class="col-12 col-lg-6 relative bg-white shadow-sm" style="height:94vh">
-
-    </section>
 </main>
 
 

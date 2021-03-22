@@ -17,7 +17,7 @@
 
         </form>
 
-        <button id="save-rule" class="btn-lg btn-primary rounded-pill col-3 my-4">METTRE A JOUR</button>
+        <button id="save-rule" class="btn-lg btn-primary col-3 my-4">METTRE A JOUR</button>
     </section>
 
 </main>

@@ -10,14 +10,14 @@
             <div class="tab-pane fade show active" id="ask-help" role="tabpanel">
                 <form action="<?php echo ROOT_PATH . '/users' ?>" method="GET">
                     <div class="row">
-                        <div class="col-5 d-flex align-items-center form-group no-divider">
+                        <div class="col-12 col-lg-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control"  name="platform" title="platform">
                                 <?php foreach ($platforms as $platform): ?>
                                 <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
-                        <div class="col-5 d-flex align-items-center form-group no-divider">
+                        <div class="col-12 col-lg-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control" id="breakdown" name="breakdown" title="breakdown">
                                 <?php foreach ($breakdowns as $breakdown): ?>
                                 <option value="<?php echo $breakdown['id'] ?>"> <?php echo $breakdown['name'] ?>
@@ -25,7 +25,7 @@
                                 <?php endforeach;?>
                             </select>
                         </div>
-                        <div class="col-2 form-group mb-0 p-2">
+                        <div class="col-12 col-lg-2 form-group mb-0 p-2">
                             <button class="btn btn-primary btn-block h-100" type="submit">RECHERCHER</button>
                         </div>
                     </div>
@@ -34,14 +34,14 @@
             <div class="tab-pane fade" id="help" role="tabpanel">
                 <form action="<?php echo ROOT_PATH . '/posts' ?>" method="GET">
                     <div class="row">
-                        <div class="col-5 d-flex align-items-center form-group no-divider">
+                        <div class="col-12 col-lg-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control"  name="platform" title="platform">
                                 <?php foreach ($platforms as $platform): ?>
                                 <option value="<?php echo $platform['id'] ?>"> <?php echo $platform['name'] ?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
-                        <div class="col-5 d-flex align-items-center form-group no-divider">
+                        <div class="col-12 col-lg-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control" id="breakdown" name="breakdown" title="breakdown">
                                 <?php foreach ($breakdowns as $breakdown): ?>
                                 <option value="<?php echo $breakdown['id'] ?>"> <?php echo $breakdown['name'] ?>
@@ -49,7 +49,7 @@
                                 <?php endforeach;?>
                             </select>
                         </div>
-                        <div class="col-2 form-group mb-0 p-2">
+                        <div class="col-12 col-lg-2 form-group mb-0 p-2">
                             <button class="btn btn-primary btn-block h-100" type="submit">RECHERCHER</button>
                         </div>
                     </div>

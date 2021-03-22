@@ -7,6 +7,55 @@ class User extends Application
         $this->id = $id;
     }
 
+
+    public function getAlerts(PDO $connection, string $timestamp)
+    {
+        // $select_chat_ids = "SELECT GROUP_CONCAT(id_chat) as chat_ids FROM chat_users WHERE id_user = ?";
+        // $chat_ids = Request::send($connection, $select_chat_ids, [$this->id])->fetchAll(PDO::FETCH_ASSOC)[0]['chat_ids'];
+        // $select_user_ids = "SELECT GROUP_CONCAT(id_user) as user_ids FROM chat_users WHERE id_user IN ($chat_ids)";
+        // $user_ids =  Request::send($connection, $select_user_ids, [])->fetchAll(PDO::FETCH_ASSOC)[0]['user_ids'];
+        $request_body = "SELECT 
+        messages.id as message_id,
+        messages.id_chat as message_id_chat,
+        messages.content as message_content,
+        messages.ressource_link as message_ressource_link,
+        messages.created_at as message_created_at,
+        messages.updated_at as message_updated_at,
+        users.id as user_id,
+        users.firstname as user_firstname,
+        users.lastname as user_lastname,
+        users.username as user_username,
+        users.email as user_email,
+        users.avatar as user_avatar
+        FROM messages
+        JOIN users ON messages.id_user = users.id
+        WHERE messages.created_at >= ? 
+        OR messages.updated_at >= ?";
+        return Request::send($connection, $request_body, [$timestamp, $timestamp])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function streamAlerts(PDO $connection)
+    {
+        $timestamp = strftime('%F %H:%M:%S', time());
+        header('Content-type: text/event-stream');
+        header('Cache-control: no-cache');
+        header('Connection: Keep-Alive');
+        session_write_close();
+        while (true) {
+
+            $json_data = json_encode($this->getAlerts($connection, $timestamp));
+            echo 'data: ' . $json_data;
+            echo "\n\n";
+            flush();
+            ob_flush();
+            ob_end_flush();
+            if (!empty($json_data)) {
+                $timestamp = strftime('%F %H:%M:%S', time());
+            }
+            sleep(1);
+        }
+    }
+
     public static function getAll(PDO $connection, string $path = '/users', int $start, int $limit)
     {
         $request_body = "SELECT *,

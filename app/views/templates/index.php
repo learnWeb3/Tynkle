@@ -84,7 +84,7 @@
     <!-- ALERT SCRIPTS -->
     <script type="module" src="<?php echo ROOT_PATH . '/app/assets/js/commons/flash.js' ?>"></script>
     <!-- AOS INIT + TOOLTIP BOOTSTRAP -->
-    <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/templates/template.js"></script>
+    <script type="module" src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/templates/template.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <main  style="background-image: url(<?php echo $background_image_path ?>);min-height:100vh;margin-top:3rem" class="bg-background">
-    <section class="container d-flex flex-column align-items-center bg-light p-4">
+    <section class="container-lg d-flex flex-column align-items-center bg-light p-4">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="pills-posts-tab" data-bs-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="true">Mes annonces</a>

@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="new-review" tabindex="-1" aria-labelledby="new-reviewLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title front-weight-bold" id="new-reviewLabel">LAISSER UN AVIS</h5>
@@ -29,7 +29,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">FERMER</button>
+                <button type="button" class="btn btn-red-crayola" data-bs-dismiss="modal">FERMER</button>
                 <button id="new-review-form-submit" type="submit" form="new-review-form"
                     class="btn btn-success">VALIDER</button>
             </div>

@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="new-message" tabindex="-1" aria-labelledby="new-messageLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title front-weight-bold" id="new-messageLabel">POSER UNE QUESTION</h5>
@@ -16,7 +16,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">FERMER</button>
+                <button type="button" class="btn btn-red-crayola" data-bs-dismiss="modal">FERMER</button>
                 <button id="new-message-form-submit" type="submit" form="new-message-form" class="btn btn-success">ENVOYER</button>
             </div>
         </div>

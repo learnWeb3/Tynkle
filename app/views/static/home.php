@@ -29,7 +29,7 @@
             </div>
 
             <a href="<?php echo ROOT_PATH . "/posts" ?>" data-aos="fade-up" data-aos-duration="1000"
-                class="text-center my-4 col-9 col-lg-3 text-dark">
+                class="text-center my-4 col-9 col-lg-3 text-dark font-weight-bold">
                 VOIR LES ANNONCES
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -44,7 +44,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-trees"></i>
                         </div>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-secondary-light">
                             <i class="lni lni-32 lni-euro"></i>
                         </div>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-alarm-clock"></i>
                         </div>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-zoom-in"></i>
                         </div>
@@ -130,7 +130,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-trees"></i>
                         </div>
@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-secondary-light">
                             <i class="lni lni-32 lni-euro"></i>
                         </div>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-alarm-clock"></i>
                         </div>
@@ -200,7 +200,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-search-alt"></i>
                         </div>
@@ -209,7 +209,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-secondary-light">
                             <i class="lni lni-32 lni-euro"></i>
                         </div>
@@ -218,7 +218,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4 d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-direction"></i>
                         </div>
@@ -227,7 +227,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-                    <div class="px-0 pr-lg-4" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="px-0 pr-lg-4 d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
                             <i class="lni lni-32 lni-users"></i>
                         </div>

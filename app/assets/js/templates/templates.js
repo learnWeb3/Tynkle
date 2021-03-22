@@ -25,7 +25,7 @@ const getUserTemplate = ({
                     ${offers_count} offres</p>
                 <div class="row">
                     <div class="col-12 d-flex align-items-center">
-                        <div class="rating m-2"
+                        <div class="rating"
                             data-rate-value='${
                               reviews_score ? reviews_score : 0
                             }'>
@@ -330,7 +330,7 @@ const getPostTemplate = (
         <div class="row my-4">
         <a href="${
           ROOT_PATH + "/posts/" + id
-        }" class="align-self-end font-weight-bold text-end">Voir les détails <i
+        }" class="align-self-end font-weight-bold text-start text-lg-end">Voir les détails <i
         class="lni lni-arrow-right"></i></a>
   
         </div>
@@ -342,8 +342,7 @@ const getPostTemplate = (
     "card",
     "card-publication",
     "shadow",
-    "p-4",
-    "m-2",
+    "my-2",
     "rounded"
   );
   card.innerHTML = innerHTML;
@@ -450,8 +449,8 @@ const getUserCardTemplate = ({
             </div>
             <div class='card-body'>
                 <p class='font-weight-bold m-2 w-100'><span id='followers_count'>${follower_count}</span>
-                    abbonné(s) -
-                    ${followed_count} abbonnements </p>
+                    abonné(s) -
+                    ${followed_count} abonnements </p>
                 <div class='d-flex align-items-center w-100'>
                     <i class='lni lni-pointer lni-16'></i>
                     <p class='m-2'>${city}
@@ -466,7 +465,7 @@ const getUserCardTemplate = ({
                 </div>
                 <div class='row my-4'>
                     <a href='${ROOT_PATH + '/users/' + id}'
-                        class='align-self-end font-weight-bold text-end'>Voir le profil <i class='lni lni-arrow-right'></i></a>
+                        class='align-self-end font-weight-bold text-start text-lg-end'>Voir le profil <i class='lni lni-arrow-right'></i></a>
                 </div>
             </div>
           </div>`.trim();

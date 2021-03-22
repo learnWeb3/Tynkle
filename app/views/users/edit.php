@@ -55,7 +55,7 @@
                             <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="0"
                                 checked>
                             <?php else: ?>
-                            <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="1">
+                            <input class="form-check-input" type="radio" name="is_helper" id="is_helper_0" value="0">
                             <?php endif;?>
                             <label class="form-check-label" for="is_helper_0">non</label>
                         </div>
