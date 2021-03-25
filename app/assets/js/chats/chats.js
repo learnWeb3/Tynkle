@@ -18,16 +18,15 @@ const streamNewChats = () => {
   const eventSource = new EventSource(ROOT_PATH + '/chats/stream');
   eventSource.onmessage = function (message) {
     const msgData = JSON.parse(message.data);
-    console.log(msgData)
-    // if (msgData.length > 0) {
-    //     const isMessagePresent = document.querySelector('#message-' + msgData[0].message_id);
-    //     if (!isMessagePresent) {
-    //         messages_container.append(getMessageTemplate(msgData[0], current_user));
-    //         messages_container[0].scroll({
-    //             top: messages_container[0].scrollTopMax,
-    //             behavior: 'smooth'
-    //         });
-    //     }
+    if (msgData.length > 0) {
+        const isMessagePresent = $('#chat-'+msgData.id)
+        if (!isMessagePresent) {
+            $('.messages-box .list-group').append(getChatTemplate(msgData[0], current_user));
+            messages_container[0].scroll({
+                top: messages_container[0].scrollTopMax,
+                behavior: 'smooth'
+            });
+        }
   }
 
   eventSource.onopen = function () {
