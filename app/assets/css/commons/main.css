@@ -33,15 +33,6 @@ body {
     }
 }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-  background-repeat: no-repeat;
- background-position: 100% 8px;
-}
-
 /* REVIEWS */
 
 .review {
@@ -76,12 +67,6 @@ a:hover {
     color: #FD0E35;
 }
 
-/* MARGINS */
-
-.mt-5{
-    margin-top: 3.5rem;
-}
-
 /* BACKGROUND COLORS */
 
 
@@ -101,7 +86,7 @@ a:hover {
     background-color: #4ABDED;
 }
 
-.bg-yellow-brand {
+.bg-yellow-tynkle {
     background-color: #f3cf12;
 }
 
@@ -140,8 +125,8 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8rem;
-    height: 8rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     text-align: center;
     line-height: 4rem;
@@ -155,6 +140,10 @@ a:hover {
 
 /* BUTTONS */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> developp
 .btn-red-crayola {
     background-color: #FD0E35;
     color: #FFF;
@@ -175,7 +164,12 @@ a:hover {
     color: #FFF;
 }
 
-.btn-yellow-brand {
+.btn-yellow-tynkle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    min-height: 3.5rem;
     background-color: #F3CF12;
     color: #000;
 }
@@ -308,7 +302,7 @@ footer ul {
 }
 
 .rate-select-layer span {
-    color: #f3cf12;
+    color: orange;
 }
 
 .rate-base-layer {
@@ -316,7 +310,7 @@ footer ul {
 }
 
 .rate-hover-layer {
-    color: #f3cf12;
+    color: orange;
 }
 
 /* MODAL */

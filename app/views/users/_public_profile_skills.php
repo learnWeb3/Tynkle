@@ -6,7 +6,7 @@
                 data-bs-target="<?php echo "#collapse"."tynklePlatform".$i ?>" aria-expanded="true"
                 aria-controls="<?php echo "#collapse-".$i ?>">
                 <p class="mb-0"><?php echo $platform['name'] ?></p>
-                <span class="mx-4 badge bg-yellow-brand text-dark"><?php echo $platform['total_skill_owned_number'] ?>/<?php echo $platform['total_skill_number'] ?></span>
+                <span class="mx-4 badge bg-yellow-tynkle text-dark"><?php echo $platform['total_skill_owned_number'] ?>/<?php echo $platform['total_skill_number'] ?></span>
                 <span class="visually-hidden">number of skills owned on total number of skills of platform</span>
                 </h4>
             </button>

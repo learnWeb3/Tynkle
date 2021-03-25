@@ -6,7 +6,7 @@ class UsersController extends ApplicationController
     public function __construct(array $params, string $route_name, string $asked_method)
     {
         parent::__construct($params, $route_name, $asked_method);
-        $this->beforeAction(['edit', "update", "destroy"]);
+        $this->beforeAction(['edit', "update"]);
     }
 
     public function streamAlerts()
@@ -17,6 +17,7 @@ class UsersController extends ApplicationController
         } catch (Throwable $th) {
             die(http_response_code(500));
         }
+
     }
 
     public function index()
@@ -33,7 +34,7 @@ class UsersController extends ApplicationController
                 }
             } else {
                 if (isset($_GET['breakdown_categories'])) {
-                    $users = User::findUserByBreakdownSkill($this->connection, '/users', $_GET['breakdown_categories']);
+                    $users = User::findUserByBreakdownSkill($this->connection, '/posts', $_GET['breakdown_categories']);
                 } else {
                     $users = User::getAll($this->connection, '/users', $this->start, $this->limit);
                 }
@@ -45,7 +46,7 @@ class UsersController extends ApplicationController
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
             if (isset($_GET['breakdown'])) {
-                $users = User::findUserByBreakdownSkill($this->connection, '/users', $_GET['breakdown']);
+                $users = User::findUserByBreakdownSkill($this->connection, '/posts', $_GET['breakdown']);
             } else {
                 $users = User::getAll($this->connection, '/users', $this->start, $this->limit);
             }
@@ -63,6 +64,7 @@ class UsersController extends ApplicationController
                 ),
             );
         }
+
     }
 
     public function ask_new_password()
@@ -109,6 +111,7 @@ class UsersController extends ApplicationController
                 $flash->storeInSession();
                 die(header('location:' . ROOT_PATH . '/users/password/reset'));
             }
+
         } else {
             try {
                 $page_data = Page::getDetails($this->connection, "users#ask_new_password");
@@ -127,6 +130,7 @@ class UsersController extends ApplicationController
                 $this->handleError(500);
             }
         }
+
     }
 
     public function reset_password()
@@ -149,8 +153,7 @@ class UsersController extends ApplicationController
                             'reset_password_token' => $_GET['reset_password_token'],
                             'user_id' => $this->params['id'],
                         )
-                    );
-                } else {
+                    );} else {
                     $this->handleError(403);
                 }
             } catch (\Throwable $th) {
@@ -381,8 +384,7 @@ class UsersController extends ApplicationController
         }
     }
 
-    function new()
-    {
+    function new () {
         try {
             $page_data = Page::getDetails($this->connection, "users#new");
             $this->render(
@@ -420,6 +422,7 @@ class UsersController extends ApplicationController
         } else {
             $this->handleError(403);
         }
+
     }
 
     public function show()
@@ -453,21 +456,11 @@ class UsersController extends ApplicationController
                 $this->handleError(500);
             }
         }
+
     }
     public function destroy()
     {
-        try {
-            User::delete($this->connection, [], 'id', $this->current_user->id);
-            unset($_SESSION['current_user']);
-            $flash = new Flash(
-                array("Compte supprimé avec succès"),
-                'danger'
-            );
-            $flash->storeInSession();
-            die(header('Location:' . ROOT_PATH ));
-        } catch (\Throwable $th) {
-            $this->handleError(500);
-        }
+        User::delete($this->connection, [], 'id', $this->current_user['id']);
     }
 
     private function beforeAction(array $targeted_method_names)
@@ -485,4 +478,5 @@ class UsersController extends ApplicationController
             $this->handleError(500);
         }
     }
+
 }

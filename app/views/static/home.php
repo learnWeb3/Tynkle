@@ -1,7 +1,8 @@
 <main style="background-image: url(<?php echo $background_image_path ?>);" class="bg-background">
     <section id="value-proposition" style="min-height:66vh;">
         <div class="row w-100 p-4" style="min-height:66vh;background-color:rgba(51,51,51,.5)">
-            <div data-aos="zoom-in" data-aos-duration="1000" class="container-xl d-flex justify-content-center align-items-center">
+            <div data-aos="zoom-in" data-aos-duration="1000"
+                class="container-xl d-flex justify-content-center align-items-center">
                 <div class="col-12 col-lg-8">
                     <h1 class="text-white font-weight-bold display-4"><b>Tynkle,</b> LA première plateforme
                         exclusivement dédiée à l'entraide
@@ -20,14 +21,15 @@
             <h2 class="display-5 text-dark">Dernières annonces</h2>
 
             <div data-aos="zoom-in" data-aos-duration="1000" class="card-columns w-100 p-4">
-                <?php foreach ($posts as $post) : ?>
+                <?php foreach ($posts as $post): ?>
 
-                    <?php include __DIR__ . '/../posts/_publication_card.php' ?>
+                <?php include __DIR__.'/../posts/_publication_card.php'?>
 
-                <?php endforeach; ?>
+                <?php endforeach;?>
             </div>
 
-            <a href="<?php echo ROOT_PATH . "/posts" ?>" data-aos="fade-up" data-aos-duration="1000" class="btn btn-lg btn-yellow-brand text-center my-4 col-9 col-lg-3 text-dark">
+            <a href="<?php echo ROOT_PATH . "/posts" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 text-dark font-weight-bold">
                 VOIR LES ANNONCES
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -41,37 +43,37 @@
                 <h2 class="mb-5 display-5 text-center text-dark aos-init aos-animate">Réparer plutot que jeter !</h2>
             </div>
             <div class="row">
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-trees"></i>
+                            <i class="lni lni-32 lni-trees"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Ecologique</h3>
                         <p class="text-muted text-sm">Contribuer à réduire l'impact de l'homme sur l'environnement</p>
                     </div>
                 </div>
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-secondary-light">
-                            <i class="lni lni-64 lni-euro"></i>
+                            <i class="lni lni-32 lni-euro"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Budget maitrisé</h3>
                         <p class="text-muted text-sm">Faîtes des économies en réparant vos appareils</p>
                     </div>
                 </div>
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-alarm-clock"></i>
+                            <i class="lni lni-32 lni-alarm-clock"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Intervention Rapide</h3>
                         <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
                     </div>
                 </div>
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-zoom-in"></i>
+                            <i class="lni lni-32 lni-zoom-in"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Large Choix</h3>
                         <p class="text-muted text-sm">Chosissez votre interlocuteur parmis une communautée en pleine
@@ -79,7 +81,8 @@
                     </div>
                 </div>
             </div>
-            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000" class="btn btn-lg btn-yellow-brand  text-center my-4 col-9 col-lg-3 text-dark">
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 C'est parti !
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -89,39 +92,32 @@
     <section class="bg-light">
         <div class="container d-flex flex-column justify-content-center align-items-center">
 
+            <h2 class="display-5 text-dark"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
+            <p class="font-weight-bold my-4">Un appareil qui fait des siennes et une solution à portée de main
+                en
+                quelques
+                clics <br>
+                Trouver rapidement la solution à votre problème grâce à une intervention à distance ou sur le
+                lieu
+                de
+                votre choix <br>
+                Tout est possible ! dépannage, installation, formation, à vous de choisir !
+            </p>
 
-            <div class="row w-100">
+            <div data-aos="zoom-in" data-aos-duration="1000"
+                class="card-columns w-100 p-4">
+                <?php foreach ($users as $user): ?>
 
-                <div class="col-12 col-lg-6 d-flex flex-column">
+                <?php include __DIR__.'/_user_card.php'?>
 
-                    <h2 class="display-5 text-dark"><b>Tynkle,</b> un moyen simple de trouver des spécialistes</h2>
-                    <p class="font-weight-bold my-4">Un appareil qui fait des siennes et une solution à portée de main
-                        en
-                        quelques
-                        clics <br>
-                        Trouver rapidement la solution à votre problème grâce à une intervention à distance ou sur le
-                        lieu
-                        de
-                        votre choix <br>
-                        Tout est possible ! dépannage, installation, formation, à vous de choisir !
-                    </p>
-
-                    <a href="<?php echo ROOT_PATH . "/users" ?>" data-aos="fade-up" data-aos-duration="1000" class="btn btn-lg btn-yellow-brand text-center col-12 col-lg-6 text-dark">
-                        Je trouve un dépanneur !
-                        <i class="lni lni-arrow-right"></i>
-                    </a>
-
-                </div>
-
-                <div class="col-lg-6 d-lg-flex d-none px-4 rounded-circle">
-
-                    <img src="https://images.pexels.com/photos/6141084/pexels-photo-6141084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="trouver des spécialistes du dépannage" class="img-fluid">
-
-                </div>
-
+                <?php endforeach;?>
             </div>
 
-
+            <a href="<?php echo ROOT_PATH . "/users" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
+                Je trouve un dépanneur !
+                <i class="lni lni-arrow-right"></i>
+            </a>
 
         </div>
     </section>
@@ -133,35 +129,36 @@
                     problème, notre solution.</h2>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-4 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-trees"></i>
+                            <i class="lni lni-32 lni-trees"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Contact des Helpers</h3>
                         <p class="text-muted text-sm">Contribuer à réduire l'impact de l'homme sur l'environnement</p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-secondary-light">
-                            <i class="lni lni-64 lni-euro"></i>
+                            <i class="lni lni-32 lni-euro"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Trouve ta solution</h3>
                         <p class="text-muted text-sm">Faîtes des économies en réparant vos appareils</p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-alarm-clock"></i>
+                            <i class="lni lni-32 lni-alarm-clock"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Note ton intervention</h3>
                         <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
                     </div>
                 </div>
             </div>
-            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000" class="btn btn-lg btn-yellow-brand text-center my-4 col-9 col-lg-3 text-dark">
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 C'est parti !
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -178,15 +175,17 @@
                 <b>Tynkle</b>
             </h2>
 
-            <div data-aos="zoom-in" data-aos-duration="1000" class="row d-flex justify-content-center align-items-center w-100 p-4">
-                <?php for ($i = 0; $i < 3; $i++) : ?>
+            <div data-aos="zoom-in" data-aos-duration="1000"
+                class="row d-flex justify-content-center align-items-center w-100 p-4">
+                <?php for ($i = 0; $i < 3; $i++): ?>
 
-                    <?php include '_testimony_card.php' ?>
+                <?php include '_testimony_card.php'?>
 
-                <?php endfor; ?>
+                <?php endfor;?>
             </div>
 
-            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000" class="btn btn-lg btn-yellow-brand text-center my-4 col-9 col-lg-3 text-dark">
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 faire comme Ben
                 <i class="lni lni-arrow-right"></i>
             </a>
@@ -200,44 +199,45 @@
                     Deviens Helper !</h2>
             </div>
             <div class="row">
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-search-alt"></i>
+                            <i class="lni lni-32 lni-search-alt"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Trouve des missions autour de chez toi</h3>
                         <p class="text-muted text-sm">Contribuer à réduire l'impact de l'homme sur l'environnement</p>
                     </div>
                 </div>
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4  d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-secondary-light">
-                            <i class="lni lni-64 lni-euro"></i>
+                            <i class="lni lni-32 lni-euro"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Diversifie tes revenus</h3>
                         <p class="text-muted text-sm">Faîtes des économies en réparant vos appareils</p>
                     </div>
                 </div>
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4 d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-direction"></i>
+                            <i class="lni lni-32 lni-direction"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Travaille ou tu veux et quand tu veux</h3>
                         <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
                     </div>
                 </div>
-                <div class="col-6 mb-3">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="px-0 pr-lg-4 d-flex flex-column align-items-center justify-content-center text-center" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon-rounded mb-3 bg-primary-light">
-                            <i class="lni lni-64 lni-users"></i>
+                            <i class="lni lni-32 lni-users"></i>
                         </div>
                         <h3 class="h6 text-uppercase">Fais partis d'une communauté de passionnés</h3>
                         <p class="text-muted text-sm">Donnez rendez vous à vos voisins les plus proches</p>
                     </div>
                 </div>
             </div>
-            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000" class="btn btn-lg btn-yellow-brand text-center my-4 col-9 col-lg-3 text-dark">
+            <a href="<?php echo ROOT_PATH . "/register" ?>" data-aos="fade-up" data-aos-duration="1000"
+                class="text-center my-4 col-9 col-lg-3 font-weight-bold text-dark">
                 C'est parti !
                 <i class="lni lni-arrow-right"></i>
             </a>

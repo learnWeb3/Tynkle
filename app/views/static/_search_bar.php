@@ -20,7 +20,7 @@
                         <div class="col-12 col-lg-5 d-flex align-items-center form-group no-divider">
                             <select class="form-control" id="breakdown" name="breakdown" title="breakdown">
                                 <?php foreach ($breakdowns as $breakdown): ?>
-                                    <option value="<?php echo $breakdown['id'] ?>"> <?php echo $breakdown['name'] ?>
+                                <option value="<?php echo $breakdown['id'] ?>"> <?php echo $breakdown['name'] ?>
                                 </option>
                                 <?php endforeach;?>
                             </select>
