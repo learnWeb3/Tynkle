@@ -63,6 +63,7 @@
 
 
         <section class="col-12 col-xl-8 offset-xl-3 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="mt-5 font-weight-bold text-underlined">Les helpers :</h1>
             <div class="card-columns col-12 p-4" id="users-container"
                 data-nextpage="<?php echo $next_page ?>">
                 <?php foreach ($users as $user): ?>

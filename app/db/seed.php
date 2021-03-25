@@ -20,7 +20,15 @@ FaqItem::destroyAll($connection);
 Review::destroyAll($connection);
 
 $faker = Faker\Factory::create();
-$platforms = [["name"=>"Informatique", 'description'=>"PC/MAC et périphériques en tout genre", "icon"=>'windows'], ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],[ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']];
+$platforms = [
+    ["name"=>"PC", 'description'=>"PC et périphériques", "icon"=>'windows'],
+    ["name"=>"MAC", 'description'=>"MAC et périphériques", "icon"=>'apple'], 
+    ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],
+    [ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], 
+    ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], 
+    ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], 
+    ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']
+];
 
 foreach ($platforms as $platform) {
     try {
@@ -34,13 +42,14 @@ foreach ($platforms as $platform) {
 $platforms = Platform::all($connection, '/', 0, 100)['data'];
 
 $breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
-$breakdown_categories_informatique = ["Dépanner mon PC/ MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+$breakdown_categories_pc = ["Dépanner mon PC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+$breakdown_categories_mac = ["Dépanner mon MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
 $breakdown_categories_reseau = ["Installation box internet", "Connecter mes appareils", "Dépanner ma connexion internet", "Aide à l'utilisation"];
 $breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
 $breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma Nintendo Switch", "Autres consoles"];
 $breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
 
-$breakdown_categories = [$breakdown_categories_informatique, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
+$breakdown_categories = [$breakdown_categories_pc, $breakdown_categories_mac, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
 foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns) {
     foreach ($breakdown_category_breakdowns as $breakdown_category) {
         try {
@@ -124,7 +133,9 @@ for ($count = 0; $count < 100; $count++) {
 }
 
 $skills = [
-    "Dépanner mon PC/ MAC" =>
+    "Dépanner mon PC" =>
+    ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+    "Dépanner mon MAC" =>
     ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
     "Faire évoluer mon matériel" =>
     ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
