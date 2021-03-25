@@ -1,5 +1,13 @@
 import { getDataGouvAdresses } from "../commons/geolocation.js";
 
+
+const handleDestroy = () =>{
+ document.querySelector('#destroy').addEventListener('click', function(event){
+   const user_confirmation = confirm("Souhaitez vous vraiment supprimer votre compte ? Cette action entrainera la suppression  de l'ensemble de votre activité sur Tynkle");
+   !user_confirmation && event.preventDefault()
+ })
+}
+
 const handleClickItem = () =>
   $("#autocomplete-menu .item").on("click", function (event) {
     $("#adress").val($(this).text());
@@ -32,3 +40,4 @@ const handleInput = () =>
   });
 
 handleInput();
+handleDestroy();

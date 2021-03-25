@@ -690,33 +690,4 @@ class User extends Application
         return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function streamNewChats(PDO $connection)
-    {
-        $timestamp = strftime('%F %H:%M:%S', time());
-        header('Content-type: text/event-stream');
-        header('Cache-control: no-cache');
-        header('Connection: Keep-Alive');
-        session_write_close();
-        while (true) {
-
-            $json_data = json_encode($this->getNewChats($connection, $timestamp));
-            echo 'data: ' . $json_data;
-            echo "\n\n";
-            flush();
-            ob_flush();
-            ob_end_flush();
-            if (!empty($json_data)) {
-                $timestamp = strftime('%F %H:%M:%S', time());
-            }
-            sleep(1);
-        }
-    }
-
-    public function getNewChats(PDO $connection, $timestamp)
-    {
-        $request_body = "SELECT * FROM chats JOIN chat_users ON chat_users.id_chat = chats.id WHERE chat_users.id_user = ? AND chats.created_at >= ?";
-        return Request::send($connection, $request_body, [$this->id, "$timestamp"])->fetchAll(PDO::FETCH_ASSOC);
-
-    }
-
 }

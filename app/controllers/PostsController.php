@@ -19,7 +19,7 @@ class PostsController extends ApplicationController
                 try {
                     $post = Post::create(
                         $this->connection,
-                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng', 'technical_details'],
                         array(
                             $this->current_user->id,
                             $_POST['id_breakdown_category'],
@@ -32,6 +32,7 @@ class PostsController extends ApplicationController
                             $_POST['postal_code'],
                             $_POST['lat'],
                             $_POST['lng'],
+                            $_POST['technical_details']
                         ),
                         $_POST,
                         [
@@ -43,6 +44,7 @@ class PostsController extends ApplicationController
                             "postal_code" => 'required',
                             "lat" => 'required',
                             "lng" => 'required',
+                            'technical_details'=>'required'
                         ]
                     )[0];
                 } catch (ModelException $e) {
@@ -77,7 +79,7 @@ class PostsController extends ApplicationController
                     $cover_image = isset($uploaded_file_paths[0]) ? $uploaded_file_paths[0] : null;
                     Post::update(
                         $this->connection,
-                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
+                        ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng', 'technical_details'],
                         array(
                             $this->current_user->id,
                             $_POST['id_breakdown_category'],
@@ -90,6 +92,7 @@ class PostsController extends ApplicationController
                             $_POST['postal_code'],
                             $_POST['lat'],
                             $_POST['lng'],
+                            $_POST['technical_details']
                         ),
                         'id',
                         $this->params['id']

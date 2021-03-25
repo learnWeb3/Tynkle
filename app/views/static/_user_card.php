@@ -1,5 +1,5 @@
 <div class="card my-4 col-lg-3">
-    <div class="card-header">
+    <div>
         <div class="avatar shadow-sm bg-white my-2 mx-auto">
             <i class="lni lni-user lni-64"></i>
         </div>

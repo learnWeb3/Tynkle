@@ -17,6 +17,7 @@
                 <li><a href="<?php echo ROOT_PATH."/users/password/reset" ?>">Mot de passe oublié</a><small></small>
                 <li><a href="<?php echo ROOT_PATH."/posts" ?>">Les annonces</a></li>
                 <li><a href="<?php echo ROOT_PATH."/articles" ?>">Le blog</a></li>
+                <li><a href="#">La Communautée Tynkle</a></li>
                 <li><a href="<?php echo ROOT_PATH."/faq" ?>">F.A.Q</a></li>
             </ul>
         </div>

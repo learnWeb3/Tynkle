@@ -63,7 +63,8 @@
 
 
         <section class="col-12 col-xl-8 offset-xl-3 d-flex flex-column justify-content-center align-items-center">
-            <div class="card-columns col-12 p-4" id="posts-container"
+            <h1 class="mt-5 font-weight-bold text-underlined">Les annonces :</h1>
+          <div class="card-columns col-12 p-4" id="posts-container"
                 data-nextpage="<?php echo $next_page ?>">
                 <?php foreach ($posts as $post): ?>
                 <?php include '_publication_card.php'?>

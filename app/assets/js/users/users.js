@@ -18,6 +18,7 @@ const initObserver = () => {
 
   const appendFollowingUser = (followingusers) =>
     followingusers.data.map((followinguser) => {
+      console.log(followinguser)
      $("#users-container")
         .append(getUserCardTemplate(followinguser));
     });

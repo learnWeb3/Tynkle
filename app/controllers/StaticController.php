@@ -13,7 +13,7 @@ class StaticController extends ApplicationController
         try {
             $page_data = Page::getDetails($this->connection, "static#home");
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
-            $breakdowns = BreakdownCategory::all($this->connection, '/breakdowns', 0, 100)['data'];
+            $breakdowns = BreakdownCategory::where($this->connection, 'id_platform', $platforms[0]['id'])->fetchAll(PDO::FETCH_ASSOC);
             $posts = Post::getPosts($this->connection, '/posts', 3, 0)['data'];
             $users = User::getTopRated($this->connection);
             $this->render(

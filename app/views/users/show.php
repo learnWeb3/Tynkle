@@ -35,7 +35,7 @@
                         <?php if ($current_user): ?>
                         <div class="col-12 d-flex align-items-center justify-content-center flex-wrap"
                             id="follow-actions">
-                            <button type="button" class="btn btn-lg bg-yellow-tynkle text-dark col-12 col-lg-3 m-2"
+                            <button type="button" class="btn btn-lg bg-yellow-brand text-dark col-12 col-lg-3 m-2"
                                 data-bs-toggle="modal" data-bs-target="#new-review">
                                 <i class="lni lni-star mx-2"></i>LAISSER UN AVIS
                             </button>

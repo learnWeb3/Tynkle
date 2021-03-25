@@ -7,59 +7,32 @@ const handleSubmit = (formButton, input, subscribers) => formButton.addEventList
   event.preventDefault();
   const content = input.value;
   const data = {
-    content,
-    subscribers
+      content,
+      subscribers
   };
   const response = await sendmessage(data);
 })
 
-const streamNewChats = () => {
-
-  const eventSource = new EventSource(ROOT_PATH + '/chats/stream');
-  eventSource.onmessage = function (message) {
-    const msgData = JSON.parse(message.data);
-    if (msgData.length > 0) {
-        const isMessagePresent = $('#chat-'+msgData.id)
-        if (!isMessagePresent) {
-            $('.messages-box .list-group').append(getChatTemplate(msgData[0], current_user));
-            messages_container[0].scroll({
-                top: messages_container[0].scrollTopMax,
-                behavior: 'smooth'
-            });
-        }
-  }
-
-  eventSource.onopen = function () {
-    console.log('Event source initialized chats')
-  }
-
-  eventSource.onerror = function (event) {
-    console.error(event)
-  }
-
-}
-
-
 const streamMessages = (chat_id, messages_container, current_user) => {
   const eventSource = new EventSource(ROOT_PATH + '/chats/' + chat_id + '/stream');
   eventSource.onmessage = function (message) {
-    const msgData = JSON.parse(message.data);
-    if (msgData.length > 0) {
-      const isMessagePresent = document.querySelector('#message-' + msgData[0].message_id);
-      if (!isMessagePresent) {
-        messages_container.append(getMessageTemplate(msgData[0], current_user));
-        messages_container[0].scroll({
-          top: messages_container[0].scrollTopMax,
-          behavior: 'smooth'
-        });
+      const msgData = JSON.parse(message.data);
+      if (msgData.length > 0) {
+          const isMessagePresent = document.querySelector('#message-' + msgData[0].message_id);
+          if (!isMessagePresent) {
+              messages_container.append(getMessageTemplate(msgData[0], current_user));
+              messages_container[0].scroll({
+                  top: messages_container[0].scrollTopMax,
+                  behavior: 'smooth'
+              });
+          }
       }
-    }
   };
   eventSource.onerror = function (error) {
-    console.error('Event stream has encoutered an unexpected error');
+      console.error('Event stream has encoutered an unexpected error');
   };
   eventSource.onopen = function (event) {
-    console.log('Event stream initialized');
+      console.log('Event stream initialized');
   };
 }
 
@@ -89,9 +62,6 @@ $(".message").on("click", async function (event) {
     const subscribers = input.dataset.subscibersids.split(',');
     const messages_container = $('#messages-container')
     handleSubmit(formButton, input, subscribers);
-    streamMessages(chat.id, messages_container, current_user)
+    streamMessages(chat.id, messages_container, current_user )
   }
 });
-
-
-streamNewChats()

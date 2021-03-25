@@ -1,5 +1,22 @@
 import { ROOT_PATH } from "../API_CLIENT/index.js";
 
+const getChatTemplate = ({user, id, message, created_at}) =>
+{
+  return `<a href="${ROOT_PATH + '/chats/'+ id}" data-url='${ROOT_PATH + '/chats/'+ id}'
+  class="list-group-item list-group-item-action list-group-item-light rounded-0 message">
+  <div class="media d-flex col-12">
+      <i class="lni lni-user lni-32"></i>
+      <div class="media-body mx-4 w-100">
+          <div class="d-flex align-items-center justify-content-between mb-1">
+              <h6 class="mb-0">${user.username}</h6><small
+                  class="small font-weight-bold">${created_at}</small>
+          </div>
+          <p class="font-italic mb-0 text-small">${message.content}</p>
+      </div>
+  </div>
+</a>`
+}
+
 const getUserTemplate = ({
   id,
   username,
@@ -26,9 +43,8 @@ const getUserTemplate = ({
                 <div class="row">
                     <div class="col-12 d-flex align-items-center">
                         <div class="rating"
-                            data-rate-value='${
-                              reviews_score ? reviews_score : 0
-                            }'>
+                            data-rate-value='${reviews_score ? reviews_score : 0
+    }'>
                         </div>
                         <p class=" m-2">
                             ${reviews_score ? reviews_score : 0}/5</p>
@@ -109,9 +125,8 @@ const getArticleTemplate = (
     <div class="card-body d-flex flex-column">
         <h5 class="card-title my-2">${title}</h5>
         <p class="card-text">${description}</p>
-        <a href="${
-          ROOT_PATH + "/articles/" + id
-        }" class="align-self-end text-brand-blue font-weight-bold">Lire la suite <i
+        <a href="${ROOT_PATH + "/articles/" + id
+    }" class="align-self-end text-brand-blue font-weight-bold">Lire la suite <i
                 class="lni lni-arrow-right"></i></a>
     </div>
 </div>
@@ -199,12 +214,10 @@ const getAdminUserRowTemplate = ({
 
   return `
               <tr>
-                    <th scope="row"><a href='${
-                      ROOT_PATH + "/users/" + id
-                    }'>${id}</a></th>
-                    <td><a href='${
-                      ROOT_PATH + "/users/" + id
-                    }'>${username}</a></td>
+                    <th scope="row"><a href='${ROOT_PATH + "/users/" + id
+    }'>${id}</a></th>
+                    <td><a href='${ROOT_PATH + "/users/" + id
+    }'>${username}</a></td>
                     <td>${email}</td>
                     <td>
                         <form class="user-update" action="" method="post">
@@ -328,9 +341,8 @@ const getPostTemplate = (
           ${getAuthorActions(user_id, current_user)}
         </div>
         <div class="row my-4">
-        <a href="${
-          ROOT_PATH + "/posts/" + id
-        }" class="align-self-end font-weight-bold text-start text-lg-end">Voir les détails <i
+        <a href="${ROOT_PATH + "/posts/" + id
+    }" class="align-self-end font-weight-bold text-start text-lg-end">Voir les détails <i
         class="lni lni-arrow-right"></i></a>
   
         </div>
@@ -349,7 +361,7 @@ const getPostTemplate = (
   return card;
 };
 
-const getAsktemplate = ({}) => {};
+const getAsktemplate = ({ }) => { };
 
 const getOfferTemplate = ({
   id,
@@ -380,9 +392,8 @@ const getOfferTemplate = ({
         </div>
         <div class="col-12 col-xl-4 d-flex align-items-center justify-content-xl-end my-2">
           <i class="lni lni-user lni-16 mx-2"></i>
-            <a href="${
-              ROOT_PATH + "/users/" + user_id
-            }" class="font-weight-bold m-0">${username}</a>
+            <a href="${ROOT_PATH + "/users/" + user_id
+    }" class="font-weight-bold m-0">${username}</a>
         </div>
     </div>
     <div class="row my-2">
@@ -396,9 +407,8 @@ const getOfferTemplate = ({
     </div>
     <div class="row d-flex justify-content-end my-2">
         <div class="col-12 col-xl-8 d-flex align-items-center">
-            <a class="font-weight-bold" href="${
-              ROOT_PATH + "/posts/" + id_post
-            }" class=""> Voir l'annonce</a>
+            <a class="font-weight-bold" href="${ROOT_PATH + "/posts/" + id_post
+    }" class=""> Voir l'annonce</a>
         </div>
         <div class="col col-xl-4 d-flex align-items-center justify-content-between my-2">
            ${getButtons(is_accepted, is_declined, id)}
@@ -438,15 +448,16 @@ const getUserCardTemplate = ({
   id,
   follower_count
 }) => `<div class='card m-4 col-lg-3'>
-            <div class='card-header'>
+
+              <div>
                 <div class='avatar shadow-sm bg-white my-2 mx-auto'>
                     <i class='lni lni-user lni-64'></i>
                 </div>
                 <p class='card-title font-weight-bold text-center'>
-                    <a class='font-italic m-2 stretched-link' href='${ROOT_PATH+'/users/' + id}'>
+                    <a class='font-italic m-2 stretched-link' href='${ROOT_PATH + '/users/' + id}'>
                       ${username}</a>
                 </p>
-            </div>
+                </div>
             <div class='card-body'>
                 <p class='font-weight-bold m-2 w-100'><span id='followers_count'>${follower_count}</span>
                     abonné(s) -
@@ -488,5 +499,6 @@ export {
   getPlatformTemplate,
   getPlatformTemplateChecked,
   getUserCardTemplate,
-  getUserTemplate
+  getUserTemplate,
+  getChatTemplate
 };

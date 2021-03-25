@@ -33,6 +33,13 @@
                 </select>
             </div>
 
+            <div class="form-group col-12 my-2">
+                <label class='' for="technical_details">Système d'exploitation / Marque et modèle de l'appareil * : </label>
+                <input type="text" name="technical_details" id="technical_details" class="form-control form-control-lg"
+                    required placeholder="SAMSUNG GALAXY S5 ANDROID Nougat 7.0">
+                  
+            </div>
+
             <h3 class="mt-4 text-dark">2- Localisation : </h3>
 
             <hr>

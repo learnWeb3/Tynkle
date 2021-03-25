@@ -24,7 +24,6 @@ const handleTabClick = () =>
   });
 
 $(document).ready(() => {
-  $(".rating").rate();
   handleTabClick();
   handleChange();
 });
