@@ -5,17 +5,16 @@ const handleChange = () =>
     const { status, data } = await getBreakdowns({
       id_platform: $(this).val(),
     });
-    console.log(status, data)
     if (status === 200) {
       const template = data.map(
         ({ id, name }) => `<option value="${id}">${name}</option>`
       );
-      $(this).closest('form').find("select[name='breakdown']").html(template);
+      $(this).closest("form").find("select[name='breakdown']").html(template);
     }
   });
 
 const handleTabClick = () =>
-  $('.nav-link[role="tab"]').click(function(event){
+  $('.nav-link[role="tab"]').click(function (event) {
     event.preventDefault();
     $('.nav-link[role="tab"]').removeClass("active");
     $(this).addClass("active");

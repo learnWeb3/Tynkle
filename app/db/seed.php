@@ -20,46 +20,46 @@ FaqItem::destroyAll($connection);
 Review::destroyAll($connection);
 
 $faker = Faker\Factory::create();
-// $platforms = [
-//     ["name"=>"PC", 'description'=>"PC et périphériques", "icon"=>'windows'],
-//     ["name"=>"MAC", 'description'=>"MAC et périphériques", "icon"=>'apple'], 
-//     ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],
-//     [ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], 
-//     ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], 
-//     ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], 
-//     ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']
-// ];
+$platforms = [
+    ["name"=>"PC", 'description'=>"PC et périphériques", "icon"=>'windows'],
+    ["name"=>"MAC", 'description'=>"MAC et périphériques", "icon"=>'apple'], 
+    ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],
+    [ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], 
+    ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], 
+    ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], 
+    ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']
+];
 
-// foreach ($platforms as $platform) {
-//     try {
-//         Platform::create($connection, ['name', 'description', 'icon'], [$platform['name'],$platform['description'], $platform['icon'] ]);
-//         echo "Platform ".$platform['name']." created \n";
-//     } catch (\Throwable $th) {
-//         echo "platform $platform has not been created due to an internal error\n";
-//     }
-// }
+foreach ($platforms as $platform) {
+    try {
+        Platform::create($connection, ['name', 'description', 'icon'], [$platform['name'],$platform['description'], $platform['icon'] ]);
+        echo "Platform ".$platform['name']." created \n";
+    } catch (\Throwable $th) {
+        echo "platform $platform has not been created due to an internal error\n";
+    }
+}
 
-// $platforms = Platform::all($connection, '/', 0, 100)['data'];
+$platforms = Platform::all($connection, '/', 0, 100)['data'];
 
-// $breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
-// $breakdown_categories_pc = ["Dépanner mon PC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
-// $breakdown_categories_mac = ["Dépanner mon MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
-// $breakdown_categories_reseau = ["Installation box internet", "Connecter mes appareils", "Dépanner ma connexion internet", "Aide à l'utilisation"];
-// $breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
-// $breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma Nintendo Switch", "Autres consoles"];
-// $breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
+$breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
+$breakdown_categories_pc = ["Dépanner mon PC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+$breakdown_categories_mac = ["Dépanner mon MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+$breakdown_categories_reseau = ["Installation box internet", "Connecter mes appareils", "Dépanner ma connexion internet", "Aide à l'utilisation"];
+$breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
+$breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma Nintendo Switch", "Autres consoles"];
+$breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
 
-// $breakdown_categories = [$breakdown_categories_pc, $breakdown_categories_mac, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
-// foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns) {
-//     foreach ($breakdown_category_breakdowns as $breakdown_category) {
-//         try {
-//             BreakdownCategory::create($connection, ['id_platform', 'name', 'description'], [$id_platform + 1, $breakdown_category, $faker->text()]);
-//             echo "breakdown type $breakdown_category created \n";
-//         } catch (\Throwable $th) {
-//             echo "Breakdown category $breakdown_category has not been created due to an internal error\n";
-//         }
-//     }
-// }
+$breakdown_categories = [$breakdown_categories_pc, $breakdown_categories_mac, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
+foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns) {
+    foreach ($breakdown_category_breakdowns as $breakdown_category) {
+        try {
+            BreakdownCategory::create($connection, ['id_platform', 'name', 'description'], [$id_platform + 1, $breakdown_category, $faker->text()]);
+            echo "breakdown type $breakdown_category created \n";
+        } catch (\Throwable $th) {
+            echo "Breakdown category $breakdown_category has not been created due to an internal error\n";
+        }
+    }
+}
 
 // for ($count = 0; $count < 100; $count++) {
 //     try {
@@ -132,67 +132,67 @@ $faker = Faker\Factory::create();
 //     }
 // }
 
-// $skills = [
-//     "Dépanner mon PC" =>
-//     ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
-//     "Dépanner mon MAC" =>
-//     ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
-//     "Faire évoluer mon matériel" =>
-//     ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
-//     "Installer un logiciel" =>
-//     ["Installation Système exploitation", "Installation logiciel"],
-//     "Aide à l'utilisation" =>
-//     ["Cours/Aide à l'utilisation"],
-//     "Dépanner mon smartphone" =>
-//     ["Apple iOS", "Android", "Windows Phone"],
-//     "Depanner ma tablette" =>
-//     ["Apple iOS", "Android", "Windows Phone"],
-//     "Changer une pièce" =>
-//     ["Apple iOS", "Android", "Windows Phone"],
-//     "Aide à l'utilisation" =>
-//     ["Apple iOS", "Android", "Windows Phone"],
-//     "Installation box internet" =>
-//     ["Installation box"],
-//     "Connecter mes appareils" =>
-//     ["Configuration réseau"],
-//     "Dépanner ma connexion internet" =>
-//     ["Configuration réseau"],
-//     "Aide à l'utilisation" =>
-//     ["Cours/Aide à l'utilisation"],
-//     "Installation gros/petit électroménager" =>
-//     ["Installation (gros/petit)"],
-//     "Réparation / entretien petit électroménager" =>
-//     ["Réparation/Entretien petit"],
-//     "Réparation / entretien gros électroménager" =>
-//     ["Réparation/Entretien gros"],
-//     "Réparer / configurer ma playstation" =>
-//     ["Réparation", "Changer le stockage"],
-//     "Réparer / configurer ma xBox" =>
-//     ["Réparation", "Changer le stockage"],
-//     "Réparer / configurer ma Nintendo Switch" =>
-//     ["Réparation", "Changer le stockage"],
-//     "Autres consoles" =>
-//     ["Réparation", "Changer le stockage"],
-//     "Depanner/installer ma TV" =>
-//     ["Installation/Configuration TV", "Réparation TV"],
-//     "Depanner/installer mon système audio" =>
-//     ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-//     "Depanner/installer mon lecteur vidéo" =>
-//     ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-//     "Aide à l'utilisation" =>
-//     ["Cours/Aide à l'utilisation"],
-// ];
-// foreach ($skills as $breakdown_category => $related_skills) {
-//     $id_breakdown_category = BreakdownCategory::like($connection, 'name', $breakdown_category)->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
-//     foreach ($related_skills as $skill) {
-//         try {
-//             Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_breakdown_category]);
-//             echo "skill $skill has been created \n";
-//         } catch (\Throwable $th) {
-//             echo "Skill $skill has not been created due to an internal error\n";
-//         }
-//     }
-// }
+$skills = [
+    "Dépanner mon PC" =>
+    ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+    "Dépanner mon MAC" =>
+    ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+    "Faire évoluer mon matériel" =>
+    ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
+    "Installer un logiciel" =>
+    ["Installation Système exploitation", "Installation logiciel"],
+    "Aide à l'utilisation" =>
+    ["Cours/Aide à l'utilisation"],
+    "Dépanner mon smartphone" =>
+    ["Apple iOS", "Android", "Windows Phone"],
+    "Depanner ma tablette" =>
+    ["Apple iOS", "Android", "Windows Phone"],
+    "Changer une pièce" =>
+    ["Apple iOS", "Android", "Windows Phone"],
+    "Aide à l'utilisation" =>
+    ["Apple iOS", "Android", "Windows Phone"],
+    "Installation box internet" =>
+    ["Installation box"],
+    "Connecter mes appareils" =>
+    ["Configuration réseau"],
+    "Dépanner ma connexion internet" =>
+    ["Configuration réseau"],
+    "Aide à l'utilisation" =>
+    ["Cours/Aide à l'utilisation"],
+    "Installation gros/petit électroménager" =>
+    ["Installation (gros/petit)"],
+    "Réparation / entretien petit électroménager" =>
+    ["Réparation/Entretien petit"],
+    "Réparation / entretien gros électroménager" =>
+    ["Réparation/Entretien gros"],
+    "Réparer / configurer ma playstation" =>
+    ["Réparation", "Changer le stockage"],
+    "Réparer / configurer ma xBox" =>
+    ["Réparation", "Changer le stockage"],
+    "Réparer / configurer ma Nintendo Switch" =>
+    ["Réparation", "Changer le stockage"],
+    "Autres consoles" =>
+    ["Réparation", "Changer le stockage"],
+    "Depanner/installer ma TV" =>
+    ["Installation/Configuration TV", "Réparation TV"],
+    "Depanner/installer mon système audio" =>
+    ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+    "Depanner/installer mon lecteur vidéo" =>
+    ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+    "Aide à l'utilisation" =>
+    ["Cours/Aide à l'utilisation"],
+];
+foreach ($skills as $breakdown_category => $related_skills) {
+    $id_breakdown_category = BreakdownCategory::like($connection, 'name', $breakdown_category)->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+    foreach ($related_skills as $skill) {
+        try {
+            Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_breakdown_category]);
+            echo "skill $skill has been created \n";
+        } catch (\Throwable $th) {
+            echo "Skill $skill has not been created due to an internal error\n";
+        }
+    }
+}
 
 // $skills = Skill::all($connection, '/skills', 0, 100)['data'];
 // for ($count = 0; $count < 100; $count++) {
