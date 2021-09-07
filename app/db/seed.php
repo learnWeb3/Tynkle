@@ -20,225 +20,225 @@ FaqItem::destroyAll($connection);
 Review::destroyAll($connection);
 
 $faker = Faker\Factory::create();
-$platforms = [
-    ["name"=>"PC", 'description'=>"PC et périphériques", "icon"=>'windows'],
-    ["name"=>"MAC", 'description'=>"MAC et périphériques", "icon"=>'apple'], 
-    ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],
-    [ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], 
-    ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], 
-    ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], 
-    ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']
-];
+// $platforms = [
+//     ["name"=>"PC", 'description'=>"PC et périphériques", "icon"=>'windows'],
+//     ["name"=>"MAC", 'description'=>"MAC et périphériques", "icon"=>'apple'], 
+//     ['name'=>'Smartphone/tablette', 'description'=>"Téléphones mobiles tactile ou non, accessoires", "icon"=>'mobile'],
+//     [ 'name'=>"Reseau", 'description'=>"Box internet, routeurs, serveurs, répétiteurs wifi... ", "icon"=>'signal'], 
+//     ['name'=>"Electroménager", 'description'=>"Machine à laver, lave vaisselle réfrigérateur", "icon"=>'home'], 
+//     ['name'=>"Console de jeux", 'description'=>"Xbox, Nintendo, Playstation et toutes les autres", "icon"=>'game'], 
+//     ['name'=>"Tv/multimédia", 'description'=>"Téléviseur, Home-cinema, Sonorisation", "icon"=>'display']
+// ];
 
-foreach ($platforms as $platform) {
-    try {
-        Platform::create($connection, ['name', 'description', 'icon'], [$platform['name'],$platform['description'], $platform['icon'] ]);
-        echo "Platform ".$platform['name']." created \n";
-    } catch (\Throwable $th) {
-        echo "platform $plateform has not been created due to an internal error\n";
-    }
-}
+// foreach ($platforms as $platform) {
+//     try {
+//         Platform::create($connection, ['name', 'description', 'icon'], [$platform['name'],$platform['description'], $platform['icon'] ]);
+//         echo "Platform ".$platform['name']." created \n";
+//     } catch (\Throwable $th) {
+//         echo "platform $platform has not been created due to an internal error\n";
+//     }
+// }
 
-$platforms = Platform::all($connection, '/', 0, 100)['data'];
+// $platforms = Platform::all($connection, '/', 0, 100)['data'];
 
-$breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
-$breakdown_categories_pc = ["Dépanner mon PC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
-$breakdown_categories_mac = ["Dépanner mon MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
-$breakdown_categories_reseau = ["Installation box internet", "Connecter mes appareils", "Dépanner ma connexion internet", "Aide à l'utilisation"];
-$breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
-$breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma Nintendo Switch", "Autres consoles"];
-$breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
+// $breakdown_categories_smarthphone = ["Dépanner mon smartphone", "Depanner ma tablette", "Changer une pièce", "Aide à l'utilisation"];
+// $breakdown_categories_pc = ["Dépanner mon PC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+// $breakdown_categories_mac = ["Dépanner mon MAC", "Faire évoluer mon matériel", "Installer un logiciel", "Aide à l'utilisation"];
+// $breakdown_categories_reseau = ["Installation box internet", "Connecter mes appareils", "Dépanner ma connexion internet", "Aide à l'utilisation"];
+// $breakdown_categories_electromenagers = ["Installation gros/petit électroménager", "Réparation / entretien petit électroménager", "Réparation / entretien gros électroménager"];
+// $breakdown_categories_consoles = ["Réparer / configurer ma playstation", "Réparer / configurer ma xBox", "Réparer / configurer ma Nintendo Switch", "Autres consoles"];
+// $breakdown_categories_multimedia = ["Depanner/installer ma TV", "Depanner/installer mon système audio", "Depanner/installer mon lecteur vidéo", "Aide à l'utilisation"];
 
-$breakdown_categories = [$breakdown_categories_pc, $breakdown_categories_mac, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
-foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns) {
-    foreach ($breakdown_category_breakdowns as $breakdown_category) {
-        try {
-            BreakdownCategory::create($connection, ['id_platform', 'name', 'description'], [$id_platform + 1, $breakdown_category, $faker->text()]);
-            echo "breakdown type $breakdown_category created \n";
-        } catch (\Throwable $th) {
-            echo "Breakdown category $breakdown_category has not been created due to an internal error\n";
-        }
-    }
-}
+// $breakdown_categories = [$breakdown_categories_pc, $breakdown_categories_mac, $breakdown_categories_smarthphone, $breakdown_categories_reseau, $breakdown_categories_electromenagers, $breakdown_categories_consoles, $breakdown_categories_multimedia];
+// foreach ($breakdown_categories as $id_platform => $breakdown_category_breakdowns) {
+//     foreach ($breakdown_category_breakdowns as $breakdown_category) {
+//         try {
+//             BreakdownCategory::create($connection, ['id_platform', 'name', 'description'], [$id_platform + 1, $breakdown_category, $faker->text()]);
+//             echo "breakdown type $breakdown_category created \n";
+//         } catch (\Throwable $th) {
+//             echo "Breakdown category $breakdown_category has not been created due to an internal error\n";
+//         }
+//     }
+// }
 
-for ($count = 0; $count < 100; $count++) {
-    try {
-        $username = $faker->userName;
-        $verify_token = bin2hex(random_bytes(50));
-        $reset_password_token = bin2hex(random_bytes(50));
-        $geocoder = new Geocoder();
-        $coordinates = $geocoder->getCoordinates();
-        $adress_parts = $geocoder->reverseGeocode($coordinates['location']['lng'], $coordinates['location']['lat']);
-        User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token', 'lat', 'lon', 'city', 'postal_code'], array(
-            $username,
-            $faker->firstName(),
-            $faker->lastName,
-            $faker->date(),
-            $faker->email,
-            $adress_parts["route"],
-            $faker->phoneNumber,
-            password_hash('foobar', PASSWORD_BCRYPT),
-            $verify_token,
-            $reset_password_token,
-            $coordinates['location']['lat'],
-            $coordinates['location']['lng'],
-            $adress_parts["locality"],
-            $adress_parts["postal_code"],
-        ));
-        echo "User $username created \n";
-    } catch (\Throwable $th) {
-        echo "user has not been created due to an internal error\n";
-    }
-    sleep(rand(1,3));
-}
+// for ($count = 0; $count < 100; $count++) {
+//     try {
+//         $username = $faker->userName;
+//         $verify_token = bin2hex(random_bytes(50));
+//         $reset_password_token = bin2hex(random_bytes(50));
+//         $geocoder = new Geocoder();
+//         $coordinates = $geocoder->getCoordinates();
+//         $adress_parts = $geocoder->reverseGeocode($coordinates['location']['lng'], $coordinates['location']['lat']);
+//         User::create($connection, ['username', 'lastname', 'firstname', 'birthdate', 'email', 'adress', 'phone_number', 'password', 'verify_token', 'reset_password_token', 'lat', 'lon', 'city', 'postal_code'], array(
+//             $username,
+//             $faker->firstName(),
+//             $faker->lastName,
+//             $faker->date(),
+//             $faker->email,
+//             $adress_parts["route"],
+//             $faker->phoneNumber,
+//             password_hash('foobar', PASSWORD_BCRYPT),
+//             $verify_token,
+//             $reset_password_token,
+//             $coordinates['location']['lat'],
+//             $coordinates['location']['lng'],
+//             $adress_parts["locality"],
+//             $adress_parts["postal_code"],
+//         ));
+//         echo "User $username created \n";
+//     } catch (\Throwable $th) {
+//         echo "user has not been created due to an internal error\n";
+//     }
+//     sleep(rand(1,3));
+// }
 
-$users = User::all($connection, '/', 0, 100)['data'];
-$breakdown_categories = BreakdownCategory::all($connection, '/', 0, 100)['data'];
-$images = array(
-    'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg',
-    'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg',
-    'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg',
-    'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg',
-);
-for ($count = 0; $count < 100; $count++) {
-    try {
-        $random_user_index = array_rand($users);
-        $random_user_id = $users[$random_user_index]['id'];
-        $random_breakdown_category_index = array_rand($breakdown_categories);
-        $random_breakdown_category_id = $breakdown_categories[$random_breakdown_category_index]['id'];
-        $title = "Super titre $count";
-        Post::create(
-            $connection,
-            ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
-            array(
-                $random_user_id,
-                $random_breakdown_category_index,
-                json_encode(
-                    $images
-                ),
-                $images[array_rand($images)],
-                $title,
-                $faker->text(),
-                $faker->randomNumber(3),
-                $faker->city,
-                $faker->postcode,
-                $faker->latitude,
-                $faker->longitude,
-            )
-        );
-        echo "Post $title created \n";
-    } catch (\Throwable $th) {
-        echo "Post has not been created due to an internal error\n";
-    }
-}
+// $users = User::all($connection, '/', 0, 100)['data'];
+// $breakdown_categories = BreakdownCategory::all($connection, '/', 0, 100)['data'];
+// $images = array(
+//     'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg',
+//     'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg',
+//     'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg',
+//     'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg',
+// );
+// for ($count = 0; $count < 100; $count++) {
+//     try {
+//         $random_user_index = array_rand($users);
+//         $random_user_id = $users[$random_user_index]['id'];
+//         $random_breakdown_category_index = array_rand($breakdown_categories);
+//         $random_breakdown_category_id = $breakdown_categories[$random_breakdown_category_index]['id'];
+//         $title = "Super titre $count";
+//         Post::create(
+//             $connection,
+//             ['id_user', 'id_breakdown_category', 'images', 'cover_image', 'title', 'content', 'budget', 'city', 'postal_code', 'lat', 'lng'],
+//             array(
+//                 $random_user_id,
+//                 $random_breakdown_category_index,
+//                 json_encode(
+//                     $images
+//                 ),
+//                 $images[array_rand($images)],
+//                 $title,
+//                 $faker->text(),
+//                 $faker->randomNumber(3),
+//                 $faker->city,
+//                 $faker->postcode,
+//                 $faker->latitude,
+//                 $faker->longitude,
+//             )
+//         );
+//         echo "Post $title created \n";
+//     } catch (\Throwable $th) {
+//         echo "Post has not been created due to an internal error\n";
+//     }
+// }
 
-$skills = [
-    "Dépanner mon PC" =>
-    ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
-    "Dépanner mon MAC" =>
-    ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
-    "Faire évoluer mon matériel" =>
-    ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
-    "Installer un logiciel" =>
-    ["Installation Système exploitation", "Installation logiciel"],
-    "Aide à l'utilisation" =>
-    ["Cours/Aide à l'utilisation"],
-    "Dépanner mon smartphone" =>
-    ["Apple iOS", "Android", "Windows Phone"],
-    "Depanner ma tablette" =>
-    ["Apple iOS", "Android", "Windows Phone"],
-    "Changer une pièce" =>
-    ["Apple iOS", "Android", "Windows Phone"],
-    "Aide à l'utilisation" =>
-    ["Apple iOS", "Android", "Windows Phone"],
-    "Installation box internet" =>
-    ["Installation box"],
-    "Connecter mes appareils" =>
-    ["Configuration réseau"],
-    "Dépanner ma connexion internet" =>
-    ["Configuration réseau"],
-    "Aide à l'utilisation" =>
-    ["Cours/Aide à l'utilisation"],
-    "Installation gros/petit électroménager" =>
-    ["Installation (gros/petit)"],
-    "Réparation / entretien petit électroménager" =>
-    ["Réparation/Entretien petit"],
-    "Réparation / entretien gros électroménager" =>
-    ["Réparation/Entretien gros"],
-    "Réparer / configurer ma playstation" =>
-    ["Réparation", "Changer le stockage"],
-    "Réparer / configurer ma xBox" =>
-    ["Réparation", "Changer le stockage"],
-    "Réparer / configurer ma Nintendo Switch" =>
-    ["Réparation", "Changer le stockage"],
-    "Autres consoles" =>
-    ["Réparation", "Changer le stockage"],
-    "Depanner/installer ma TV" =>
-    ["Installation/Configuration TV", "Réparation TV"],
-    "Depanner/installer mon système audio" =>
-    ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-    "Depanner/installer mon lecteur vidéo" =>
-    ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
-    "Aide à l'utilisation" =>
-    ["Cours/Aide à l'utilisation"],
-];
-foreach ($skills as $breakdown_category => $related_skills) {
-    $id_breakdown_category = BreakdownCategory::like($connection, 'name', $breakdown_category)->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
-    foreach ($related_skills as $skill) {
-        try {
-            Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_breakdown_category]);
-            echo "skill $skill has been created \n";
-        } catch (\Throwable $th) {
-            echo "Skill $skill has not been created due to an internal error\n";
-        }
-    }
-}
+// $skills = [
+//     "Dépanner mon PC" =>
+//     ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+//     "Dépanner mon MAC" =>
+//     ["Formattage/redémarrage", "Installation Système exploitation", "Changement de pièce"],
+//     "Faire évoluer mon matériel" =>
+//     ["Changement de pièce", "Installation périphérique", "Assemblage ordinateur"],
+//     "Installer un logiciel" =>
+//     ["Installation Système exploitation", "Installation logiciel"],
+//     "Aide à l'utilisation" =>
+//     ["Cours/Aide à l'utilisation"],
+//     "Dépanner mon smartphone" =>
+//     ["Apple iOS", "Android", "Windows Phone"],
+//     "Depanner ma tablette" =>
+//     ["Apple iOS", "Android", "Windows Phone"],
+//     "Changer une pièce" =>
+//     ["Apple iOS", "Android", "Windows Phone"],
+//     "Aide à l'utilisation" =>
+//     ["Apple iOS", "Android", "Windows Phone"],
+//     "Installation box internet" =>
+//     ["Installation box"],
+//     "Connecter mes appareils" =>
+//     ["Configuration réseau"],
+//     "Dépanner ma connexion internet" =>
+//     ["Configuration réseau"],
+//     "Aide à l'utilisation" =>
+//     ["Cours/Aide à l'utilisation"],
+//     "Installation gros/petit électroménager" =>
+//     ["Installation (gros/petit)"],
+//     "Réparation / entretien petit électroménager" =>
+//     ["Réparation/Entretien petit"],
+//     "Réparation / entretien gros électroménager" =>
+//     ["Réparation/Entretien gros"],
+//     "Réparer / configurer ma playstation" =>
+//     ["Réparation", "Changer le stockage"],
+//     "Réparer / configurer ma xBox" =>
+//     ["Réparation", "Changer le stockage"],
+//     "Réparer / configurer ma Nintendo Switch" =>
+//     ["Réparation", "Changer le stockage"],
+//     "Autres consoles" =>
+//     ["Réparation", "Changer le stockage"],
+//     "Depanner/installer ma TV" =>
+//     ["Installation/Configuration TV", "Réparation TV"],
+//     "Depanner/installer mon système audio" =>
+//     ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+//     "Depanner/installer mon lecteur vidéo" =>
+//     ["Installation audio/vidéo", "Configuration audio/vidéo", "Réparation"],
+//     "Aide à l'utilisation" =>
+//     ["Cours/Aide à l'utilisation"],
+// ];
+// foreach ($skills as $breakdown_category => $related_skills) {
+//     $id_breakdown_category = BreakdownCategory::like($connection, 'name', $breakdown_category)->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+//     foreach ($related_skills as $skill) {
+//         try {
+//             Skill::create($connection, ['name', 'id_breakdown_category'], [$skill, $id_breakdown_category]);
+//             echo "skill $skill has been created \n";
+//         } catch (\Throwable $th) {
+//             echo "Skill $skill has not been created due to an internal error\n";
+//         }
+//     }
+// }
 
-$skills = Skill::all($connection, '/skills', 0, 100)['data'];
-for ($count = 0; $count < 100; $count++) {
-    try {
-        $random_skill_index = array_rand($skills);
-        $random_skill_id = $skills[$random_skill_index]['id'];
-        $random_user_index = array_rand($users);
-        $random_user_id = $users[$random_user_index]['id'];
-        UserSkill::create(
-            $connection,
-            ['id_skill', 'id_user'],
-            array(
-                $random_skill_id,
-                $random_user_id,
-            )
-        );
-        echo "User skill for user id $random_user_index \n";
-    } catch (\Throwable $th) {
-        echo "user Skill has not been created due to an internal error\n";
-    }
-}
+// $skills = Skill::all($connection, '/skills', 0, 100)['data'];
+// for ($count = 0; $count < 100; $count++) {
+//     try {
+//         $random_skill_index = array_rand($skills);
+//         $random_skill_id = $skills[$random_skill_index]['id'];
+//         $random_user_index = array_rand($users);
+//         $random_user_id = $users[$random_user_index]['id'];
+//         UserSkill::create(
+//             $connection,
+//             ['id_skill', 'id_user'],
+//             array(
+//                 $random_skill_id,
+//                 $random_user_id,
+//             )
+//         );
+//         echo "User skill for user id $random_user_index \n";
+//     } catch (\Throwable $th) {
+//         echo "user Skill has not been created due to an internal error\n";
+//     }
+// }
 
-$posts = Post::all($connection, '/posts', 0, 10000)['data'];
-for ($count = 0; $count < 100; $count++) {
-    try {
-        $random_post_index = array_rand($posts);
-        $random_post_id = $posts[$random_post_index]['id'];
-        $random_user_index = array_rand($users);
-        $random_user_id = $users[$random_user_index]['id'];
-        $object = "offfre n° $count";
-        Offer::create(
-            $connection,
-            ['id_post', 'id_user', 'content', 'object', 'amount'],
-            array(
-                $random_post_id,
-                $random_user_id,
-                $faker->text(),
-                $object,
-                $faker->randomNumber(3),
-            )
-        );
-        echo "Offer $object has been created \n";
-    } catch (\Throwable $th) {
-        echo "Offer has not been created due to an internal error\n";
-    }
-}
+// $posts = Post::all($connection, '/posts', 0, 10000)['data'];
+// for ($count = 0; $count < 100; $count++) {
+//     try {
+//         $random_post_index = array_rand($posts);
+//         $random_post_id = $posts[$random_post_index]['id'];
+//         $random_user_index = array_rand($users);
+//         $random_user_id = $users[$random_user_index]['id'];
+//         $object = "offfre n° $count";
+//         Offer::create(
+//             $connection,
+//             ['id_post', 'id_user', 'content', 'object', 'amount'],
+//             array(
+//                 $random_post_id,
+//                 $random_user_id,
+//                 $faker->text(),
+//                 $object,
+//                 $faker->randomNumber(3),
+//             )
+//         );
+//         echo "Offer $object has been created \n";
+//     } catch (\Throwable $th) {
+//         echo "Offer has not been created due to an internal error\n";
+//     }
+// }
 
 $faq_categories = ['Généralités', 'Avant le dépannage en tant qu’Helper', 'Pendant un dépannage', 'Avant un dépannage si recherchez de l’aide', 'Contact', 'Une communauté d’entraide est disponible sur
 Facebook'];
@@ -345,27 +345,27 @@ foreach ($faq_items as $index => $faq_items_batch) {
 }
 
 
-for ($i=0; $i<500; $i ++)
-{
-    $random_follower_index = array_rand($users);
-    $random_follower_id = $users[$random_follower_index]['id'];
-    $random_followed_index = array_rand($users);
-    $random_followed_id = $users[$random_followed_index]['id'];
-    try {
-        Review::create(
-            $connection,
-            ['id_reviewed','id_reviewer', 'comment', 'score'],
-            [
-                $random_follower_id,
-                $random_followed_id,
-                $faker->text(),
-                $faker->numberBetween($min = 0, $max = 5)
-            ]
-        );
-        echo " Review has been created and inserted in database";
-    } catch (\Throwable $th) {
-        echo "Review has not been created due to an internal error\n";
-    }
-}
+// for ($i=0; $i<500; $i ++)
+// {
+//     $random_follower_index = array_rand($users);
+//     $random_follower_id = $users[$random_follower_index]['id'];
+//     $random_followed_index = array_rand($users);
+//     $random_followed_id = $users[$random_followed_index]['id'];
+//     try {
+//         Review::create(
+//             $connection,
+//             ['id_reviewed','id_reviewer', 'comment', 'score'],
+//             [
+//                 $random_follower_id,
+//                 $random_followed_id,
+//                 $faker->text(),
+//                 $faker->numberBetween($min = 0, $max = 5)
+//             ]
+//         );
+//         echo " Review has been created and inserted in database";
+//     } catch (\Throwable $th) {
+//         echo "Review has not been created due to an internal error\n";
+//     }
+// }
 
 

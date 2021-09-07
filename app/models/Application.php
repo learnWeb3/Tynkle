@@ -43,7 +43,8 @@ class Application
                 }
             }, $request_parameters);
             $request_body = "INSERT INTO $table_name (" . implode(",", $column_names) . ") VALUES (" . $prepared_query_parameters . ")";
-            Request::send($connection, $request_body, $request_parameters);
+            $check = Request::send($connection, $request_body, $request_parameters);
+            var_dump($check);
             return self::lastCreatedRow($connection)->fetchAll(\PDO::FETCH_ASSOC);
         }
     }

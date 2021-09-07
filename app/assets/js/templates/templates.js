@@ -1,17 +1,17 @@
 import { ROOT_PATH } from "../API_CLIENT/index.js";
 
-const getChatTemplate = ({user, id, message, created_at}) =>
+const getChatTemplate = ({subscriber_third_party,preview_last_message, id, created_at}) =>
 {
-  return `<a href="${ROOT_PATH + '/chats/'+ id}" data-url='${ROOT_PATH + '/chats/'+ id}'
+  return `<a id='chat-${id}' href="${ROOT_PATH + '/chats/'+ id}" data-url= '/chats/${id}'
   class="list-group-item list-group-item-action list-group-item-light rounded-0 message">
   <div class="media d-flex col-12">
       <i class="lni lni-user lni-32"></i>
       <div class="media-body mx-4 w-100">
           <div class="d-flex align-items-center justify-content-between mb-1">
-              <h6 class="mb-0">${user.username}</h6><small
+              <h6 class="mb-0">${subscriber_third_party.user_username}</h6><small
                   class="small font-weight-bold">${created_at}</small>
           </div>
-          <p class="font-italic mb-0 text-small">${message.content}</p>
+          <p class="font-italic mb-0 text-small">${preview_last_message.content}</p>
       </div>
   </div>
 </a>`

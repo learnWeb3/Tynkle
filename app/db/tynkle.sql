@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : ven. 12 mars 2021 à 10:04
--- Version du serveur :  10.4.17-MariaDB
--- Version de PHP : 7.4.13
+-- Host: localhost:3306
+-- Generation Time: Sep 07, 2021 at 01:52 PM
+-- Server version: 8.0.26-0ubuntu0.20.04.2
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `tynkle`
+-- Database: `tynkle`
 --
 CREATE DATABASE IF NOT EXISTS `tynkle` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `tynkle`;
@@ -26,21 +27,21 @@ USE `tynkle`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `articles`
+-- Table structure for table `articles`
 --
 
 CREATE TABLE `articles` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `cover_image` longtext NOT NULL,
   `content` longtext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `articles`
+-- Dumping data for table `articles`
 --
 
 INSERT INTO `articles` (`id`, `title`, `description`, `cover_image`, `content`, `created_at`, `updated_at`) VALUES
@@ -51,1143 +52,276 @@ INSERT INTO `articles` (`id`, `title`, `description`, `cover_image`, `content`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `asks`
+-- Table structure for table `asks`
 --
 
 CREATE TABLE `asks` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
+  `id_post` int NOT NULL,
   `object` varchar(255) NOT NULL,
   `content` tinytext NOT NULL,
   `amount` double NOT NULL,
-  `is_viewed` tinyint(1) NOT NULL DEFAULT 0,
-  `is_accepted` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `is_viewed` tinyint(1) NOT NULL DEFAULT '0',
+  `is_accepted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `breakdown_categories`
+-- Table structure for table `breakdown_categories`
 --
 
 CREATE TABLE `breakdown_categories` (
-  `id` int(11) NOT NULL,
-  `id_platform` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_platform` int NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` tinytext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `breakdown_categories`
---
-
-INSERT INTO `breakdown_categories` (`id`, `id_platform`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Dépanner mon PC/ MAC', 'Consequatur necessitatibus deleniti dolore ducimus in quia. Recusandae minus aliquam sint. Sed repellat recusandae error voluptatem qui magnam natus.', '2021-03-12 09:55:41', '0000-00-00 00:00:00'),
-(2, 1, 'Faire évoluer mon matériel', 'Numquam cupiditate amet perspiciatis quae facilis dolor. Quis est aut perferendis qui ut ipsa. Vel accusantium nihil molestias ullam. Rem et itaque sint.', '2021-03-12 09:55:41', '0000-00-00 00:00:00'),
-(3, 1, 'Installer un logiciel', 'Laborum dignissimos et expedita eos voluptas autem. Quo qui dolor vitae et laborum sed quaerat.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(4, 1, 'Aide à l\'utilisation', 'Omnis velit ut est velit qui aut earum. Sed itaque voluptate quo sed qui. Quod molestiae expedita sit esse.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(5, 2, 'Dépanner mon smartphone', 'Et aut facere iure. Fuga illo doloribus natus porro. Rerum dolorum saepe voluptatem eligendi nesciunt aut. Consectetur doloribus quam fugiat exercitationem aut est.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(6, 2, 'Depanner ma tablette', 'Est ipsum eveniet occaecati aut et et maiores. Quaerat illo tenetur doloremque repellendus voluptatum. Libero fugit ut ut dolor eligendi qui assumenda corrupti.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(7, 2, 'Changer une pièce', 'Sed eos fugit fuga. Suscipit consectetur sunt id pariatur eaque. Quia minus illum aut laudantium.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(8, 2, 'Aide à l\'utilisation', 'Nostrum eos est reprehenderit est quis quia explicabo. Ex voluptatem et autem natus. Officiis minima ea consequatur nobis ut maiores iste. Velit voluptatem vero eveniet pariatur et.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(9, 3, 'Installation box internet', 'Voluptatem qui similique veniam error et est. Ut aut laboriosam veniam velit quae necessitatibus doloribus ipsum. Dolore et consequatur quidem dolore.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(10, 3, 'Connecter mes appareils', 'Fugit adipisci rerum optio. Unde architecto et officiis et omnis inventore dolorem. Architecto beatae et qui perspiciatis pariatur quibusdam est.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(11, 3, 'Dépanner ma connexion internet', 'Minima molestiae non voluptatibus pariatur sit. Itaque quae quibusdam hic est ut est autem. Incidunt harum qui voluptate id corrupti deserunt.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(12, 3, 'Aide à l\'utilisation', 'Qui fugit ex ratione voluptate doloribus laudantium tenetur. Fuga ipsum quasi natus dolore. Quod beatae ut tempora est modi.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(13, 4, 'Installation gros/petit électroménager', 'Corporis rerum numquam tenetur optio perspiciatis labore. Non ducimus odio amet laudantium quisquam et et. Cumque odit aut qui nulla asperiores natus alias.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(14, 4, 'Réparation / entretien petit électroménager', 'Deserunt culpa fugit rerum eum atque totam quia. Et tenetur quo architecto recusandae sit sit. Eum odit consequatur magni fuga iure. Ut maxime et molestiae.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(15, 4, 'Réparation / entretien gros électroménager', 'Cum sunt fugit voluptatum maxime dolorem. Cumque totam hic reiciendis sit commodi est. Aut quam commodi et pariatur vitae nostrum officia vero. Nemo dolor suscipit repellendus fuga.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(16, 5, 'Réparer / configurer ma playstation', 'Molestiae doloribus voluptatem est sint qui. Nemo officiis aspernatur quidem aut. Ut qui et labore voluptate. Natus qui ipsam repellendus culpa atque enim eum.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(17, 5, 'Réparer / configurer ma xBox', 'In sapiente quod velit. A aperiam expedita dicta laboriosam nihil. Quae ea fuga molestiae vero. Eligendi suscipit placeat officia. Qui laudantium exercitationem magnam molestiae architecto unde.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(18, 5, 'Réparer / configurer ma Nintendo Switch', 'Dicta sequi nam excepturi nemo aut aut. Voluptatem quo est earum vel. Et occaecati excepturi sit officiis dolore ex reprehenderit sunt. Et omnis quo fugit ut perferendis.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(19, 5, 'Autres consoles', 'Voluptatem ullam rerum minima quas commodi facilis vel. Inventore qui ipsam veritatis repellendus voluptatem consequatur. Delectus ipsa corrupti qui.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(20, 6, 'Depanner/installer ma TV', 'Aut omnis non aut ut atque perspiciatis consectetur. Laborum quisquam sapiente ut labore quia aut. Veniam porro et officia libero eos ut cumque. Aut recusandae animi molestiae modi debitis.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(21, 6, 'Depanner/installer mon système audio', 'Dignissimos consequuntur et non est. Accusantium repudiandae nobis quo praesentium aut mollitia nobis. Placeat eaque sit incidunt sapiente sint ex est.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(22, 6, 'Depanner/installer mon lecteur vidéo', 'Sed aspernatur quasi molestiae dicta qui. Porro sed quia pariatur dolores dicta sed tenetur.', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(23, 6, 'Aide à l\'utilisation', 'Accusamus harum incidunt sit aut. Quos omnis et omnis. Dicta dolor error sit nisi deleniti voluptatem perferendis. Voluptas nostrum voluptatem culpa sed illum.', '2021-03-12 09:55:42', '0000-00-00 00:00:00');
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `chats`
+-- Table structure for table `chats`
 --
 
 CREATE TABLE `chats` (
-  `id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `chat_users`
+-- Table structure for table `chat_users`
 --
 
 CREATE TABLE `chat_users` (
-  `id` int(11) NOT NULL,
-  `id_chat` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `id_chat` int NOT NULL,
+  `id_user` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `faq_categories`
+-- Table structure for table `faq_categories`
 --
 
 CREATE TABLE `faq_categories` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `faq_categories`
+-- Dumping data for table `faq_categories`
 --
 
 INSERT INTO `faq_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Généralités', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(2, 'Avant le dépannage en tant qu’Helper', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(3, 'Pendant un dépannage', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(4, 'Avant un dépannage si recherchez de l’aide', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(5, 'Contact', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(6, 'Une communauté d’entraide est disponible sur\nFacebook', '2021-03-12 09:59:42', '0000-00-00 00:00:00');
+(1, 'Généralités', '2021-09-07 13:48:23', NULL),
+(2, 'Avant le dépannage en tant qu’Helper', '2021-09-07 13:48:23', NULL),
+(3, 'Pendant un dépannage', '2021-09-07 13:48:23', NULL),
+(4, 'Avant un dépannage si recherchez de l’aide', '2021-09-07 13:48:23', NULL),
+(5, 'Contact', '2021-09-07 13:48:23', NULL),
+(6, 'Une communauté d’entraide est disponible sur\nFacebook', '2021-09-07 13:48:23', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `faq_items`
+-- Table structure for table `faq_items`
 --
 
 CREATE TABLE `faq_items` (
-  `id` int(11) NOT NULL,
-  `id_faq_category` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_faq_category` int NOT NULL,
   `label` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `faq_items`
+-- Dumping data for table `faq_items`
 --
 
 INSERT INTO `faq_items` (`id`, `id_faq_category`, `label`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Conditions requises pour m’inscrire ?', 'Tout d’abord, pour le confort de la communauté, les utilisateurs qu’ils apportent ou reçoivent de l’aide se doivent de respecter le fonctionnement et les règles du site.Vous devez :Être majeur Et bien sûr, la règle principale, être sociable et courtois ;)', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(2, 1, 'Combien puis-je gagner en proposant mon dépannage ?', 'Plus vous serez disponible, plus vous gagnerez de l’argent. Vos bénéfices dépendront également d’autre critère tel que, votre réactivité.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(3, 1, 'Est-ce payant ?', 'L’utilisation de la plateforme est 100 % gratuite, Tynkle ne prend aucune commission pour faire partie de la communauté et profitez de nombreux avantages. Lorsque votre profil est créé vous faites partie de la communauté et vous pouvez aussitôt entrer en contact avec les membres. Tynkle permet simplement une mise en relation entre membre de la communauté, les services rendus ne sont pas monétisés par Tynkle.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(4, 1, 'Conseils utiles pour être souvent sollicité en tant qu’Helper ?', 'Répondez aux messages dès que possible, même si vous n’êtes pas en capacité de répondre aux besoins de la personne. Ajoutez une photo de vous ou d’un avatar sympa sélectionné par vos soins. Faites la pub de votre service via la communauté ! Partagez votre profil sur les réseaux-sociaux, parlez-en autour de vous.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(5, 1, 'Comment Proposer mon dépannage ou obtenir de l’aide ?', 'Inscrivez-vous gratuitement suivez les étapes jusqu’à la fin de l’inscription.A la fin de l’inscription, vous recevrez un mail avec un lien d’activation permettant de confirmer votre compte.Vous n’avez pas reçu le mail d’activation ? Pensez à vérifier vos courriers indésirables/commerciaux s’il n’est pas présent dans votre boite de réception ou cliquez sur la bannière «Compte en attente de validation, veuillez cliquer sur le mail de confirmation, si vous ne l\'avez pas reçu cliquez ici, présente sur l’accueil du site.Votre inscription est maintenant terminée, vous pouvez dès à présent vous lancer !', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(6, 1, 'Mon compte', 'Ici vous pouvez apporter des modifications concernant les réglages de votre compte et vos informations en vous rendant dans Mon Compte. Vous pouvez également accéder à votre compte en appuyant le bouton « mon Compte » sur la barre de navigation ou la barre latérale à partir d’un smartphone. Il vous sera également possible de supprimer votre compte, ce qui comprend toutes les informations renseignées.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(7, 1, 'Compétences', 'Attachez une importance à vos compétences, cela représente l’un des éléments clés de votre succès. Vous avez la possibilité de les modifier dans Mon Compte/Compétences, n’oubliez pas d’enregistrer ensuite.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(8, 1, 'Les petits plus du membre sympa', 'Entre membre, lorsque vous rentrez en contact, prenez le temps de bien vous renseigner sur le problème ou d’expliquer votre problème, le dépannage n’en sera que plus efficace. Faites-en sorte d’arriver à l’heure sur le lieu de rendez-vous, en prenant en compte les aléas de la circulation.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(9, 2, 'J’ai reçu une demande', 'Vous avez reçu votre première demande de dépannage, voilà comment ça marche. Il est primordial d’y répondre le plus rapidement possible. Celle-ci se manifestera par une notification qui sera visible sur la cloche située sur l’Accueil à partir d’un ordinateur ou sur la barre latérale à partir d’un smartphone. Vous avez également la possibilité d’être alerté par mail. En consultant une demande vous avez une explication du problème et le détail de l’appareil. Il vous faut ensuite discuter avec le demandeur afin de convenir d’un éventuel rendez-vous.En consultant une demande vous avez une explication du problème et le détail de l’appareil. Il vous faut ensuite discuter avec le demandeur afin de convenir d’un éventuel rendez-vous.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(10, 2, 'Messagerie', 'Sur votre messagerie vous retrouvez tous les échanges avec les demandeurs signalés par une notification.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(11, 3, 'A mon départ', 'Après la prestation pensez à préciser à la personne dépannée de vous évaluer afin que cela puisse vous servir pour d’autres prestations.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(12, 4, 'Comment faire une demande de dépannage ?', 'Vous pouvez publier une annonce présentant votre problème afin que des Helpers puissent la consulter en fonction de leurs compétences.Vous pouvez rechercher un Helper ayant les compétences pour vous aider. Pour un service optimal activer votre géolocalisation dans les paramètres de réglages de votre smartphone ou votre navigateur web sur votre ordinateur et/ou précisez votre adresse dans &lt;Mon compte&gt;. Tynkle se charge de vous proposer des helpers pouvant répondre à votre demande à partir de votre besoin.Envoyez une demande.Après avoir trouvé un helper qui correspond à vos critères de recherche, vous pouvez lui envoyer une demande. Pour être certain d’avoir au moins une réponse positive vous pouvez envoyer votre demande en sélectionnant plusieurs helpers, ou un seul si au préalable vous l’aviez ajouté à vos favoris.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(13, 5, 'Favoris', 'Ici vous retrouverez tous les Helpers que vous avez ajoutés dans vos favoris. Vous pouvez ajouter et retirer un Helper de vos favoris directement depuis son profil en appuyant sur Favoris', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(14, 5, 'Modification / Annulation.', 'Vous avez un empêchement quelconque qui ne vous permet pas d’être présent(e) le jour du rendez-vous ? Via la messagerie, vous avez la possibilité de communiquer à la personne alors n’hésitez pas à vous s’en servir si vous avez fait le choix de ne pas échanger vos numéros de téléphone.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(15, 6, 'Contact', 'Vous souhaitez envoyer un message à Tynkle, ce dernier sera traité le plus rapidement possible, tenant compte des jours ouvrés.', '2021-03-12 09:59:42', '0000-00-00 00:00:00');
+(1, 1, 'Conditions requises pour m’inscrire ?', 'Tout d’abord, pour le confort de la communauté, les utilisateurs qu’ils apportent ou reçoivent de l’aide se doivent de respecter le fonctionnement et les règles du site.Vous devez :Être majeur Et bien sûr, la règle principale, être sociable et courtois ;)', '2021-09-07 13:48:23', NULL),
+(2, 1, 'Combien puis-je gagner en proposant mon dépannage ?', 'Plus vous serez disponible, plus vous gagnerez de l’argent. Vos bénéfices dépendront également d’autre critère tel que, votre réactivité.', '2021-09-07 13:48:23', NULL),
+(3, 1, 'Est-ce payant ?', 'L’utilisation de la plateforme est 100 % gratuite, Tynkle ne prend aucune commission pour faire partie de la communauté et profitez de nombreux avantages. Lorsque votre profil est créé vous faites partie de la communauté et vous pouvez aussitôt entrer en contact avec les membres. Tynkle permet simplement une mise en relation entre membre de la communauté, les services rendus ne sont pas monétisés par Tynkle.', '2021-09-07 13:48:23', NULL),
+(4, 1, 'Conseils utiles pour être souvent sollicité en tant qu’Helper ?', 'Répondez aux messages dès que possible, même si vous n’êtes pas en capacité de répondre aux besoins de la personne. Ajoutez une photo de vous ou d’un avatar sympa sélectionné par vos soins. Faites la pub de votre service via la communauté ! Partagez votre profil sur les réseaux-sociaux, parlez-en autour de vous.', '2021-09-07 13:48:23', NULL),
+(5, 1, 'Comment Proposer mon dépannage ou obtenir de l’aide ?', 'Inscrivez-vous gratuitement suivez les étapes jusqu’à la fin de l’inscription.A la fin de l’inscription, vous recevrez un mail avec un lien d’activation permettant de confirmer votre compte.Vous n’avez pas reçu le mail d’activation ? Pensez à vérifier vos courriers indésirables/commerciaux s’il n’est pas présent dans votre boite de réception ou cliquez sur la bannière «Compte en attente de validation, veuillez cliquer sur le mail de confirmation, si vous ne l\'avez pas reçu cliquez ici, présente sur l’accueil du site.Votre inscription est maintenant terminée, vous pouvez dès à présent vous lancer !', '2021-09-07 13:48:23', NULL),
+(6, 1, 'Mon compte', 'Ici vous pouvez apporter des modifications concernant les réglages de votre compte et vos informations en vous rendant dans Mon Compte. Vous pouvez également accéder à votre compte en appuyant le bouton « mon Compte » sur la barre de navigation ou la barre latérale à partir d’un smartphone. Il vous sera également possible de supprimer votre compte, ce qui comprend toutes les informations renseignées.', '2021-09-07 13:48:23', NULL),
+(7, 1, 'Compétences', 'Attachez une importance à vos compétences, cela représente l’un des éléments clés de votre succès. Vous avez la possibilité de les modifier dans Mon Compte/Compétences, n’oubliez pas d’enregistrer ensuite.', '2021-09-07 13:48:23', NULL),
+(8, 1, 'Les petits plus du membre sympa', 'Entre membre, lorsque vous rentrez en contact, prenez le temps de bien vous renseigner sur le problème ou d’expliquer votre problème, le dépannage n’en sera que plus efficace. Faites-en sorte d’arriver à l’heure sur le lieu de rendez-vous, en prenant en compte les aléas de la circulation.', '2021-09-07 13:48:23', NULL),
+(9, 2, 'J’ai reçu une demande', 'Vous avez reçu votre première demande de dépannage, voilà comment ça marche. Il est primordial d’y répondre le plus rapidement possible. Celle-ci se manifestera par une notification qui sera visible sur la cloche située sur l’Accueil à partir d’un ordinateur ou sur la barre latérale à partir d’un smartphone. Vous avez également la possibilité d’être alerté par mail. En consultant une demande vous avez une explication du problème et le détail de l’appareil. Il vous faut ensuite discuter avec le demandeur afin de convenir d’un éventuel rendez-vous.En consultant une demande vous avez une explication du problème et le détail de l’appareil. Il vous faut ensuite discuter avec le demandeur afin de convenir d’un éventuel rendez-vous.', '2021-09-07 13:48:23', NULL),
+(10, 2, 'Messagerie', 'Sur votre messagerie vous retrouvez tous les échanges avec les demandeurs signalés par une notification.', '2021-09-07 13:48:23', NULL),
+(11, 3, 'A mon départ', 'Après la prestation pensez à préciser à la personne dépannée de vous évaluer afin que cela puisse vous servir pour d’autres prestations.', '2021-09-07 13:48:23', NULL),
+(12, 4, 'Comment faire une demande de dépannage ?', 'Vous pouvez publier une annonce présentant votre problème afin que des Helpers puissent la consulter en fonction de leurs compétences.Vous pouvez rechercher un Helper ayant les compétences pour vous aider. Pour un service optimal activer votre géolocalisation dans les paramètres de réglages de votre smartphone ou votre navigateur web sur votre ordinateur et/ou précisez votre adresse dans &lt;Mon compte&gt;. Tynkle se charge de vous proposer des helpers pouvant répondre à votre demande à partir de votre besoin.Envoyez une demande.Après avoir trouvé un helper qui correspond à vos critères de recherche, vous pouvez lui envoyer une demande. Pour être certain d’avoir au moins une réponse positive vous pouvez envoyer votre demande en sélectionnant plusieurs helpers, ou un seul si au préalable vous l’aviez ajouté à vos favoris.', '2021-09-07 13:48:23', NULL),
+(13, 5, 'Favoris', 'Ici vous retrouverez tous les Helpers que vous avez ajoutés dans vos favoris. Vous pouvez ajouter et retirer un Helper de vos favoris directement depuis son profil en appuyant sur Favoris', '2021-09-07 13:48:23', NULL),
+(14, 5, 'Modification / Annulation.', 'Vous avez un empêchement quelconque qui ne vous permet pas d’être présent(e) le jour du rendez-vous ? Via la messagerie, vous avez la possibilité de communiquer à la personne alors n’hésitez pas à vous s’en servir si vous avez fait le choix de ne pas échanger vos numéros de téléphone.', '2021-09-07 13:48:23', NULL),
+(15, 6, 'Contact', 'Vous souhaitez envoyer un message à Tynkle, ce dernier sera traité le plus rapidement possible, tenant compte des jours ouvrés.', '2021-09-07 13:48:23', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `follows`
+-- Table structure for table `follows`
 --
 
 CREATE TABLE `follows` (
-  `id` int(11) NOT NULL,
-  `id_follower` int(11) NOT NULL,
-  `id_followed` int(11) NOT NULL,
-  `cretaed_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `follows`
---
-
-INSERT INTO `follows` (`id`, `id_follower`, `id_followed`, `cretaed_at`, `updated_at`) VALUES
-(31, 101, 70, '2021-03-09 15:16:44', '0000-00-00 00:00:00'),
-(32, 101, 80, '2021-03-09 15:33:23', '0000-00-00 00:00:00'),
-(33, 101, 99, '2021-03-10 08:17:13', '0000-00-00 00:00:00');
+  `id` int NOT NULL,
+  `id_follower` int NOT NULL,
+  `id_followed` int NOT NULL,
+  `cretaed_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_chat` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
+  `id_chat` int NOT NULL,
   `content` tinytext NOT NULL,
   `ressource_link` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `metadatas`
+-- Table structure for table `metadatas`
 --
 
 CREATE TABLE `metadatas` (
-  `id` int(11) NOT NULL,
-  `id_page` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_page` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `metadatas`
---
-
-INSERT INTO `metadatas` (`id`, `id_page`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Tynkle: S\'inscrire', 'Tynkle: rejoindre la communauté Tynkle ?', '2021-02-23 14:43:04', '2021-02-23 16:14:50'),
-(2, 2, 'Tynkle: Mon compte', 'Accéder à mon compte ', '2021-02-23 14:46:37', '2021-03-09 14:50:56'),
-(3, 1, 'Tynkle: Détails du profil', 'Voir le détail du profil de l\'utilisateur', '2021-02-23 16:45:52', '2021-03-09 14:50:57'),
-(4, 8, 'Tynkle LA première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager', 'Tynkle LA première plateforme de mise en relation pour du dépannage informatique, multimédia et électroménager', '2021-02-23 16:46:18', '2021-03-09 14:59:15'),
-(5, 9, 'Tynkle : Mes conversations', 'Accèder à mes conversations et discuter avec les autres membres', '2021-02-23 17:15:49', '2021-03-09 14:55:35'),
-(6, 10, '', '', '2021-02-23 17:15:50', '0000-00-00 00:00:00'),
-(7, 4, 'Tynkle : Publier une annonce', 'Demander de l\'aide en partageant votre nouvelle demande', '2021-02-23 17:15:52', '2021-03-09 14:56:30'),
-(8, 5, 'Tynkle : Editer une annonce', 'Editer une annonce, Arhiver une annonce', '2021-02-23 17:15:52', '2021-03-09 14:57:08'),
-(9, 6, 'Tynkle : voir les détails de l\'annonce', 'Voir les détails de l\'annonce, contacter le demandeur, proposer un devis', '2021-02-23 17:15:56', '2021-03-09 14:57:52'),
-(10, 7, 'Tynkle : voir les annonces ', 'Rechercher une annonce, sélectionner une annonce', '2021-02-23 17:15:57', '2021-03-09 14:58:32'),
-(11, 11, 'Tynkle : Mon activité', 'Retrouver mon activitée sur Tynkle', '2021-02-23 17:15:59', '2021-03-09 15:01:59'),
-(12, 17, 'Tynkle: Mot de passe oublié ?', 'Mot de passe oublié ? Réinitialiser le mot de passe', '2021-03-09 14:51:35', '0000-00-00 00:00:00'),
-(13, 18, 'Tynkle: Demander la réinitialisation du mot de passe ?', 'Mot de passe oublié ? Réinitialiser le mot de passe', '2021-03-09 14:52:09', '0000-00-00 00:00:00'),
-(14, 12, 'Administration, gérer ma plateforme', 'Modifier le contenu des balises de métadonnées, Modifier les images d\'arrière plan', '2021-03-09 14:53:32', '0000-00-00 00:00:00'),
-(15, 13, 'Administration, statistiques de la plateforme', 'Accèder à mon tableau de bord de pilotage et aux dernières statistiques sur la plateforme', '2021-03-09 14:54:19', '0000-00-00 00:00:00'),
-(16, 14, 'Administration gérer les status utilisateurs', 'Gérer les status utilisateurs', '2021-03-09 14:54:47', '0000-00-00 00:00:00'),
-(17, 19, 'Tynkle : Nous contacter', 'Vous n\'avez pas trouvez la réponse à votre question ? Personne pour vous aider ? N\'hésiter pas à nous contacter !', '2021-03-09 15:00:00', '0000-00-00 00:00:00'),
-(18, 24, 'Foire aux questions - Questions fréquentes ', 'La foire aux questions vous permet de répondre aux questions les plus fréquentes sur le fonctionnment de la plateforme', '2021-03-09 15:01:37', '0000-00-00 00:00:00'),
-(19, 15, 'Tynkle : Se connecter', 'Connexion au compte utilisateur', '2021-03-09 15:02:23', '0000-00-00 00:00:00'),
-(20, 16, 'Administration modérer la plateforme', 'Modérer le contenu, inspecter et supprimer le contenu innaproprié', '2021-03-09 15:03:08', '0000-00-00 00:00:00'),
-(21, 20, 'Tynkle : LE BLOG, les actualitées de la plateforme', 'Retrouver toute l\'actualité de la plateforme TYNKLE', '2021-03-09 15:03:57', '0000-00-00 00:00:00'),
-(22, 21, 'Administration, rédiger un nouvel article de blog', 'Rédiger un nouvel article de blog et le partager sur TYNKLE LE BLOG', '2021-03-09 15:04:36', '0000-00-00 00:00:00'),
-(23, 22, 'Tynkle : Voir le détail de l\'article', 'Détail de l\'article, nouveauté, news', '2021-03-09 15:05:15', '0000-00-00 00:00:00'),
-(24, 23, 'Tynkle : Editer l\'article', 'Editer l\'article, modifier le contenu', '2021-03-09 15:05:39', '0000-00-00 00:00:00'),
-(25, 25, 'Tynkle : CGU et Mentions légales', 'Voir le détail des Conditions Générales d\'Utilisation et Mentions légales de la plateforme', '2021-03-09 15:06:46', '0000-00-00 00:00:00'),
-(26, 26, 'Tynkle : Editer les CGU et Mentions légales', 'Editer les Conditions Générales d\'Utilisation et Mentions légales de la plateforme', '2021-03-09 15:07:05', '0000-00-00 00:00:00'),
-(27, 27, 'Tynkle : Rédiger les CGU et Mentions légales', 'Rédiger les Conditions Générales d\'Utilisation et Mentions légales de la plateforme', '2021-03-09 15:07:36', '0000-00-00 00:00:00');
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `offers`
+-- Table structure for table `offers`
 --
 
 CREATE TABLE `offers` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
+  `id_post` int NOT NULL,
   `object` varchar(255) NOT NULL,
   `content` tinytext NOT NULL,
   `amount` double NOT NULL,
-  `is_declined` tinyint(1) NOT NULL DEFAULT 0,
-  `is_accepted` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `offers`
---
-
-INSERT INTO `offers` (`id`, `id_user`, `id_post`, `object`, `content`, `amount`, `is_declined`, `is_accepted`, `created_at`, `updated_at`) VALUES
-(1, 72, 3, 'offfre n° 0', 'Consequatur aliquam eos necessitatibus. Molestiae ipsa consequuntur quaerat magnam quod voluptatem odio quis. Tempore itaque in sit.', 95, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(2, 63, 40, 'offfre n° 1', 'Qui iure ut eius aperiam. Quod laboriosam omnis facere molestias. Nihil dolorum sed nam nisi. Sint eaque quasi sint voluptatum eligendi.', 884, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(3, 93, 83, 'offfre n° 2', 'Sit mollitia fugit dignissimos dolores sed inventore. Rem laudantium doloribus eos illum.', 730, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(4, 24, 96, 'offfre n° 3', 'Fugiat et repudiandae recusandae qui eum et voluptatem harum. Aut et quibusdam dignissimos quis est laborum animi. Ea quod fugiat aut pariatur eos ducimus.', 79, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(5, 39, 62, 'offfre n° 4', 'A dolores expedita veniam sit molestiae. Et eum amet ab qui. Eos dolores dolor ut sunt veritatis cum veritatis. Est voluptatem consequuntur cumque neque harum id nesciunt.', 906, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(6, 46, 12, 'offfre n° 5', 'Necessitatibus quo maxime voluptatem eveniet dolores deserunt velit. Est esse nihil ullam. Quidem velit voluptas accusamus ipsam.', 304, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(7, 90, 16, 'offfre n° 6', 'Praesentium deserunt est repellat adipisci. Harum sed labore ducimus rerum veniam. Aut mollitia et officia quas. Ea nihil voluptate ad consequatur nesciunt repellat laboriosam.', 80, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(8, 51, 31, 'offfre n° 7', 'Ut cumque nulla explicabo labore. Excepturi non architecto amet perferendis velit qui doloribus. Dolor esse nemo fugiat totam eum. Laboriosam qui omnis neque.', 986, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(9, 2, 52, 'offfre n° 8', 'Ratione voluptas illo voluptas est. Inventore amet velit sed reiciendis sapiente itaque. Quia qui aliquid placeat iusto excepturi. Iure nesciunt laudantium ut sunt odit numquam.', 717, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(10, 2, 7, 'offfre n° 9', 'Alias distinctio est aliquid. Consequatur consequuntur qui culpa atque ut nesciunt. Voluptate blanditiis molestias aut error doloribus enim culpa. Veniam nam nemo laudantium sit nihil sint ad.', 223, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(11, 58, 88, 'offfre n° 10', 'Debitis voluptas itaque provident temporibus non. Nemo ut nulla porro officiis repudiandae. Fugit quia soluta quisquam exercitationem pariatur hic qui.', 409, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(12, 23, 94, 'offfre n° 11', 'Reiciendis voluptatibus soluta et sed eligendi odit in molestiae. Eos non dolorem sunt nam nihil atque velit. Reiciendis facilis deserunt harum.', 9, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(13, 38, 93, 'offfre n° 12', 'Nam id nam eos optio ut. Voluptas quam fuga animi ut dolorem perferendis. Facere deleniti harum quam non vel consequatur facilis reiciendis.', 651, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(14, 9, 71, 'offfre n° 13', 'Autem dolores aut quod. Esse explicabo dignissimos nihil doloribus accusantium. Tempore saepe corrupti excepturi expedita quibusdam est.', 504, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(15, 52, 43, 'offfre n° 14', 'Et accusamus quod explicabo velit tempora. Ut accusamus non debitis. Quo consectetur sit magni quos ut esse voluptas.', 181, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(16, 98, 51, 'offfre n° 15', 'Rerum quis excepturi facilis sunt. Qui numquam soluta dolore enim eos eveniet a eligendi. Sint eius omnis eveniet atque aspernatur qui est. Quaerat nisi officiis aut.', 248, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(17, 23, 43, 'offfre n° 16', 'Ad quibusdam vero esse nihil eos voluptatum enim beatae. Nostrum voluptatem sunt excepturi architecto et optio. Sit accusamus unde laborum voluptatem ducimus sit modi impedit. Et at omnis voluptatem.', 986, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(18, 97, 74, 'offfre n° 17', 'Commodi eligendi rem nihil. Sed inventore consequatur magni qui nisi sunt. Autem qui facilis consequatur omnis nesciunt nemo et.', 568, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(19, 65, 48, 'offfre n° 18', 'Dolorum voluptatem voluptatem rem. Et eveniet amet ex ut cum. Quia tempore maiores expedita quasi ut dolore molestiae. Perferendis qui corporis ea aut ut. Voluptas ut quibusdam velit est.', 811, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(20, 38, 47, 'offfre n° 19', 'Sint molestias alias et perspiciatis ut. Laudantium qui omnis illo voluptates blanditiis voluptatem. Neque quas in sed qui architecto amet. Soluta aut consectetur praesentium doloremque est aliquam.', 873, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(21, 27, 62, 'offfre n° 20', 'Deserunt officia doloremque autem at. Doloribus totam odit aut ab sit velit.', 266, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(22, 38, 70, 'offfre n° 21', 'Quam aut iusto quibusdam eius. Odit voluptas necessitatibus animi praesentium quia facilis. Quia dolor rem fugit. Itaque labore ratione animi est.', 194, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(23, 90, 84, 'offfre n° 22', 'Dolores omnis magnam et non voluptas non quidem aut. Excepturi blanditiis vitae cupiditate et minima.', 661, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(24, 39, 97, 'offfre n° 23', 'Ratione velit ea voluptatem. Est minus ut quia odio voluptates doloribus nisi. Voluptatem aut ab consequatur magnam. Vel et ut nihil rerum eaque quis.', 164, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(25, 78, 90, 'offfre n° 24', 'Occaecati dicta accusamus mollitia dolore id saepe illo accusantium. Molestiae consequatur aut voluptatem sed et. Voluptas inventore quo minima nulla. Voluptas cupiditate ducimus quaerat sit.', 49, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(26, 72, 58, 'offfre n° 25', 'Et eos doloremque illum voluptatem ut eaque numquam. Eum qui saepe sunt soluta qui velit. Et minima alias sunt ducimus deserunt. Itaque mollitia reiciendis quae.', 961, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(27, 91, 60, 'offfre n° 26', 'Reprehenderit deserunt quia consequuntur. Similique ut vero placeat aliquid quo adipisci.', 247, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(28, 51, 24, 'offfre n° 27', 'Velit laboriosam architecto illum et omnis porro qui incidunt. Quia autem omnis laborum error sed at. Debitis illo voluptate et possimus id quam dolor dicta.', 730, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(29, 40, 78, 'offfre n° 28', 'Illo sapiente atque quasi ullam cum et. Et et officiis mollitia hic. Incidunt odit ut consequatur impedit neque est. Voluptatem sunt accusantium dolores earum impedit.', 745, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(30, 2, 88, 'offfre n° 29', 'In voluptas rerum qui aspernatur cum voluptatum magni minus. Vel debitis aperiam quo quis. Quo et at omnis labore aut quis ipsa. Eos et voluptatem voluptatum quidem nihil fugiat.', 949, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(31, 86, 61, 'offfre n° 30', 'Molestiae dolor qui laudantium explicabo a aut officiis. Maiores ut modi est est praesentium et qui. Perspiciatis quo fugiat et minus deleniti nobis.', 485, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(32, 100, 54, 'offfre n° 31', 'Sint est cum earum. Quis qui nihil nisi asperiores nihil cumque. Odio illum minima quia fugiat voluptates. Voluptatibus quam quia rerum voluptatibus. Voluptatem dolore adipisci enim occaecati quo.', 505, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(33, 25, 85, 'offfre n° 32', 'Adipisci autem dolorem sed eos. Sit sapiente molestiae reiciendis ut ut vel. Sit enim sapiente minus nihil ipsa sunt ipsa. Alias quisquam qui commodi maxime molestiae debitis incidunt.', 599, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(34, 99, 39, 'offfre n° 33', 'Corporis distinctio voluptatem sunt animi eligendi. Ab modi distinctio rerum repudiandae. Corporis optio nam voluptatem tenetur dolorem.', 700, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(35, 8, 53, 'offfre n° 34', 'Officiis non cupiditate sit qui nesciunt. Qui dolor dolor consequatur aut enim nisi. Aut fuga saepe magni aperiam asperiores optio. Ut consequatur tenetur rerum consequatur.', 787, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(36, 19, 24, 'offfre n° 35', 'Cumque porro et quia mollitia. Rerum ex praesentium voluptatem laborum. Facere ut sed et at. Quos itaque vel totam earum repellendus animi est. Quos eos et facere.', 915, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(37, 77, 95, 'offfre n° 36', 'Eaque et dolores ut ut fugit molestiae sunt. Veniam nemo nulla quos. Vel quod est molestias quidem.', 625, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(38, 53, 45, 'offfre n° 37', 'Sit quisquam eius est architecto iste praesentium aperiam. Soluta et qui laborum atque libero dolor.', 448, 0, 0, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(39, 57, 43, 'offfre n° 38', 'Consequatur natus distinctio necessitatibus exercitationem vitae sit. Accusamus amet et quaerat ad. Sed eius laboriosam omnis hic ab veritatis. Distinctio inventore nihil quis eos cupiditate quia.', 750, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(40, 31, 21, 'offfre n° 39', 'Quos cupiditate sapiente ducimus unde. Veniam et aut quia tenetur ut ducimus id. Itaque expedita ipsa rerum iure.', 452, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(41, 97, 82, 'offfre n° 40', 'Aliquid quaerat qui atque est in. Illo corrupti debitis vel provident. Neque facere et voluptatum cum fugit eos. Deserunt vel voluptatum exercitationem quam blanditiis odio ipsam.', 981, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(42, 29, 10, 'offfre n° 41', 'Error harum at nostrum eos facilis aliquid. Ipsam vel id vel aut cumque fuga.', 794, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(43, 71, 17, 'offfre n° 42', 'Rem pariatur quas sapiente ad. Exercitationem excepturi nostrum odio doloribus quis. Omnis officia facere hic tempore cumque sapiente recusandae.', 137, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(44, 42, 9, 'offfre n° 43', 'Debitis beatae qui reiciendis ut. Iste quis enim occaecati consequatur. Est error optio in rerum doloribus omnis nulla.', 564, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(45, 45, 22, 'offfre n° 44', 'Harum fuga maiores sit enim soluta occaecati ut. Aut quibusdam nemo est quibusdam qui quibusdam tenetur. Illo velit neque vero alias. Quam exercitationem velit illo quia distinctio repellat omnis.', 920, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(46, 20, 52, 'offfre n° 45', 'Qui qui qui iure ut autem nobis repellat modi. Perspiciatis placeat numquam laudantium aliquid. Nostrum corporis dolores molestiae. Dolorum et voluptas necessitatibus. Rem quod autem rem eum placeat.', 162, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(47, 40, 33, 'offfre n° 46', 'Repellendus voluptas atque quo nostrum hic illo inventore. Ullam suscipit consequuntur aut omnis. Harum ipsum quasi maiores quibusdam quo occaecati voluptatum.', 174, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(48, 24, 9, 'offfre n° 47', 'Saepe doloremque voluptatem sapiente. Autem corporis voluptatem ad praesentium itaque. Placeat voluptas est impedit omnis rerum impedit non placeat.', 938, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(49, 19, 45, 'offfre n° 48', 'Eligendi est facere iure assumenda. Quis est aliquam cupiditate officiis est deserunt harum. Recusandae ut impedit ut aperiam molestiae cum quo. Maxime beatae quaerat et eaque.', 910, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(50, 4, 74, 'offfre n° 49', 'Magnam velit ipsa et. Minima nisi est non quia. Fuga nemo corrupti repellendus alias odit eveniet labore placeat. Sunt necessitatibus odit explicabo adipisci voluptatem sapiente rerum.', 747, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(51, 26, 56, 'offfre n° 50', 'Tempore veniam et aut. Dolor et corrupti est voluptate aliquid iusto architecto labore. Dolores odio illum qui officia alias eos odit.', 310, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(52, 89, 41, 'offfre n° 51', 'Omnis deserunt commodi sed quo quas atque aliquid sint. Necessitatibus corrupti et ad cupiditate magnam numquam. Sequi explicabo soluta vel minus qui. Sequi aut quis rerum ut quos voluptatum.', 525, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(53, 95, 69, 'offfre n° 52', 'Odit et quia dolorem ducimus ipsam at. Et nihil sequi rerum iste. Optio sint illo aut voluptatem in voluptatem enim.', 394, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(54, 46, 62, 'offfre n° 53', 'Sapiente aperiam sed voluptatum dolorem incidunt voluptas rerum. Quisquam voluptas quo delectus quo. Odio quam quia recusandae pariatur. Quisquam sit qui laudantium commodi.', 97, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(55, 22, 71, 'offfre n° 54', 'Aut dicta veniam atque reiciendis commodi autem culpa. Quo corporis ipsum voluptatem voluptatum. Ut ut saepe dolorem harum aut magnam voluptates.', 395, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(56, 97, 84, 'offfre n° 55', 'Unde est quo id ut ipsum vero. Rerum asperiores quo molestias ratione praesentium possimus. Rerum quo cumque ipsum consequatur.', 292, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(57, 28, 59, 'offfre n° 56', 'Quo tenetur saepe ut quae et aut. Enim nihil quis enim nam ea minima facere ducimus. Ratione qui omnis nesciunt impedit sequi sapiente. Delectus molestiae cum ut voluptas.', 398, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(58, 71, 4, 'offfre n° 57', 'Aut debitis nemo vel earum maxime rerum. Neque et incidunt ut. Ut eveniet aspernatur et distinctio laboriosam odit dolore. Deleniti voluptas non non aliquid consequatur voluptatem praesentium.', 732, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(59, 32, 95, 'offfre n° 58', 'Atque aut ea laborum dolor sequi. Nisi fugit repellendus numquam repellendus quibusdam quod. Esse tenetur nulla rem omnis nostrum quae. Aliquid non et vitae impedit at adipisci ut laborum.', 110, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(60, 99, 30, 'offfre n° 59', 'Magnam optio ab est inventore dolore animi dolores. Voluptas repellat nostrum beatae. Voluptatibus molestiae explicabo dolorem sit quod. Beatae praesentium unde qui porro nihil.', 303, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(61, 91, 65, 'offfre n° 60', 'Voluptas sed aut labore ea exercitationem rerum. Ut error omnis ut eos dolores et. Libero ut omnis repellat deleniti.', 363, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(62, 17, 30, 'offfre n° 61', 'Cum quas voluptatibus modi sunt quia. Dolore excepturi quia explicabo ipsum expedita consequatur. Quaerat vel molestias maxime.', 561, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(63, 93, 55, 'offfre n° 62', 'Repellat repudiandae aut aperiam et molestiae qui. Quam non et non et sint et consequuntur. Et dicta optio velit molestiae. Neque quia ut expedita veritatis et.', 317, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(64, 66, 47, 'offfre n° 63', 'Optio dolor blanditiis et maiores sit voluptatem. Veritatis architecto quae aperiam et quis fugiat necessitatibus.', 479, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(65, 89, 70, 'offfre n° 64', 'Pariatur sed dolores molestiae laborum. Beatae pariatur ut mollitia id. Maiores error quam dignissimos explicabo et quos sint. Et numquam explicabo facilis vel et et.', 900, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(66, 11, 67, 'offfre n° 65', 'Dolor est qui sit dolorum. Labore molestiae ex occaecati culpa. Quidem ad qui ad culpa nihil incidunt.', 750, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(67, 72, 77, 'offfre n° 66', 'Perspiciatis exercitationem id dolore. Similique est nobis cum mollitia. Sed dicta distinctio corporis maiores qui qui ad voluptas. Velit inventore beatae sit fugiat provident recusandae quia.', 680, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(68, 35, 51, 'offfre n° 67', 'Consequatur quis illum et dolorum. Dolores consectetur nostrum vero dignissimos accusantium. Ut porro facilis adipisci rerum reprehenderit quo reprehenderit. In illum non voluptatem omnis.', 389, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(69, 41, 8, 'offfre n° 68', 'Magnam neque nobis necessitatibus. Omnis quia quibusdam culpa sunt et vel. Blanditiis rerum molestias quo vel et.', 854, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(70, 29, 49, 'offfre n° 69', 'Recusandae sunt sit culpa id nam dolorum impedit rerum. Tempora eos sequi ut qui quibusdam praesentium temporibus. Architecto sint quod repellendus et.', 755, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(71, 36, 18, 'offfre n° 70', 'Necessitatibus rerum quo aut veniam dolorem quaerat. Sint aut architecto sunt reprehenderit a aut sit itaque. Eligendi velit nobis sint quas et. Id et nulla quas.', 814, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(72, 86, 65, 'offfre n° 71', 'Voluptatem laborum quia repudiandae ut eum ad. Rerum natus dolore natus tempora nobis eligendi velit. Eos laudantium ad exercitationem fugit qui dignissimos.', 877, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(73, 58, 21, 'offfre n° 72', 'Qui omnis voluptatem vero quis facilis. Voluptatem autem debitis molestiae nihil quo sunt nihil aut. Culpa eius quia rerum sed corrupti.', 475, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(74, 45, 49, 'offfre n° 73', 'Qui et veniam iure ipsa dolor et ut. Rem unde quisquam praesentium error aspernatur maxime mollitia.', 250, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(75, 36, 31, 'offfre n° 74', 'Ut reiciendis explicabo aliquid tempora similique aspernatur. Fugiat rerum voluptas expedita iste voluptatem deleniti distinctio adipisci. Ipsum quod neque debitis aliquid voluptates atque suscipit.', 74, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(76, 75, 19, 'offfre n° 75', 'Et et beatae non et itaque et. Adipisci nulla at ut repellendus qui at. Eaque qui alias in perspiciatis quibusdam. Sed sit pariatur rerum nam culpa quos. Autem et porro velit incidunt.', 981, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(77, 1, 73, 'offfre n° 76', 'Non enim blanditiis pariatur recusandae fuga molestias qui. Ex error necessitatibus amet ut facere eum veniam. Et minima non voluptatum qui temporibus. Aperiam aut commodi illo est.', 771, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(78, 54, 90, 'offfre n° 77', 'Doloremque magnam sunt aut ut. Fugiat vel praesentium qui magnam consequuntur voluptatem. Deleniti dolore voluptas ut nostrum quis unde. Sed quis sed distinctio vero sit nihil assumenda.', 181, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(79, 62, 4, 'offfre n° 78', 'Rerum sit et quae a temporibus aperiam. Voluptates neque et animi enim ut rerum qui. Velit quia architecto facere accusantium delectus. Et ut reprehenderit quia vel quo neque qui.', 254, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(80, 23, 4, 'offfre n° 79', 'Illo voluptatem rem nihil nobis eveniet libero. Ut eos quo commodi ut quisquam. Eum hic magni sint unde ullam et velit voluptatibus. Ut quae assumenda dolores deleniti qui eius explicabo.', 190, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(81, 68, 76, 'offfre n° 80', 'Suscipit nihil ut fugiat rerum dolor enim. Nesciunt maxime praesentium voluptas sequi expedita voluptates. Possimus non facere quia placeat cumque.', 47, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(82, 54, 40, 'offfre n° 81', 'Autem perferendis velit dicta dignissimos. Vel voluptatem aut id at dignissimos. Voluptate eos et dolore sed est.', 32, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(83, 77, 27, 'offfre n° 82', 'Aliquid exercitationem veritatis molestiae voluptatem enim fuga. Sit natus soluta provident in deserunt. Aliquam in odit temporibus tenetur.', 553, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(84, 53, 65, 'offfre n° 83', 'Recusandae quos enim consectetur non. Debitis fuga labore rem. Quibusdam qui nulla sunt autem. Repudiandae aperiam quidem nihil tempore saepe corrupti.', 128, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(85, 85, 88, 'offfre n° 84', 'Inventore fugit sapiente numquam perferendis. Dolorum dolorum sed excepturi enim consequatur et. Voluptatem non autem non.', 958, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(86, 77, 12, 'offfre n° 85', 'Aut iure atque quo dignissimos blanditiis voluptas voluptas. Odit mollitia voluptas officiis ea minus voluptate excepturi. Et culpa ut est ut nesciunt at aliquam ex.', 589, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(87, 16, 46, 'offfre n° 86', 'Aut optio autem iste temporibus. Vero laborum sed dolorum non et. Ipsam corrupti aut eaque vel repellat. Occaecati dolorem aut quia.', 67, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(88, 1, 28, 'offfre n° 87', 'Laborum ducimus ipsam veniam atque. Est non officia vel at ex provident tenetur. Repudiandae qui perspiciatis ex voluptatum non eveniet.', 587, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(89, 3, 96, 'offfre n° 88', 'Qui sed tenetur voluptatibus dolor ea dignissimos quis. Quisquam adipisci ratione commodi quod in iusto cupiditate. Aut rerum voluptas quos. Illo quisquam et placeat omnis est.', 45, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(90, 97, 44, 'offfre n° 89', 'A sint facilis aperiam. Quasi eum et numquam aliquam. Tenetur quibusdam sint qui voluptas qui harum quas quae.', 633, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(91, 80, 39, 'offfre n° 90', 'Porro temporibus earum commodi. Tempore tempora fugiat iusto cumque. Beatae provident incidunt aliquid placeat. Voluptas aperiam nobis tenetur. Cumque quia ut dicta.', 746, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(92, 59, 89, 'offfre n° 91', 'Ut nesciunt recusandae nulla facilis quasi accusamus. Beatae nihil ipsum non laborum. Minus est dolorem rem.', 126, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(93, 70, 2, 'offfre n° 92', 'Saepe quia delectus quod voluptas velit. Recusandae distinctio deleniti omnis consequatur neque. Nihil ipsam deleniti non iste architecto dolores excepturi. Est aperiam et ea tempore.', 779, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(94, 58, 58, 'offfre n° 93', 'Nisi eum fuga tempora est. Minus dignissimos sequi quidem omnis ipsam ea exercitationem quo. Iusto nihil nisi dolorum nisi laborum.', 932, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(95, 15, 8, 'offfre n° 94', 'Magnam fugiat beatae ullam totam cumque qui. Cumque possimus a eos omnis perferendis. Nulla amet ipsum tempora.', 493, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(96, 89, 28, 'offfre n° 95', 'Consequuntur facere cumque quas in. Qui laudantium dignissimos ut. Odio dolorem perferendis distinctio. Qui sed enim sit aliquam corporis. Sit accusantium a ipsam.', 188, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(97, 76, 70, 'offfre n° 96', 'Facere ipsa ex quae qui et odit. Blanditiis veritatis beatae reprehenderit et commodi saepe dolor. Non omnis voluptatem sint nulla eius. Quia est fugiat quo aut et eos.', 744, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(98, 99, 24, 'offfre n° 97', 'Amet ut ab illum aliquid. Ut cumque incidunt voluptatem itaque rem nostrum ea. Est est qui eligendi pariatur dolores eveniet facilis. Itaque corrupti maiores similique recusandae eius necessitatibus.', 231, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(99, 73, 15, 'offfre n° 98', 'Iusto sed tempora sed aliquid est. Impedit molestiae magni consectetur quisquam laboriosam a. Iste sit excepturi ex ut rerum blanditiis ut. Voluptatem aut deleniti aspernatur.', 779, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(100, 76, 46, 'offfre n° 99', 'Aperiam ut ut inventore omnis unde nostrum. Perferendis ab ut quos voluptas. Atque magnam odit atque asperiores voluptas dolore. Ea fuga dignissimos quia placeat repudiandae.', 899, 0, 0, '2021-03-12 09:59:42', '0000-00-00 00:00:00');
+  `is_declined` tinyint(1) NOT NULL DEFAULT '0',
+  `is_accepted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pages`
+-- Table structure for table `pages`
 --
 
 CREATE TABLE `pages` (
-  `id` int(11) NOT NULL,
-  `id_page_group` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_page_group` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `image_url` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `pages`
---
-
-INSERT INTO `pages` (`id`, `id_page_group`, `name`, `image_url`, `created_at`, `updated_at`) VALUES
-(1, 1, 'users#show', NULL, '2021-02-23 13:51:12', '2021-02-26 08:58:10'),
-(2, 1, 'users#edit', NULL, '2021-02-23 13:51:20', '2021-02-26 08:58:10'),
-(3, 1, 'users#new', NULL, '2021-02-23 13:51:57', '2021-02-26 08:58:10'),
-(4, 4, 'posts#new', NULL, '2021-02-23 13:53:10', '2021-02-26 08:58:10'),
-(5, 4, 'posts#edit', NULL, '2021-02-23 13:53:19', '2021-02-26 08:58:10'),
-(6, 4, 'posts#show', NULL, '2021-02-23 13:53:26', '2021-02-26 08:58:10'),
-(7, 4, 'posts#index', NULL, '2021-02-23 13:53:34', '2021-02-26 08:58:10'),
-(8, 5, 'static#home', NULL, '2021-02-23 14:53:47', '2021-03-04 11:23:56'),
-(9, 3, 'chat#index', NULL, '2021-02-23 14:55:13', '2021-02-26 08:58:10'),
-(10, 3, 'chat#show', NULL, '2021-02-23 14:55:25', '2021-02-26 08:58:10'),
-(11, 6, 'activity#index', NULL, '2021-02-23 14:58:37', '0000-00-00 00:00:00'),
-(12, 2, 'admin#platform', NULL, '2021-02-24 07:59:42', '0000-00-00 00:00:00'),
-(13, 2, 'admin#insights', NULL, '2021-02-24 07:59:55', '0000-00-00 00:00:00'),
-(14, 2, 'admin#users', NULL, '2021-02-25 11:37:51', '0000-00-00 00:00:00'),
-(15, 7, 'sessions#new', NULL, '2021-02-25 14:52:21', '0000-00-00 00:00:00'),
-(16, 8, 'warnings#index', NULL, '2021-02-26 13:47:32', '0000-00-00 00:00:00'),
-(17, 1, 'users#reset_password', NULL, '2021-03-02 11:11:01', '0000-00-00 00:00:00'),
-(18, 1, 'users#ask_new_password', NULL, '2021-03-02 11:36:15', '0000-00-00 00:00:00'),
-(19, 5, 'static#contact', NULL, '2021-03-04 11:24:09', '0000-00-00 00:00:00'),
-(20, 9, 'articles#index', NULL, '2021-03-04 13:43:54', '0000-00-00 00:00:00'),
-(21, 9, 'articles#new', NULL, '2021-03-04 14:52:05', '0000-00-00 00:00:00'),
-(22, 9, 'articles#show', NULL, '2021-03-04 15:37:19', '0000-00-00 00:00:00'),
-(23, 9, 'articles#edit', NULL, '2021-03-05 11:04:02', '0000-00-00 00:00:00'),
-(24, 5, 'static#faq', NULL, '2021-03-06 19:08:35', '0000-00-00 00:00:00'),
-(25, 10, 'rules#show', NULL, '2021-03-07 16:21:27', '0000-00-00 00:00:00'),
-(26, 10, 'rules#edit', NULL, '2021-03-07 16:21:27', '0000-00-00 00:00:00'),
-(27, 10, 'rules#new', NULL, '2021-03-07 16:21:38', '0000-00-00 00:00:00'),
-(28, 11, 'asks#new', NULL, '2021-03-09 16:11:26', '0000-00-00 00:00:00');
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `page_group`
+-- Table structure for table `page_group`
 --
 
 CREATE TABLE `page_group` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `page_group`
---
-
-INSERT INTO `page_group` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'utilisateur', '2021-02-23 13:49:37', '0000-00-00 00:00:00'),
-(2, 'administrateur', '2021-02-23 13:49:52', '0000-00-00 00:00:00'),
-(3, 'chat', '2021-02-23 13:50:08', '0000-00-00 00:00:00'),
-(4, 'publications', '2021-02-23 13:50:27', '0000-00-00 00:00:00'),
-(5, 'static', '2021-02-23 14:53:31', '2021-03-04 11:23:39'),
-(6, 'activité', '2021-02-23 14:57:55', '0000-00-00 00:00:00'),
-(7, 'sessions', '2021-02-25 14:51:50', '0000-00-00 00:00:00'),
-(8, 'warnings', '2021-02-26 13:47:10', '0000-00-00 00:00:00'),
-(9, 'blog', '2021-03-04 13:43:34', '0000-00-00 00:00:00'),
-(10, 'rules', '2021-03-07 16:20:53', '0000-00-00 00:00:00'),
-(11, 'asks', '2021-03-09 16:11:15', '0000-00-00 00:00:00');
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `platforms`
+-- Table structure for table `platforms`
 --
 
 CREATE TABLE `platforms` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(100) NOT NULL,
   `icon` varchar(255) NOT NULL,
   `description` tinytext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `posts`
---
-
-CREATE TABLE `posts` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_breakdown_category` int(11) NOT NULL,
-  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '\'"[]"\'',
-  `cover_image` varchar(255) DEFAULT NULL,
-  `is_solved` tinyint(1) NOT NULL DEFAULT 0,
-  `title` varchar(100) NOT NULL,
-  `content` text NOT NULL,
-  `budget` double NOT NULL DEFAULT 10.5,
-  `city` varchar(55) NOT NULL,
-  `postal_code` varchar(25) NOT NULL,
-  `lat` double DEFAULT NULL,
-  `lng` double DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `posts`
---
-
-INSERT INTO `posts` (`id`, `id_user`, `id_breakdown_category`, `images`, `cover_image`, `is_solved`, `title`, `content`, `budget`, `city`, `postal_code`, `lat`, `lng`, `created_at`, `updated_at`) VALUES
-(1, 66, 6, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 0', 'Voluptates corporis nesciunt voluptatum aliquam pariatur. Dolorem quis quia ullam vitae minima veniam. Quod voluptatum enim voluptatem alias exercitationem repellat.', 915, 'Funkburgh', '92689-2924', -9.519149, 179.106617, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(2, 64, 15, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 1', 'Est ab architecto aut velit porro neque. Qui enim explicabo dolorem non adipisci enim. Et voluptate ea est quo. Eligendi cum aspernatur molestiae doloremque excepturi quos quis quam.', 696, 'West Delbert', '98678-9671', -3.079032, 131.593047, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(3, 25, 3, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 2', 'Quisquam deleniti est id cupiditate voluptate dolor esse. Et dolorum a id occaecati rerum voluptate ad. Illo tempora accusamus autem omnis.', 363, 'Okunevachester', '87691-4494', 87.270443, 163.637421, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(4, 96, 20, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 3', 'Sit aut et placeat consequatur quo labore. Nostrum nostrum modi iusto tempore sed eos placeat exercitationem. Fugit est illo veritatis itaque.', 641, 'South Hallie', '72681-1046', -55.472033, -115.991417, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(5, 73, 22, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 4', 'Cupiditate temporibus repudiandae quo eos non qui placeat. Eos porro ab dolorem iusto et necessitatibus. Consectetur molestias nobis dolores facere.', 989, 'Port Sally', '29166-1223', 78.974735, -64.014057, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(6, 29, 4, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 5', 'Aut earum vero aperiam sit ex omnis consectetur. Sapiente quod nulla natus ad similique reprehenderit sunt. Voluptates velit voluptas sit qui vitae ea error.', 943, 'Spinkaberg', '97562', -79.840719, -35.522759, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(7, 46, 2, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 6', 'Et at amet provident quia. Tenetur illo cumque perferendis veniam quisquam in adipisci consequatur. Nobis quaerat fuga ut labore.', 528, 'West Wilmerborough', '43245-8662', -63.343231, -120.313398, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(8, 32, 7, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 7', 'Eum dolore non provident consequuntur tempora voluptatem dolores. Accusamus illum ipsam qui vel minima. Tempora hic temporibus eaque aut est repudiandae. Pariatur dolor facere impedit porro voluptas.', 873, 'East Caleborough', '50037', -28.579448, -42.146371, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(9, 86, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 8', 'Libero voluptatum consequuntur numquam qui et minus voluptates. Quae excepturi dolor quae est qui exercitationem libero. Doloremque cumque voluptatem dolorem distinctio vel mollitia est.', 723, 'North Jakob', '44493', 81.336262, -151.309802, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(10, 21, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 9', 'Eos qui repudiandae suscipit fugiat quasi et et expedita. Maxime voluptatem quasi animi quia. Eligendi dolore sed ipsum voluptatem quidem.', 71, 'Grahamburgh', '09914-0977', 2.983053, -2.082384, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(11, 48, 17, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 10', 'Et excepturi impedit magni deserunt est nostrum est. Velit totam asperiores tenetur consequuntur quas. Qui voluptatum sapiente magnam iusto fugit eaque qui et. Sint est quis est enim necessitatibus.', 193, 'Javontetown', '51900-0002', -84.973748, -47.021256, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(12, 81, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 11', 'Doloremque saepe perferendis eligendi. Eveniet quia temporibus corporis reprehenderit et est. Voluptatum perferendis molestiae ea. Necessitatibus cum nostrum minus modi et repudiandae dolores sunt.', 98, 'Port Chaim', '01544-1619', 77.087153, -44.620528, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(13, 9, 21, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 12', 'Ipsa ut nobis tempora aut fuga. Autem sit ipsam est error. Ab illum hic ut consequuntur. Porro aut sit assumenda voluptatem optio aliquid.', 372, 'Victoriaview', '86338', 24.545417, 166.158001, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(14, 36, 17, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 13', 'Dolores culpa sint et aut molestiae. Sint deserunt accusamus voluptatum ipsum nam voluptatem. Cum ipsam et autem.', 350, 'Maximilliamouth', '24663-0978', -24.478392, 15.934949, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(15, 34, 4, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 14', 'Ab totam debitis et sequi. Ratione error modi sint doloribus. Esse quos est illo laborum impedit commodi.', 185, 'Laurenville', '94409-3945', -16.792543, -119.610861, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(16, 65, 10, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 15', 'Et pariatur ut repellendus veniam enim. Sunt dolor minima suscipit sint sed blanditiis ratione. Et aut sunt autem sunt placeat omnis. Exercitationem voluptate porro molestias ut est.', 446, 'Lake Katherine', '39893-3141', 20.172618, -28.993278, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(17, 1, 0, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 16', 'Molestiae distinctio rerum in animi sed aut. Dicta totam quam tempora est error necessitatibus autem voluptate. Minus nihil eos commodi et. Provident eveniet blanditiis tenetur quibusdam et.', 46, 'South Andreaneview', '07238-0312', 57.964742, -115.26066, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(18, 93, 1, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 17', 'Iste eveniet error at quasi cumque quas fugiat. Sint dignissimos quia soluta ut. Assumenda earum ipsam officia eaque.', 651, 'West Annalise', '06905-5594', -41.164205, 110.8734, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(19, 15, 13, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 18', 'Fugit magni sed debitis ut dolor. Vitae similique hic repellat deleniti rerum quisquam rerum. Ea ut cum ut mollitia. Commodi labore dolore et eos eum ut.', 623, 'Rosellaborough', '19602-8652', -39.814512, -106.492776, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(20, 19, 2, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 19', 'Est optio possimus praesentium consequatur laboriosam. Consequatur laborum enim repudiandae dolore explicabo necessitatibus fugit. Nam placeat qui tempora et. Sint voluptas nisi delectus maxime a.', 359, 'New Clark', '22408', 7.098631, 136.946903, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(21, 3, 18, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 20', 'Sunt dolorum quae assumenda et et perferendis fuga. Vel ea veniam incidunt impedit. Nisi expedita non rerum eligendi adipisci vel.', 622, 'Port Reyna', '02266', 15.614407, 145.774387, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(22, 54, 13, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 21', 'Consequuntur consequatur temporibus minus ipsum. Fugit eaque culpa quis modi quia dolores. Culpa sed quo et et accusantium doloremque. Qui labore reprehenderit ullam officia architecto.', 313, 'Effertzchester', '89510', 33.994034, 53.13588, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(23, 56, 22, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 22', 'Consequatur laborum id nulla iusto aliquam. Exercitationem dolor corporis eos et perspiciatis iste. Sunt itaque excepturi minima. Eos blanditiis illo esse harum.', 269, 'Velvamouth', '93475-9326', -5.542457, 25.982736, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(24, 27, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 23', 'Qui qui dolorem accusantium minus vel. Est facilis occaecati vel atque nostrum magni quia.', 335, 'Robertsburgh', '13936-0592', 15.352063, 165.80915, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(25, 39, 8, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 24', 'Culpa rerum mollitia natus aliquam. Natus quasi sed quia dicta esse fugit quo ullam. Animi id voluptatem qui quis magni. Tempore mollitia omnis eum dolore.', 451, 'Adanmouth', '77109', 84.107417, 30.401859, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(26, 62, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 25', 'Eveniet quam et qui ipsam assumenda. Dolorum dolores iusto sint exercitationem dolores aut. Ratione eius vero ut qui.', 783, 'New Vincentland', '02874-9459', 85.059986, -153.515274, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(27, 22, 9, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 26', 'Doloremque magni beatae ut qui ducimus voluptatibus dolorum. Sit aut eaque non aspernatur. Quas eos aspernatur et.', 497, 'Port Kristian', '55996', -62.575568, 154.882679, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(28, 36, 0, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 27', 'Est molestias dolore dolor. Officia voluptas voluptas quia aut nihil culpa. Quod qui delectus dignissimos atque.', 424, 'Robertstown', '04629', 77.561186, 70.994669, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(29, 90, 17, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 28', 'Dolorum veritatis voluptas deserunt sed molestias est repellendus. Aperiam repellendus quasi nesciunt sunt esse et. Occaecati quas laborum eum eveniet praesentium rerum.', 634, 'Elwyntown', '68358-6389', 1.011482, 128.055957, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(30, 97, 2, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 29', 'Omnis laudantium est et. Fugit sed ducimus similique consequatur rerum. Quisquam fugit officia laborum voluptas earum ipsam. Nobis sequi possimus dolor libero unde. Dolore fugit fugiat similique.', 613, 'New Shanon', '68519', -56.396537, 6.412874, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(31, 8, 9, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 30', 'Voluptatem consequatur ipsam at. Quia ut nihil ratione et. Repellendus asperiores accusantium iure voluptas aliquam. Assumenda dignissimos architecto amet quibusdam ratione laudantium quos ipsam.', 373, 'Port Mekhimouth', '26918', -56.697519, -107.775744, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(32, 8, 17, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 31', 'Dicta consequatur et repudiandae natus asperiores. Aspernatur eos omnis ipsa laboriosam. Asperiores vero deserunt inventore facilis. Illum est autem rerum.', 35, 'Chrisview', '30328-3385', -86.414281, -109.865553, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(33, 13, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 32', 'Similique aut ad ab suscipit nam veritatis. Optio sit ullam ipsa nam ut. Deserunt rerum quos tenetur et voluptatum. Quam quia est molestiae praesentium.', 298, 'Lake Caesartown', '87248-0272', -17.127037, 178.065835, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(34, 99, 3, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 33', 'Aut sed ipsam maiores ut consequatur accusantium. Aspernatur est necessitatibus quis dolorem vel.', 224, 'South Reesefurt', '26245', 32.262395, 83.519876, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(35, 61, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 34', 'Hic dolores sint veritatis dignissimos repellat facere iste. Eligendi molestiae perspiciatis necessitatibus veniam. Neque qui iste quia enim illo quos facere.', 658, 'South Roy', '74805', -49.394161, -108.473761, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(36, 53, 15, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 35', 'Laudantium repellendus qui veniam et facilis corporis amet. Vitae et et nemo impedit. Similique qui saepe mollitia molestias illum vel enim.', 959, 'Murazikmouth', '42961', -16.673275, 40.682532, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(37, 9, 0, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 36', 'Tempora et est rem est praesentium molestiae distinctio. Tenetur dolores asperiores hic commodi atque ut. Vel et aliquid aut deserunt dolorem iste doloribus.', 492, 'Gutkowskibury', '21806', 73.586187, 93.409334, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(38, 36, 20, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 37', 'Vel autem aut cum qui. Praesentium dolores qui aut ipsum. Vel quo occaecati impedit deleniti. Sunt nesciunt quos est iusto aperiam eos ipsam ipsa.', 155, 'New Eunafurt', '18712-6471', -66.563131, -59.880514, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(39, 37, 4, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 38', 'Id corporis odit asperiores architecto libero. Nostrum iusto a qui id natus. Hic architecto saepe vitae sit praesentium sit vel.', 872, 'Port Mayamouth', '38033-5551', -45.235561, 85.88675, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(40, 84, 22, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 39', 'Praesentium eos voluptatem et et est qui labore. Necessitatibus harum ullam error optio. Ut dolor in sint veritatis ipsa. Quis sunt dolorum earum iusto.', 689, 'Alexandriatown', '99156', -7.596208, 83.090287, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(41, 19, 5, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 40', 'Nihil voluptates ipsa quidem veritatis enim cum illo. Quibusdam quo eligendi rem aut harum. Quisquam quidem assumenda dicta. Cum dolor explicabo soluta quia possimus.', 745, 'North Luther', '04676-2717', 0.981855, -36.728345, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(42, 13, 2, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 41', 'Ullam illo fugiat sint sed ad consectetur blanditiis. Magni corrupti ipsa aut consectetur dolores rerum. Et nihil magni nemo cumque et. Necessitatibus similique tempore nostrum.', 481, 'Lake Janymouth', '80737', -30.582734, -58.390444, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(43, 14, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 42', 'Rerum asperiores deleniti optio laudantium atque odit voluptatibus. Ut sed quae et impedit ratione illum in. Minus maiores cupiditate rerum non facere non. Rerum hic voluptatum et dolor velit ut non.', 120, 'Arnetown', '84929', 72.312526, 162.61598, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(44, 63, 15, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 43', 'Consequatur atque temporibus perferendis expedita. Nobis ea laudantium voluptas magnam tenetur enim.', 356, 'Jayceside', '90575', -64.386316, -129.88787, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(45, 50, 14, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 44', 'Ut minima qui vero sed temporibus. Ut et consectetur odit et esse. Quia aliquid dolorum veniam autem tempore repellat. Suscipit voluptatem autem laudantium eveniet animi cumque quam.', 461, 'Ceciliatown', '95401', 44.011651, -138.282149, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(46, 54, 4, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 45', 'Voluptas soluta et ducimus nobis eos consequatur ut. Dolore doloremque omnis ipsam ut eaque ut. Tenetur earum voluptas vel voluptatibus eius totam.', 798, 'Gerardoville', '84490', -57.588068, -154.988244, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(47, 19, 0, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 46', 'Iste quia quibusdam iste iure odio et dolore. Ea rem non eveniet ab dolorum. Earum et non fugiat ratione qui aut nihil.', 33, 'Lake Daphnee', '68626', 22.414976, -102.710097, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(48, 67, 15, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 47', 'Quo quo ad blanditiis quia est maiores. Ullam aperiam incidunt nihil sint dolor molestiae dicta aut. Saepe omnis sequi nesciunt dolore ab et aut. Inventore optio ea praesentium et quisquam.', 111, 'Elenorfort', '26739', -77.910783, -129.850203, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(49, 60, 9, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 48', 'Mollitia voluptas sunt suscipit voluptatibus ad. Earum repudiandae quibusdam illo qui consequatur omnis. Maxime assumenda qui dolore dolorem.', 863, 'Demetrisbury', '86124', 67.574701, 28.263813, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(50, 56, 21, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 49', 'Eligendi aspernatur doloremque eaque. Nihil sed error maxime soluta quo. Incidunt consequatur mollitia officia aperiam voluptatem et ullam. Debitis nobis voluptatem nulla tempore quasi.', 547, 'New Bethany', '72153-9312', 52.573389, 78.583991, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(51, 36, 15, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 50', 'Quibusdam est qui quia eius quo porro necessitatibus. Quidem eius consequatur cupiditate aut. Ab perferendis voluptas aut.', 369, 'Lake Fletachester', '77231-5314', 47.191595, -58.249997, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(52, 82, 22, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 51', 'Architecto fugiat modi quia. Sint accusantium dicta occaecati repudiandae reprehenderit unde. In ab accusantium voluptatem aliquam. Ut tempora rem et vel suscipit.', 493, 'South Svenberg', '23692-1736', 87.625931, 74.168727, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(53, 41, 19, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 52', 'Nobis sit excepturi consequatur tempore debitis blanditiis omnis sint. Officia soluta molestiae molestias dolore.', 525, 'South Rhodaburgh', '95515-7569', -11.064491, -102.480711, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(54, 51, 17, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 53', 'Maxime et aut autem est eum aut. Tempora eius magnam consectetur saepe dolores. Qui qui similique accusantium aut.', 230, 'East Jacinto', '78200-9339', 21.567402, 144.391761, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(55, 15, 8, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 54', 'Iste aut consectetur autem sint suscipit corporis rerum. Et molestias illum nesciunt voluptatem quis doloremque.', 151, 'Lake Millertown', '90498', 83.750199, -132.852308, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(56, 67, 21, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 55', 'Assumenda cum nesciunt aut dignissimos atque veritatis. Architecto molestiae adipisci ab dicta. Expedita et totam placeat est. Dolor aut omnis saepe id sed voluptas maiores facere.', 535, 'North Alysa', '95783', 4.149441, -159.020192, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(57, 98, 1, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 56', 'Harum nobis quasi dicta qui. Molestiae praesentium non dicta enim. Unde voluptate iste porro tempora. In praesentium reprehenderit aliquam error mollitia itaque adipisci.', 505, 'Mikaylaview', '66842', -43.665121, -1.860069, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(58, 29, 10, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 57', 'Asperiores velit aut illum. Expedita dicta vel dolorem. Ea fuga iusto cupiditate sit quod reiciendis recusandae.', 326, 'New Alisonberg', '94126', -34.286435, 89.287883, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(59, 71, 1, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 58', 'Et unde labore eaque quae. Incidunt ipsa a incidunt minus dolorem molestiae. Assumenda et in et neque tenetur ad error.', 109, 'Princessmouth', '42035-4483', 59.368441, 42.281065, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(60, 37, 19, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 59', 'Sequi dolores vero illo rerum officiis in. Molestiae rerum consequuntur perferendis sint recusandae vitae. Asperiores sit sed ad dolorum sit et.', 229, 'Josianeland', '13856-7735', -49.715729, -132.00397, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(61, 40, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 60', 'Autem maxime natus esse soluta. Aperiam suscipit quo labore occaecati vitae omnis atque. Rem dolor quia qui ut est et omnis.', 781, 'Kunzeburgh', '68029-6233', -32.574361, -120.422014, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(62, 96, 20, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 61', 'Et illo nesciunt harum magnam. Delectus architecto et temporibus ut deleniti aperiam. Temporibus facere explicabo inventore suscipit quis. Qui excepturi odio occaecati.', 480, 'East Domenic', '84198', 63.556495, -13.787755, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(63, 42, 0, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 62', 'Quasi laudantium et rem eligendi voluptatibus. Iste deserunt officia molestiae minima nostrum delectus ut odit. Vitae nam ex eius et aperiam natus libero. Ipsum modi ea fuga minus sequi.', 158, 'New Filibertotown', '44089', -41.029614, 32.07802, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(64, 34, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 63', 'Reiciendis enim quos ut nobis. Incidunt quo maiores aperiam ut est qui quos quis. Perspiciatis libero repudiandae molestiae.', 242, 'East Santos', '00876', 53.14808, 1.20343, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(65, 76, 18, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 64', 'Quis debitis nihil quasi porro consequatur tempore aperiam. Facere voluptatem eaque nam eum ipsam voluptatem qui. Omnis distinctio optio ex eligendi.', 262, 'West Torrance', '06502-0397', 24.562112, -6.559301, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(66, 50, 4, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 65', 'At autem voluptatem eum ducimus est voluptatem enim. Officiis alias ducimus vel. Et nulla consequuntur doloremque veniam.', 366, 'Grahamside', '83243', -23.938108, -93.011446, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(67, 30, 15, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 66', 'Iure quia explicabo suscipit occaecati ut a hic pariatur. Fuga quo quae dolorum quia iste. Rerum tenetur fugit debitis sit ipsum odio. Mollitia aspernatur nisi omnis corporis aut atque molestias.', 456, 'Larsonburgh', '46089-8655', 38.755681, 32.843835, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(68, 65, 0, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 67', 'Voluptatibus et quae laboriosam officiis quidem rerum saepe. Aut mollitia eum eos ut ut. Maiores possimus nisi quis vero voluptatem aspernatur. Et et rerum voluptas at.', 362, 'Jordymouth', '19508-1731', -11.209544, 12.037346, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(69, 81, 1, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 68', 'Sint eaque voluptas neque et. Quam eius dolores sint et omnis. Enim magni dolor voluptas exercitationem est aut tenetur. Minima molestiae laudantium sapiente unde repellendus iusto minima.', 957, 'Lake Bernhardberg', '92071-6003', 69.16303, -130.805037, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(70, 88, 12, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 69', 'Aut autem iure et vel. Sunt doloribus fugiat consequatur. Perspiciatis nihil consectetur doloremque officia corporis et.', 139, 'New Raheem', '55547', 33.007765, 67.296266, '2021-03-12 09:59:40', '0000-00-00 00:00:00');
-INSERT INTO `posts` (`id`, `id_user`, `id_breakdown_category`, `images`, `cover_image`, `is_solved`, `title`, `content`, `budget`, `city`, `postal_code`, `lat`, `lng`, `created_at`, `updated_at`) VALUES
-(71, 79, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 70', 'Atque nemo ipsam quo aut alias voluptatem. Est sit qui animi magni esse. Beatae eligendi earum eum aut aliquam pariatur. Quisquam sequi qui consequuntur.', 689, 'Keeleyhaven', '24199', -69.090587, -134.303658, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(72, 17, 19, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 71', 'Unde iure esse aut corporis adipisci. Nobis dolorem delectus aperiam corrupti dolor. Nostrum aspernatur distinctio id aut tempore.', 122, 'Kshlerinfurt', '88382-2440', -68.53624, -70.393238, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(73, 98, 7, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 72', 'Blanditiis tempore facere non ipsam. Vel tempora sunt et voluptatum sed inventore. Eveniet sapiente voluptates deleniti eveniet totam veritatis fuga. Nihil in eaque quia nulla amet vitae.', 534, 'North Merlefurt', '55967-7644', 51.0792, -56.79564, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(74, 8, 3, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 73', 'Laborum culpa ut non veritatis enim ducimus. Fugit ipsum debitis impedit nostrum. Sit et quia mollitia porro.', 329, 'Donnellystad', '34026-7923', -45.368224, 13.399674, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(75, 85, 17, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 74', 'Suscipit pariatur quidem dicta aperiam. Totam sed voluptas odio quae nihil corrupti ducimus dicta. Sed sed repudiandae dolorum quas nostrum.', 754, 'Jewellbury', '83510', 75.572477, -65.944859, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(76, 50, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 75', 'Eos illo ex architecto corporis. Deserunt repellendus consequuntur ut sit delectus ut ut. Odio sed nostrum sequi repellendus et.', 875, 'Carissabury', '44921', -21.409537, -174.01712, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(77, 90, 11, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 76', 'Omnis et et velit. Velit alias voluptas ad ullam in distinctio. Sit maiores quod quae fuga et. Temporibus delectus aperiam animi optio ea.', 545, 'Vickybury', '41749', 16.092475, -129.666599, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(78, 51, 5, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 77', 'A dolor et ad quos quidem. Est impedit similique inventore. Sunt voluptate aut vitae voluptas. Voluptas dolorem ea voluptatum excepturi.', 895, 'Garrettstad', '62034', -0.100062, 62.997098, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(79, 22, 12, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 78', 'Aspernatur ex nobis omnis voluptatem omnis mollitia. Libero quos earum necessitatibus adipisci voluptatibus voluptatem dolores. Officia voluptatum nihil in atque. Numquam velit et et vitae id.', 61, 'Lindbury', '97966-3110', 28.666176, 105.853983, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(80, 88, 14, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 79', 'Et ducimus consequuntur veniam itaque omnis nesciunt. Neque velit enim explicabo iusto. Ut ut voluptatem reprehenderit et. Non doloremque ex facilis enim eum beatae tenetur voluptatem.', 141, 'Funkbury', '20970', 84.33358, -179.185564, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(81, 5, 2, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 80', 'Eos est dolorum quod dolores impedit. Sed blanditiis praesentium expedita quis.', 761, 'Lake Gissellestad', '42379', 70.97999, -105.48565, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(82, 19, 12, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 81', 'Atque earum aspernatur quam modi qui ut enim. Ut ut dicta et omnis velit ex. Cupiditate in officia quo tenetur. Rem ut accusantium est voluptate aut cumque.', 478, 'Bahringerview', '18717', 70.766947, 64.878976, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(83, 47, 8, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 82', 'In architecto non non beatae. Dolorem eum voluptas doloribus fugiat. Commodi hic ex nobis aut. Alias ut aliquam ratione.', 289, 'Lake Ernestoburgh', '04869', 82.111525, -122.063122, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(84, 51, 18, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 83', 'Non velit asperiores possimus quod inventore repellendus. Ut eos neque perferendis provident exercitationem eum.', 37, 'Kossborough', '03999', 62.894736, 72.499001, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(85, 22, 9, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 84', 'Non omnis esse provident quas. Corporis culpa ratione reprehenderit facilis asperiores repudiandae sit voluptate. Delectus iste blanditiis nobis eveniet ipsa.', 765, 'West Sofia', '88223', 62.791537, -59.078911, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(86, 96, 5, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 85', 'Laborum aliquid aliquam sunt neque. Ab illo perspiciatis unde reprehenderit minima qui voluptatum. Est corrupti id provident eos deserunt vel. Sit debitis voluptates aut suscipit sint animi.', 56, 'Reynoldshire', '17936-7512', 29.896127, -82.266044, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(87, 78, 3, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 86', 'Ut labore consequatur occaecati saepe inventore. Rerum delectus dignissimos earum voluptas amet minima. Qui debitis sit aliquam dignissimos odio possimus. Iste repudiandae et omnis repudiandae.', 25, 'Jacobichester', '91836-4077', -71.561677, -104.016578, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(88, 98, 10, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 87', 'Rem est officia ea a beatae fugit. Molestias earum ullam facilis corrupti. Assumenda vero id natus. Aut amet animi est et odio facilis cumque.', 110, 'Port Mertie', '38343', -62.872097, 44.048139, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(89, 83, 14, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 88', 'Suscipit laudantium explicabo impedit omnis. Sed velit aut quia. Doloremque adipisci quo dolorem ab. Consequatur magni quia corrupti quod saepe rerum.', 180, 'West Barbara', '15612-0230', -2.444135, -78.38194, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(90, 36, 6, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 89', 'Repellendus maiores qui asperiores eaque temporibus. Rem a eum unde temporibus tempore.', 194, 'Lake Myrtle', '81315-5019', 32.414767, 106.165733, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(91, 58, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 90', 'Ea quo nihil error nihil numquam qui voluptas. Quia cumque totam similique ducimus similique est veritatis.', 283, 'East Shadville', '56288', -75.628983, -98.962335, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(92, 30, 10, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 91', 'Illum enim nihil eius ut animi. Pariatur cumque ipsam nesciunt voluptates vero quasi. Quo occaecati tenetur nihil minus libero. Voluptas nostrum voluptatem vero possimus ea eum.', 10, 'Lake Lue', '74635-4839', 76.263742, 86.283111, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(93, 90, 5, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 92', 'Necessitatibus quos nihil libero autem tempora. Incidunt officia ab repellat cupiditate facere omnis aliquid. Est est deserunt cumque ut inventore.', 202, 'Wolfside', '10452', -67.138796, -7.348339, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(94, 75, 22, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/821652/pexels-photo-821652.jpeg', 0, 'Super titre 93', 'Voluptatum dolore asperiores commodi corporis animi. Qui dolores et sunt eum nihil placeat. Perferendis reprehenderit neque aperiam nam voluptates.', 439, 'Lake Skylatown', '88936-7561', 39.739916, -127.275228, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(95, 49, 9, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 94', 'Saepe cum atque blanditiis iure. Architecto qui et nihil soluta omnis. Aperiam quaerat ipsa ad iusto qui esse quia. Rerum tempora eum distinctio ducimus facilis. Sit tenetur sed non eius odit ipsum.', 632, 'Ankundingburgh', '62213-4541', 52.229711, -38.57075, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(96, 93, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 95', 'Vel qui maiores et delectus quas occaecati qui. Optio ut eligendi porro reiciendis qui fugit. Ut modi nobis nemo nobis ut modi. Repellat et corrupti laboriosam perspiciatis.', 599, 'North Cara', '94981', -33.717852, -115.391284, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(97, 81, 16, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 96', 'Perferendis sunt quam in. Deleniti ipsam dolores saepe molestias est quo. Nihil dolores labore aut illo sit similique. Ut officia amet nemo molestias distinctio ut temporibus.', 142, 'South Jerad', '98712', 56.095558, -109.145291, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(98, 77, 22, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/1388947/technology-telephone-mobile-smart-1388947.jpeg', 0, 'Super titre 97', 'Deserunt a nam provident adipisci exercitationem adipisci. Eum ullam rerum aliquam esse. Dolorum ipsum non est necessitatibus rerum.', 134, 'Vincenzofort', '85068', -20.714286, -13.794673, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(99, 73, 2, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/5053740/pexels-photo-5053740.jpeg', 0, 'Super titre 98', 'Distinctio nihil atque maxime in aperiam. Iure veniam commodi ut qui atque molestias praesentium porro. Aut culpa dignissimos veritatis qui.', 676, 'East Arnulfo', '06373', 20.918508, -113.652977, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(100, 38, 13, '[\"https:\\/\\/images.pexels.com\\/photos\\/821652\\/pexels-photo-821652.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/1388947\\/technology-telephone-mobile-smart-1388947.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/719399\\/pexels-photo-719399.jpeg\",\"https:\\/\\/images.pexels.com\\/photos\\/5053740\\/pexels-photo-5053740.jpeg\"]', 'https://images.pexels.com/photos/719399/pexels-photo-719399.jpeg', 0, 'Super titre 99', 'Quibusdam reprehenderit sit laboriosam earum ad sit explicabo. Eos dicta rem tenetur provident quis ipsam. Excepturi expedita consectetur dolores repellat in eveniet id.', 12, 'Yesseniaborough', '95382', 47.365294, 47.556308, '2021-03-12 09:59:40', '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `post_warnings`
+-- Table structure for table `post_warnings`
 --
 
 CREATE TABLE `post_warnings` (
-  `id` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_post` int NOT NULL,
   `message` tinytext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reviews`
+-- Table structure for table `reviews`
 --
 
 CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
-  `id_reviewed` int(11) NOT NULL,
-  `id_reviewer` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_reviewed` int NOT NULL,
+  `id_reviewer` int NOT NULL,
   `score` double NOT NULL,
-  `comment` tinytext DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `reviews`
---
-
-INSERT INTO `reviews` (`id`, `id_reviewed`, `id_reviewer`, `score`, `comment`, `created_at`, `updated_at`) VALUES
-(1, 58, 24, 2, 'Architecto quae ipsum vero consequatur velit ea. Et commodi et aut autem voluptatem suscipit. Accusantium nihil et et aliquid sapiente et tenetur.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(2, 27, 9, 3, 'Architecto libero fuga ex non atque perferendis. Hic et sit ut sunt. Sint eum sit voluptatem dolor eius qui et. Doloribus aut at animi inventore quia blanditiis dolorem.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(3, 37, 70, 2, 'Eligendi sit corporis aliquam ut. Nisi nobis aut sit dignissimos voluptatem ut. Rerum quis magni ea non qui. Temporibus eius incidunt officia pariatur aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(4, 63, 11, 3, 'Id voluptates dolores recusandae quo sunt molestiae. Sit vel velit corrupti vero. Quia voluptas culpa qui odit. Laudantium commodi sunt tempore eum et nam illo.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(5, 41, 3, 3, 'Deserunt voluptatem est sed asperiores odit. Dolores esse sequi est dolores exercitationem possimus qui. Enim non qui sed quos voluptas laboriosam. Illo fuga ut consequatur distinctio sunt aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(6, 54, 64, 3, 'Voluptate tenetur id illum incidunt excepturi. Pariatur rem explicabo ducimus nihil dolorem voluptatem facilis voluptates. Facilis recusandae corporis doloribus vero expedita.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(7, 66, 73, 2, 'Itaque consequatur explicabo hic ex ab harum. Ut quaerat fuga repellendus. Voluptas qui quia neque error nobis provident. Suscipit exercitationem dolorem eum ipsam in iure.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(8, 73, 9, 2, 'Vero voluptatem cum est qui dicta quisquam. Ipsam voluptatem quo quis quas sequi velit. Debitis maxime enim aut quidem voluptas.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(9, 64, 12, 3, 'Enim tempore hic cum sit. Perspiciatis et blanditiis facilis modi. Ut id asperiores illum assumenda magnam autem iure. Aspernatur laboriosam amet eius quos et quisquam.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(10, 60, 62, 3, 'Ut ab eaque magni soluta quis laborum nostrum. Deleniti aut optio reprehenderit veniam. Est vitae suscipit atque qui saepe non. Atque veritatis blanditiis non a sint quo impedit.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(11, 96, 58, 4, 'Aliquid est et delectus enim vel rerum. Dolores ea reiciendis tenetur eligendi quas. Aspernatur suscipit et ea ut mollitia non.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(12, 64, 81, 1, 'Dicta vitae tempore tenetur eius temporibus quia nobis. Quam earum exercitationem expedita porro. Sequi quia est atque ut ut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(13, 65, 52, 2, 'Pariatur facilis nisi et ea cupiditate sit. Quia provident accusantium voluptatum optio quos temporibus quod. Et earum qui sunt et ut ea amet.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(14, 2, 98, 3, 'Sequi commodi blanditiis officia eligendi amet maxime ea. Quo fugit eius ad facilis dolorum. Facilis distinctio qui commodi et.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(15, 11, 75, 3, 'Aut porro sapiente et hic iusto magni. Qui iusto molestias laboriosam autem necessitatibus dolor et ut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(16, 28, 74, 5, 'Perferendis enim vero est necessitatibus. Facilis itaque quo voluptatibus qui veniam voluptatem dolore. Quam doloremque aut rerum voluptas qui veritatis. Sequi qui qui rem recusandae sed quia sed.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(17, 78, 98, 0, 'Architecto et et culpa assumenda et iste. Modi incidunt aliquam eos voluptatem. Sint eos nulla blanditiis non inventore quia repellat molestiae.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(18, 10, 96, 0, 'Quod vero ut placeat qui eum autem. Doloremque ut quisquam modi sint voluptatum facilis. Sint reiciendis sint cumque quis inventore.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(19, 69, 43, 0, 'Et voluptatibus pariatur dolorem. Repellat molestiae velit et aut provident. Amet et qui eligendi et sunt aut et. Incidunt esse magnam hic eveniet autem vel unde. Officia qui est tempora consequatur.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(20, 9, 54, 1, 'Mollitia quam sed consequatur voluptas quis at. Velit soluta voluptates quaerat adipisci ipsam. Praesentium eum qui temporibus recusandae. Eos eligendi perspiciatis nam sint fugiat.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(21, 36, 78, 2, 'Unde ipsa enim quidem quidem eligendi. Non in esse eum. Voluptates est aut eos nesciunt dicta non. Consectetur minus quae aut est debitis. Est animi eaque aliquam.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(22, 85, 82, 4, 'Sunt neque occaecati sit. Voluptatem rerum qui itaque necessitatibus eum rerum non. Accusamus iusto dicta excepturi.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(23, 11, 36, 1, 'Ipsam perspiciatis nesciunt quisquam ut nam doloribus natus ut. Et quia sequi iusto magnam mollitia aut perspiciatis. Voluptatum quaerat et qui perferendis dolores debitis.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(24, 18, 11, 1, 'Itaque eaque expedita recusandae deleniti. Nesciunt sequi aperiam exercitationem. Atque libero est quia.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(25, 65, 41, 3, 'Recusandae tenetur qui natus laboriosam ullam. Esse nam ipsum assumenda. Nulla et quidem eos libero qui dolorum. Ut dicta odit ut ea dolor id.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(26, 38, 87, 3, 'Culpa sint veniam dolores quod. Tempore doloribus voluptatem laborum quaerat suscipit ea laborum voluptatem. Delectus amet et hic expedita debitis. Necessitatibus et sunt ut ea est.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(27, 17, 78, 4, 'Repellendus quia non eius. Aut numquam ut magni in ullam. Maxime iure minus eum est velit enim eum.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(28, 8, 62, 5, 'Ipsum molestias sed hic doloremque dolores. Necessitatibus beatae officiis sit itaque. Ut ea aut nostrum et dolore possimus. Dicta quia ut numquam quia quos.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(29, 72, 93, 0, 'Et inventore sed libero et. Dolorem sunt aperiam dolorem ut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(30, 31, 81, 5, 'Dignissimos autem aut odio nobis. Necessitatibus ducimus voluptatem minima et aperiam ut. Rem sed rerum excepturi commodi totam voluptates voluptas inventore.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(31, 78, 59, 1, 'Tempore odio tempore aut harum qui sit cupiditate. Doloribus debitis tempora eligendi nihil necessitatibus. Id consectetur aut quo facere. Tenetur et quo sed quo at voluptatem.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(32, 77, 59, 4, 'Voluptatem ullam reprehenderit qui reiciendis molestiae maiores neque. Distinctio eum qui sint rem qui. Non error at veniam quo distinctio est non.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(33, 53, 39, 0, 'Dolorum rerum quaerat quia praesentium est nemo. Nulla tempore laudantium enim exercitationem et temporibus qui voluptas.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(34, 19, 11, 4, 'Et quia saepe id doloribus. Soluta possimus ipsam harum quia perspiciatis architecto tempora magni. Officia est enim pariatur molestias occaecati facilis.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(35, 88, 47, 1, 'Reiciendis aperiam sed nobis omnis accusamus non in fugit. Earum quo aut cum et numquam. Qui aut eum cupiditate aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(36, 60, 36, 4, 'Nam magni accusantium quo non. Debitis expedita saepe quidem sit. Eligendi voluptatem molestiae inventore modi ut. Eaque sunt sit voluptas rerum cumque aliquam sunt.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(37, 58, 87, 1, 'Modi rerum et perspiciatis sint. Incidunt velit porro sequi velit. Et eligendi recusandae non asperiores mollitia qui. Natus qui natus natus. Quo beatae quia dolores aperiam magnam provident hic.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(38, 67, 14, 0, 'Sed asperiores impedit voluptate est veniam quia porro. Vel at molestiae nisi et est. Quod omnis ut quos ullam dicta quod neque aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(39, 27, 51, 0, 'Quidem sequi eum labore debitis vel omnis dolor. Quo nobis fugiat dolore possimus aut dolorem nulla ullam. Quasi at aut quia doloremque eum quod mollitia.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(40, 89, 47, 2, 'Quidem rerum sint voluptates quia facere. Ipsa voluptatem voluptatum fuga molestiae velit officiis. Cumque odit debitis qui cum autem alias dolorum. Eum qui quidem in tempore minus aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(41, 65, 67, 5, 'Temporibus quae itaque quo maiores aperiam repellat assumenda. Voluptas sit aut ab debitis accusantium tempora id aut. Quibusdam ab aliquid quos aut ad hic.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(42, 96, 43, 1, 'Hic eligendi cum accusantium assumenda. Quia sint culpa a ea placeat aut maiores molestiae.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(43, 86, 79, 5, 'Ducimus fugit eos nam. Voluptatem explicabo pariatur ut non libero tempora. Tempora placeat facere corrupti quasi animi doloribus.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(44, 88, 42, 1, 'Hic tempora qui ratione ut dolor ea sit. Rerum enim quis minus et. Mollitia fugit quam qui voluptatem minima. Cumque consequuntur sit ipsum deserunt aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(45, 62, 55, 1, 'Nihil qui debitis quis. Quia rerum sed dolores qui. Nisi rem amet pariatur veniam quos. Consequatur consequatur corrupti voluptas eum distinctio magnam.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(46, 73, 44, 0, 'Molestias animi quos sit. Qui omnis ut est at quia. Eius nostrum dignissimos omnis vel. In veniam velit unde officiis qui et.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(47, 40, 28, 3, 'Commodi labore labore nam quod provident. Eaque officia aperiam rerum.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(48, 50, 43, 1, 'Dicta adipisci vel quo tempore. Velit veniam expedita suscipit ex harum dolores. Aut corporis animi possimus consectetur qui culpa consequuntur quaerat.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(49, 46, 33, 2, 'Saepe ratione amet facilis laborum. Ipsa impedit quisquam iusto laudantium. Ab quae qui quod nihil eius voluptatem eveniet. Quis enim rerum voluptas consequatur cupiditate placeat sed.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(50, 11, 13, 5, 'Ut sapiente quae dignissimos labore et ut. Vero quo et minus ratione sit nisi. Qui ad modi eos hic corrupti consequatur voluptatem. Accusamus qui qui qui aut quasi at odio recusandae.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(51, 79, 66, 5, 'Eveniet aut non aperiam necessitatibus praesentium eveniet illum. Maiores quia vel nihil ex voluptatibus laborum explicabo.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(52, 76, 45, 3, 'Rerum et doloremque ea impedit commodi possimus. Eligendi ea et distinctio rem asperiores. Unde quasi tempora quidem aut excepturi nesciunt laboriosam. Maiores aliquid et illum et dolor.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(53, 38, 44, 5, 'Sed similique tempore aut fugiat laborum doloremque quisquam voluptatem. Hic reiciendis ipsa modi culpa veniam at consectetur. Porro inventore eum dolorem aspernatur ratione.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(54, 71, 86, 2, 'Rerum voluptatibus quo porro ut eum eaque. Aspernatur et earum mollitia aliquid saepe. Consequatur non odit cumque ut placeat et. Dolor est voluptas voluptatem debitis.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(55, 4, 46, 1, 'Nisi ut cum autem amet rem eos architecto. Neque et cupiditate et veniam adipisci autem. Atque qui labore fugit porro voluptatem. Blanditiis rem laborum soluta perspiciatis recusandae iusto et.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(56, 39, 74, 3, 'Repellendus vero quae aut suscipit quod distinctio. Repellat quia cum vero quaerat temporibus rerum maiores. Quibusdam dolores laboriosam nam veniam repellat.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(57, 43, 98, 4, 'Sequi et incidunt nostrum illo laborum aliquam. Ut officiis officia voluptatem sint porro. Facilis molestiae quisquam qui earum non et eos. Magni aut veritatis harum aliquid officia.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(58, 30, 51, 5, 'Sed architecto ut non illo iure odit. Sit harum ea nulla a similique inventore quae. Perferendis id blanditiis provident quibusdam. Ut rerum rem non ipsum dolorem.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(59, 13, 96, 5, 'Soluta assumenda hic excepturi dolor sit dicta sapiente. Omnis sit aut odit voluptas unde recusandae dolores. Nisi aut voluptates ipsum. Ex et eligendi impedit.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(60, 63, 92, 1, 'Placeat in atque ut et corrupti asperiores minus. Velit qui nemo ratione voluptate dolor neque odio nobis. Debitis ab architecto amet corporis. Qui sint quasi explicabo beatae.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(61, 80, 81, 2, 'Blanditiis esse magnam dolore est quo quidem incidunt. Voluptatem cumque quia rerum voluptatem praesentium est. Quia quam cum fugiat.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(62, 8, 41, 4, 'Eaque voluptate dolorum quibusdam qui illo. Eaque voluptates porro et tenetur. Illum ratione molestiae eligendi possimus. Excepturi perferendis aliquid sint alias.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(63, 81, 22, 0, 'Corrupti non blanditiis qui debitis labore. Veritatis hic quibusdam quisquam minima deserunt. Dolor quo aliquam pariatur iure quo similique. Dolorum deleniti est doloribus.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(64, 23, 36, 5, 'Veniam dolor minus similique deserunt. Ut omnis facere ex. Iusto facere nesciunt et accusamus quia molestiae dolore.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(65, 36, 50, 3, 'Nam illo sit soluta perspiciatis. Rerum quaerat et possimus dicta odit dolore.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(66, 37, 97, 4, 'Quibusdam sunt hic provident repudiandae rerum porro. Animi ipsum quia illo quia eum. Cupiditate aut excepturi adipisci eius asperiores.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(67, 27, 75, 4, 'Enim laudantium cumque voluptatem tempore velit. Assumenda repellat illum labore voluptas. Vitae vel eligendi eos.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(68, 86, 65, 3, 'Iure quaerat enim placeat quibusdam distinctio. Cupiditate omnis est enim alias dignissimos maiores. Exercitationem eos molestias et id doloribus ut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(69, 15, 69, 4, 'Natus necessitatibus eaque voluptas nostrum repellat debitis quam. Facere iste amet omnis et esse optio modi rem. Sed deleniti qui dolor et.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(70, 29, 62, 1, 'Molestias ratione itaque odit ea consequuntur. Praesentium delectus cumque ducimus officiis. Ipsam iure quia quis fugit. Voluptatibus quibusdam et perspiciatis omnis ut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(71, 86, 58, 1, 'Sunt aperiam incidunt eligendi et unde rerum. Voluptatem quibusdam nesciunt et fugiat et corporis. Qui quam nemo cupiditate. Sequi dolore minus praesentium id inventore et qui.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(72, 25, 71, 4, 'Aliquam eaque ratione et. Nesciunt illum eaque aliquam dolorum libero aspernatur. Corrupti est totam sed placeat ratione animi. Et molestias cum et.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(73, 97, 11, 3, 'In nulla at molestiae ducimus ut maiores vel. Adipisci ipsa exercitationem voluptas qui. Commodi necessitatibus repellendus voluptatem est nostrum.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(74, 87, 74, 4, 'Et at mollitia ut modi quibusdam. Quia laborum deleniti eum aperiam saepe mollitia blanditiis. Repellendus sit officiis delectus distinctio.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(75, 49, 54, 5, 'Et incidunt quam eum temporibus libero. Quibusdam dolorum earum neque sed natus. Ea laudantium qui voluptatem voluptates.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(76, 30, 1, 5, 'Numquam qui exercitationem odit et necessitatibus. Consequuntur deserunt quae aut. Deleniti modi et corrupti molestiae. Praesentium voluptates explicabo hic voluptatem.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(77, 99, 37, 2, 'Deleniti voluptate atque fugiat laudantium unde facilis minus. Odio voluptas et et. Est aut quo consequatur molestiae delectus.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(78, 42, 37, 3, 'Distinctio doloribus dolor non ut nobis. Enim ea accusamus rerum dolore et. Illo eum voluptatibus nihil officiis aliquam rerum at repellat. Laboriosam aut et cumque dicta ipsam.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(79, 89, 97, 3, 'Sit distinctio voluptas vero aut perferendis quod ratione ea. Quaerat id voluptatem dolorem. Libero sit corrupti minima aut.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(80, 35, 99, 5, 'Consectetur quasi repellat velit ut fugiat ullam est. Quisquam iusto pariatur accusantium qui voluptas ad. Qui ut qui facilis aliquid illo rem.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(81, 60, 56, 3, 'Dicta sequi dolor atque vitae et possimus aut. Eum voluptatem reprehenderit sint esse cum mollitia. Commodi voluptas beatae molestiae inventore. Molestias delectus voluptatum sequi non.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(82, 94, 35, 2, 'Nam quia facere eos. Cupiditate sunt laudantium earum vel est dolorem. Impedit earum dignissimos sunt. Quia quam vel aut distinctio.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(83, 74, 10, 0, 'Eligendi nostrum est autem doloremque a. Blanditiis ut quo sit qui nihil perspiciatis. Iure repellendus itaque voluptatem natus.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(84, 44, 16, 5, 'Incidunt qui et enim commodi. Aliquam vel voluptatum facilis tempore alias voluptas. Aliquam ut nesciunt aut assumenda. Facere non tempore reprehenderit esse rerum libero rerum ratione.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(85, 66, 31, 4, 'Non voluptatibus in et deserunt eveniet autem. Explicabo sunt veniam possimus sit eveniet. Eligendi voluptates est dolore accusantium similique et. Qui pariatur et fuga doloribus ab.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(86, 13, 50, 3, 'Eos ut blanditiis eum eos id earum perferendis est. Aliquam assumenda dolor quis et.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(87, 72, 63, 3, 'Sit deleniti optio aut placeat corrupti odit. Quasi consectetur modi quos. Quibusdam qui dolorem voluptatem aut velit corrupti sapiente.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(88, 40, 56, 1, 'Suscipit repellat nam dolores sunt quisquam voluptates saepe. Autem recusandae delectus odio modi reprehenderit. Sit qui natus ipsum doloremque numquam quia non.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(89, 72, 86, 4, 'Aperiam culpa totam aliquid ad cumque cumque. Quia hic quibusdam nihil dolores odit aut voluptas. Id tenetur eos qui fuga.', '2021-03-12 09:59:42', '0000-00-00 00:00:00'),
-(90, 86, 97, 1, 'Totam alias earum et voluptate eveniet earum. Libero atque quia tenetur atque quo modi. Voluptatum est voluptatem dolor et. Voluptatem aut velit laudantium autem deleniti enim est.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(91, 51, 5, 0, 'Sunt cumque esse et omnis. Rem sunt dolores quam earum cum repellat.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(92, 67, 43, 5, 'Nisi illum aut enim vel repellat in amet. Rerum deleniti recusandae a voluptatibus ea impedit. Totam odit repudiandae rem quaerat. Voluptates veniam unde veritatis excepturi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(93, 41, 40, 4, 'Dolor id quidem quo at. Et reprehenderit est corrupti quidem voluptate corrupti. Qui repellendus voluptatum nesciunt sunt veniam possimus.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(94, 92, 53, 2, 'Eius nulla beatae voluptates enim non. Et similique aut quo. Perferendis ea veniam rerum incidunt quia.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(95, 23, 67, 1, 'Mollitia et a sint fugit sed inventore et similique. Ipsa hic quidem fuga. Aut perspiciatis exercitationem voluptas sed a saepe eius. Id amet minima neque dolor quos id.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(96, 10, 51, 3, 'Atque eos error nihil illo consequatur non fugiat. Fuga laudantium rerum corporis at. Ducimus porro repellat quis. Saepe ut nulla non velit. A libero velit quia voluptatem molestiae quas.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(97, 26, 98, 1, 'Eum minima assumenda veritatis. Nulla libero inventore ipsam et dolorem fugiat et. Laudantium molestiae minus voluptatem dicta tenetur ipsa nam. Dignissimos maxime explicabo veniam ipsa.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(98, 6, 4, 3, 'Nihil omnis at illo qui ut sint cum. Fuga quia quis totam animi. Vitae cum ipsum quo qui accusantium consequuntur et. Explicabo nam nam amet unde autem et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(99, 23, 73, 2, 'Et fugiat unde voluptatem temporibus laboriosam ab. Placeat soluta quia rerum dolore. Corrupti ab itaque fugit cumque.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(100, 49, 28, 4, 'Corporis possimus animi nobis eos dolor architecto. Nemo sapiente eum vel sequi dicta in. Doloremque in nisi a qui. Unde quia est dignissimos dolores molestias quis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(101, 40, 63, 0, 'Dicta quasi aliquid non sequi. Iste qui aperiam eius et minus commodi laudantium aperiam. Qui ex recusandae blanditiis molestiae autem sed. Suscipit dolores aut quis voluptas et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(102, 46, 12, 2, 'Et quisquam accusantium molestias libero illum. Est sint unde officiis ipsa quod corrupti. Veniam fuga quia non molestiae est.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(103, 65, 42, 3, 'Dolores molestias pariatur laudantium aut molestiae consequatur. Voluptate sequi explicabo id pariatur quibusdam consequatur sequi. Consequatur repellat aut consequatur nobis consequatur sunt.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(104, 90, 82, 3, 'Sit eum quis enim dolores voluptatem rerum rem inventore. Odio aperiam omnis quod aut quas iure. Sit quia vitae a quidem recusandae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(105, 14, 8, 1, 'Voluptatum sunt error veniam deserunt et facere repellendus. Adipisci eaque omnis saepe excepturi. Tempore et ratione est quam qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(106, 32, 60, 4, 'Aut quo est doloremque voluptatem perspiciatis eum aut aut. Odio aperiam porro praesentium pariatur quaerat sed beatae. Ut eos reprehenderit ex ipsa quia. Aut quasi similique voluptas repudiandae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(107, 39, 63, 3, 'Doloremque qui reprehenderit vel aperiam est exercitationem. Laboriosam sint consequuntur totam assumenda. Est quae dignissimos qui repellendus adipisci id magni qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(108, 86, 58, 2, 'Quia illum aperiam eligendi voluptatem a velit impedit. Voluptatem perferendis quidem animi doloribus ipsa facere. Molestiae iste eveniet vel repellat sint eum.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(109, 19, 54, 1, 'Illo voluptatem tenetur quasi asperiores corrupti. Sit sit atque cupiditate impedit sed aut veniam iste. Fuga ad nisi temporibus expedita est perspiciatis et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(110, 19, 61, 3, 'Sit aut explicabo aut quo odio fugit. Consequatur neque dignissimos qui quia numquam. Ea quisquam alias amet voluptatem quibusdam est cupiditate.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(111, 73, 5, 4, 'Omnis autem iusto dolores et magnam soluta voluptas dolores. Non iusto officiis aliquam magnam. Qui totam aut maiores incidunt error est. Temporibus tempora aperiam ab cumque eius.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(112, 81, 28, 0, 'Cumque dolorem repudiandae pariatur eum voluptatum facilis. Dolorem iusto suscipit qui enim laborum. Recusandae tenetur ducimus quibusdam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(113, 85, 34, 1, 'A quam velit et dolore et animi. Nisi aspernatur est consectetur et. Nulla nihil ea consequatur et. At nulla exercitationem itaque quia ut dolorem esse.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(114, 68, 6, 3, 'Molestiae totam nulla nisi. Dolorem quasi dolorem nobis at nobis fuga pariatur. Error accusamus laboriosam ullam veritatis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(115, 76, 3, 0, 'Iste sunt ullam sed similique illo. Non et natus impedit quae eum. Velit enim non neque rerum quam aspernatur unde. Totam dolor amet consequatur reprehenderit porro.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(116, 40, 65, 1, 'Rerum dolorem dolore enim soluta. Impedit nobis ut quia iste ducimus saepe debitis. Voluptatem et et voluptatem fugiat molestiae impedit. Minima labore qui expedita enim dolores.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(117, 97, 83, 0, 'Explicabo vitae consequuntur magnam eos. Illum ratione cumque et modi at accusamus ut modi. Qui delectus est voluptate earum culpa.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(118, 17, 100, 1, 'Architecto beatae ipsam minus aut consequuntur repudiandae libero fugit. Libero numquam magni soluta consequuntur explicabo. Nihil eum totam et non dolores eum quia.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(119, 25, 21, 4, 'Et aliquid libero tenetur sunt. Eum doloribus modi eligendi qui consequuntur rerum at.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(120, 98, 85, 5, 'Repellendus eveniet numquam ipsum laborum. Et velit aperiam temporibus nihil sed aut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(121, 71, 87, 4, 'Id consectetur earum voluptas odio earum a ut. Dolores iure omnis dolores esse tempora voluptas earum rem. Explicabo nesciunt placeat est.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(122, 77, 28, 3, 'Sed vero labore quisquam quis voluptatem eos sint. Molestiae molestiae facilis assumenda aut saepe molestias tempore. Sequi ea aliquid qui ut ex cum quisquam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(123, 55, 55, 0, 'Quia et est fuga nobis enim ipsa. Dicta modi ad reiciendis possimus. Illo ipsum temporibus neque dicta. Autem error id laborum rerum.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(124, 27, 44, 1, 'Consequatur rerum est esse magni. Omnis illo temporibus inventore sunt error vel consequatur. Autem et voluptatum nemo est quam accusantium. Facere fugit velit autem labore sint nemo.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(125, 65, 36, 0, 'Accusantium maiores velit deleniti rerum. Reprehenderit cupiditate autem corporis ipsam rerum. Ducimus occaecati molestiae accusantium sed. Aut possimus amet sed mollitia est dolor.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(126, 59, 83, 0, 'Quis libero dolores qui sed ducimus repellat et. Quis aliquam mollitia sit debitis nostrum distinctio in. Sed perspiciatis eum qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(127, 73, 86, 2, 'Consectetur autem minima omnis sit eveniet et voluptatibus quia. Facere aut et aut cumque voluptas ipsam et accusamus. Quo eveniet libero enim earum.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(128, 99, 73, 4, 'Nihil provident possimus quo ut. Aperiam ad sit incidunt doloremque. Illum nulla quas voluptate quasi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(129, 48, 24, 3, 'Et enim qui delectus. Minima similique sequi commodi vel laborum earum eveniet ad.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(130, 79, 39, 4, 'Officiis voluptatem magnam ex doloribus illum sapiente. Aut itaque quia veniam. Id deserunt omnis nobis velit tempore animi aut ipsa.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(131, 27, 95, 1, 'Assumenda ducimus et excepturi adipisci voluptatibus deleniti. In dolores et rem quia laboriosam velit perspiciatis. Velit quibusdam nemo quibusdam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(132, 62, 80, 0, 'Nihil veritatis necessitatibus quas. At possimus et magnam et commodi. Aut est voluptas iusto.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(133, 7, 65, 4, 'Praesentium et voluptates voluptatum. Culpa maxime quidem iure nobis sed amet. Ex dolorem facilis error.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(134, 41, 78, 0, 'Quas non sed sed et labore omnis. Veritatis ratione aspernatur qui. Qui sit omnis odio nihil eos ut vel inventore.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(135, 53, 24, 4, 'Ut occaecati id soluta ut blanditiis. Ratione eius dolor dolorem quaerat. Quod et architecto qui sunt.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(136, 78, 21, 1, 'Voluptas velit officia ducimus et. Fuga dolore perspiciatis ducimus et adipisci. Sit eum voluptas et optio sint atque. Aut et iure asperiores et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(137, 63, 9, 2, 'Vel corporis ea maiores itaque est sint culpa qui. Odio ea reiciendis velit beatae consectetur necessitatibus occaecati.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(138, 48, 65, 1, 'Et unde excepturi tenetur sed. Sit aliquid et illum sequi quis id exercitationem. Est laborum dolores beatae autem.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(139, 31, 48, 5, 'Sit rerum deleniti sit dolor consequatur. Reprehenderit illo eaque hic non est consequatur. Vel dolores iure quidem qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(140, 9, 76, 5, 'Atque laboriosam dolorum voluptatem consequuntur debitis animi est officia. Excepturi numquam ipsum excepturi minus. Ullam beatae consequatur aut quod cupiditate dolorem et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(141, 11, 19, 3, 'Et aliquam quas ut. Provident quo iure veritatis aliquid vel repellat ad. Quasi est enim est porro. Optio officiis et corrupti quae accusamus repellendus et a.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(142, 63, 97, 1, 'Corrupti deserunt atque alias nesciunt quo. Quidem non labore a quia. Esse ex inventore hic molestiae explicabo. Alias ab dicta est quia suscipit ut voluptatibus.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(143, 57, 83, 0, 'Ut consequatur fuga sunt provident at doloribus quia. Quidem quisquam et blanditiis molestiae iure dignissimos qui ducimus. Ut veniam velit laudantium qui. Qui magnam ipsam voluptatem tempora non.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(144, 22, 81, 0, 'Consectetur delectus ipsa corporis ipsam odio ut corrupti. Quam quos quo voluptatum. Architecto consequatur eveniet cupiditate eos sit. Corporis qui qui eaque quia sunt et voluptas omnis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(145, 5, 66, 0, 'Porro quisquam explicabo magnam inventore illo quo. Repellendus quasi enim animi non deserunt voluptatibus. Totam recusandae repellat rerum sunt alias sunt.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(146, 51, 3, 1, 'Corrupti sapiente tempore exercitationem et quasi nihil nostrum. Laudantium in est dolores aut autem sapiente sit. Cupiditate ipsum deserunt libero quia ea repudiandae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(147, 10, 66, 3, 'Quo consequatur unde placeat dolorem omnis. Et unde iusto rerum eaque qui natus. Earum sunt qui at.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(148, 97, 32, 0, 'Facilis et enim labore ut vel. Est est repellat voluptas nemo dolores expedita perferendis velit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(149, 73, 29, 3, 'Minus voluptatem et distinctio. Dolores quo et voluptatem laborum sit. Neque recusandae modi officia est hic voluptatem. Non voluptate suscipit quisquam alias quo.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(150, 29, 85, 2, 'Maiores repellat perferendis iusto consequatur. Sunt impedit quis ratione blanditiis. Unde sit dolorem eos sed autem sequi impedit ipsum. Adipisci et sed alias quisquam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(151, 45, 83, 2, 'Repellat dolorum ut earum consectetur accusantium. Eum et modi voluptatem consequatur non. Natus hic necessitatibus consequuntur est neque neque.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(152, 59, 9, 5, 'Et qui repellat nihil ut. Est maxime explicabo autem distinctio consequatur iure eos. Sit accusamus in totam facilis et quia praesentium.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(153, 65, 47, 4, 'Exercitationem repudiandae aliquam quae qui. Quaerat adipisci ipsam rem et beatae. Ratione ipsa molestiae iste qui illum pariatur architecto amet.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(154, 59, 96, 0, 'Non sit sit ad minima veniam porro ea. Quae eos et delectus sed autem minima. Tempora consequuntur illo expedita animi omnis inventore. Quia in velit corporis debitis harum ut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(155, 12, 55, 4, 'Necessitatibus eum laborum necessitatibus dignissimos. Repellat vero tempore nihil occaecati repellat. Qui culpa vitae quae blanditiis natus earum. Ab quibusdam dicta nihil officia nemo.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(156, 88, 42, 0, 'Dolorem tempore natus assumenda quasi necessitatibus et qui. Qui numquam voluptates perferendis error. Hic ipsum qui explicabo.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(157, 8, 97, 1, 'Laborum culpa aut odit quod. Totam et id mollitia dolorum atque ex autem. Debitis laudantium sed laudantium eveniet nihil doloremque.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(158, 27, 28, 0, 'Maxime alias nulla tempore veniam et et consectetur. Aliquid incidunt blanditiis maiores quaerat. Hic non ab eum occaecati saepe eveniet.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(159, 61, 14, 3, 'Atque sit voluptate blanditiis velit aut. Est commodi ratione aut dignissimos modi provident inventore.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(160, 10, 8, 2, 'Commodi mollitia quos eius eum consequuntur deserunt nulla. Tempore iste est rerum cum qui in sit adipisci. Dolor sit rerum aut sed iste rem mollitia. Et totam modi laboriosam voluptatem.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(161, 99, 82, 3, 'Eos vel accusamus sequi saepe dolores et. Ut magni est ea ipsa cum labore ratione. Magni molestias sed excepturi aliquid ea repellendus nam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(162, 11, 79, 5, 'Qui iusto quisquam tempora omnis. A minima illo suscipit eos dicta sit sed. Dignissimos omnis soluta asperiores et accusamus.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(163, 74, 97, 0, 'Consequuntur repellendus quod odit. Voluptatibus consequatur officiis deleniti sed quis. Ut enim vel reiciendis temporibus mollitia.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(164, 92, 58, 1, 'Et est autem rerum deleniti earum voluptatum. Dolores culpa quo sed blanditiis quisquam. Aut accusantium in aut cupiditate.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(165, 94, 14, 5, 'Qui est at placeat sit vel. Omnis omnis molestiae et sit. Suscipit eum rerum corrupti nulla molestiae non ratione.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(166, 19, 27, 0, 'Rerum molestiae a culpa inventore. Dolore ipsum eius velit quos. Exercitationem earum sunt accusantium aut explicabo dolor. Illo nulla est pariatur et exercitationem minus veritatis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(167, 48, 15, 3, 'Ducimus et et cum et exercitationem. Quam maxime dolores eos quod. Sit optio et molestiae excepturi quasi molestias occaecati. Et eos perspiciatis suscipit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(168, 98, 20, 2, 'Adipisci quos rerum nisi dignissimos voluptate iure. Voluptatem aut temporibus dolor corrupti. Possimus temporibus consequatur modi consequuntur quibusdam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(169, 82, 84, 5, 'Suscipit nulla quo animi repellat. Voluptatem in iste doloribus. Ipsa beatae harum illum consectetur et non doloremque.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(170, 11, 95, 3, 'Dolores modi provident placeat blanditiis occaecati. Occaecati corrupti magnam ullam voluptatem. Nostrum sequi aut quas eaque molestiae neque. Ex quo provident cum dicta aut quia nulla.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(171, 49, 39, 4, 'Omnis molestias perferendis temporibus aut. Ut neque itaque quia ut. Ut odit atque vel aut dolorum est et. Doloribus fuga qui aut saepe.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(172, 73, 39, 4, 'Rerum totam assumenda sunt quidem ea. Sed ipsam quidem fugiat velit. Harum soluta omnis asperiores mollitia placeat.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(173, 30, 45, 4, 'Provident non qui sed. Accusantium nostrum possimus nihil dolores sunt voluptas accusamus officia. Nostrum rerum et non.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(174, 53, 56, 2, 'Sed dolorum blanditiis officia non ab quo assumenda enim. Non molestiae consequatur fugit et. Est qui assumenda officiis. Corrupti sit aspernatur quas rem iste explicabo maxime omnis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(175, 13, 65, 2, 'Rem doloribus dolor veniam illo. Dolores et et aperiam laudantium dolore doloribus fugiat. Ut rerum porro sed porro excepturi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(176, 69, 39, 3, 'Ad exercitationem quisquam suscipit consequuntur qui enim sit. Sunt dolor eum quia voluptas voluptas magni repudiandae est. Sunt placeat officiis nihil omnis eos qui et. Quo et dolores quia aliquid.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(177, 27, 25, 0, 'Blanditiis ea id sequi quas. Et illo facilis deserunt et quod qui. Quia dignissimos asperiores voluptatem ipsum quibusdam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(178, 1, 26, 1, 'Eos quis officiis quod et quia quis. Autem ipsum laboriosam in labore. Nihil eveniet est corrupti sunt dicta qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(179, 88, 92, 0, 'Assumenda sint eaque non aut. Quasi quae voluptatibus modi quis soluta molestiae. Magnam id aut nisi sed et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(180, 74, 40, 1, 'Enim eum voluptatem dolore quisquam minus vero quaerat qui. Numquam ut molestias error vitae et. Atque est sed quisquam nesciunt laboriosam in.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(181, 27, 63, 2, 'Reiciendis doloribus quis dolor magni sed. Quasi consequuntur quae quidem nostrum. Iste laborum praesentium dolorum aliquid reiciendis blanditiis. Cum et aut et nihil.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(182, 40, 7, 3, 'Et dolorem aut quibusdam sit. Neque at cum exercitationem sit et. Et est dolores voluptatum qui deserunt molestiae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(183, 28, 36, 0, 'Optio et omnis hic aperiam doloremque amet incidunt consequuntur. Accusantium voluptate iste tempore occaecati. Non veniam dolore aut molestiae ut quasi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(184, 10, 96, 2, 'Repellendus mollitia minima et exercitationem consequatur debitis nemo. Numquam suscipit id quia totam. Aut omnis aut dignissimos sint vitae. Nobis et nulla iste excepturi voluptatem iure.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(185, 12, 16, 2, 'Voluptatem est expedita consectetur ipsam ea sit et. Sunt magnam eius nesciunt voluptatem unde. Molestiae esse omnis at minima. Doloribus dicta eum asperiores veritatis recusandae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(186, 58, 95, 2, 'Ipsum est voluptas dolorum. Eos et at rem autem ut in. Voluptas assumenda veritatis est nostrum recusandae quam et. Quis omnis accusantium omnis asperiores natus.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(187, 48, 77, 4, 'Velit doloribus consequatur quo quia quisquam. Tempore optio sint a magnam consequatur dolorum non quam. Consequatur blanditiis odio sapiente laudantium et labore.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(188, 46, 89, 1, 'Consectetur aspernatur eaque occaecati saepe omnis. Aperiam eos qui sint quia quas aperiam nostrum esse. Odit ut quisquam omnis itaque cupiditate eligendi. Aut autem id consequatur quis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(189, 99, 27, 2, 'Ea eum id doloribus eum ullam est. Est rerum tempora debitis numquam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(190, 18, 76, 1, 'Vitae qui enim vel. Voluptate ex asperiores exercitationem perspiciatis. Doloremque laudantium natus iusto nam. Id quas sequi aspernatur.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(191, 77, 29, 0, 'Dolorum et qui mollitia dolorum sint. Sed consequatur vel optio animi qui. Expedita sed iure dolorem. Qui fugiat itaque nesciunt dolorem est eligendi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(192, 33, 35, 5, 'Incidunt minima et quod rem tempore repudiandae. Dolores suscipit illo velit vitae. Assumenda non aut voluptatum ut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(193, 14, 24, 2, 'Iusto maxime eaque maxime labore maiores vero enim. Dolores facilis accusamus numquam. Sed quos necessitatibus animi dolor dolore dolor consequatur. Tempore et quia et debitis est mollitia.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(194, 35, 84, 5, 'Eligendi odit ex quas eius. Et temporibus sit dolores eligendi. Cupiditate saepe quae in. Est accusamus et laborum repudiandae dolor eos.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(195, 28, 47, 1, 'Sed qui tenetur corrupti recusandae provident totam culpa. Quia impedit dolor aut atque consectetur. Eligendi vitae ut atque molestias veritatis magni.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(196, 16, 62, 2, 'Velit ut veritatis nesciunt natus possimus quia. Deleniti ea unde qui beatae. Aut ut quos esse officia at sit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(197, 24, 95, 5, 'Adipisci aliquam accusantium fugit atque qui atque hic. Ea non deleniti sed. Qui quia ut dolores. Dolorum consequatur animi vel aut eligendi error cupiditate dolorum.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(198, 49, 52, 2, 'Dolore porro quod porro minima iure voluptates. Reiciendis eaque et et est rem. Tempore pariatur in quos voluptas quia.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(199, 82, 29, 4, 'Est quis quidem inventore qui aut. Ab molestias excepturi aut cumque. Nostrum repellendus magnam animi culpa alias.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(200, 69, 64, 3, 'A asperiores esse dolorem rerum veritatis et repellat sed. Reiciendis qui nihil minima qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(201, 69, 16, 0, 'Ut voluptas eos vel quas repellat est. Exercitationem exercitationem modi eaque ipsum. Modi quaerat culpa odit magni voluptatem omnis. Provident libero maxime sapiente.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(202, 66, 59, 3, 'Tenetur eos eos omnis repellat. Sit cum non et necessitatibus. Adipisci odit voluptas ipsa quod animi. Placeat distinctio quaerat repellendus velit possimus facilis est.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(203, 80, 56, 2, 'Occaecati dicta blanditiis eum libero molestias. Illo voluptatem reprehenderit non. Iusto debitis aut voluptas perspiciatis. Sint nulla minus cupiditate.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(204, 48, 69, 4, 'Occaecati nisi facilis ea. Aut nobis beatae rerum exercitationem sint quos. Et atque enim amet repudiandae mollitia sint.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(205, 41, 37, 2, 'Ducimus quaerat autem iste. Quis incidunt cumque et eos temporibus nulla cumque. Omnis et expedita occaecati repellendus autem voluptatem.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(206, 57, 80, 4, 'Error dolorem nulla culpa cum beatae. Soluta nemo sapiente quam voluptatem repellat autem. Ea enim perspiciatis ut architecto sed dolore qui. Veritatis doloribus eligendi dolorem cupiditate.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(207, 80, 56, 5, 'Fuga et et et est atque nesciunt et. Quibusdam qui quia doloribus minus. Aperiam libero nesciunt voluptatem enim eum. Officiis rem ex aut odit architecto.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(208, 24, 50, 0, 'Accusamus blanditiis ipsum ipsam molestiae aut qui quasi. Ipsum cumque assumenda molestiae reprehenderit. Quo dolor consequatur culpa dolor.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(209, 85, 93, 3, 'Quia et quam sit aperiam optio tempore aliquid. Consequatur voluptas voluptatem et eligendi. Et voluptate odit et est dolores consequatur sunt aut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(210, 29, 3, 0, 'Distinctio ad qui ad non ullam non minus. Sapiente pariatur enim rerum est corrupti et iste. Optio nihil consequatur minima veritatis et. Fugiat ut rerum aliquid enim repudiandae molestiae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(211, 13, 28, 3, 'Esse id debitis enim nostrum facere rerum quisquam et. Sit consequatur in et magnam est. Sint dolores et consectetur hic voluptatibus sapiente. Voluptatem aspernatur saepe nulla ea eveniet sunt.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(212, 48, 86, 3, 'Repudiandae cupiditate sit asperiores natus et. Qui accusamus expedita dolore officiis accusantium aut saepe. Aut dicta perferendis incidunt qui. Aut et distinctio omnis eaque dolorem cumque ut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(213, 50, 85, 3, 'Corrupti eligendi veritatis deleniti voluptas alias officiis. Quae est aut eos ullam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(214, 90, 15, 3, 'Ut omnis accusamus quia placeat est totam. Sed voluptatum magnam esse et praesentium ut consectetur optio. Qui enim ducimus aut tempora dignissimos aliquam et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(215, 37, 85, 3, 'Rem quas non ut perspiciatis id possimus. Et autem non harum mollitia incidunt perferendis repellendus. Consectetur eos odio adipisci eligendi aut sit velit aliquid.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(216, 25, 94, 3, 'Cumque ratione et ut qui. Fuga expedita itaque sint. Omnis molestiae ab repellat non qui ut qui. Reiciendis quaerat corrupti quis est quaerat.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(217, 43, 50, 4, 'Consequatur nemo repellendus incidunt autem sapiente nesciunt consequatur expedita. Quis ea nemo ea quibusdam. Fugiat consequatur voluptas repellat nesciunt repellat nobis reprehenderit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(218, 48, 73, 1, 'Qui vero nihil sapiente dolorem laboriosam voluptatem quibusdam. Velit velit nihil et et quia asperiores exercitationem voluptates. Dicta et dolorem pariatur saepe. Dolor iusto ut et quisquam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(219, 94, 14, 3, 'Numquam dolore ratione odit non. Laborum ullam ut illo sed expedita aut sapiente non. Et modi expedita omnis qui aperiam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(220, 75, 69, 5, 'Veniam porro impedit maiores dolores. Velit modi dolor qui quae necessitatibus qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(221, 27, 87, 0, 'Facilis quas suscipit itaque ducimus repellendus minus. Unde quo quia voluptatem alias corporis. Rerum ut quisquam nam id ipsum corporis sed. Et omnis qui molestias dolores.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(222, 75, 38, 5, 'Qui et accusamus voluptas praesentium dolor. In rerum cum facere et sed labore enim ut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(223, 12, 98, 3, 'Nisi ipsa incidunt voluptates qui maiores illo autem. Dolorum quis inventore ea qui rem. Totam dolores voluptate est dignissimos unde.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(224, 89, 15, 3, 'Accusamus ad aspernatur consequuntur placeat. Quibusdam expedita suscipit ipsam veniam sed odio.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(225, 99, 83, 2, 'Perspiciatis ut quod mollitia debitis distinctio voluptatem. In qui nulla incidunt non vel.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(226, 81, 69, 2, 'Nulla ea neque numquam sunt. Enim earum exercitationem qui possimus quidem omnis maxime et. Nihil repellat pariatur architecto doloribus dolore laboriosam. Officiis labore aperiam alias.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(227, 75, 91, 2, 'Repellat vitae iste velit sit recusandae eveniet ut. Dolorem quaerat aut necessitatibus iste velit beatae ut. Iste eos temporibus quasi quod est.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(228, 45, 33, 0, 'Labore incidunt ab consequuntur fugiat in. Est est sapiente minima nam occaecati quia voluptate.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(229, 55, 26, 5, 'Reprehenderit perferendis est eos natus quia repudiandae id non. Enim sit nemo similique veritatis. Aut quos id expedita. Temporibus incidunt illo ab ut.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(230, 34, 39, 2, 'Molestias molestiae alias facere rem et a possimus. Itaque commodi illo quod sed alias enim velit. Quis rerum et voluptates sit ea eos dolores molestiae.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(231, 20, 2, 0, 'Aliquid atque esse doloribus quos minima pariatur placeat. Ut iste iusto est magnam libero. Similique dolore sed ut voluptates ut aliquam corrupti. Molestiae dignissimos quod ut itaque et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(232, 91, 27, 2, 'Suscipit tempore laudantium voluptas adipisci. Cum quasi officia et voluptatem. Quis quia dolorum modi illo inventore alias aperiam. Similique similique aut corrupti libero blanditiis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(233, 32, 97, 0, 'Cum alias ipsam delectus rerum qui est omnis. Et magni distinctio fugiat qui. Assumenda ut qui a sit et ea ea. Earum debitis et quisquam nemo eum rem.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(234, 53, 88, 1, 'Nihil vel reiciendis illo tenetur deleniti nisi cum quam. Ut nulla quisquam aliquam sed. Quo ut quam occaecati. Quisquam voluptatem eos hic dolor autem harum.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(235, 80, 14, 2, 'Praesentium delectus rem quia magni error quam qui. Earum et quasi repellat ut. Quia eos saepe consequatur ut. Error cumque facilis delectus non nisi ratione vero.', '2021-03-12 09:59:43', '0000-00-00 00:00:00');
-INSERT INTO `reviews` (`id`, `id_reviewed`, `id_reviewer`, `score`, `comment`, `created_at`, `updated_at`) VALUES
-(236, 68, 3, 4, 'Quas fugit nemo nulla omnis distinctio. Quam voluptatum voluptas ratione omnis. Nam aut aperiam unde modi. Reiciendis veniam asperiores libero.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(237, 2, 9, 2, 'Ut architecto soluta ea mollitia praesentium omnis enim. Temporibus mollitia labore facere tempore laborum et et. Illo et quaerat harum sunt distinctio alias qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(238, 60, 43, 5, 'Culpa consequatur et nisi id vero optio. Consequatur eligendi eos et. Tempora a fugiat voluptatem modi necessitatibus. Sint rerum non voluptatem autem dignissimos.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(239, 5, 70, 0, 'Provident eligendi aliquid repellat dolores ex. Sed provident enim culpa. Sed eveniet nihil totam eius reiciendis. Occaecati voluptas veritatis fuga est facere.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(240, 87, 56, 1, 'Quasi sunt est soluta impedit ipsa molestiae est consectetur. Id excepturi ut eos ipsa nulla. Sed consequatur at non. Officia sint ab maiores.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(241, 94, 3, 2, 'Occaecati ipsa illum amet quos provident. Ducimus similique ut dignissimos non rerum a adipisci. Ex consequuntur maxime fugiat et. Libero ut ducimus harum et debitis voluptatem.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(242, 62, 97, 0, 'Et laudantium minus laudantium et repudiandae vitae. Et laboriosam impedit harum omnis eaque inventore. Est et magnam expedita quis repellendus qui voluptas.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(243, 83, 82, 5, 'Et vitae assumenda impedit aut. Reiciendis voluptatem voluptatem praesentium in illum neque. Ea eligendi consequatur qui ducimus.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(244, 11, 86, 3, 'Quos aut vel exercitationem ut voluptas. Alias molestiae quis ipsum. Accusamus sit aliquam sequi aut voluptate corporis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(245, 93, 89, 5, 'Est laudantium necessitatibus eius sapiente architecto enim et esse. Soluta quia autem itaque quaerat quam impedit sit veritatis. Sapiente repudiandae tempore non et.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(246, 20, 21, 4, 'Laudantium id expedita omnis voluptas accusamus alias. Sunt placeat facere recusandae nihil. Unde rerum quisquam ea atque perferendis. Qui enim nihil hic sunt ut animi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(247, 23, 35, 1, 'Quia eligendi sed qui tempore soluta dolores nam corporis. Adipisci est occaecati praesentium ullam nemo nihil quis enim. Nostrum ut voluptas rerum corrupti molestiae consequuntur omnis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(248, 73, 57, 0, 'Nisi dolor molestiae nihil rerum quam eligendi. Incidunt itaque dolor maiores. Labore officiis nihil odit ipsa.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(249, 71, 44, 0, 'Fugiat nulla iure ipsum quam voluptas id. A ut similique omnis aperiam. Rerum velit suscipit voluptas in.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(250, 2, 11, 5, 'Incidunt explicabo architecto in magni alias architecto incidunt. Debitis repellat nam sapiente voluptates nisi. Aspernatur eligendi omnis nihil repellendus iure consectetur.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(251, 48, 4, 2, 'Molestias ex mollitia perferendis facilis ea impedit. Et sint minima quisquam odit. Magni quia quisquam autem eveniet nisi quis.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(252, 36, 50, 0, 'Asperiores dignissimos est velit incidunt. Sunt fuga atque qui aut rem accusamus alias officia. Voluptatem corporis earum aliquam temporibus a deserunt.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(253, 10, 62, 1, 'Eum dolor maxime laborum dolorum et. Illo sed pariatur et. Dolorem architecto ut vero molestias voluptatem sapiente. Ex et provident qui. Qui saepe et quisquam id eligendi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(254, 94, 61, 3, 'Eaque tempora ipsum suscipit iste magni. Consequuntur repudiandae culpa est a. Officiis ducimus deleniti odio adipisci eligendi sit suscipit. Quae omnis iusto voluptatibus placeat sit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(255, 98, 94, 5, 'Ipsum provident optio illo illum. Quia possimus nihil rerum pariatur soluta. Deserunt perferendis quia ipsum eum eius.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(256, 57, 6, 3, 'Earum deserunt totam aperiam ducimus odit perferendis. Est unde quidem quo ratione voluptatem. Repudiandae explicabo quod doloremque. Similique et necessitatibus voluptatibus qui.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(257, 27, 97, 0, 'Dolorem error aut omnis cumque sunt rem. Asperiores inventore ratione voluptatem itaque odio in nihil. Labore aliquam tenetur at quidem.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(258, 6, 41, 5, 'Quos illo illo aperiam ut fuga aut quia corporis. Totam fugit nobis illo. Dicta culpa id ducimus temporibus sunt.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(259, 89, 26, 4, 'Possimus velit minus earum rerum maxime. Et et dolorum totam eum quos ratione. Molestiae illum praesentium ea non eos reprehenderit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(260, 53, 7, 2, 'Aut et modi atque qui. Aut libero velit perferendis sint eveniet. Mollitia a ut consequatur illo. Laudantium delectus id blanditiis adipisci aspernatur nisi.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(261, 49, 65, 4, 'Quos cumque aut rerum quasi possimus ea. Quisquam temporibus quas architecto omnis. Natus blanditiis eligendi amet numquam qui. Quasi ut suscipit cupiditate explicabo tempore sit.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(262, 24, 49, 1, 'Et et molestiae necessitatibus quo qui. Ex sit quis aliquam.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(263, 98, 17, 3, 'Labore sit qui labore repudiandae sint. Accusamus occaecati a in recusandae. Sit ipsam quas aut laboriosam et et quia. Minima non modi magni ea. Et harum odit rem dolore saepe et in.', '2021-03-12 09:59:43', '0000-00-00 00:00:00'),
-(264, 54, 31, 0, 'Vel qui voluptatem consequatur porro. Sunt deleniti nemo error sit ut numquam. Quidem qui aut modi excepturi. Aut laborum odio illum quia corrupti hic autem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(265, 45, 95, 0, 'Sunt vel reprehenderit voluptas. Laudantium natus hic impedit animi nisi qui. Dolores qui recusandae sunt et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(266, 87, 43, 1, 'Autem consequuntur ullam ea. Et voluptatum non harum reiciendis voluptas aut eos. Praesentium sapiente perspiciatis eos voluptatem minima blanditiis praesentium laboriosam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(267, 3, 68, 2, 'Dolores iste non enim soluta facilis. Voluptatem doloribus perspiciatis reiciendis quae tempore exercitationem. Totam et a natus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(268, 88, 100, 1, 'Illo ut ad error. Dicta a est officiis qui consequatur. Iusto ipsam delectus magnam praesentium quod. Corporis mollitia fugiat nesciunt sint soluta dolore.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(269, 53, 98, 5, 'Nisi natus eius rerum aliquam corporis. Necessitatibus ea sint maxime ut temporibus sed. Qui laborum et maxime consectetur consectetur. In et qui qui consequatur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(270, 30, 84, 2, 'Vitae magnam est quae omnis similique aut harum. Consequatur officia non veniam est quo quo dolor occaecati. Blanditiis aut dolorum voluptatibus debitis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(271, 91, 94, 3, 'Delectus quam nam eligendi omnis amet officiis minima. Voluptas molestiae vero officia eum atque debitis deleniti. Quis esse neque corrupti minus et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(272, 61, 58, 3, 'Qui rerum quam voluptatem enim similique tempore aut. Accusantium eligendi aut et soluta quam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(273, 70, 34, 2, 'Ea aut autem accusantium quia harum voluptas molestiae. Quae ut at dolorem voluptatem et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(274, 1, 40, 3, 'Quibusdam dolor cumque et possimus. Quis in rem ea voluptas. Est est optio nam iusto et et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(275, 95, 34, 2, 'Ut exercitationem maxime error temporibus ut dolor et. Eum voluptate tenetur quia nemo soluta aspernatur possimus velit. Quis numquam minus ea cumque nihil culpa quidem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(276, 23, 44, 5, 'Earum quod culpa vel et dolore cum quia. Perferendis nobis hic deserunt debitis nihil aut et error. Est est optio deserunt et nam aut sed.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(277, 96, 54, 1, 'Eum in beatae quam ut. Dolorum nobis deserunt inventore expedita. Ab modi labore autem illum. Omnis ab qui incidunt rerum molestias. Quasi et sed incidunt in explicabo.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(278, 50, 74, 4, 'Accusantium debitis corrupti numquam modi voluptas qui soluta dolorem. Sunt omnis laborum enim et similique laborum. Architecto aperiam omnis sint.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(279, 84, 55, 3, 'Inventore et dolor atque consequatur magni aperiam consequatur. Ab tempora accusantium temporibus. Eum totam qui quas occaecati nobis esse alias.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(280, 78, 30, 3, 'Quaerat quisquam sed eos rerum unde magni. Sapiente cupiditate porro dolorum tempore consequatur quia. Rerum quibusdam adipisci molestiae facere quibusdam ab molestiae.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(281, 21, 90, 5, 'Aspernatur aut eos ad quam sequi incidunt. Vel impedit voluptatum ullam esse voluptas. Nostrum voluptatem alias id velit. Rerum totam in et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(282, 86, 6, 2, 'Non fugiat veritatis voluptatem officiis. Amet rerum sit sed dolorem quibusdam est. Laborum aut odit nobis eius velit hic. Est ea non ratione sequi aut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(283, 4, 37, 2, 'Corporis beatae pariatur autem suscipit et reiciendis. Labore quia repudiandae est harum beatae. Fugit blanditiis culpa non assumenda culpa ea. Ea non saepe ipsa eveniet. Porro fuga rem aut ut nam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(284, 83, 16, 3, 'Totam asperiores quia nostrum vitae est iusto. Consequatur voluptates assumenda quo in accusamus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(285, 32, 7, 3, 'Deleniti sunt laborum voluptatem deleniti. Tenetur fugiat aut quia ipsum dolore vitae. Officiis soluta molestiae accusantium omnis dolore iusto consequatur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(286, 33, 88, 1, 'Cumque iure libero iste distinctio vel blanditiis minus. Sed nostrum nobis incidunt. Dolores est voluptatem sit aliquid et qui. Voluptas autem maiores sed qui.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(287, 17, 38, 5, 'Exercitationem quae ipsum debitis saepe quibusdam possimus. Minima laudantium corporis adipisci consectetur consectetur asperiores est. Ullam error nulla consequuntur minima illum qui atque sit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(288, 65, 22, 0, 'Quaerat sint aliquid earum pariatur atque. Fugit sit doloribus consequatur quibusdam et iusto omnis. Suscipit optio quis est sit. Saepe tempora pariatur illum impedit et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(289, 78, 62, 4, 'Officiis ut fugiat corporis quas. A voluptatem odit sit est. Voluptas suscipit et qui voluptatem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(290, 39, 81, 0, 'Ea magni veniam et sunt numquam. Dolor illum voluptatibus quia magnam. Eius assumenda modi quasi cumque molestiae aut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(291, 36, 60, 1, 'Sed et expedita omnis. Nulla cum esse expedita quia qui. Accusantium ratione dignissimos unde harum sed aut beatae.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(292, 13, 19, 0, 'Vel voluptas ab est id. Sunt sunt est est sapiente sunt. Quasi sed qui ex quia facere. Quod vitae excepturi quod corrupti minus sit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(293, 40, 29, 1, 'Ab non aut soluta quos. Voluptatibus fugiat ad amet. Est aut velit sapiente eius repellat dolor. Voluptatibus ut et ducimus maiores. Sunt voluptas saepe excepturi molestiae illum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(294, 63, 28, 2, 'Eveniet nihil itaque aut. Sed ab a voluptas iste ipsa delectus numquam. Magnam debitis est autem dolorem veniam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(295, 27, 11, 5, 'Mollitia laudantium nihil mollitia. Quos excepturi amet consequatur ratione nihil delectus. Et sit porro similique nesciunt.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(296, 14, 12, 4, 'Dolor sunt sed similique minus est consectetur qui cumque. Et tempore iusto ut sit. Omnis voluptas possimus nesciunt eligendi exercitationem quae placeat.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(297, 44, 56, 1, 'Provident facere doloremque odit blanditiis rerum eius. Similique delectus asperiores quae dolor. Eveniet a impedit cum nulla ratione. Ducimus voluptatem officiis vel labore earum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(298, 9, 36, 4, 'Et alias et voluptatem ut pariatur. Aut cupiditate beatae ut odit aliquid.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(299, 29, 23, 5, 'Quos perspiciatis fuga voluptas eos dolor adipisci perferendis. Adipisci iste saepe molestiae delectus recusandae qui. Et asperiores mollitia minima in. Eum ea ut ut quia veniam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(300, 76, 90, 5, 'Dolorem dicta labore qui ratione consequatur sed. Minus illum rem in dolore labore. Dicta atque quidem omnis porro illo hic ut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(301, 10, 21, 1, 'Laboriosam voluptatem cumque soluta ducimus numquam dicta. Unde nobis nisi et consequuntur neque ea. Impedit deserunt omnis culpa qui ut rerum quasi.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(302, 3, 38, 0, 'Ratione dicta autem vitae nisi aliquid vero eos. Fugit dignissimos qui impedit dolor sit sunt est maiores. Et voluptas necessitatibus omnis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(303, 93, 75, 0, 'Repellat adipisci dolorem molestiae. Ea voluptatem eaque nostrum qui id sit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(304, 60, 25, 1, 'A natus et sed nobis officia dolorem dignissimos. Sequi praesentium excepturi nihil error. Voluptatem delectus natus omnis qui aut sit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(305, 29, 50, 5, 'Quia voluptas odit accusamus sapiente quos laudantium minima. Aut ipsam numquam recusandae culpa culpa quo natus. Quae dignissimos atque dolorum non sequi molestias quis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(306, 85, 5, 1, 'Doloribus aut ipsam accusantium. Sed quam saepe sed dignissimos dolores repellendus. Quod aut nihil ipsa rerum non voluptatem laudantium molestiae.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(307, 57, 20, 5, 'Omnis reprehenderit magni qui earum sint et. Qui voluptas enim rem tempora. Quasi qui cupiditate minima. Quis ipsa sed magni voluptatibus maiores.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(308, 3, 38, 4, 'Excepturi occaecati nam veritatis. Beatae dolorem fuga sunt illo. Reiciendis illum ea totam quod.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(309, 96, 67, 2, 'Vel enim consequatur sit placeat dolorem. Non vitae dolore facilis non architecto. Iusto quam rem odit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(310, 69, 65, 1, 'Et a sit aut nihil aut. Quisquam exercitationem eaque culpa quisquam et. Tenetur nisi aut rem ut necessitatibus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(311, 68, 67, 1, 'Consequuntur qui accusamus maiores. Quod beatae distinctio et et aperiam. Ea odio maiores cupiditate.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(312, 37, 12, 0, 'Repellendus enim ut ipsa culpa similique nesciunt. Beatae voluptas ullam quisquam ipsam nulla corrupti porro officiis. Rem cumque quaerat sint et necessitatibus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(313, 99, 3, 5, 'Eius itaque ut asperiores distinctio aut molestias. Quis necessitatibus laboriosam voluptatem et. Eos non veniam cum ipsam id. Aut commodi placeat ea non delectus sed.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(314, 22, 80, 2, 'Cum assumenda eum dolores velit. Neque voluptatem voluptatibus labore consequatur ab numquam. Et ut corporis nostrum autem iure rem illum perspiciatis. Aut non fuga et provident ipsa iste.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(315, 57, 100, 5, 'At molestias et deserunt blanditiis explicabo consectetur exercitationem. Ex rerum tempore quibusdam qui iste.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(316, 47, 13, 4, 'Nihil et aspernatur quis officiis numquam quia. Amet qui porro ipsa alias culpa. Alias sit aliquam adipisci quia. Est dolores adipisci debitis non doloremque.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(317, 51, 76, 5, 'Minima quo aliquid aspernatur impedit voluptas architecto numquam. Accusantium necessitatibus magni repudiandae ab architecto. Et quo esse laudantium. Aut occaecati excepturi qui vel.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(318, 19, 75, 2, 'Animi suscipit sed accusamus omnis et assumenda. Expedita sint non iure. Fuga labore vel amet nisi repellendus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(319, 12, 45, 1, 'Ea reprehenderit non a magnam. Sunt eaque voluptatum in dolor asperiores eius. Vero sunt est eius sint optio qui aut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(320, 90, 15, 3, 'Nam ex qui minima alias nostrum. Voluptates quis odit id quod. Voluptates recusandae explicabo dicta.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(321, 29, 51, 3, 'Consequatur possimus tempore et eaque facilis voluptatum voluptatum. Veritatis qui aut aut et iure. Aut iste reiciendis eos voluptas harum modi et est.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(322, 87, 54, 4, 'Aliquid et cumque excepturi beatae nemo maxime nisi. Sint qui quod consequatur aspernatur ut. Similique voluptas quia maiores sunt a quisquam facilis. Sed beatae odio rerum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(323, 30, 86, 3, 'Ut cupiditate aperiam et voluptate quidem omnis quia. Laborum dolorem et voluptas. Magnam corporis nulla dolorem vel. Neque sint repellat nulla cumque omnis amet et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(324, 21, 45, 0, 'Accusamus ea aut doloremque. Dolor nihil sed dolores laudantium sint iusto in. Voluptatem nulla magni est pariatur ut fugiat laudantium.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(325, 9, 58, 4, 'Dolores et voluptatem ullam. Aliquam repellat perspiciatis aut culpa voluptate libero possimus qui. Ducimus molestiae eveniet nihil quis velit quisquam. Est delectus inventore reiciendis delectus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(326, 1, 75, 1, 'Consequatur asperiores non eligendi qui. Non sit veniam non. Excepturi cupiditate dolore assumenda consequatur enim enim.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(327, 21, 87, 2, 'Quod aut et quis. Ratione consequatur nulla eaque quo et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(328, 26, 65, 4, 'Amet natus cumque ut hic esse quaerat voluptas. Aliquam cum quisquam quidem maxime facere quasi ut. Repudiandae eius a possimus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(329, 38, 6, 2, 'Quia et fugiat at sint et est incidunt sunt. Ad aut rerum delectus nihil cumque recusandae nulla. Ut nisi voluptatem eos quibusdam soluta.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(330, 60, 87, 4, 'Ut cupiditate voluptatibus id ex harum corrupti odit. Repellat sit sunt ut voluptate ut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(331, 94, 54, 3, 'Officiis provident ipsam quia. Voluptatibus ea quia beatae veniam dolores voluptatibus. Corrupti sequi aut voluptas eligendi illum et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(332, 76, 29, 1, 'Nam voluptate sequi blanditiis quia iste magni. Aspernatur dolor magnam et est unde at impedit. Enim temporibus molestiae nihil qui aut eligendi totam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(333, 72, 61, 0, 'Quam molestias qui qui itaque. Hic sed aut ab eaque. Qui quibusdam impedit labore facilis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(334, 39, 2, 2, 'Et omnis saepe omnis voluptas. Ea possimus non dicta incidunt a et aut. Iure quia excepturi excepturi vitae eos nihil assumenda velit. Culpa recusandae voluptatum est sed error omnis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(335, 80, 72, 3, 'Dolor unde laboriosam sit sed et quia at. Fugiat quis rerum accusantium magni. Voluptas natus ea nisi.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(336, 45, 60, 2, 'Explicabo sunt rerum ipsa ea non. Cupiditate esse rem a voluptatem excepturi corporis dolores est. Eum doloribus illo nam quibusdam aut vero magni.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(337, 59, 23, 5, 'Aperiam omnis libero doloremque ut. Velit repellendus natus et hic atque. Earum dolore minima omnis eligendi eaque molestiae est dolorem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(338, 30, 35, 0, 'Quis minus neque architecto non ipsum dolore hic. Officia sunt accusantium ea magni est laboriosam aut eveniet. Dignissimos sit ad accusamus quaerat cupiditate. Eos deserunt et nobis perspiciatis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(339, 49, 51, 5, 'Dolor consectetur exercitationem totam fuga ab similique nihil. Dolore est aut et omnis quo. Debitis nostrum quibusdam ut officiis nam fugit. Libero necessitatibus eos neque sit suscipit provident.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(340, 88, 19, 5, 'Omnis sed eum autem labore quaerat voluptates. Mollitia architecto sed aliquid qui sed quas. Impedit id adipisci mollitia expedita mollitia omnis. Non ratione iure maiores perspiciatis vel.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(341, 53, 58, 5, 'Cum expedita placeat veniam dolorem quasi et. Voluptates et earum id vel quia et. Consequatur minima ipsam molestiae magni numquam repudiandae. Ut quae ex quasi quidem expedita aut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(342, 8, 5, 4, 'Voluptas sed est aut sequi numquam itaque ex. Quasi esse at quo ut explicabo facilis possimus. Qui veniam et quis cupiditate dolores quibusdam illum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(343, 21, 49, 0, 'Aspernatur doloremque quos dolorem dolore non. Reiciendis ducimus ab non. Modi est ipsam ullam aut. Asperiores et corporis ut blanditiis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(344, 81, 69, 3, 'Qui consequatur est autem similique. Modi odit saepe et reiciendis tenetur velit nisi. Dolore quasi dicta omnis temporibus aliquid similique ab. Atque assumenda minus blanditiis eaque quaerat non.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(345, 31, 88, 0, 'Eligendi quia alias quae libero perspiciatis quae. Quidem blanditiis tempore voluptatem consectetur. Qui totam consectetur optio quidem hic accusamus. Esse et ad omnis est molestiae et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(346, 71, 64, 3, 'Distinctio blanditiis sint rerum laborum molestiae. Nihil ducimus dolor quam officiis et. Molestias deserunt non dolore quos quod. Veritatis eius est est adipisci.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(347, 74, 59, 1, 'Dolores aut id voluptatem et. Nihil laborum quia ut nisi sit quis beatae dolorem. Cupiditate in assumenda odit incidunt fugiat eaque. Nobis sint laborum nihil minima.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(348, 70, 44, 5, 'Voluptas iure aut in earum qui libero. Consequatur quisquam et ea quia. Et nulla voluptatem excepturi sunt magnam eaque. Rerum nihil qui mollitia.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(349, 49, 42, 2, 'Ducimus eum suscipit sunt velit omnis vitae. Ipsum est et quasi. Minima eveniet quia illum excepturi et quae recusandae.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(350, 5, 8, 4, 'Qui inventore eum consectetur ipsam totam ut. Autem perferendis dolorum non occaecati. Pariatur voluptates nihil cum esse.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(351, 44, 28, 4, 'Rerum quod explicabo qui recusandae totam exercitationem. Quam at necessitatibus illum quisquam optio ducimus maiores. Odit dolorem consequatur enim debitis voluptatem consequuntur aut adipisci.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(352, 85, 79, 1, 'Ipsam nulla rem ut labore. Quasi sed et error mollitia quasi dolor modi est. Laborum quae quia quo nisi eos omnis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(353, 87, 61, 5, 'Quia nemo possimus accusantium omnis laudantium tempora. Fuga officia eveniet fuga vero. Incidunt modi architecto enim et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(354, 10, 58, 4, 'Voluptatem dolor odit quidem eum ipsa vitae. Suscipit odit natus in rerum quis magnam dolorum omnis. Cupiditate necessitatibus sunt et velit voluptas.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(355, 72, 16, 4, 'Amet consectetur quis est. Quisquam nobis hic cum doloremque deleniti vero. Aut dolores accusantium ut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(356, 13, 69, 3, 'Adipisci aut nostrum animi qui cum vel. Expedita iusto officiis autem saepe occaecati et. Omnis cumque omnis eum atque assumenda illo. Deserunt suscipit magni iure saepe.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(357, 3, 31, 3, 'Quidem aspernatur blanditiis adipisci expedita accusantium. Maxime fuga id et officia ut. Voluptas est vel est ea.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(358, 50, 40, 0, 'Harum quisquam similique perferendis maxime. Quibusdam quia qui nihil ut et ut neque quaerat. Pariatur ut beatae voluptatem ut est. In ratione aperiam numquam consequatur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(359, 72, 8, 2, 'Officia occaecati veritatis suscipit sit. Tempore nobis quos inventore distinctio voluptas quae. A accusantium animi et molestiae et dolorum. Atque iste veniam aut neque.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(360, 72, 40, 4, 'Id ab quis qui vel praesentium velit. Nulla ad asperiores nam dolor. Unde at dolorem excepturi illum doloremque architecto.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(361, 42, 7, 1, 'Deserunt pariatur doloremque ut laboriosam. Quis adipisci facere optio est porro quia. Et et ea expedita sapiente enim hic neque fugit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(362, 43, 94, 0, 'Nihil non tenetur corrupti unde. Impedit et temporibus itaque itaque debitis id. Explicabo aut eum quia.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(363, 56, 92, 4, 'Dolore voluptatum sunt laudantium quibusdam sint quos. Id repellat nobis impedit nihil recusandae cumque esse. Ab quo occaecati ratione sapiente cumque similique impedit.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(364, 36, 79, 0, 'Nesciunt dolor inventore nihil nobis sed dolore tempore rerum. Libero cum nostrum distinctio fugiat. Qui in est ut tempore ea eum praesentium. Quibusdam commodi quis unde.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(365, 58, 8, 0, 'Voluptatum expedita commodi necessitatibus sed aut facilis quam. Aliquam dolores accusamus ut velit. Repellat qui sed officia quidem labore laborum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(366, 56, 73, 0, 'Ut ipsum suscipit qui voluptas. Ut enim quibusdam totam. Expedita itaque minima et ipsa et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(367, 78, 91, 5, 'Eum provident dolor odit et aperiam et perferendis. Consequatur rerum ut repudiandae maxime accusantium id.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(368, 27, 91, 0, 'Consequatur accusantium adipisci neque dolor. Ut fuga minima alias exercitationem. Sed et ut dolores aperiam nobis voluptatum quasi. Et minus quas nobis a.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(369, 23, 55, 5, 'Eligendi consequatur minima saepe id corporis maiores nostrum doloribus. Corporis saepe ea nihil omnis autem. Eos provident quasi dolores.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(370, 66, 99, 2, 'Numquam quisquam molestias quia quidem nihil porro. Et ut quae accusantium sint. Est id quia velit enim nobis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(371, 90, 72, 0, 'Et in et ipsa facere praesentium impedit sapiente laudantium. Cum laudantium laboriosam debitis quae quas. Illum non aliquid aut provident ullam fuga.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(372, 29, 96, 5, 'Sit impedit ex dolor numquam. Enim iusto quam voluptates omnis sed voluptatem nihil. Quisquam veniam et nemo at in reprehenderit placeat. Aut voluptas quidem rem blanditiis et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(373, 95, 24, 0, 'Et cupiditate sit alias omnis recusandae totam. Iste fugiat et voluptas ut perspiciatis. Et cumque sed qui error excepturi qui.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(374, 95, 75, 5, 'Saepe impedit tempora nisi unde. Cumque totam et est et. Natus minima quae ut ut eligendi qui. Officia consequatur fugiat architecto inventore ut quisquam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(375, 18, 98, 0, 'Odio atque quia autem. Iure libero quia quia reiciendis nihil et dignissimos. Perspiciatis quis reiciendis eaque eaque laboriosam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(376, 84, 34, 4, 'Provident sed similique alias illum non quae. Facilis ut soluta est autem architecto. Quia dolor tempora enim et. Et voluptatem praesentium iusto similique itaque et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(377, 64, 76, 3, 'Sunt dolorem dolores eaque ad. Repudiandae repellat omnis vel expedita aut architecto ullam. Harum ullam vel delectus vel exercitationem. A est culpa optio cumque qui aliquid.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(378, 54, 95, 3, 'Ipsam et itaque voluptatem ex. Eaque ad facere rem pariatur. At non aliquid quo maiores officia. Quis quasi aut dolor voluptatum tenetur laudantium.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(379, 76, 36, 1, 'Et ut culpa enim atque corrupti. Quia dicta nobis pariatur necessitatibus beatae.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(380, 76, 54, 5, 'Est quo inventore eum ea officiis quis at. Veritatis sequi est est. Libero dignissimos accusantium neque dolor dolor perspiciatis officia.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(381, 87, 91, 5, 'Quis consectetur assumenda officiis deserunt sint. Ab eos nam omnis sapiente deleniti molestias praesentium. Neque nobis vero inventore accusantium porro tenetur at.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(382, 69, 86, 2, 'Soluta blanditiis architecto laboriosam delectus sed quaerat. Dolorem nihil ut est sit tenetur magnam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(383, 30, 1, 0, 'Commodi sapiente quia vitae neque. Aperiam eum voluptas officia accusantium veritatis quam eos voluptatibus. Consequatur sapiente neque consectetur ut.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(384, 4, 4, 0, 'Quos laudantium a eligendi odio ipsa. Et molestias ea eum aut quibusdam. Ratione voluptas dolore pariatur eum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(385, 43, 32, 4, 'Deserunt quod eveniet minima. Quia adipisci fuga ratione sed et. Blanditiis dolor occaecati adipisci nesciunt sit qui voluptatum. Maiores modi autem quisquam deserunt tenetur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(386, 31, 1, 4, 'Quae itaque laborum velit odit. Consequatur accusantium odio deserunt non vero. Laboriosam voluptatem veritatis nihil. Id quidem delectus non dignissimos et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(387, 66, 83, 3, 'Voluptatem fugiat est quam consequatur autem. Libero ipsum doloribus illum pariatur consequatur. Eum omnis est ea occaecati vel ea error.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(388, 5, 34, 0, 'Omnis reprehenderit sed nam voluptatibus quam. Unde ut magni autem. Magni blanditiis eius dicta quibusdam. Ut voluptate molestias maiores ducimus voluptas.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(389, 91, 25, 5, 'Velit laudantium ut ut enim in veritatis. Qui sunt debitis expedita quia. Itaque qui accusantium voluptas sit dolor. Est officiis dolorum debitis similique temporibus dolores qui.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(390, 81, 64, 1, 'Pariatur quidem voluptatem culpa omnis quia dolorum porro. Omnis voluptas iusto repellendus ut architecto deserunt dicta in. Amet eaque qui eos minus facilis. Et minus hic non sed nobis dignissimos.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(391, 42, 25, 0, 'In eaque voluptatem voluptas quisquam consequuntur similique natus aut. Ratione non deleniti magnam dolor.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(392, 29, 13, 1, 'Dolor vitae reiciendis et sed incidunt. Facilis necessitatibus consequatur est dolorum. Asperiores nemo placeat ad non.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(393, 91, 79, 0, 'Ad vel quia consectetur dignissimos itaque officiis. Eligendi impedit eum dolor qui ipsa ex sit alias. Magni vel deleniti et facilis aspernatur in consequatur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(394, 66, 62, 2, 'Neque voluptate maiores tenetur magni. Earum cumque molestias laudantium quia. Vel cum voluptate necessitatibus pariatur velit. Itaque accusamus omnis nulla aperiam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(395, 39, 39, 1, 'Est et autem porro consectetur quidem ut. Quia facilis porro ab totam sit. Dolorum incidunt eum eos adipisci rem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(396, 21, 25, 3, 'Molestiae assumenda ut nam nesciunt dicta. Est et ut aut blanditiis. Praesentium odit sunt sit voluptatem qui molestiae repellendus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(397, 48, 28, 0, 'Quia libero aut dignissimos. Ratione soluta sunt impedit aut doloremque fugiat. Dolorem est optio hic necessitatibus expedita itaque. Modi dolores et quas amet eum autem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(398, 44, 77, 1, 'Distinctio perspiciatis repellat unde et et. Molestiae perspiciatis alias est veritatis architecto quis numquam tempora.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(399, 94, 6, 2, 'Velit neque adipisci fugiat dolores qui nihil a qui. Aut id sunt alias perferendis et. Earum necessitatibus autem dolorum suscipit deserunt.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(400, 73, 27, 1, 'Qui voluptas itaque facere fugiat. Debitis veniam eum eos voluptas quia sunt in. Tenetur nesciunt porro sunt dolorum vel blanditiis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(401, 4, 95, 0, 'Voluptatem sequi qui iure officia sit. Fuga aut aut voluptatem animi eligendi. Voluptas voluptas sit est quo sunt corrupti ipsa doloribus. Ea soluta at reprehenderit earum dolore exercitationem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(402, 32, 19, 0, 'Unde provident consequuntur suscipit non voluptatum quo et. Non temporibus ut eos fugiat officiis. Incidunt at assumenda autem assumenda.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(403, 4, 4, 5, 'Laboriosam mollitia amet dolorem voluptate sint. Est blanditiis qui molestiae suscipit nemo veritatis velit. Quia et voluptatibus quisquam vero.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(404, 16, 75, 3, 'Reiciendis odit eveniet sed molestias. Ex est nisi voluptatibus et tenetur voluptatibus.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(405, 74, 60, 3, 'Nesciunt deleniti aut magnam non inventore. Asperiores ut est provident animi maxime sit et ut. Sed voluptatem sint assumenda. Reprehenderit beatae ut mollitia et corporis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(406, 13, 20, 0, 'Sunt vitae neque id quisquam est. Velit nostrum non repellat culpa tenetur eos. Voluptatibus accusamus facere neque necessitatibus excepturi. Sunt consectetur non in consequatur id.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(407, 68, 78, 4, 'Eligendi aliquam deleniti nihil ea natus. Esse sit et dolor minima autem et. Eius id dolorem vero.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(408, 73, 41, 0, 'Cum non est aliquid voluptatum reiciendis. Similique vel voluptatem sunt. Corporis aut mollitia corporis consequatur. Dolorem qui aut non et aliquam. Omnis facere vitae illo cum qui vel repellat.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(409, 4, 72, 0, 'Ab fugit voluptatibus veritatis aliquid voluptas iusto et. Pariatur est aut blanditiis in quidem non cupiditate. Officia molestiae dignissimos sequi maiores doloremque officia.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(410, 64, 89, 3, 'Ipsam inventore quaerat ea sed perferendis optio sit. Minima qui autem fugiat iusto enim. Consequatur illum officiis voluptas a quo deserunt iure. Amet dolore aut eos illo.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(411, 58, 94, 1, 'Est dolorem veniam nihil officiis ut quo et velit. Magni laborum omnis accusantium non cum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(412, 45, 2, 2, 'Ut natus quis sed ullam. Alias quae officiis occaecati dolor suscipit. In fugit necessitatibus suscipit officia. Autem sed omnis temporibus veritatis iure incidunt eos.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(413, 34, 88, 4, 'Expedita nobis eligendi in et nostrum veritatis ipsam. Soluta ut suscipit nam animi ut facere. Corporis et id impedit ut ad.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(414, 58, 21, 0, 'A ab pariatur natus iste et voluptas. Tempore voluptatem voluptas et similique et. Temporibus qui consequatur porro debitis laborum.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(415, 98, 24, 5, 'Voluptatem explicabo tempora consequatur ut. Est adipisci nihil cum ea. Temporibus quia voluptatem ut omnis explicabo. Corporis et cupiditate mollitia autem deleniti consequatur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(416, 17, 92, 1, 'Quo aut non debitis aut ratione. Cumque repellat omnis autem esse doloremque velit. Perferendis aut fuga saepe est et. Qui et est aut inventore dolorem.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(417, 69, 19, 3, 'Quasi vel quo consequatur ea. Animi et ducimus alias laboriosam ipsum eius exercitationem. Nisi culpa quos nobis.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(418, 66, 43, 3, 'Aut esse minus velit possimus sit atque. Accusamus est beatae et tempora. Minima repellendus qui ipsum consequatur deleniti qui ipsum ut. Cupiditate consequatur ut sapiente odit nulla et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(419, 28, 51, 2, 'Velit distinctio id est qui. Doloribus et est atque. Maxime ipsam quia cupiditate ut. Quaerat voluptates nihil laborum alias dolores.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(420, 14, 30, 4, 'Corrupti et ut exercitationem id. Aut facere et quo totam rerum. Omnis eum magni totam et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(421, 75, 69, 5, 'Quos quidem sunt et blanditiis. Non officia est exercitationem rerum harum ratione quae soluta. Commodi a adipisci libero earum voluptas veritatis. Voluptatem nisi delectus earum consectetur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(422, 82, 53, 0, 'Et nisi est eaque aspernatur reprehenderit est. Aperiam corporis tempora et voluptatem. Et est quis qui eum ut. Optio aut ut sapiente.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(423, 57, 26, 5, 'Et placeat necessitatibus ipsum. Dolorem sit repudiandae officiis placeat nesciunt. Eum qui enim nihil sed in ex laborum. Ut qui aperiam ut omnis consequatur at.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(424, 46, 95, 1, 'Dolores odit officiis mollitia ad tempora. Assumenda ipsam saepe voluptas nam. Labore quia excepturi quibusdam libero voluptas quos. Provident voluptatem deleniti animi enim est officiis aspernatur.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(425, 92, 17, 1, 'Nihil quia quia quidem cumque. Ab necessitatibus perferendis deserunt deleniti praesentium hic aliquam et. Debitis blanditiis est atque sapiente qui enim.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(426, 53, 67, 5, 'Dolores blanditiis rerum quo accusantium ullam est eos. Quis soluta aliquid eos molestiae. Dolorem dolor aliquid aperiam nisi aperiam ullam.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(427, 54, 60, 1, 'Vel et distinctio enim sunt voluptatem ut quidem. Dolor aliquam eum laboriosam molestiae reiciendis sed. Modi ut itaque aspernatur voluptatum voluptatem id in.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(428, 22, 95, 1, 'Quaerat consequatur est eos mollitia sequi praesentium. Praesentium velit nam sunt eos rerum laboriosam. Odio et sapiente quod reiciendis tenetur ab laudantium.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(429, 37, 49, 5, 'Culpa dolor modi adipisci quos est nisi. Consectetur omnis quia consequatur quod. Et est voluptatem et fuga quas. Rerum ut quae magnam in et.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(430, 12, 69, 4, 'Libero quis iste nam magni. Harum quibusdam ut optio quis dolor. Iusto molestias voluptatibus dolor non.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(431, 3, 51, 4, 'Et voluptatem omnis est sint aut possimus aspernatur inventore. Rerum ut laudantium qui et optio. Ut aut libero cumque incidunt cum ut magni ipsa. Quis asperiores qui mollitia incidunt.', '2021-03-12 09:59:44', '0000-00-00 00:00:00'),
-(432, 18, 78, 2, 'Repellendus quis distinctio maiores praesentium et. At minima mollitia quod dolores illum eaque. A consequatur et dolorem hic non.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(433, 41, 47, 1, 'Enim natus voluptatum minima quod in placeat ad. Eaque temporibus et sit eos vero amet. Animi accusantium facere vel perferendis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(434, 64, 53, 2, 'Ut similique aut et voluptates. Illo accusantium dolorem non. Qui ipsam omnis deleniti quo reiciendis. Tempora tempora sed omnis aliquam.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(435, 80, 9, 5, 'Error vero occaecati rerum. Rem quia ut voluptas quia aliquam. Eum aspernatur porro culpa molestiae.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(436, 58, 100, 3, 'Voluptatibus dolorem quam ut architecto facilis. Doloribus laudantium molestias accusamus ut blanditiis et qui. Quisquam qui unde reprehenderit. Saepe provident quos minima ex fugit laboriosam ut.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(437, 74, 21, 1, 'Molestiae id ipsum magnam ut assumenda. Culpa est possimus quia vel. Qui voluptatem non inventore enim voluptatem atque eaque. Consequatur dolorem alias quia.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(438, 60, 83, 2, 'Dolores error aliquam molestiae accusamus quo voluptatum. Aut earum cumque ratione animi facere rerum. Sit dignissimos consectetur aspernatur. Hic ut quia accusamus eos blanditiis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(439, 83, 49, 0, 'Ut libero in quo cupiditate sequi eum. Voluptatibus hic odit velit sit. Voluptate rerum accusantium dolores labore. Cupiditate ut vel optio odio sint.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(440, 10, 80, 5, 'Sed et nesciunt est accusantium qui est fugit. Odio quas quisquam beatae. Est id similique in maiores rerum aliquid.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(441, 50, 68, 2, 'Non a qui adipisci non maiores quis. Exercitationem sequi magnam non tenetur illum omnis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(442, 75, 17, 0, 'Et ipsa fugit rerum consequatur doloribus. Dolore voluptatibus officia est tenetur recusandae. Necessitatibus sunt et et dignissimos culpa quia.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(443, 55, 95, 5, 'Ut tempore fuga veritatis unde. Voluptatibus quas doloremque maiores quia architecto. Aut sint id sint quo aliquam veritatis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(444, 82, 48, 3, 'Consectetur dolorem consequuntur provident maxime inventore. Dolores minima odit illo sed maiores. Eligendi soluta maxime quibusdam alias et. Architecto natus consequatur dignissimos ut.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(445, 77, 76, 3, 'Omnis odio et fuga in recusandae. Dolores dolores earum non et eligendi reiciendis. Dolores eveniet labore occaecati pariatur dolor veritatis rerum qui. Quo at maxime in suscipit nam.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(446, 36, 85, 2, 'Ullam eum est necessitatibus molestiae quia fuga. Voluptatem laudantium magni facilis odio consequuntur eaque deleniti inventore. Sunt ipsa incidunt et aperiam vitae.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(447, 25, 35, 1, 'Quos sapiente ab qui. Illum voluptas reprehenderit totam. Eum occaecati incidunt ipsa porro quae ullam mollitia perspiciatis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(448, 15, 92, 3, 'Qui et fugiat praesentium. Reiciendis eligendi qui et quis a. Maxime in delectus necessitatibus laudantium.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(449, 5, 24, 3, 'Nulla adipisci error asperiores et earum qui sed est. In dolorem ea aliquam distinctio. Rem pariatur saepe nostrum rerum doloremque consectetur distinctio sed.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(450, 38, 47, 5, 'Incidunt omnis ut eius in aliquam quia. Dolores deleniti dolor ipsam id non adipisci maiores magnam.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(451, 69, 97, 3, 'Quam rerum quasi quae et nemo iure molestiae. Ad aut fuga reprehenderit blanditiis. Ut est adipisci neque.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(452, 63, 60, 4, 'Cum ut aspernatur ut aliquam in praesentium. Dolores nobis unde hic laboriosam quo repellendus. Sit sunt reiciendis qui cum molestias blanditiis. Odit rem enim id perspiciatis quos at fugit sed.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(453, 89, 95, 3, 'Optio tempore maxime consequatur sint. Eaque dicta quia quaerat excepturi illum doloremque aliquam. Ut laboriosam id deleniti doloribus eum. Aut quas nam delectus et quae qui. Nisi deleniti eius aut.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(454, 70, 48, 3, 'In quis id ab voluptatibus sit architecto ipsum quia. Labore mollitia est nobis sit quia ab est minima. Aperiam sunt tempora inventore voluptatem rerum voluptatem.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(455, 23, 81, 1, 'Necessitatibus voluptates quia dolore similique est nihil. A impedit rerum dicta. Exercitationem consequatur possimus molestias aperiam ratione voluptatem deserunt. Fugiat corrupti eveniet dicta.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(456, 75, 59, 2, 'In corporis cupiditate aut porro illum sunt ullam. Fugit in quia ut eum voluptates ipsam quia. Voluptatem fugit enim vitae a. Modi at natus veritatis fugit.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(457, 26, 80, 5, 'Aut doloribus voluptatem perspiciatis voluptate. Voluptas eaque amet qui nemo ea dolorem explicabo velit. Explicabo dolor earum nam omnis repudiandae dolorum incidunt. Est sapiente ullam sunt et.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(458, 8, 29, 0, 'Et minus nam et accusantium voluptatem laboriosam dolore. Aut sequi est dolorum natus et harum ut. Distinctio est ea consequatur.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(459, 81, 15, 0, 'Corporis numquam maxime aut ipsam. Labore ipsam velit tenetur. Ex ea a ut totam.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(460, 25, 2, 3, 'Deleniti placeat saepe nostrum exercitationem ut. Excepturi tempora laborum provident quaerat aut perspiciatis officia.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(461, 84, 31, 3, 'Explicabo est rem eos nobis. Qui qui sint velit et. Tempore dolorem nesciunt quo numquam cupiditate. Quis molestias nobis qui natus qui.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(462, 61, 12, 4, 'Eaque ipsa quo velit. Aliquid quia et et accusamus. Molestiae dicta ducimus eos voluptas reiciendis delectus. Distinctio voluptas modi dolorum dolorum ut doloribus reiciendis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(463, 52, 91, 5, 'Rerum autem aut explicabo provident. Est natus natus doloremque illum soluta sapiente. Rerum enim sit reiciendis in quasi doloremque aut. Atque expedita voluptatem debitis dolorem quos voluptatem.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(464, 63, 51, 0, 'Quo fugiat voluptas neque maxime soluta et nam. Quis consequatur veniam voluptatem dolorem nemo eum. Doloremque reprehenderit deserunt temporibus mollitia et et rem.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(465, 69, 85, 0, 'Nihil pariatur voluptatem quo accusamus magni soluta ut. Eos exercitationem voluptatem sed tenetur. Perspiciatis sunt eveniet in in quia. Illum est sit animi voluptatem autem et quibusdam vitae.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(466, 1, 88, 5, 'Aliquam sed quam harum quia. Labore commodi quia dolore corrupti. Libero nihil aperiam et excepturi esse a. Accusantium qui voluptatibus possimus quam cumque aut velit.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(467, 11, 92, 2, 'Cum necessitatibus fugit inventore non mollitia placeat. Dolores aliquid minima impedit officia dolorem dicta fuga. Sit alias temporibus similique.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(468, 48, 51, 5, 'Neque et illum explicabo eos. Neque dolorum impedit voluptas eius distinctio. At fuga accusantium fuga.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(469, 74, 9, 2, 'Velit cum libero nam omnis. Consequuntur et sunt quia doloribus ipsam perferendis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(470, 43, 43, 2, 'Doloremque deserunt eum in recusandae delectus dolores rerum. Dolorum non cumque aut vel ipsam aspernatur sunt. Voluptatum quaerat suscipit consectetur unde. Commodi vel architecto et nam.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(471, 2, 92, 2, 'Et vel id eum nam. Doloribus ea quia sunt omnis eum repudiandae. Et laudantium nihil nihil temporibus quam repellendus. Quisquam perferendis id est eum sit facilis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00');
-INSERT INTO `reviews` (`id`, `id_reviewed`, `id_reviewer`, `score`, `comment`, `created_at`, `updated_at`) VALUES
-(472, 84, 12, 5, 'Quis velit non rerum excepturi beatae voluptates. Dicta et explicabo quaerat in vel. Nisi inventore qui at officiis aut adipisci.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(473, 82, 76, 1, 'Harum rerum quia beatae maxime. Cumque assumenda consectetur et qui. Molestias consequuntur eum quibusdam quaerat vel.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(474, 6, 53, 0, 'Quae qui earum voluptate error fugiat ratione. Ipsam aliquid voluptates sunt. Similique illo voluptatem libero aut sit dolore vero dolor.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(475, 47, 3, 3, 'Dicta at qui reiciendis ullam unde dignissimos qui. Ipsam dolore eaque repellendus vitae unde. Sed quas nemo qui minus quia et. Ratione voluptatem officiis a rerum repellendus corporis repudiandae.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(476, 91, 32, 2, 'Est tempore ea ut facere labore. Porro eius ut aspernatur vel et eligendi. Quia occaecati rerum illum voluptatem consequatur.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(477, 34, 96, 0, 'Voluptate iusto veniam occaecati autem. Ut fugit iure id aliquam omnis culpa tempore cum. Doloribus et iste nesciunt et id quia. In minus iste officia. Temporibus et et eligendi consequatur fuga.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(478, 56, 98, 4, 'Quia nemo pariatur dolores reiciendis. Voluptatibus similique rerum fugiat voluptatem omnis minus. Vero cumque repudiandae atque aut quasi quibusdam.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(479, 52, 18, 2, 'Ullam atque nesciunt in mollitia. Placeat consequatur repudiandae animi a consequatur qui. Sit est nam consequatur inventore consequatur quo sit.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(480, 7, 89, 1, 'Fugit vitae at hic accusamus asperiores. Nihil voluptatem velit omnis officiis. Repellendus sint accusamus est assumenda. Eum voluptatem et nihil officiis corrupti magnam expedita.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(481, 64, 19, 4, 'Pariatur ipsam officiis ab facilis ullam. Velit enim fugit veniam neque minima ut animi culpa.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(482, 52, 44, 0, 'Voluptatem maxime quo repellendus sunt non. Veritatis voluptas vero optio expedita. Reiciendis excepturi dicta eveniet sed ipsam veritatis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(483, 43, 42, 0, 'Doloremque ea neque consectetur quia in. Dolor in laborum non est labore voluptatibus rerum dolor. Aliquid repudiandae sunt voluptates id.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(484, 10, 8, 5, 'Laborum repudiandae tempore qui facere asperiores minima accusamus. Quis dolorem quisquam delectus cumque facere et est ratione. Non sint perspiciatis optio ad. Omnis numquam et cum sed nisi.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(485, 97, 27, 3, 'In possimus ea eos consequatur. Ut sit consequatur molestiae aut et voluptate odit laborum. Debitis eius incidunt rerum neque necessitatibus. Quas et quia qui hic.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(486, 8, 36, 5, 'Explicabo earum quibusdam repudiandae ut laboriosam reprehenderit voluptatem. Libero quia ea quam cupiditate. Totam temporibus occaecati et autem.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(487, 35, 89, 3, 'Ex maxime corrupti unde et. Facere natus magni in fuga quia modi. Ab recusandae sit unde id corporis id sit necessitatibus.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(488, 71, 100, 0, 'Laboriosam dolorum quibusdam quo. Quo et at sed non omnis veniam. Cum repudiandae tenetur unde ut architecto corporis vel quia.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(489, 27, 22, 2, 'Ipsam minima est explicabo et. Quia expedita amet harum ea id ex earum omnis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(490, 27, 44, 3, 'Eos aut facilis rerum praesentium eos. Perferendis unde libero in qui. Dicta aspernatur tenetur et ipsum eos cupiditate. Nihil dolor soluta aut aliquam at. Ratione voluptates dignissimos ex quia ad.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(491, 53, 15, 5, 'Tempore sint nobis placeat. Deleniti sit quaerat eligendi corporis in eum aspernatur. Suscipit et ex eaque rerum.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(492, 65, 42, 4, 'Et sit deleniti numquam maxime eum nam. Magni odio atque qui ducimus quibusdam fugit quos. Nulla sed expedita aut sapiente.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(493, 20, 39, 4, 'Facilis non illum similique dolor voluptatem. Voluptatem ut necessitatibus ut quasi. Incidunt hic recusandae debitis quaerat magni hic autem.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(494, 17, 6, 5, 'Consequatur fugit ea hic. Quo saepe rerum et tempora. Tempora aut sed deserunt et id mollitia itaque. Porro id delectus est suscipit quis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(495, 47, 59, 4, 'Odio impedit corporis quis et quibusdam. Laudantium modi excepturi laudantium. Voluptates nihil sint aut nihil fuga.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(496, 40, 52, 2, 'Sequi qui facere voluptas sint et ut minima minima. Ipsam itaque enim dolores eveniet. Fuga possimus itaque voluptates totam. Suscipit amet dolorem iure fugit veniam quia perspiciatis.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(497, 84, 29, 3, 'Excepturi fugit nulla ut eum. Et non est qui eum hic autem inventore aliquam. Incidunt reiciendis fugit eos quaerat. Quidem laboriosam non consequatur inventore est incidunt sed.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(498, 35, 38, 0, 'Eos provident voluptate qui omnis cumque aperiam. Sint eos itaque dolorem. Officia et dignissimos sed eligendi nemo consectetur et. Non et voluptas natus sint corporis eaque.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(499, 5, 61, 1, 'Ad rerum saepe porro vel asperiores. Architecto asperiores molestiae dolor aliquid sint vel delectus. Ea porro dicta qui aut qui itaque sed.', '2021-03-12 09:59:45', '0000-00-00 00:00:00'),
-(500, 97, 14, 5, 'Ab architecto quae ab repellendus voluptas perspiciatis. Architecto et ullam quia ut. Veniam pariatur error quibusdam qui suscipit qui rerum excepturi.', '2021-03-12 09:59:45', '0000-00-00 00:00:00');
+  `comment` tinytext,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `rules`
+-- Table structure for table `rules`
 --
 
 CREATE TABLE `rules` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `content` longtext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `rules`
+-- Dumping data for table `rules`
 --
 
 INSERT INTO `rules` (`id`, `content`, `created_at`, `updated_at`) VALUES
@@ -1196,71 +330,25 @@ INSERT INTO `rules` (`id`, `content`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `skills`
+-- Table structure for table `skills`
 --
 
 CREATE TABLE `skills` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(100) NOT NULL,
-  `id_breakdown_category` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `skills`
---
-
-INSERT INTO `skills` (`id`, `name`, `id_breakdown_category`, `created_at`, `updated_at`) VALUES
-(1, 'Formattage/redémarrage', 1, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(2, 'Installation Système exploitation', 1, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(3, 'Changement de pièce', 1, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(4, 'Changement de pièce', 2, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(5, 'Installation périphérique', 2, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(6, 'Assemblage ordinateur', 2, '2021-03-12 09:59:40', '0000-00-00 00:00:00'),
-(7, 'Installation Système exploitation', 3, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(8, 'Installation logiciel', 3, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(9, 'Cours/Aide à l\'utilisation', 4, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(10, 'Apple iOS', 5, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(11, 'Android', 5, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(12, 'Windows Phone', 5, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(13, 'Apple iOS', 6, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(14, 'Android', 6, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(15, 'Windows Phone', 6, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(16, 'Apple iOS', 7, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(17, 'Android', 7, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(18, 'Windows Phone', 7, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(19, 'Installation box', 9, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(20, 'Configuration réseau', 10, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(21, 'Configuration réseau', 11, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(22, 'Installation (gros/petit)', 13, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(23, 'Réparation/Entretien petit', 14, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(24, 'Réparation/Entretien gros', 15, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(25, 'Réparation', 16, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(26, 'Changer le stockage', 16, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(27, 'Réparation', 17, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(28, 'Changer le stockage', 17, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(29, 'Réparation', 18, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(30, 'Changer le stockage', 18, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(31, 'Réparation', 19, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(32, 'Changer le stockage', 19, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(33, 'Installation/Configuration TV', 20, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(34, 'Réparation TV', 20, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(35, 'Installation audio/vidéo', 21, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(36, 'Configuration audio/vidéo', 21, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(37, 'Réparation', 21, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(38, 'Installation audio/vidéo', 22, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(39, 'Configuration audio/vidéo', 22, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(40, 'Réparation', 22, '2021-03-12 09:59:41', '0000-00-00 00:00:00');
+  `id_breakdown_category` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `firstname` varchar(25) DEFAULT NULL,
@@ -1274,591 +362,303 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `lat` double DEFAULT NULL,
   `lon` double DEFAULT NULL,
-  `is_helper` tinyint(1) NOT NULL DEFAULT 0,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `is_google` tinyint(1) NOT NULL DEFAULT 0,
-  `is_verified` tinyint(1) NOT NULL DEFAULT 0,
+  `is_helper` tinyint(1) NOT NULL DEFAULT '0',
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `is_google` tinyint(1) NOT NULL DEFAULT '0',
+  `is_verified` tinyint(1) NOT NULL DEFAULT '0',
   `verify_token` varchar(255) NOT NULL,
   `reset_password_token` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `users`
---
-
-INSERT INTO `users` (`id`, `avatar`, `username`, `firstname`, `lastname`, `birthdate`, `email`, `adress`, `city`, `postal_code`, `phone_number`, `password`, `lat`, `lon`, `is_helper`, `is_admin`, `is_google`, `is_verified`, `verify_token`, `reset_password_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'mara76', 'Dicki', 'Ethyl', '1981-04-29', 'sammie46@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-553-523-9722 x356', '$2y$10$gTKQ6Igo/DmD2OU/8SAVt.6H/S0mUTrIoXwOTEjq109/G3dZsRHZG', 42.6217185, 9.4228371, 0, 0, 0, 0, '1c1b999f85247c17892ae16d4708f15cc66ec915dd2019d02927d4965dc97ae496b89226f506a57133a08ab14b7467f240cf', '470184da2b302991679d83784a50a0760f3472415e72c2b4b4517fe5735264ca841d791a660f9f9650a22b9887cc04769ada', '2021-03-12 09:55:42', '0000-00-00 00:00:00'),
-(2, NULL, 'asa.lynch', 'Stracke', 'Harold', '2001-10-16', 'sokeefe@marvin.com', 'Route de Petrelles', 'Biguglia', '20620', '851.261.7884 x4322', '$2y$10$SJlxbmgeW410NSzDx4L0zOorsS8H5Ni1jAt.QM3eBui6WAJQ015ju', 42.6217185, 9.4228371, 0, 0, 0, 0, 'd9c516faa153540f3747562bb414f49b828e3435419d2aa0d40d1f51c8a44c0b91d6e66d7ffa16607bb88916a3ed0184c4bf', 'a159c6855f78b3aeb3def6eedf5f06b73e94260fcd205b4fd63669d8024577ba12ba691d6dc5e398bb50e76ec6aebcb72eee', '2021-03-12 09:55:46', '0000-00-00 00:00:00'),
-(3, NULL, 'friesen.deonte', 'Borer', 'Sandy', '2019-11-19', 'una.hintz@johnston.org', 'Route de Petrelles', 'Biguglia', '20620', '226-284-2836', '$2y$10$ivhxjyIeRNyCQQhqX7ugju9sqOqkchizy4qk9TDcQczK9TFgOtgKi', 42.6217185, 9.4228371, 0, 0, 0, 0, '13251b5c2f6e61718760a81e49759c2010f161352f7b624304d9d2b71c67aa2341da4eb47a9f88ce2951a396d02e917aa492', '7577d55de1c6e7fc66ecdc3c28dded1c32f1e181148a9d25c8791de9a7a98597ab995fde53cd222a2b75f139863c6cefce7f', '2021-03-12 09:55:48', '0000-00-00 00:00:00'),
-(4, NULL, 'schultz.louisa', 'Lakin', 'Loren', '1977-05-20', 'elliot.gaylord@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(654) 906-8743 x08328', '$2y$10$tlUxu2y/RBm95DjYSbY6Nuon/ccjNt6TC9Yft274oS1lmXXyuymx6', 42.6217185, 9.4228371, 0, 0, 0, 1, 'f47400aab00006ea4d4cf9f7b451be72d22d66d515ecab0b36228dc703bd208f6bbb41aaaeb0b297176950df8f539558fb67', 'af07008b34f4e0a9163279ca55e0dc4a6d90dc78268bce849f008a1969fdfbd0c69b6103c42fd846e8a4b3fdc9737f86b234', '2021-03-12 09:55:49', '2021-03-12 10:01:35'),
-(5, NULL, 'cortney62', 'Stanton', 'Catherine', '2011-12-18', 'mohammad90@hyatt.net', 'Route de Petrelles', 'Biguglia', '20620', '(805) 410-4236', '$2y$10$IjBS.ALCKGPCHa1mq3pB3OLBbaRIyj.lRN7MQsJ10NngWm6IPb7/.', 42.6217185, 9.4228371, 0, 0, 0, 0, '92df5ab28867f200f9657e628918e94c6074544c88ca3bc266eb0f88e376ec070a5d2fff534bf5ff82588dd2d77a062f9c97', 'dc1ba77285571ff6b34a089711a446e49fd9fbd6f351e4415e177eb0f7d6426ddc6758dcf6d0ee6c585f77717a4924d04e1a', '2021-03-12 09:55:53', '0000-00-00 00:00:00'),
-(6, NULL, 'zieme.caroline', 'Fay', 'Erich', '1977-10-26', 'alysha19@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '1-365-983-3158', '$2y$10$5UAVPI7vSt1nZ84vFJ7Z1OPbEAxCxzKEiKmMlISCNIg73x4jAHniS', 42.6217185, 9.4228371, 0, 0, 0, 0, '6666e11b31e1fc71337e77c83d6786a03b85943fc7cc83aca07f9279dc64fff1470e4cca98b1f8e3ffb3157992b1ba7c25ee', '6bb6095f50b47cac68b579b6ac70e306aec9c7c43115c8c5a463ffc7e08478cbc1c7ba6ee2ecf698f546158600f648fc4939', '2021-03-12 09:55:56', '0000-00-00 00:00:00'),
-(7, NULL, 'schinner.ephraim', 'Herzog', 'Ebba', '1980-05-22', 'percival61@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '487-609-3655 x158', '$2y$10$cMOnsDeEFHU1ZtBeFk7WbOxmPovWAJI1eTuu.ARfhcKTL7Gngdbw6', 42.6217185, 9.4228371, 0, 0, 0, 0, '642039c241695ef15aa6c76eebaf79c9960be9ccb5410f837c2e94fe36a3c4ea66b1a4512da46890825aac0e9648d5c91391', 'cb67e39087cab01741ade35b51946f511d8e2f3be27b90a526d2a0da4c1d98738c2a1c40418b7db0ce946dcb47e795b31838', '2021-03-12 09:55:58', '0000-00-00 00:00:00'),
-(8, NULL, 'russell96', 'Dicki', 'Earlene', '2000-03-05', 'ankunding.donato@emmerich.com', 'Route de Petrelles', 'Biguglia', '20620', '(321) 335-1292 x293', '$2y$10$kPHB7DUqTPSUMs8ffex/COsxy1CuW3L96.3nFc6X90G3EeE9b6uLy', 42.6217185, 9.4228371, 0, 0, 0, 0, '1c712b375788e22e43ca33ea456d80428f2e955de9cc3ce543e5b3436f2550d33d89e7a3294e23e914ca4ddcf9f14f9c9aab', '58d41f749ad1e29855e45adf5c28d1a9e4375a1e4fea877462bfd6b8e72af422b1718732db54e40e850ca9b466f62b62d09c', '2021-03-12 09:56:01', '0000-00-00 00:00:00'),
-(9, NULL, 'efranecki', 'Stanton', 'Carolina', '2006-01-16', 'batz.nannie@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '1-231-242-1539', '$2y$10$J3zd3JYTdLAvKG6q2S5JNOW79AX.n2ht6wZ6obcmAQ9Fxt3iEkQSK', 42.6217185, 9.4228371, 0, 0, 0, 0, 'a1067732d7d0e7811130dd3f397480c2bf9e88ae10fae777d78b8d34a51a507c5395ffce7ba550cde8b16ca30d6877725fb6', '83073f57da626d8e888a29be0ea5ce23cd9a81b7123d01303e67c938af8c19550b9844a3fe4cb7e3eb5b0beffeb7496c5fe2', '2021-03-12 09:56:04', '0000-00-00 00:00:00'),
-(10, NULL, 'kblanda', 'Zboncak', 'Thaddeus', '1993-09-28', 'klocko.reyna@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '245.833.2172 x6234', '$2y$10$oaloqgpTLr2LwBmPPXNOQu4oGMRRW3o.hvbRvKbhb2TbQbEtAKQX.', 42.6217185, 9.4228371, 0, 0, 0, 0, 'ddbce8ede55959296d6dc95347e6d00bb0ccd6b855367c4d78c4f04064d9c877db721e55dbf0aee848b16b0dad307c9a5efa', '231ee8133a48ed117706db2fd7bdffd7db2d656df4f03e9703e30525b4f9625ee8fb79631488a944c307e0352ccb4b2ceb6b', '2021-03-12 09:56:08', '0000-00-00 00:00:00'),
-(11, NULL, 'lambert12', 'Hilpert', 'Otha', '2000-04-16', 'lakin.lauriane@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '+17348724161', '$2y$10$yEnXQRvVSD8BmJsx99yPVOlDT7u1.EGikCWcaa.thnQyyEmhJr51C', 42.6217185, 9.4228371, 0, 0, 0, 0, 'f2c50ce1affa192af384c0123c818c19454796fb6f2793b0edec9fdeb42f5f2ae2e0899784948118f9a03e6b692f2c37f372', '064a21fddb4f983d8fb99cc4bce64362281dcb0acb9f592d8c866e1672d067827e78e7da29f57f7b93f4ef59f41640b78ad6', '2021-03-12 09:56:09', '0000-00-00 00:00:00'),
-(12, NULL, 'dickinson.lillie', 'Upton', 'Jannie', '1979-10-21', 'cletus.koss@hayes.com', 'Route de Petrelles', 'Biguglia', '20620', '(687) 599-4015 x27344', '$2y$10$LCDkLzlFM0eyg4el/7qkBueVi7b7JUbYOrtE0aKHG95ZHvE2xQF/y', 42.6217185, 9.4228371, 0, 0, 0, 0, '694e72cf8e23c415f56d1dbc8515e7fc0d8c1c45791390e64e9c71b0326e71ce41b31b3d4926ff1ad0887dbcf35b2c1fc8bb', '4e4cae8f51e66cb2a33f3d217a5df2b6a352ed60ccad2088206f94a1041b75c66b741c811c2ab1a247458ba4cbdf88432939', '2021-03-12 09:56:13', '0000-00-00 00:00:00'),
-(13, NULL, 'joanie.rowe', 'Murray', 'Diana', '2000-10-11', 'wolf.ethelyn@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(887) 914-4683 x748', '$2y$10$AdHLyRD.jP4CvnEiIRV3hemRN68.CNJRqZ3HlwVWooUgiAIdegVqi', 42.6217185, 9.4228371, 0, 0, 0, 0, 'fa27a4b49319445721cbea5940d76751c55b85d3300ed96e47775365572a595938e71e6494b2f8153f16c3ff3c89ba23e25d', '9c7b2d5b1aae927c5666bdd1e7f131ad0fa8bfa6824bb3220dc601931ff252fa4661d86f90c6038a2906615d825f6bf53d3d', '2021-03-12 09:56:15', '0000-00-00 00:00:00'),
-(14, NULL, 'abartell', 'Leannon', 'Esmeralda', '1970-02-11', 'monroe.davis@kirlin.com', 'Route de Petrelles', 'Biguglia', '20620', '408.881.5367 x48709', '$2y$10$jneZo0y7hHHPz47YPkFNieJkx/HxmO2J4z/uLD7r9Deo2CWKPhg1a', 42.6217185, 9.4228371, 0, 0, 0, 0, '63bfcd9dc1691e679b5c322a81b4cfa22b508ee305f49524e14721860981c68255202977023e87ba4aba6c64acdf1040c67c', 'e3780e9ec4a76bb095660203df4a29341af8ba9e1278bbd6e0c042ed427bb23b48cb380fa35ccb02b471de59d1a1cfce071f', '2021-03-12 09:56:17', '0000-00-00 00:00:00'),
-(15, NULL, 'florida.flatley', 'Bernier', 'Addie', '1976-11-25', 'lrowe@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(732) 225-0942', '$2y$10$i/bY3MKv0rXz1bKZtdRVouRnTWShxrhfTBxqAaGljtgscSDqI6ewu', 42.6217185, 9.4228371, 0, 0, 0, 0, '0b7a0f2f3e1c76626a65ad590e1dd07a8da5de510d21ec37fad7c64b15b50449b107055aae2af41294ea8448cb2ee17d6d61', '1ffa421c4d222866583f68b937c4e71f393b59eb029f0b93e8bc29be0ee5d9328df7b216819443940625216725b0ed687cd1', '2021-03-12 09:56:19', '0000-00-00 00:00:00'),
-(16, NULL, 'mccullough.marshall', 'Harvey', 'Ulises', '1993-07-14', 'cgoyette@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '(461) 408-4016 x7142', '$2y$10$ZCjuus6luGfd2h1m16QZreKw/aKlPMqHU8PQVmnMrOWRgvAXyQeBm', 42.6217185, 9.4228371, 0, 0, 0, 0, '7c1c70c3b659692712638c224d3e75b01280ea47ea4e30c4e3abc4e6e21da35919cd0d7359a3f6c93e3edb1f0af9f0178aa5', 'd08c74daba296b66cbd988eca4c8f588a4d9a137fa5e6ecb90755c5c6ffd25bdc822b4d1da5eae79e5b9a30485e30f5a1ebd', '2021-03-12 09:56:20', '0000-00-00 00:00:00'),
-(17, NULL, 'ricky.wintheiser', 'Jones', 'Elisha', '1984-06-05', 'smante@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(767) 659-4634 x3068', '$2y$10$FeyrJ8e6DRS6M03bpoXvc.KdPtNaVvRUPLNWTJunYcizVvc5RZxHC', 42.6217185, 9.4228371, 0, 0, 0, 0, 'b85afda123931537982b770ba9b80169577ce8cb850db1fd950f96fe9b6c9a574596fc6e344e794375836e0ed6cc25c92e66', '4421865f664f3679baec68b398938348dcb68545f8ed129fad09574115971f62b43744937905823bf9f975ec113700c88cbd', '2021-03-12 09:56:22', '0000-00-00 00:00:00'),
-(18, NULL, 'will.caesar', 'Douglas', 'Destinee', '2008-02-25', 'hudson14@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '+1.535.488.5085', '$2y$10$gNsBjvxJTRwwF9w613Hup.2Bf9bGC6lz1tq8cwdSKUG9qBiYIr2NG', 42.6217185, 9.4228371, 0, 0, 0, 0, '67165c79c9e0a34c3101b74f8c15a1490e6841fded92e6fb031a9893267189ecbcc910128524ca4cc0c7d25b6884f398a26e', 'e55a7d4ed2d1a06aeaeff54c6086c200ef0667607e7fe0138c642a3a9d1439659ee551da0a7ad46ce34ea8a37dea1b743f8b', '2021-03-12 09:56:25', '0000-00-00 00:00:00'),
-(19, NULL, 'kuhic.gerhard', 'Rolfson', 'Lonny', '1999-03-13', 'lance88@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(662) 445-1232', '$2y$10$/74i2XQX5Fyi1kwGnAIB6uVNMCQ1D3ohIheMfHmi5yH.gS0YUpfoa', 42.6217185, 9.4228371, 0, 0, 0, 0, '2442024628b93dacbdb8a60474f777dc8c27a081647d6bc72d6264ff88083c9426283b4ff4d94cadeb218080e25b65b8e5fb', '218aa3399ba1099a664280665e0e7a7bf6e0b4388425805f1c969bb250d1ac1b49c3cfe6dc3253d4e47a83060874ed641e0e', '2021-03-12 09:56:27', '0000-00-00 00:00:00'),
-(20, NULL, 'tillman.nick', 'Blanda', 'Janet', '2011-10-25', 'schultz.helen@walter.com', 'Route de Petrelles', 'Biguglia', '20620', '469-853-3994', '$2y$10$760sG4Hq/eVDFdP.oEZ/rOweUTxIAB3XkeLoQHF1auSo8yc62msq6', 42.6217185, 9.4228371, 0, 0, 0, 0, '593937a144468c5fbfef73ca98fc342dd6250950bf8d9a190764c5f7786602efdfecc0d86cf5834b521367c914c36bae1ed9', '3c2073fb1375d8e116bccfef14b400e6ffead219864745e2680775516241482c5ae7df93a5a44dad687fafe6230b5f03b775', '2021-03-12 09:56:31', '0000-00-00 00:00:00'),
-(21, NULL, 'gokon', 'Bahringer', 'Shanelle', '2005-05-26', 'fmiller@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-993-784-3109', '$2y$10$IY24tNI6OE1nz3cqnbja/uIXzeq8LpbaP7nYKzBkiEVC9pzZBK4i.', 42.6217185, 9.4228371, 0, 0, 0, 0, 'ae9ee160ce8a9a4b2a50d62e3ba0cdde361fbaee126ac1ffb5f2d8ae6a0957666e33476025c1ffc7562d4000192ff76f6519', 'a874414f92acee139eaa38ac81f18bd70983a11a563a26c0f078ea4d58a511ea45788e5dc47570dd7de3787fefd4f86b3e5f', '2021-03-12 09:56:35', '0000-00-00 00:00:00'),
-(22, NULL, 'owilderman', 'Waelchi', 'Eliezer', '2019-04-11', 'raoul.abshire@crona.com', 'Route de Petrelles', 'Biguglia', '20620', '1-515-657-2130', '$2y$10$gL.ldrCxfyB3vo3VlTvaZecoj74hypUEMPcQ6iGKEQ6dZJ1lQzVqS', 42.6217185, 9.4228371, 0, 0, 0, 0, 'f53405c4ae41735ecece723e348e8c21083d6599bbb9d87d6b907c4a5aeb71e3d019c3bfa6a03fade60986696c11aafbd993', 'af82f2ef05e7be8f88c8c2091b0786dae3ea26af95fc90419283c734c3ee50324a612ce9f4583c8703e98e1bbc117f45c2b2', '2021-03-12 09:56:36', '0000-00-00 00:00:00'),
-(23, NULL, 'vernice.gusikowski', 'Kassulke', 'Alfonzo', '1994-02-07', 'fhettinger@collins.com', 'Route de Petrelles', 'Biguglia', '20620', '931-814-0173', '$2y$10$/CHReKQmPlYJVSaAYSXDx.HihC1.jF1MyGkBVM5xxfRVLrKbBWl0K', 42.6217185, 9.4228371, 0, 0, 0, 0, 'ece6ea4193a08fe285e6089f61a9f6d1faf4fbd9e83cfccb801521fc0c0d0f2b32a5f74a61daa9e64d5544c43fbec7893463', 'fd9c6d7240adb10d948f4210887cee7c1405d3a24c9b60ec8d3fcf128e3765c592c4c59c09f43b8f4259dfd94f1bae8ffe53', '2021-03-12 09:56:38', '0000-00-00 00:00:00'),
-(24, NULL, 'carter20', 'Kshlerin', 'Roderick', '1979-02-26', 'ldickens@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '850.940.7342', '$2y$10$MbfSFSUDB9Y9dk64IZ8jA.RbNvz8zfM62f110vImOWWRZHVSp6Viq', 42.6217185, 9.4228371, 0, 0, 0, 0, 'b344449c0f3835f6fb79a4baa28180fc82ba173dfef9b77d28680a028e0e89f604ec680aa13852947d7187eb91f61039eeb9', 'acfd0dcab940523982b08b1f64c64c59bed7a94e585414142afb469a9971931dbf6c1283460bbb7d2381eea6bbc9a41e5990', '2021-03-12 09:56:40', '0000-00-00 00:00:00'),
-(25, NULL, 'judson.collier', 'Dooley', 'Dalton', '1971-07-19', 'kohler.micah@mckenzie.org', 'Route de Petrelles', 'Biguglia', '20620', '778-336-2570 x4544', '$2y$10$vZLnBJhLjLOm6ckKz2BMe.qjc0awf7udI8GxKTtEShClbhkS90Dx6', 42.6217185, 9.4228371, 0, 0, 0, 0, '27087c235ebc49a7cc9e517107a553cabd44ce63a63f3b0c94d68e23ebec727cb69d03f2ee79218cdb637b29a7279a21603f', 'b182681fe4d5a8fbf5c99743c805db5a0e0b2561d913461c6778898fdbeee9cfd8427e60113dc906c61e8137af288e3ce6b2', '2021-03-12 09:56:43', '0000-00-00 00:00:00'),
-(26, NULL, 'efren.kunze', 'Kunze', 'Rodrigo', '2018-01-21', 'uaufderhar@flatley.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-754-925-4247', '$2y$10$IFFC/BpOqhlMFjFMZfy/VOpKmgF0ndgmyBhp1H984zlzfCI/s4zEy', 42.6217185, 9.4228371, 0, 0, 0, 0, '86081ccb9653fad796bdc2086fe0da912035437346e6ef0a0684a5bfc3bfe6ccd63e245caba89c800588a99e4a12ce374946', '0f46bc4e6f882a4d0d2776930f5ec9e340356f0fd77bbc4baac630fcd9099ea9aa5087f3596427a74429529b6f9ceb0c4dc5', '2021-03-12 09:56:45', '0000-00-00 00:00:00'),
-(27, NULL, 'ruecker.jace', 'Kuhic', 'Trent', '2020-08-21', 'nwest@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-247-515-7728 x254', '$2y$10$Onf5uP.9wJh/r7AU1RCdwehXjoP9kCWp0AhOzdhd/aNTpwNykuuia', 42.6217185, 9.4228371, 0, 0, 0, 0, '7cb5cfbc6fb58bbec031a06b24ce3ab1e8544fdb5b7bd15722995f24247f27eac1f849029ac0085a71e6e4e6f4826db07273', '7dec697a5f4daf37e818fc81c42d741ac5fd31417e3d013dd0869c44fe13d67960b03778f96433df6e12824705ff8beae69b', '2021-03-12 09:56:46', '0000-00-00 00:00:00'),
-(28, NULL, 'dkertzmann', 'Klocko', 'Jennie', '1984-04-30', 'aubree.keebler@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '667.449.7242 x2679', '$2y$10$I75DEWZuWPzNDqS5iRuKA.4fWNoT9rd9oNICRf2eI0WG9C7lfZph.', 42.6217185, 9.4228371, 0, 0, 0, 0, '93c6cd3bc0fecf8cd29a8e5d4dba1c87b0d7afadd83f0423f13b430b386d0c1b9d68e1e807776c6f4c2ddc34764439117836', 'bea3f97b76823807549e27528420955d18eae0edea9c53a7357594b44456eec33e2d1cc6875a33e849d62f9ef5ea7f3544c8', '2021-03-12 09:56:48', '0000-00-00 00:00:00'),
-(29, NULL, 'bechtelar.maxwell', 'Wintheiser', 'Stuart', '2009-04-15', 'enos.kohler@larkin.com', 'Route de Petrelles', 'Biguglia', '20620', '620-751-4924', '$2y$10$7HUEDBVaF6eHvVXSPbT2feIZ2qMxa0bB9pdDNxspyBakY.pOHRtb6', 42.6217185, 9.4228371, 0, 0, 0, 0, '8ed9d45fa5b770e42a6708797eb865c9d43d6e119cfadeb201d18e01773179735eeb328b3f2a7430035534c1fdfb20a43aeb', 'b0512894061c4bccef85b04f711ef663f200f94818e070996974ded1eeee1140188b5341f6c19d5b1bb91127134fc8dcdc2f', '2021-03-12 09:56:50', '0000-00-00 00:00:00'),
-(30, NULL, 'lkeebler', 'Kunze', 'Angela', '1989-04-21', 'augustus59@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-892-719-6371 x94739', '$2y$10$ZK.Ec57x4zkSOyojoHXT1uDkUf3FA0H.c72pk4CciSleZ/EZ/Cm4y', 42.6217185, 9.4228371, 0, 0, 0, 0, '7a652548b6cdbcbd673afb061552ec5eee5987ddf16f64befd6a7fa7225aca4c81bbebcafb8d14a4994d729d5a1e9c306559', 'cceaccc3b61ec9a43326b49d269a6e15815ee48ba13d01d395a2645d978e0b1e5b7716e0e5ad3eb9a64627724ef57d0c532f', '2021-03-12 09:56:53', '0000-00-00 00:00:00'),
-(31, NULL, 'brianne11', 'Bosco', 'Judy', '2010-08-16', 'baumbach.dayne@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '886-368-4033', '$2y$10$DEMjFGKCLVq18UOQ9L6HQ.hAXGvIyss0472/CU5ul72blRokW7g52', 42.6217185, 9.4228371, 0, 0, 0, 0, '9116287e6181af4c8814b2da9433246e042b0cd4e577946ec5ec2e6fedbf83b3f93db7ef8c565783ae918c64fedec7e11e80', 'c35ff731e82cd5092a5ffa8e580e748ef99f0f07eaaa05a16b2a105c9c0e5134a71cd86d00a131da43b78696ca634b6b2299', '2021-03-12 09:56:57', '0000-00-00 00:00:00'),
-(32, NULL, 'clotilde38', 'Williamson', 'Clint', '1991-11-12', 'ialtenwerth@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-257-545-9885', '$2y$10$zs8cCiJogrnKlRReKsm1A.Qu44DoMBGBAVt6vRiwCdFmKFBEBlIN6', 42.6217185, 9.4228371, 0, 0, 0, 0, '71c86f2bb445ecde3bba7bcb7a33e477fa593a18912224b2e45eeb5c7dec97446c9b40348268496f164813767b3ee15e4091', '23dd5b93a36e69ab7eaed34b265b865f3f1507ca4b42bbf62be7be32ddb296f8385728b28d01f5786ae370e4d22c0d94c2eb', '2021-03-12 09:56:58', '0000-00-00 00:00:00'),
-(33, NULL, 'vivianne43', 'Willms', 'Andreanne', '2006-02-24', 'ntromp@trantow.com', 'Route de Petrelles', 'Biguglia', '20620', '(521) 513-9249 x946', '$2y$10$sfN1Rqi4BQ86ydDODvusquzn/fAxYEDJSFAbGhozryNPA7vH96vHu', 42.6217185, 9.4228371, 0, 0, 0, 0, '107a3cae226d7fbd9ed55b5e6bcf17e1268a2a0da0c5c34d95d736676d7b8baf765e7ed38409ce3a6522215670e354e33d9b', '33c6172b82d0683171e2b1dde2ba8472e81394d6f65861bc687db9210994f01642d15105dc286cad5bb82e683a6d59c4a122', '2021-03-12 09:57:01', '0000-00-00 00:00:00'),
-(34, NULL, 'lon02', 'Buckridge', 'Mary', '2014-08-10', 'dgoyette@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '(837) 229-8027', '$2y$10$LykJMn9jz4LUGcXorLWqc..PD7t/sKaLiMHs2f7stUAHi/b2Fg6Oi', 42.6217185, 9.4228371, 0, 0, 0, 0, 'baedaed27f4b07df85346f889c2fc1585ed2a9cb8b897694fd6b30935ef9200770569d303f3cca4a653c59bd057be3d4f0e1', '639844f08adb599e521e3967ee3a497146198ad85d817efd5e3be9ddffa8bde972dcc9de20a5655d53b16db36385e22fba2f', '2021-03-12 09:57:02', '0000-00-00 00:00:00'),
-(35, NULL, 'merlin54', 'Fadel', 'Willa', '2008-09-08', 'brandt.conroy@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(848) 849-3578', '$2y$10$FpGNR3lPl.c00p0DRdNTFePPMCO2.VaycvAoGwCsUKD7Bx9llGPs2', 42.6217185, 9.4228371, 0, 0, 0, 0, 'f3f950091b2aba83aa1d66aca57e3a7f2b5b7cae721ab05ce527f88d536e406ceb7defc0c420348316e0eb55868c52e0d888', '8ab7cb97a629ae57eaf22e45c9447722e6d1827f2571eb7e11b5c76f791b04930df0bd4c0ea07dd59c0a5e8362fddb507d25', '2021-03-12 09:57:03', '0000-00-00 00:00:00'),
-(36, NULL, 'hamill.wilhelmine', 'Hudson', 'Linnie', '1995-07-31', 'garry76@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-484-643-8705', '$2y$10$D3xQOuNP/WTaiDzboGKcv.ghW1Bs.T/H225AZs0sCWwwFm9CmTcHe', 42.6217185, 9.4228371, 0, 0, 0, 0, 'e5be93b45ae82a858a599cb6ba43adc7d48197fd8e7e62566174faedc14b6e27e7c9936c46d8a6374e8a254d98f66df6112a', 'c819253848eba9bd43eab9b6fc8ed2f2910ec499021f4aece68c86add665cb8bd5b9281fa57e866b08e1a7518fd47cef6fc6', '2021-03-12 09:57:05', '0000-00-00 00:00:00'),
-(37, NULL, 'vnicolas', 'Aufderhar', 'Doris', '1975-08-09', 'hherzog@wiegand.com', 'Route de Petrelles', 'Biguglia', '20620', '1-202-201-5775', '$2y$10$6SySHROcatgnVQSsBzZIjO1JVWYdMk8yAhuZzk1CLqntfsAcfnWfm', 42.6217185, 9.4228371, 0, 0, 0, 0, '8fd5935a03a5e2ade8891ab12098e740e4897232591d3ca14c33ba282d676506844e430bdbf4f2a68cec8e35f345819e39a1', '83b0a333a4ffe50c2f97b447c98ff6966dc96edcc09c0e8784e0b16911e3cbb09f0629ce71ccc88e679a5210cfb1d0a7b3ef', '2021-03-12 09:57:07', '0000-00-00 00:00:00'),
-(38, NULL, 'wolf.jermey', 'Gaylord', 'Jorge', '2020-02-19', 'vrau@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '(383) 438-1302 x647', '$2y$10$shoPJMf51i1Yx7nvkOlBleZdVb3HKGUWVYs6CY2IBhBH.WLuzvp/i', 42.6217185, 9.4228371, 0, 0, 0, 0, '277f5eb6d4c327fb61ddb718bd8bba542b94fdb8a4e39c6ad9fc665b3358c299b563a9cef327b315023be142c55c7ffb59c3', 'ce92dacd2b62e80e55ac0ca4d8b29dc0fddfc24eb7d2ae6085e84ae63272a566b5a6b5c3a285c45058caf7a05db2384edbd7', '2021-03-12 09:57:11', '0000-00-00 00:00:00'),
-(39, NULL, 'braun.burdette', 'O\'Reilly', 'Misty', '1983-11-11', 'alubowitz@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '+18783127969', '$2y$10$wxfsrQvQdm1oxcMdUZdm8e1ssp9HK4oEPqPKhubryq1EmcKrAXdma', 42.6217185, 9.4228371, 0, 0, 0, 0, '7634ff0f26d32291ef097cdb2e886f67d09dbd84671e169806f860d691bb6ddf5564905629161e24377f5142c1fb0fe7c57a', 'f468991536e44c4d3d7ff6db5b834060729f96b155ed01ccb973d461eb33bc009689750ff80eb0878ef35bc1f8eda833ba13', '2021-03-12 09:57:13', '0000-00-00 00:00:00'),
-(40, NULL, 'alejandrin60', 'Oberbrunner', 'Orie', '1995-08-20', 'lisandro.heathcote@erdman.com', 'Route de Petrelles', 'Biguglia', '20620', '598.662.0184 x80942', '$2y$10$29iUDY.V3SSSk3WFwu8cNOB9C10G3L2sxxK7b.CDQ3OC.NIrGgcOK', 42.6217185, 9.4228371, 0, 0, 0, 0, '9a3eaf1b7cad53de5d8345cfeec7decc31ccd87b5b1e151660acb6a97ab9ea4f8df2c761b2bf793093098964060cc100ceda', 'cc0524f56e5e22f837b7fb383c0d5ef4f7be130cd221262dc922a67eab1516aca0805c73862641f5274b9306a3824d8543a0', '2021-03-12 09:57:16', '0000-00-00 00:00:00'),
-(41, NULL, 'maci62', 'Hoppe', 'Verla', '2013-06-22', 'ptromp@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '517.292.6384 x60756', '$2y$10$74P5DSPLJVMafHkGN7bVRukxCpvcfkDUzJ9ZdW0l5wbk4BuPOAs7q', 42.6217185, 9.4228371, 0, 0, 0, 0, 'e1f929cdd96e14282f4e290edf02b765094e416ec9655c3a61241dcbe4b989f1a36897dbe18f9ca9aab62b8a5c12c7b47871', '5507e873405af15093639061c6fffe69db5588e7e258f32f5683bbb4c7420ba5502f9c0d84bf57a23973a889d7cb0f608477', '2021-03-12 09:57:18', '0000-00-00 00:00:00'),
-(42, NULL, 'kaycee80', 'Ruecker', 'Gustave', '1976-01-30', 'bergstrom.bessie@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-320-848-5544', '$2y$10$5UWevJjUWc8bRDHxl9kJYOLpeoTXDkAnVo.Kg6YUYmxTfUPd2xKdq', 42.6217185, 9.4228371, 0, 0, 0, 0, '9ff1f486b4195fbca858d951ef1621f4084300360b2564c6990abc7a28f898f397f61213d0251353dfd06de6c9f06cf35cb2', '9da267a4267306aa0c9833050b62db19b81e423e0ecb27341448aa45da2b2684b094847736aca89fd81b87b8efa7b720d3f8', '2021-03-12 09:57:19', '0000-00-00 00:00:00'),
-(43, NULL, 'lindsey04', 'Gottlieb', 'Cullen', '1987-07-25', 'jace.bednar@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-823-419-5770', '$2y$10$0Z1ICsuPVzt5l/BKWIwKCeAZu6O4wPtMZ5TK8vv5HxvZ.7rpFYdE6', 42.6217185, 9.4228371, 0, 0, 0, 0, '11c2b18e34cf837390e6d59481d2cd71371a26a182d0ecd8bdbf71286092914cd61213410afaef80924aac846b0c048461e1', 'da691cc6631652975503f867113de3e756e8507f1bfdba86ab15e35643672c6e18fda374de0d15f811b4fd1cefef2908dcb7', '2021-03-12 09:57:21', '0000-00-00 00:00:00'),
-(44, NULL, 'west.arvid', 'Glover', 'Mitchel', '1996-09-25', 'eladio62@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '1-217-687-7291', '$2y$10$HjX0PEs3.rIsyj.NJRzMgel8BcDROufpdtylLuWe6YmvlcQ6sJZI6', 42.6217185, 9.4228371, 0, 0, 0, 0, '6ff9b7775f51cc9f3660fc1dc637e1121ce8ae82ac11d18ab8b671f488e761b0f1d818ccd1800237a78edb31eb2758996075', 'bacb2a116b44550256e4d2b33d4b1ce97a9a1a0bed8d463ec728ab4bcaa589949fa949706294365f728ca3367ac77ec934af', '2021-03-12 09:57:24', '0000-00-00 00:00:00'),
-(45, NULL, 'mavis.daugherty', 'Hudson', 'Bethel', '2006-08-26', 'tromp.myrna@fay.com', 'Route de Petrelles', 'Biguglia', '20620', '1-424-448-6801 x84506', '$2y$10$ghM7NSPJ2.eZ44/riVaVeO/iDivn/5sqaXWAzEl7B/UIpmKrL0IJi', 42.6217185, 9.4228371, 0, 0, 0, 0, 'd1538332629062abca7385cdd0df902b3eb0fa14ac05d34be6024bf884225e7bf7de316b227461ddae1937b1773607c19122', 'b8ec305d056536b2ba0d244b3aa45f0440958daf57eb3e093acfcd95761517a532ab91e99cdf0fba5807cb7d0fdec0af4e79', '2021-03-12 09:57:25', '0000-00-00 00:00:00'),
-(46, NULL, 'lebsack.deshaun', 'Miller', 'Nathen', '2020-06-30', 'tlarson@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '362.871.3298 x0209', '$2y$10$CYjxI1BmTJxaa8MQq.rqjuvaqEJbKCCY8grs1ELY6byzwRdOTvTGm', 42.6217185, 9.4228371, 0, 0, 0, 0, '1cd62ae1004931787f082ca54c27af8b9c0d56a13b5063790b4fe7a9afc084647d698c2d5ae081387e2a5944c2a0499a6fd3', '6d7003eef91317016258a43e4a75cda6553041902d31af3ba53c03d4e7c392e3fb093ec07a20b010f5af0cedf639ce943f5e', '2021-03-12 09:57:29', '0000-00-00 00:00:00'),
-(47, NULL, 'francis.beier', 'Feest', 'Niko', '1981-11-08', 'noah71@wiegand.info', 'Route de Petrelles', 'Biguglia', '20620', '378-368-8891', '$2y$10$WLyzAUSzyVSomngr8t2gsOHExRNyCwlSq53YVWQHmFDXwaSQMVulW', 42.6217185, 9.4228371, 0, 0, 0, 0, '7e96e7de57f1177c1caa7be23aff250b8d6ac3620d95b6a579aba91e1fb2029a1cbfd7b7b02fd500ab525280bde0ebeccfc9', '07b6a0555e22254465d5025559144538e859e5947a05d5a95f46198070bf9e1ac42057ba37011d682a2139a6f3fb97280ede', '2021-03-12 09:57:32', '0000-00-00 00:00:00'),
-(48, NULL, 'lysanne.howell', 'Flatley', 'Mariane', '2012-03-14', 'mgoyette@cronin.com', 'Route de Petrelles', 'Biguglia', '20620', '508-543-8102 x506', '$2y$10$fnTYq/vtESwSskdTYBgrzuChVqCWiMcUmYpdHWh/Q6fNWpVO7RGN.', 42.6217185, 9.4228371, 0, 0, 0, 0, '11934bcbd5bfa3ef24e5c35b30615695fac412f430dae9e84ad7c4aa936ad694f5bb7ff0096f4977e11a6290ef6b584d63f2', '17c35cff5fa6c403c37a3f1e5047106e358e4e2d2decdcfa1fab6c344847d00d8b94cc3841e7e1036b77df91a2ba843f7111', '2021-03-12 09:57:34', '0000-00-00 00:00:00'),
-(49, NULL, 'flatley.jermey', 'Vandervort', 'Elliott', '2008-03-04', 'savanna.ryan@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-843-456-1144', '$2y$10$dMkHoovbadmkuTfVU.lwruAi5MVtxlgOxcLmZ9mPoAFMsljhh0nqO', 42.6217185, 9.4228371, 0, 0, 0, 0, '68636eceba49ec73fed6c258cfd74debd9b77f8aaf5f6e90c24e45146dc99e9912f9aa0f5f0653e43c4d555b1e7405bc9374', '02ef1b89554355508ae4370ace42f0e7641a3c1d48f74f96b6cad40d417969fa561923dd2de0860887d45380758af8b2c2ad', '2021-03-12 09:57:37', '0000-00-00 00:00:00'),
-(50, NULL, 'wrolfson', 'Kris', 'Ford', '1994-08-04', 'triston15@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '1-915-312-2654 x15084', '$2y$10$7CWFTslUjXXO7FiFH00tiOo6omP5SFvDNZbfdWYTrOmb1iSquBkC6', 42.6217185, 9.4228371, 0, 0, 0, 0, '3ac32ec619a4ecdd6da37a04dca5004da6b90f0185e6b2c720e51262eb78d3c97ea2fe7ebbf8aa2c06c475f214a1dba6761a', '4d890b3a2332e00a5b6428c067f856f889d38b5b762a6629f1a8802317c42e32faa63ad57f71353a6363e9330b8498c0cccf', '2021-03-12 09:57:39', '0000-00-00 00:00:00'),
-(51, NULL, 'arno12', 'Walsh', 'Lucie', '1980-08-20', 'xlangworth@hegmann.com', 'Route de Petrelles', 'Biguglia', '20620', '(297) 207-2204 x24305', '$2y$10$BA/rKmKguHL.Z7LOt87ZtOci2GFi0Sg.Xfx6LmQmks4JiV5eQ3GGu', 42.6217185, 9.4228371, 0, 0, 0, 0, 'db9294f37bde7f0223a461f26d030b47dbe0628dc0bf5f2c8a74c858f6a8542f150bc6a2df7a22661a308ff1b8bfbc3c9d8c', 'f64bfdd682a5fc960b341e7f39a24deee2f87592d53e7e57fe2ad9a92f40587883381a44f367b60b321dac8cac155f138d72', '2021-03-12 09:57:41', '0000-00-00 00:00:00'),
-(52, NULL, 'will.noemy', 'Schamberger', 'Jerome', '1971-06-05', 'koelpin.dorothea@kirlin.com', 'Route de Petrelles', 'Biguglia', '20620', '1-673-981-2068 x405', '$2y$10$KDoPOXto6eCx1PxTDLvSd.rzClrRhtMgfhzw0UTwxSgWy4iPif.my', 42.6217185, 9.4228371, 0, 0, 0, 0, '6fee5eecada243a9d16e6e7cc98efc83129e8ef4544ee67b450b73b3ab02ddb4237d6211979035acddac8ad08e60ed941481', 'b4ab0ef6cc572e7d6045455cdf1da74995b19fb40562bba68a4a547a9447477ae869adee890d4ef15433c9898cfb69538f47', '2021-03-12 09:57:42', '0000-00-00 00:00:00'),
-(53, NULL, 'iankunding', 'Ruecker', 'Xavier', '1990-05-10', 'murray.lemke@gaylord.com', 'Route de Petrelles', 'Biguglia', '20620', '(643) 719-3539 x71308', '$2y$10$bPJGUJuPEGIGEwxF3u/PF.gVqQgBXv/65sqtCd7tTiUhJo4EcDZtm', 42.6217185, 9.4228371, 0, 0, 0, 0, '9c79975883c71f7f0a3f4f5fb96980cdb7812eaad7832a5804e2ba9bb1a06101ab711d6b4710e2cb4c329aa328f10f54250a', '580a33c95d3d951195a696351f76c46ac68bed4d4e36a2dbe57236b051281a1425e6df892951fa9295ffb38f0829c17dc9b1', '2021-03-12 09:57:43', '0000-00-00 00:00:00'),
-(54, NULL, 'bpredovic', 'Prosacco', 'Onie', '1978-02-24', 'allan.mcclure@davis.org', 'Route de Petrelles', 'Biguglia', '20620', '639-840-6858 x321', '$2y$10$9eYtzUDF8uJs9HLrStyaqe.6DR08RpOCRE2PkI0Btw98rAD.cPLNu', 42.6217185, 9.4228371, 0, 0, 0, 0, '9b773978e35807f41e1131205fced0861affe32c2033c87cf1c19270b9684a120011bd04b2fb684c269fd39b63d30fbe3e2b', '824a0085d6b116ddabbf6a7184557962b2cbdda975d172e1272a389b8dc32b228c1771f86c43cdf21d890f99c51eb972948a', '2021-03-12 09:57:47', '0000-00-00 00:00:00'),
-(55, NULL, 'tracey34', 'O\'Hara', 'Ramon', '2005-02-28', 'loren.frami@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-706-362-8580 x72399', '$2y$10$2RYzB7dAwu6Syk5rUgBSn.mvcj35uA/hcE3bddIU6.sTUItF./zri', 42.6217185, 9.4228371, 0, 0, 0, 0, '5d38e1bb23b0f4ce67bedfd682af7ed578a2bd8d08cfeada10ecbc8ad43e69d114bf0624decf4a2f0fa8771d76e297b406bc', '0be2859b73d5794f38a70dd72203be381f7fa532064f6ef26dac9b057f448b7dedffa756dbf3aa9ab5f7d0cf5da24d79e06e', '2021-03-12 09:57:50', '0000-00-00 00:00:00'),
-(56, NULL, 'miracle.gutkowski', 'Schowalter', 'Justus', '2012-01-03', 'hermiston.janelle@roob.com', 'Route de Petrelles', 'Biguglia', '20620', '917.768.2218', '$2y$10$pE2stsGhkypMdjaWd5Ebfelw1uSw88PZGCLAZ7359WNrSvMpR5Yaa', 42.6217185, 9.4228371, 0, 0, 0, 0, 'd78c38563a8f12206efaafea11ff200cfbb0a171dc1bfbc75d14315497b66bb30656208ff5df0ec233f13b6644330ca98fda', 'f7704500e116a82aa35ffe1d8e35786719943afe9ad0245a6c96b6d30d5e268bf3095c1d7cf21d38603b0b321f2fccf6397a', '2021-03-12 09:57:53', '0000-00-00 00:00:00'),
-(57, NULL, 'keaton17', 'Walsh', 'Daphnee', '2008-07-08', 'ftorp@koepp.net', 'Route de Petrelles', 'Biguglia', '20620', '1-827-558-8795 x81165', '$2y$10$NbRepeWUD6Fe1OF4/AQvuupuY6T1QpXKRDnjuXX3mROOtU.hBqD9e', 42.6217185, 9.4228371, 0, 0, 0, 0, '96ac2c3136433ae000bd3c76579d035025a44360a32c25e7ab90fcc869410fe002250a530aab92bca7d42868a264cdb26819', 'b64a134028ebb11b88366d3355970e0f972f1c5c9c996af86ea6b1b2d5ed93950336ebb98444df8d4c34a088faff28667ad9', '2021-03-12 09:57:55', '0000-00-00 00:00:00'),
-(58, NULL, 'maynard30', 'Treutel', 'Martin', '1976-03-04', 'berenice78@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(252) 504-9471', '$2y$10$/c7CRHIIvFUXSRUjtJpiVOeJB.ST18z3BmSPfcOwLcCTuaoofa3Xa', 42.6217185, 9.4228371, 0, 0, 0, 0, '5bdf2e086c8ab00080c3c2ecdb9696ea2059ae865ea36df5241cf2c65de4a831a694737bc5cd8293dcb5f82b98a32f117dbe', '02591fc900b8f7d6cd08842d2924dccfa6dd6e2d694cd80302dcefe3ee9bd2ba157f5beffc48a8d809517b4324d201c78bfa', '2021-03-12 09:57:57', '0000-00-00 00:00:00'),
-(59, NULL, 'upfannerstill', 'Wuckert', 'Cayla', '2017-12-09', 'harber.elenor@collins.com', 'Route de Petrelles', 'Biguglia', '20620', '1-819-769-9245', '$2y$10$NQ7w1rktBCsIGQJrK/caq.7GuKDzPxXBGq7EzCdkYMYsGz1DbCFda', 42.6217185, 9.4228371, 0, 0, 0, 0, '385269ae2f1dde48a8648c45ecf07f7f583fc539db94a91216b9e5d980949f9e3963acef930880ce3ae1324fc5eebb24a7c5', '711047305433f47682078d33cbd30f2aaeb145885c12a319b137e71a4728d29c7d717396c762002cca18f6386d3c5a4a2c8e', '2021-03-12 09:58:00', '0000-00-00 00:00:00'),
-(60, NULL, 'ward.samanta', 'Howell', 'Gerhard', '1985-06-20', 'aurelia.waters@balistreri.com', 'Route de Petrelles', 'Biguglia', '20620', '(515) 287-7784 x7142', '$2y$10$7m7upiDZoRTwyGRM87Lw4eW/iGpB.7iMA6eczoI4cZ6otp5VNyCqK', 42.6217185, 9.4228371, 0, 0, 0, 0, '7b27a795b2324c4a17c5630accab9f30a931171d0db48e0a5b86fa8dac9fff98afc6516cb19adde09bd3ada0bf8e5d6e8213', '3adc0315160b92cf8e4adc155b3d8b5e60ba6ac4e799b100fc8e6bf2ec026e9972ea1c041888c47bdcc92f921472bce6763c', '2021-03-12 09:58:02', '0000-00-00 00:00:00'),
-(61, NULL, 'ubaldo.pfeffer', 'Thiel', 'Horace', '1984-12-15', 'ometz@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-558-809-4337 x235', '$2y$10$S5yNV1Mf1V95b3KGfclqJ.V8WpCrWNSOzFQ9OmTm0o31wMkSrsreu', 42.6217185, 9.4228371, 0, 0, 0, 0, '899ca0a6d0b1d51a53437e672fce9114fb28818f2c6db066dc5dfb261d3e1d34e50bfd14866bc0cb99bd33e1d2f42e674726', '56fa0ea1e1adf3653ddcc8620370c15b16f50841d014afee0ca271bbf755c38138b82507ba19f8920c7a88628637f61b6e74', '2021-03-12 09:58:05', '0000-00-00 00:00:00'),
-(62, NULL, 'harber.maximilian', 'Gibson', 'Richie', '1983-09-25', 'eulalia.roberts@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-920-952-7034 x40999', '$2y$10$MDRroCHC01i792ef99xP6O5yVYiXUr9sS/h6KK5CPFSblVbmgGzNG', 42.6217185, 9.4228371, 0, 0, 0, 0, '81f0adf7b5e2527a2cd34ea1b3ec4326947f3f8304279859cd1c4b59f2eb65394a68e2f7d8a1a7171a1809b7764a8077ace7', 'd0a0d31ad290b2191520de25f5b1796ab140b8eee44b0e14e97c872f1e4a0f083602655674c798866e152a614f8104a20c88', '2021-03-12 09:58:06', '0000-00-00 00:00:00'),
-(63, NULL, 'laurie44', 'Considine', 'Ashleigh', '1981-09-02', 'schaden.giovani@fahey.com', 'Route de Petrelles', 'Biguglia', '20620', '(848) 531-3975 x1156', '$2y$10$wgOVrznuK75.s8c7uk/xt.sCOmMqMFqjAazYwj9u0kvSemTYKU5Y6', 42.6217185, 9.4228371, 0, 0, 0, 0, 'd83177ebbba0451a553de4bb401f779019d1d662f7508a5d1966cf56664412cca37258818f795e8517b344e6ddd1f436d592', '536740d2518662a27b8729270afa4415184078e8a8bed72525827eb74051c71a52736802078b978e9c847578442e9a33bf48', '2021-03-12 09:58:07', '0000-00-00 00:00:00'),
-(64, NULL, 'reilly44', 'Champlin', 'Jaiden', '1989-09-03', 'quincy.glover@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(689) 770-8739 x988', '$2y$10$xjqmnL3L3s63sYvJKGaTF.ndEIre3are5X/WM7alm3CJs0mrvHjpW', 42.6217185, 9.4228371, 0, 0, 0, 0, '246fc8704f74cf65f258ee9930277a0d181c57f558bc6359defd38b3dee6fd5d2993b36ac60930fffa92f40c9c05e67131a9', '33a7bfef6e17f80283432e5d169c7ced56994ee35323a72a4825608b2a9428a8516227722832c5eb9abdd5a1b40b8a896a6b', '2021-03-12 09:58:09', '0000-00-00 00:00:00'),
-(65, NULL, 'torrey.abbott', 'Kling', 'Rasheed', '1982-09-12', 'ruby97@flatley.com', 'Route de Petrelles', 'Biguglia', '20620', '1-392-535-0268 x157', '$2y$10$IY5UtRn4hRcyyXAd4sDIBukC7kVoxv8Vps2JSW9nFoCg5KR8PiZTi', 42.6217185, 9.4228371, 0, 0, 0, 0, '10bc5c6287380cb682a390004b3e27692f197224e3039736a17790e2a28e6fda5e408f1f2d50de2b6d0ab811600006eb8c0d', '3c0dca6c877e65f136a4149a926e7841d54a2c47c9c789977fa4372fddd03b1634b43495621661f221c55b105095e4c04426', '2021-03-12 09:58:11', '0000-00-00 00:00:00'),
-(66, NULL, 'golden84', 'Davis', 'Anabelle', '2016-10-18', 'sbashirian@schamberger.com', 'Route de Petrelles', 'Biguglia', '20620', '1-413-843-7226 x4631', '$2y$10$j6tsqu01bNzzabxz8gLJIevv6KNQOdU3hGlbn6mOMec3pkdcacV/6', 42.6217185, 9.4228371, 0, 0, 0, 0, '5d1c2fd7ae5c04c662633471e0001ba6b413ad9a56b0d3efe01f385fbff5d32f8430616c29e3f870bae66c29c89107a9224e', 'df767f792cad4a06fc5c41d74593428a68e0dc4d63f65df504085a46dfa494e022c5c454908aea61016508096662d4d17420', '2021-03-12 09:58:13', '0000-00-00 00:00:00'),
-(67, NULL, 'meaghan62', 'Champlin', 'Rosina', '2008-10-04', 'marie.bashirian@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '1-217-962-7853 x8269', '$2y$10$axJuQxHQQe1Si5vQB/dFDO1aVntVL/9at3XhKFNHlGmJE7zjBDEVu', 42.6217185, 9.4228371, 0, 0, 0, 0, 'ffee1cb5d300b1332450a3cf1a66d3bc3770fc60bc58dd02b5e640c4f3f278e75580106637f4eac2098f511203cdf4cabe51', 'a848af7284356e5256d9e98ed875591516fd58530cb4d65f975bf621f6175ead0d40fe5bd277bfa8728e7c75ff167a568859', '2021-03-12 09:58:15', '0000-00-00 00:00:00'),
-(68, NULL, 'estefania60', 'Stiedemann', 'Mariane', '2013-05-02', 'borer.mavis@roberts.com', 'Route de Petrelles', 'Biguglia', '20620', '(701) 386-3246', '$2y$10$xkqMjEmVcNO243MQl3.BAej1E9qDBjrztYE7hKq.DZFAiY3anQiIO', 42.6217185, 9.4228371, 0, 0, 0, 0, 'c96bc10cb0ba7720ce38fa809bcb80ae7803d62629c8b33411eea61b6f7a52dfe55aaa8716301f677464e1b31dc2b5f9c80e', 'caa8a5697f1a4228f391fd6fd63b41bc9cafdcc0faffa0a99a3694526bfdc81b7a5103e3b6e83124799fd2ea0fa13d6927ee', '2021-03-12 09:58:18', '0000-00-00 00:00:00'),
-(69, NULL, 'xstark', 'Gleason', 'Jaida', '2019-01-14', 'ruben29@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-631-304-9797', '$2y$10$n7eczYhuaziM6FH1Lh/ojuE/UtY3UWftBLssq1kC/ycemozfP/9jW', 42.6217185, 9.4228371, 0, 0, 0, 0, 'a27d16335428aa52a29f16eb5f86a6b685c3375f10fcb567e1e0fc7ee9c15b6a5965a1746a8d72a18637645eb8cf345c9814', '71f2a3b9db131e039f95da16d278442ecf56396e36a7b605df743abf2183189043b6cb16b2d0b0c0d3b3e978e6d16bdca9b4', '2021-03-12 09:58:21', '0000-00-00 00:00:00'),
-(70, NULL, 'marquardt.caterina', 'Vandervort', 'Jerod', '2016-02-24', 'emitchell@baumbach.com', 'Route de Petrelles', 'Biguglia', '20620', '953.513.2626', '$2y$10$3g.vHmwsBcxU4Ytq/gwvpOj0irYZf7UodxBhdwVKyGTAZyURYf.UW', 42.6217185, 9.4228371, 0, 0, 0, 0, 'aea775104ee83cd4851fe2daf7b1887be9088131f8c81cd4a97c3ff7a6ddcf20219207801fe04dc73884d6bba4eec19a8af0', '735dac0146c21c7de6acded80db725251d57e7bf44fc7196df5c576b221d19a53a8610d08479d6e8805723537de2fbc7243f', '2021-03-12 09:58:23', '0000-00-00 00:00:00'),
-(71, NULL, 'bradley.torp', 'Beer', 'Nathanael', '2001-04-03', 'thiel.magdalen@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '856-840-7042 x292', '$2y$10$rDMgx7kWsAF.VYG/J7Um3unRNIUX/nYUzQgeSpj5RzX1apBzUijQK', 42.6217185, 9.4228371, 0, 0, 0, 0, '9c6b97267db1d0e76a541776dd28aecf6d7eff6fbe26267015cc41467d15fdc89a9f74488175d23267f56b307c575099570a', 'fd04f7d876a936ab58c9bf1b8657e993637e29711713324c22985afe2475a0beef00444b52e1f27be7787f320aa03dd0ac8a', '2021-03-12 09:58:26', '0000-00-00 00:00:00'),
-(72, NULL, 'tthompson', 'Grant', 'Clinton', '1999-05-02', 'niko84@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '615.433.3655 x2645', '$2y$10$gSbDhu/k.9aFY3r6p49tcOHlPMf7REkG1O8Bq2cbF8ja6hOMVTK/a', 42.6217185, 9.4228371, 0, 0, 0, 0, '24450e0bdac179c96585b76ba90159bc58c0959d46cc2dc882ec20bde88cdf4f5330c1408ae9d18c9de73336c10dcf2904b6', '52464086a100a7fc624d126ccb7e594c9612d0e5019ccbefeaf616d059d9434b83831851d53b6488d63b85d1472eeaed16cc', '2021-03-12 09:58:29', '0000-00-00 00:00:00'),
-(73, NULL, 'breanna.brown', 'Gerlach', 'Oswaldo', '2016-05-09', 'nicholas80@miller.com', 'Route de Petrelles', 'Biguglia', '20620', '276.613.2207', '$2y$10$ND0MfjRMWuRuP.2Y5Pus4uxyOqlC..rnlgdnNkE5slKb4PX3dgq1O', 42.6217185, 9.4228371, 0, 0, 0, 0, 'f50096e8092fdda039450cc191ecbea3d936cde7cf7be5ccb0094c3cb600808fae91baccf8027b8c38003c718db0cce91ff6', '68f1a8dea60563aaebd3388f0fb883cbfdc7a0032a291f1a89defe308973f939e342dff8de9529a1dc6ba87debdfe2f24ae3', '2021-03-12 09:58:32', '0000-00-00 00:00:00'),
-(74, NULL, 'jabari.kessler', 'Rosenbaum', 'Rhianna', '1992-09-28', 'hodkiewicz.rosalinda@purdy.biz', 'Route de Petrelles', 'Biguglia', '20620', '489.449.4375', '$2y$10$BcGIC6Vv/D3TfZfcZ7OKveByjNC0A/r7rYlatwoRDN8bX9sEPVeS2', 42.6217185, 9.4228371, 0, 0, 0, 0, '241394c32d472c11aa27da4fc03cc9f6a5147beec3ec8b0ce35760caa2917e88099fcf793483001bfdfd67e9dcb7bcb7ef3f', '1c2ef1ed368690192bc622fec6ecbf67d627c65221af65ea6e333a9d48a3f2b1be6321287f8d097e843823aef2f4cca83ed0', '2021-03-12 09:58:35', '0000-00-00 00:00:00'),
-(75, NULL, 'ajast', 'Kub', 'Winnifred', '2017-02-19', 'bode.sabrina@jacobs.com', 'Route de Petrelles', 'Biguglia', '20620', '812.701.7839 x9416', '$2y$10$7ET4ikorZtN5Nv4uWxrNZesxAdbH58r0WYfFlIZ4y69U85ziRGoGK', 42.6217185, 9.4228371, 0, 0, 0, 0, '718f89b985ca102fb3299ecd7d544fe96f590dfe6919ec3eabfbd442e5caa3e33c95b031f817b339c8f09884003b63fa7633', 'eab616ee732c3dc339bd1e986200f738fa84c96ed019ae1eb95f2ecbc73d51e5e34d87c0f05e90cd37bcf019e4868ce849b3', '2021-03-12 09:58:36', '0000-00-00 00:00:00'),
-(76, NULL, 'collier.berneice', 'Yundt', 'Orpha', '1988-10-20', 'joyce30@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '824.835.9408 x278', '$2y$10$9hhlwVE4hSn9XSTB.9u.QeR9yfnLrLZTCZYuruPJ/ozzhOVMWvTLC', 42.6217185, 9.4228371, 0, 0, 0, 0, '0d104a075379740d9d106ff7adc4ad513c71ecacd4d5dbc9ecdc2712c76021fe091ea99d785a6557c8de746043f674d15884', '8053770bee8f41b6b7b63779223a9d0c5f33638e4126f4444e89a8eac38cecae725397b6c7867523dc03c31d17594f5e99ef', '2021-03-12 09:58:40', '0000-00-00 00:00:00'),
-(77, NULL, 'pbailey', 'Koepp', 'Charlene', '1988-07-12', 'fframi@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '280-984-3332', '$2y$10$ZKTEVU38kexI88N62nqIUO89Yy2s2wSiYfvqZyVCj6RkBTWDZxFAe', 42.6217185, 9.4228371, 0, 0, 0, 0, '58cc6019f3e021a1cbb108bd9a8de61d71af3e9250fdf6b399941f517032cc1f9854a4400ff99b952f2b4832a797a8c3a223', '644d26e85e112def56784234c35e93e1f257f100bd5f17ccebe71f67dbfc246c70201b86410c8f9244bafce23e1c13ddbdad', '2021-03-12 09:58:43', '0000-00-00 00:00:00'),
-(78, NULL, 'destiney91', 'Huels', 'Octavia', '2018-04-19', 'armando95@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '+1.646.987.7680', '$2y$10$qrPCoVQzyohZ5GHvtdo9MetU7//LuLXJIM5C0ar9hPJKwkccPaNA6', 42.6217185, 9.4228371, 0, 0, 0, 0, 'a96baa212d3ef08b33d303f7f7755d37ddea48f363f668a97cb36d426f8850fa9093264b9539708a6dff5930e8faada973b3', 'a2afc6e82eb2677b838dcec3f5cb7622976c0f66af6abb6c835b4c4bcd90cc8042fdbff4d6ce7a66a3bdad2b983cd7bdafe4', '2021-03-12 09:58:44', '0000-00-00 00:00:00'),
-(79, NULL, 'lvonrueden', 'Reinger', 'Cruz', '2016-12-02', 'jaquelin48@gutkowski.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-717-363-6025', '$2y$10$47CmH2YjD7XfWhu1uD/SfOy2MdLCpTPm5.q8IOvKtc6Qd0ET71QYG', 42.6217185, 9.4228371, 0, 0, 0, 0, 'b340fdd138f645f1ba01c1875ab6efa5ebf583e6c073d7354c39047ff8c2158765ca2a50ef65c80549835eba7b646d1185c5', 'eb420938a8c9c1e11557aa0c8d5c42305e54ae5abba3f5453845aedfe112fc1b416a76846d083c797124999ba3d01e35e5da', '2021-03-12 09:58:48', '0000-00-00 00:00:00'),
-(80, NULL, 'alysha71', 'Schoen', 'Johan', '1994-07-16', 'ernser.emiliano@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '1-534-933-3239 x8494', '$2y$10$BYyEyKVl1ZYWUvDQZrbCBuUTPNEFTHSWefPyTTFGb7Yhs1oHHCru6', 42.6217185, 9.4228371, 0, 0, 0, 0, '7040fab48509c8ff05a8cb77a55c43de5267e51201e0b043652301c0bb975213fcfb01c6bb6fef2ef759630eca0baa239bec', '233c782c21269957675323888ddf74c3df3253cdd3612910042b7812f2b947f34735f8465a7281b65bb7f3af44b7e5a2068c', '2021-03-12 09:58:50', '0000-00-00 00:00:00'),
-(81, NULL, 'emmie.mayert', 'Schulist', 'Lazaro', '1991-10-02', 'cronin.liliana@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '505-626-7553', '$2y$10$17xh2wfDtd8Pc0KnMnjae.0PrlrTPONzzbY1ZAkkd2kNlLyd.7tD.', 42.6217185, 9.4228371, 0, 0, 0, 0, '9146eacd25bef8c2d96c4b38f94984ab8dbbd92038bc142cd36d6fda756b7b8333b21f3c5d1b38e4b0d464bf6f0917b35318', '6be93f2430763e0b8d9d417330dfac1bd14ca82f2a5a19b1610ab2aafccf30af3b12241196a7f0a7e61c37c6b0bca919d100', '2021-03-12 09:58:52', '0000-00-00 00:00:00'),
-(82, NULL, 'ideckow', 'Ruecker', 'Martina', '2000-04-17', 'maude79@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(537) 462-7407 x4983', '$2y$10$aPC3UyIWG8y1rZX9Uf8BtOZuXUfySiCzRBKlC1yWR9rSLGCaMNk5C', 42.6217185, 9.4228371, 0, 0, 0, 0, 'c91472fd2536d5033a19914ea8ef21c7b2159f1f5868e100976e06c8be73621022bf3cfa2575ebccbdcfa069d10fd60e2fdc', 'c1c2b0a7bd1c1b7250a4103ba7fec73e4a54375c2359cf41c4563f636b62603b9e75ebb22ad620718e61145753a035f2d0da', '2021-03-12 09:58:54', '0000-00-00 00:00:00'),
-(83, NULL, 'jacobson.raquel', 'Buckridge', 'Elda', '1975-09-14', 'lucinda80@wunsch.org', 'Route de Petrelles', 'Biguglia', '20620', '669.328.8406 x9635', '$2y$10$zf378Hb1LmSA/Y9dnt/ure85rUrni1/M3qGWJ0tm9gAeEdYLjqkcq', 42.6217185, 9.4228371, 0, 0, 0, 0, 'bdee019cb26d60e32911ef4e5f500db7ffd7fb29502055cf4c4e116ed895aade26b85fd24239d6f416aaebe37d427bf1c527', '2c21e8ee761e76d44b1b80886f86231834902cf5bca9e3f8bdfb26e7d97b139ae76c0fba021c328f2c0f6e0350992ec21cd7', '2021-03-12 09:58:57', '0000-00-00 00:00:00'),
-(84, NULL, 'considine.alyson', 'Ratke', 'Gayle', '2013-05-11', 'rhianna32@tremblay.com', 'Route de Petrelles', 'Biguglia', '20620', '685-446-0602', '$2y$10$VgmULBgcMQwkcptDBp6HEeaz59wAvlErKDoSEo91Hsl9UVfgkpM7a', 42.6217185, 9.4228371, 0, 0, 0, 0, '3d2b1062a4afa7083bccba067402c8c90fad30ed8135c5e7c9f746f26a47d78c0af6c9dc1b601dcb847168314234a9e18306', '92226a48a763fcc3ed42c4c364f9f39b1279cc757dd1555cbaccd8863772ff439c0104fea02ff8d0527f7c97e09b51e01304', '2021-03-12 09:58:59', '0000-00-00 00:00:00'),
-(85, NULL, 'myrna.schuppe', 'Bartoletti', 'Paolo', '2018-06-16', 'janelle.reynolds@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(815) 664-1653 x2134', '$2y$10$9vxMymKW3nMmXQS.N4dpTOAPrY.V.Kona1gZdGBFvTp.NA2bO8baO', 42.6217185, 9.4228371, 0, 0, 0, 0, '51477cc72f3624baf4dcc56aaea158bca4fadbe2b5a0443436c812df51271580b7d9f165644f153d9ee0e97ef688bb55fcd3', '6b3195e59d0570b72a32979288fb126798c7d4869b86d0a509f9491125b1cb4b5b792b54ccb30a705899e91d3aca0205308c', '2021-03-12 09:59:01', '0000-00-00 00:00:00'),
-(86, NULL, 'haley.elton', 'Gottlieb', 'Dangelo', '2018-01-26', 'glehner@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '(201) 610-0821 x00150', '$2y$10$BMyEJF.t2VoSPUGtaKG27..Zzs0lamuFaYx5uDcvFUjbE0HGLpBUy', 42.6217185, 9.4228371, 0, 0, 0, 0, '3c2dcc4c2bec60ea6acbbfa146c2526f2e4a9e49610ae4c807acba4e4f0362dd5a47f89ca9e2817e302df49d6fd378e82dd7', 'fed8e381ab612eb36b0b9b0213bb9ed486f5188466850c9ba2200c41b5b0575936c9fcbd67663689c688de976c56e5b53e26', '2021-03-12 09:59:04', '0000-00-00 00:00:00'),
-(87, NULL, 'cassin.cecelia', 'Frami', 'Chyna', '1970-01-06', 'vmedhurst@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '843.656.0605', '$2y$10$Hi4nWFfFTiv4rGmS30uX.OZ.KXFBgqYTRT9fPgyl3V5IZLp8EPXju', 42.6217185, 9.4228371, 0, 0, 0, 0, '3561fac9ba895ce969c2fbcc0c6e8a60d9b4fd0003ca0b3112806586701ef1d00d3a1ce7208ca284fbffa6823fe1eb6c9232', 'c3c136be2ac96acf0f8a357a312a9b9449f9737d6744ef000de71cae27c9e7ae1a35453b21ed5d56fbca231d2d664c73d13f', '2021-03-12 09:59:06', '0000-00-00 00:00:00'),
-(88, NULL, 'jwolff', 'Mohr', 'Aisha', '2008-01-15', 'franecki.andy@reynolds.net', 'Route de Petrelles', 'Biguglia', '20620', '(470) 242-7938 x934', '$2y$10$zJJujW9CuRW.v7GyOl0JDegJvM5/ycJP0cgq25TeV9RtH5sIUnXoS', 42.6217185, 9.4228371, 0, 0, 0, 0, '25c5bdfc42bc84714d818d39660d7c9cc8e3ab9180a8c06ecefefb1ca7832d08a410f4570f726f323887e4536c2927ef028d', 'a273c17cfe530fc9c842971611e5c9c074c5f33327cb97c705c9242b4e1fc98b1ea14fa32377e151e7ccaf398e1716db5272', '2021-03-12 09:59:07', '0000-00-00 00:00:00'),
-(89, NULL, 'teresa.douglas', 'Morissette', 'Hershel', '1991-10-28', 'price.kaitlyn@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '447-399-7076 x94806', '$2y$10$aX46BqGfyQVNjAWTwBFf7.jXvTqFRX55Ipq1bG2XEPR/7o6gsReV.', 42.6217185, 9.4228371, 0, 0, 0, 0, '9bf5a991b981fd523474d150695e1439895a418806f936dfc8357c27d21994aee121980b03caac5f2f85500ea07e7cd6727c', 'f6c862b73a473cf83cfd2f0e35aabe1f1b3e0e0c7ba2f1bf1b8acf0b08005fca7a978dd86fa543a66dba8d0f33e30aef7151', '2021-03-12 09:59:11', '0000-00-00 00:00:00'),
-(90, NULL, 'cleo60', 'Nienow', 'Quentin', '1977-03-02', 'darius13@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '(951) 551-3981', '$2y$10$8BLyWgDSw9ZthdbX00/CAOo41tPNTsf.G7d7myOPXEFt6UGJyAgr6', 42.6217185, 9.4228371, 0, 0, 0, 0, '52512be65f72cb434064f13387eb276d1adfdf336033f43e9ea97304be85a16f77b5fc9f51f7cebd513ad212c054724d16c9', 'bf8ef5e0dbf553b6479834ba12c9e8ba4e2306d5633960301629a86e7f53d2e077c8cf2a336c1154870efe08de0f7fbddd22', '2021-03-12 09:59:14', '0000-00-00 00:00:00'),
-(91, NULL, 'hkuphal', 'Purdy', 'Annette', '1972-12-28', 'joanie64@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '821-418-0443 x8279', '$2y$10$lZzJEf9e3zExFJRda4g0neoy90z/W0U541tOSyC9NRRl5SIyYl63m', 42.6217185, 9.4228371, 0, 0, 0, 0, '9a0e7c8127118615b21abaea8c78520085381496f3dad679f32020bf1400957d82631464e621c25b208b581956f241dfa579', 'e6cb0d8e19e89b913b3676385e5568c40d77d1d6550b15c9317f1be52d23d55e061be3ca4613c446d63d4249c2eec14be9e6', '2021-03-12 09:59:16', '0000-00-00 00:00:00'),
-(92, NULL, 'otis.pfeffer', 'Murray', 'Olin', '1992-02-13', 'mariah91@sauer.net', 'Route de Petrelles', 'Biguglia', '20620', '1-613-637-4092', '$2y$10$AiOzNJ1qVnLTjlIO7ri.je5N.aR4nzj8CnoCPtyDA72RinypxNC1K', 42.6217185, 9.4228371, 0, 0, 0, 0, '685d8693926a5beb69b6b2edd4a047855c7549d9398176d66d3b208dd97f28f7606080498cd0614ee2c250a86973efe8feb0', '75b89d15e54d47441235186fa56398bb6a7e7c3ada9bd9997752ed8ec86fc430295d2fa2fe547de9cfce5738d3dbbd39ad82', '2021-03-12 09:59:18', '0000-00-00 00:00:00'),
-(93, NULL, 'skiles.ethyl', 'Herman', 'Nova', '2009-05-01', 'vmueller@yahoo.com', 'Route de Petrelles', 'Biguglia', '20620', '(271) 650-2671 x08547', '$2y$10$Sof62.EGsnL1yo0IMBhBeOiN02hKxmxu0UmqFG7gcYogH.eaLdVbW', 42.6217185, 9.4228371, 0, 0, 0, 0, '47b84a8efe206c21adfb17595157e8e8995df63ab272db26d9d37ce52e510745a031c5ea6369b4aa5a17bb883afc6fd34d58', 'fc5e25466621f01279e69eabf0b10fe77717860491a18f7960088221b6d441361717db0a522cdea28c780809715b0d392cc1', '2021-03-12 09:59:21', '0000-00-00 00:00:00'),
-(94, NULL, 'freddy55', 'Wehner', 'Modesta', '2016-12-20', 'bernadette44@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '860-222-1090 x982', '$2y$10$SbSqCQMaRAYI3UO2TbjeauOYG.g8lWHoJHjY7exct7UahiL/TWKT6', 42.6217185, 9.4228371, 0, 0, 0, 0, '70eabd718b6131241faa2fdec931147e34786d59748521e5dc04a07b468d7cd3c6f2fbbe96c8423bee8efbda78c396d3c6e7', 'afafe7efa06027c02d0712c65088aa8f1f665d962614f47a5387fdcc192bc9f2b5a1cdeeaa022b1519c869e48cd20799cda6', '2021-03-12 09:59:24', '0000-00-00 00:00:00'),
-(95, NULL, 'shuel', 'Stehr', 'Edyth', '2003-02-02', 'cummerata.nickolas@hackett.info', 'Route de Petrelles', 'Biguglia', '20620', '+1.668.693.2230', '$2y$10$soC9GC7ZxHOFaUhG0CwPweeDXzwTS/AUt/uAXRWyD96JG5GI1qnk.', 42.6217185, 9.4228371, 0, 0, 0, 0, '9dd99b1a4989fee8a57024e19c5b5fe123190c5cacbe220562b55d13881971cafa308b5decca7c0f12d5062de5f2f06e6e3d', '268f8ba40418ea30df1b0aba2b83580f38e222308f194bf212ffe03e7287d4929601966d60a3827f01b4d32714ee03b04a9a', '2021-03-12 09:59:25', '0000-00-00 00:00:00'),
-(96, NULL, 'eddie10', 'Pouros', 'Forrest', '2001-05-18', 'april.bayer@conn.com', 'Route de Petrelles', 'Biguglia', '20620', '873.574.7694', '$2y$10$bSnXgSMD5r6hpP2QxRAlNus4g2O09HHQR9vEFm8UuCASjGhORhTva', 42.6217185, 9.4228371, 0, 0, 0, 0, '5a6d51aa3fe45e3f2f9da934984a1c50427fb0db93c4e87e277411876461346604a61021d634f50db70c6947fe3312522093', '9359fb6a011a245eccb6375dc6042c2e2b1c3012cb17a8c3a635252274c63662a6c4efecbbf3afb87dd66234f3514cb22607', '2021-03-12 09:59:26', '0000-00-00 00:00:00'),
-(97, NULL, 'joannie.swaniawski', 'Wilkinson', 'Miracle', '2007-10-26', 'bcorwin@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '667-313-8783 x182', '$2y$10$YGAmS8Meda0n.Ad6UYySBOPdi/2iZLvy.vVkPQbN41YObYgWsg02S', 42.6217185, 9.4228371, 0, 0, 0, 0, 'b4efe2190df15ec48bc765a94b7f11ccf2521bba630732078c17ac11e9f23bef86447dc261b9e3499658da93ada5e00a2676', 'ddcea9b0eecefe33584dc062c14eb90fb2e99479a63e597a39f4d42bbbe465d51ce81ae19bb7ac7f6df2b14c5253cceaa426', '2021-03-12 09:59:30', '0000-00-00 00:00:00'),
-(98, NULL, 'raphaelle.nolan', 'Grant', 'Mathias', '1988-08-06', 'evans31@hotmail.com', 'Route de Petrelles', 'Biguglia', '20620', '1-562-991-6967', '$2y$10$nej41oosk6Ypquqi28Ux5OdUjb8XdGR7y0JppMDVhx4PF9NffA5UG', 42.6217185, 9.4228371, 0, 0, 0, 0, '7c6e0415d00152e65ebcfcb8312691ff3eaf3d6786aea6e4fa136ea75d3437d3326480da00dc0bd6348b15ddd24ef13a9b3c', '6dc33e0f3136a4e2c09309f186518b3c0ee5e630c82eef3bad22823a249a948270906bb35cc669513e23a93223268011c97f', '2021-03-12 09:59:31', '0000-00-00 00:00:00'),
-(99, NULL, 'violette55', 'Volkman', 'Darion', '1974-09-08', 'hailee95@schinner.com', 'Route de Petrelles', 'Biguglia', '20620', '+1-349-572-0131', '$2y$10$zInoqDwFBc3lgGd3.gaFU.0oJ6/.acatNrm/Btp8JEPMTQ3.QbyP2', 42.6217185, 9.4228371, 0, 0, 0, 0, 'eae1b148bf0e1ffae30b46d871d085c4b2016b54ccf7a27bc7f27deb4b339de1a3ffd5c91e532c2c42f097c43401a5ee2b80', '57399e10e5d15e386354d4432751762b1bf849ec4f4b726d4caf7973d6c6b329692438c3cd964cddaa5beeb2814ef01d2102', '2021-03-12 09:59:34', '0000-00-00 00:00:00');
-INSERT INTO `users` (`id`, `avatar`, `username`, `firstname`, `lastname`, `birthdate`, `email`, `adress`, `city`, `postal_code`, `phone_number`, `password`, `lat`, `lon`, `is_helper`, `is_admin`, `is_google`, `is_verified`, `verify_token`, `reset_password_token`, `created_at`, `updated_at`) VALUES
-(100, NULL, 'lawrence58', 'Koch', 'Treva', '2004-02-17', 'enrique08@gmail.com', 'Route de Petrelles', 'Biguglia', '20620', '(675) 377-4762 x4736', '$2y$10$yqv722ZJh0JRtAexOJHGzukH7/bg8reuh2zY1X.qgIwf8RGR7wcee', 42.6217185, 9.4228371, 0, 0, 0, 0, '8600b4d5e53c6e8f49ac025500f182a14f7548e3fc12391b257a2ca269bd78b3e15ce9bb63576a177f0dd97ed90deaed9ea1', '46acaee7dc363f5cd856bf5613c38acd6086d0ae2f173bc92dc61ffdb67b6e9147bf77ea8a4a42047a11e1cf8a337be73b6d', '2021-03-12 09:59:38', '0000-00-00 00:00:00'),
-(101, NULL, 'zoltan666', NULL, NULL, NULL, 'zoltan666@yopmail.com', 'Route de Petrelles', 'Biguglia', '20620', NULL, '$2y$10$UY9bfG3WZYPzrLC7ani0j.Rvb9Jui/LSZnp3FVbJNU.1MYCZvwWWO', 42.6217185, 9.4228371, 1, 0, 0, 1, '49b0df00b3ed08a8a759469b2f80d0c7cad7725407befc6980429d6f4c09c6cd1699e12729110e88dfd285d680bb496e203b', 'ff7f0dd78e20f9173f77062c3d0d78e024360876d0c3ad84fdad9da47bbaacdccbeab2b4c8ba1afe636538189c32c160b816', '2021-03-12 10:01:21', '2021-03-12 10:03:12');
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_skills`
+-- Table structure for table `user_skills`
 --
 
 CREATE TABLE `user_skills` (
-  `id` int(11) NOT NULL,
-  `id_skill` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `user_skills`
---
-
-INSERT INTO `user_skills` (`id`, `id_skill`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, 18, 9, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(2, 24, 91, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(3, 39, 33, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(4, 30, 53, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(5, 27, 56, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(6, 35, 23, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(7, 5, 61, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(8, 28, 94, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(9, 9, 15, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(10, 12, 13, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(11, 9, 22, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(12, 28, 28, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(13, 3, 50, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(14, 38, 7, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(15, 21, 54, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(16, 38, 83, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(17, 12, 99, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(18, 7, 66, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(19, 29, 57, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(20, 37, 57, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(21, 17, 46, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(22, 4, 15, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(23, 38, 60, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(24, 27, 81, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(25, 2, 47, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(26, 34, 51, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(27, 15, 47, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(28, 15, 55, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(29, 30, 31, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(30, 26, 72, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(31, 7, 87, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(32, 23, 17, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(33, 3, 13, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(34, 25, 55, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(35, 18, 53, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(36, 36, 3, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(37, 32, 73, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(38, 14, 21, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(39, 34, 88, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(40, 24, 83, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(41, 18, 55, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(42, 16, 93, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(43, 37, 69, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(44, 3, 95, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(45, 13, 59, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(46, 30, 2, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(47, 5, 9, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(48, 27, 25, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(49, 27, 58, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(50, 6, 52, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(51, 34, 11, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(52, 4, 95, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(53, 5, 23, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(54, 19, 56, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(55, 5, 85, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(56, 31, 92, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(57, 16, 4, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(58, 12, 54, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(59, 2, 82, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(60, 2, 95, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(61, 10, 86, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(62, 28, 83, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(63, 25, 59, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(64, 3, 40, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(65, 33, 19, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(66, 11, 7, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(67, 35, 34, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(68, 27, 83, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(69, 25, 51, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(70, 26, 95, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(71, 17, 35, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(72, 23, 74, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(73, 29, 35, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(74, 33, 15, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(75, 2, 20, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(76, 38, 30, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(77, 16, 9, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(78, 8, 92, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(79, 12, 2, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(80, 23, 69, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(81, 29, 44, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(82, 33, 29, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(83, 31, 30, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(84, 19, 44, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(85, 7, 43, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(86, 27, 33, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(87, 11, 89, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(88, 35, 14, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(89, 40, 94, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(90, 19, 43, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(91, 10, 80, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(92, 21, 27, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(93, 13, 9, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(94, 2, 62, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(95, 13, 32, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(96, 5, 7, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(97, 14, 18, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(98, 40, 18, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(99, 21, 11, '2021-03-12 09:59:41', '0000-00-00 00:00:00'),
-(100, 35, 28, '2021-03-12 09:59:41', '0000-00-00 00:00:00');
+  `id` int NOT NULL,
+  `id_skill` int NOT NULL,
+  `id_user` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_warnings`
+-- Table structure for table `user_warnings`
 --
 
 CREATE TABLE `user_warnings` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
   `message` tinytext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Structure de la table `warnings`
---
-
-CREATE TABLE `warnings` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
-  `message` tinytext NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `articles`
+-- Indexes for table `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `asks`
+-- Indexes for table `asks`
 --
 ALTER TABLE `asks`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`,`id_post`),
-  ADD KEY `id_post` (`id_post`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `breakdown_categories`
+-- Indexes for table `breakdown_categories`
 --
 ALTER TABLE `breakdown_categories`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `platform_id` (`id_platform`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `chats`
+-- Indexes for table `chats`
 --
 ALTER TABLE `chats`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `chat_users`
+-- Indexes for table `chat_users`
 --
 ALTER TABLE `chat_users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_chat` (`id_chat`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `faq_categories`
+-- Indexes for table `faq_categories`
 --
 ALTER TABLE `faq_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `faq_items`
+-- Indexes for table `faq_items`
 --
 ALTER TABLE `faq_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_faq_category` (`id_faq_category`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `follows`
+-- Indexes for table `follows`
 --
 ALTER TABLE `follows`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_chat` (`id_chat`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_chat_2` (`id_chat`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `metadatas`
+-- Indexes for table `metadatas`
 --
 ALTER TABLE `metadatas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_page` (`id_page`),
-  ADD KEY `id_page_2` (`id_page`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `offers`
+-- Indexes for table `offers`
 --
 ALTER TABLE `offers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`,`id_post`),
-  ADD KEY `id_post` (`id_post`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `pages`
+-- Indexes for table `pages`
 --
 ALTER TABLE `pages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_page_group` (`id_page_group`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `page_group`
+-- Indexes for table `page_group`
 --
 ALTER TABLE `page_group`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `platforms`
+-- Indexes for table `platforms`
 --
 ALTER TABLE `platforms`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Index pour la table `posts`
---
-ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `post_warnings`
+-- Indexes for table `post_warnings`
 --
 ALTER TABLE `post_warnings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_post` (`id_post`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `reviews`
+-- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_reviewed` (`id_reviewed`),
-  ADD KEY `id_reviewer` (`id_reviewer`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `rules`
+-- Indexes for table `rules`
 --
 ALTER TABLE `rules`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `skills`
+-- Indexes for table `skills`
 --
 ALTER TABLE `skills`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_platform` (`id_breakdown_category`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`,`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `user_skills`
+-- Indexes for table `user_skills`
 --
 ALTER TABLE `user_skills`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_skill` (`id_skill`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `user_warnings`
+-- Indexes for table `user_warnings`
 --
 ALTER TABLE `user_warnings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `warnings`
---
-ALTER TABLE `warnings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`,`id_post`),
-  ADD KEY `id_post` (`id_post`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `articles`
+-- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `asks`
+-- AUTO_INCREMENT for table `asks`
 --
 ALTER TABLE `asks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `breakdown_categories`
+-- AUTO_INCREMENT for table `breakdown_categories`
 --
 ALTER TABLE `breakdown_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `chats`
+-- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `chat_users`
+-- AUTO_INCREMENT for table `chat_users`
 --
 ALTER TABLE `chat_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `faq_categories`
+-- AUTO_INCREMENT for table `faq_categories`
 --
 ALTER TABLE `faq_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT pour la table `faq_items`
+-- AUTO_INCREMENT for table `faq_items`
 --
 ALTER TABLE `faq_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT pour la table `follows`
+-- AUTO_INCREMENT for table `follows`
 --
 ALTER TABLE `follows`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `metadatas`
+-- AUTO_INCREMENT for table `metadatas`
 --
 ALTER TABLE `metadatas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `offers`
+-- AUTO_INCREMENT for table `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `pages`
+-- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `page_group`
+-- AUTO_INCREMENT for table `page_group`
 --
 ALTER TABLE `page_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `platforms`
+-- AUTO_INCREMENT for table `platforms`
 --
 ALTER TABLE `platforms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
-
---
--- AUTO_INCREMENT pour la table `post_warnings`
+-- AUTO_INCREMENT for table `post_warnings`
 --
 ALTER TABLE `post_warnings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `reviews`
+-- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `rules`
+-- AUTO_INCREMENT for table `rules`
 --
 ALTER TABLE `rules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `skills`
+-- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `user_skills`
+-- AUTO_INCREMENT for table `user_skills`
 --
 ALTER TABLE `user_skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `user_warnings`
+-- AUTO_INCREMENT for table `user_warnings`
 --
 ALTER TABLE `user_warnings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `warnings`
---
-ALTER TABLE `warnings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `chat_users`
---
-ALTER TABLE `chat_users`
-  ADD CONSTRAINT `chat_users_ibfk_1` FOREIGN KEY (`id_chat`) REFERENCES `chats` (`id`);
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

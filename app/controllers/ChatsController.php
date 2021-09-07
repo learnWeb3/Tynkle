@@ -115,6 +115,21 @@ class ChatsController extends ApplicationController
         }
     }
 
+
+    public function streamNewChats()
+    {
+       if (isset($this->current_user))
+       {
+        try {
+            $this->current_user->streamNewChats($this->connection);
+        } catch (Throwable $th) {
+            die(http_response_code(500));
+        }
+       }else{
+           die(http_response_code(403));
+       }
+    }
+
     public function beforeAction(array $targeted_method_names)
     {
         if (in_array($this->asked_method, $targeted_method_names)) {

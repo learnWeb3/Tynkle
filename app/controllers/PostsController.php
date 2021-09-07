@@ -288,7 +288,7 @@ class PostsController extends ApplicationController
                 if (in_array($this->asked_method, ['edit', 'update', 'destroy'])) {
                     if (isset($this->current_user)) {
                         if ($this->current_user->id === $post[0]['id_user']) {
-                            $this->post = new Post($post[0]['id_user']);
+                            $this->post = new Post($post[0]['id']);
                         } else {
                             $this->handleError(403);
                         }

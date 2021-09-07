@@ -1,4 +1,4 @@
-<a href="<?php echo ROOT_PATH . '/chats/' . $chat['id'] ?>" data-url='<?php echo '/chats/' . $chat['id'] ?>'
+<a id='<?php echo 'chat-'.$chat['id'] ?>' href="<?php echo ROOT_PATH . '/chats/' . $chat['id'] ?>" data-url='<?php echo '/chats/' . $chat['id'] ?>'
     class="list-group-item list-group-item-action list-group-item-light rounded-0 message">
     <div class="media d-flex col-12">
         <i class="lni lni-user lni-32"></i>

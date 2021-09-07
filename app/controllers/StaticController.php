@@ -14,8 +14,10 @@ class StaticController extends ApplicationController
             $page_data = Page::getDetails($this->connection, "static#home");
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
             $breakdowns = BreakdownCategory::where($this->connection, 'id_platform', $platforms[0]['id'])->fetchAll(PDO::FETCH_ASSOC);
-            $posts = Post::getPosts($this->connection, '/posts', 3, 0)['data'];
-            $users = User::getTopRated($this->connection);
+            //$posts = Post::getPosts($this->connection, '/posts', 3, 0)['data'];
+            $posts = [];
+            //$users = User::getTopRated($this->connection);
+            $user = [];
             $this->render(
                 'home',
                 array(
@@ -30,7 +32,8 @@ class StaticController extends ApplicationController
                 )
             );
         } catch (\Throwable $th) {
-            $this->handleError(500);
+            var_dump($th);
+            //$this->handleError(500);
         }
     }
 

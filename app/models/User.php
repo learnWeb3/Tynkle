@@ -690,4 +690,58 @@ class User extends Application
         return Request::send($connection, $request_body, [])->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function streamNewChats(PDO $connection)
+    {
+        $timestamp = strftime('%F %H:%M:%S', time());
+        header('Content-type: text/event-stream');
+        header('Cache-control: no-cache');
+        header('Connection: Keep-Alive');
+        session_write_close();
+        while (true) {
+
+            $json_data = json_encode($this->getNewChats($connection, $timestamp));
+            echo 'data: ' . $json_data;
+            echo "\n\n";
+            flush();
+            ob_flush();
+            ob_end_flush();
+            if (!empty($json_data)) {
+                $timestamp = strftime('%F %H:%M:%S', time());
+            }
+            sleep(1);
+        }
+    }
+
+    public function getNewChats(PDO $connection, $timestamp)
+    {
+        $request_body = "SELECT
+        chats.id,
+        chats.created_at,
+        (SELECT COUNT(chat_users.id_user) FROM chat_users WHERE chat_users.id_chat=chats.id ) as subscriber_count,
+        (SELECT GROUP_CONCAT(chat_users.id_user) FROM chat_users WHERE chat_users.id_chat=chats.id ) as subscriber_ids,
+        (SELECT COUNT(messages.id) as message_count FROM messages WHERE messages.id_chat = chats.id) as message_count
+        FROM chats
+        JOIN chat_users ON chats.id=chat_users.id_chat
+        WHERE chat_users.id_user = ? AND chats.created_at >= ?";
+        $request = Request::send($connection, $request_body, [$this->id, "$timestamp"]);
+        $results = [];
+        while ($row = $request->fetch()) {
+            $results[] = array(
+                "id" => $row["id"],
+                "created_at" => $row["created_at"],
+                "subscriber_count" => $row["subscriber_count"],
+                "message_count" => $row["message_count"],
+                "preview_last_message" => Message::getPreviewlastMessage($connection, $row["id"]),
+                "subscriber_ids" => !empty($row["subscriber_ids"]) ? array_map(function ($el) {
+                    return intval($el);
+                }, explode(',', $row["subscriber_ids"])) : [],
+                "subscribers" => Chat::getSubscriberData($connection, $row["subscriber_ids"]),
+                "subscriber_third_party" => Chat::getSubscriberThirdParty($connection, $row["subscriber_ids"], $this->id)
+            );
+        }
+        return $results;
+        
+
+    }
+
 }
