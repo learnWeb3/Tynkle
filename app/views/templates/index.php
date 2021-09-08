@@ -51,7 +51,7 @@
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/bouncer/bouncer.polyfills.min.js"></script>
     <script src="<?php echo ABSOLUTE_ASSET_PATH ?>/js/vendor/bouncer/bouncer.js"></script>
      <!-- Global site tag (gtag.js) - Google Analytics -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3E595GQR9"></script>
+     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-207022150-1"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -60,7 +60,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', 'G-K3E595GQR9');
+    gtag('config', 'UA-207022150-1');
     </script>
 </head>
 

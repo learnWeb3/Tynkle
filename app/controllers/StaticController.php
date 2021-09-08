@@ -32,8 +32,7 @@ class StaticController extends ApplicationController
                 )
             );
         } catch (\Throwable $th) {
-            var_dump($th);
-            //$this->handleError(500);
+            $this->handleError(500);
         }
     }
 

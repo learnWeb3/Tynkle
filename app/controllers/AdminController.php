@@ -64,7 +64,7 @@ class AdminController extends ApplicationController
         try {
             $page_data = Page::getDetails($this->connection, "admin#insights");
             $client = new Google_Client();
-            $client->setAuthConfig('./app/config/tynkle-304613-a33bb0a79914.json');
+            $client->setAuthConfig('./app/config/tynkle-325405-d212a6a70e4b.json');
             $client->addScope(Google_Service_Analytics::ANALYTICS_READONLY);
             $analytics_client = new Analytics($client);
             // GOOGLE ANALYTICS metrics
