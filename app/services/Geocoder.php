@@ -4,7 +4,7 @@ class Geocoder
 {
     public function __construct()
     {
-        $this->google_maps_api_key = 'AIzaSyCJ5gto1RGuJsDIrD_PV0ByXj_YqpPEsmk';
+        $this->google_maps_api_key = "AIzaSyCNLNbdCRRM4-YuxInSXS6slgLc-NfDkvw";
     }
     public function getCoordinates(): array
     {

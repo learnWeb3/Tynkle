@@ -44,7 +44,7 @@ class PostsController extends ApplicationController
                             "postal_code" => 'required',
                             "lat" => 'required',
                             "lng" => 'required',
-                            'technical_details'=>'required'
+                            'technical_details' => 'required'
                         ]
                     )[0];
                 } catch (ModelException $e) {
@@ -114,7 +114,8 @@ class PostsController extends ApplicationController
         }
     }
 
-    function new () {
+    function new()
+    {
 
         if (isset($this->current_user)) {
             try {
@@ -177,9 +178,9 @@ class PostsController extends ApplicationController
                         die(http_response_code(500));
                     }
                 }
-
             }
         } else {
+            $posts = Post::getPosts($this->connection, '/posts', $this->limit, $this->start);
             $breakdown_categories = BreakdownCategory::all($this->connection, '/categories', 0, 100)['data'];
             $platforms = Platform::all($this->connection, '/platforms', 0, 100)['data'];
             if (isset($_GET['platform']) && !isset($_GET['breakdown'])) {
